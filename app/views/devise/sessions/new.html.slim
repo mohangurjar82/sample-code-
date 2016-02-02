@@ -1,0 +1,23 @@
+h2 Log in
+
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  .uk-form-row
+    .md-input-wrapper.md-input-filled
+      = f.label :email
+      = f.email_field :email, autofocus: true, class: 'md-input'
+      .md-input-bar
+
+  .uk-form-row
+    .md-input-wrapper.md-input-filled
+      = f.label :password
+      = f.password_field :password, autocomplete: 'off', class: 'md-input'
+      .md-input-bar
+
+  .uk-margin-medium-top
+    = f.submit 'Sign in', class: 'md-btn md-btn-primary md-btn-block md-btn-large'
+
+  - if devise_mapping.rememberable?
+    .uk-margin-top
+      span.icheck-inline
+        = f.check_box :remember_me, "data-md-icheck" => ""
+        = f.label :remember_me, class: 'inline-label'

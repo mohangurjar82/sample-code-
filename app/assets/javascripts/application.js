@@ -10,7 +10,9 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require js/common
+//= require js/uikit_custom
+//= require js/altair_admin_common
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require style_switcher
