@@ -251,6 +251,7 @@ DEPENDENCIES
   dotenv-rails
   guard-foreman
   guard-rspec
+  httparty
   jbuilder (~> 2.0)
   jquery-rails
   pg (~> 0.15)

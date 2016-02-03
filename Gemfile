@@ -32,6 +32,7 @@ gem 'puma'
 gem 'rails_12factor', group: :production
 gem 'slim-rails'
 
+gem 'httparty'
 gem 'tpdata'
 
 group :development, :test do
