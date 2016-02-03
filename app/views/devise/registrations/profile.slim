@@ -1,0 +1,733 @@
+.uk-width-large-7-10.uk-row-first style=("min-height: 1656px;") 
+  .md-card
+    .user_heading
+      .user_heading_menu aria-expanded="false" aria-haspopup="true" data-uk-dropdown="{pos:'bottom-right'}" 
+        i.md-icon.material-icons.md-icon-light 
+        .uk-dropdown.uk-dropdown-small.uk-dropdown-bottom style=("min-width: 160px; top: 32px; left: -128px;") 
+          ul.uk-nav
+            li
+              a href="#"  Action 1
+            li
+              a href="#"  Action 2
+      .user_heading_avatar
+        .thumbnail
+          img alt=("user avatar") src=current_user.avatar
+      .user_heading_content
+        h2.heading_b.uk-margin-bottom
+          span.uk-text-truncate= current_user.mpx_user.fullName
+          span.sub-heading
+        ul.user_stats
+          li
+            h4.heading_a
+              | 0
+              span.sub-heading Posts
+          li
+            h4.heading_a
+              | 0
+              span.sub-heading Photos
+          li
+            h4.heading_a
+              | 0
+              span.sub-heading Following
+      a.md-fab.md-fab-small.md-fab-accent href=edit_user_registration_path
+        i.material-icons 
+    .user_content
+      .uk-sticky-placeholder style=("height: 45px; margin: 0px;") 
+        ul#user_profile_tabs.uk-tab data-uk-sticky="{ top: 48), media: 960 }" data-uk-tab="{connect:'#user_profile_tabs_content', animation:'slide-horizontal'}" style=("margin: 0px;") 
+          li.uk-active aria-expanded="true" 
+            a href="#"  About
+          li aria-expanded="false" 
+            a href="#"  Photos
+          li aria-expanded="false" 
+            a href="#"  Posts
+          li.uk-tab-responsive.uk-active.uk-hidden aria-expanded="false" aria-haspopup="true" 
+            a About
+            .uk-dropdown.uk-dropdown-small
+              ul.uk-nav.uk-nav-dropdown
+              div
+      ul#user_profile_tabs_content.uk-switcher.uk-margin
+        li.uk-active aria-hidden="false" 
+          | Reiciendis laboriosam rerum maiores eveniet voluptate iusto perferendis ut quis doloremque quia eligendi perspiciatis quibusdam ut aspernatur dicta temporibus corporis dolor sequi eum et et a minima sapiente quam quia cum libero soluta et aut ad quia non doloremque quo pariatur neque nihil magni incidunt necessitatibus facere porro dicta est reprehenderit eos quos distinctio consectetur sit sint commodi voluptatem et vel eum optio nulla est aut consectetur dolores omnis incidunt rerum autem sed a sit qui deserunt maxime incidunt voluptatem et consequatur qui magni est deserunt est necessitatibus velit ut in fugiat blanditiis nostrum officiis nesciunt deserunt odio id adipisci rem nam non quia illum sed similique vel perspiciatis.
+          .uk-grid.uk-margin-medium-top.uk-margin-large-bottom data-uk-grid-margin="" 
+            .uk-width-large-1-2.uk-row-first
+              h4.heading_c.uk-margin-small-bottom Contact Info
+              ul.md-list.md-list-addon
+                li
+                  .md-list-addon-element
+                    i.md-list-addon-icon.material-icons 
+                  .md-list-content
+                    span.md-list-heading= current_user.email
+                    span.uk-text-small.uk-text-muted Email
+                li
+                  .md-list-addon-element
+                    i.md-list-addon-icon.material-icons 
+                  .md-list-content
+                    span.md-list-heading 477-410-6578x19594
+                    span.uk-text-small.uk-text-muted Phone
+                li
+                  .md-list-addon-element
+                    i.md-list-addon-icon.uk-icon-facebook-official
+                  .md-list-content
+                    span.md-list-heading facebook.com/envato
+                    span.uk-text-small.uk-text-muted Facebook
+                li
+                  .md-list-addon-element
+                    i.md-list-addon-icon.uk-icon-twitter
+                  .md-list-content
+                    span.md-list-heading twitter.com/envato
+                    span.uk-text-small.uk-text-muted Twitter
+            .uk-width-large-1-2
+              h4.heading_c.uk-margin-small-bottom My groups
+              ul.md-list
+                /! ngRepeat: group in user_data.groups
+                li.ng-scope ng-repeat=("group in user_data.groups") 
+                  .md-list-content
+                    span.md-list-heading
+                      a href="#"  Cloud Computing
+                    span.uk-text-small.uk-text-muted 172 Members
+                /! end ngRepeat: group in user_data.groups
+                li.ng-scope ng-repeat=("group in user_data.groups") 
+                  .md-list-content
+                    span.md-list-heading
+                      a href="#"  Account Manager Group
+                    span.uk-text-small.uk-text-muted 113 Members
+                /! end ngRepeat: group in user_data.groups
+                li.ng-scope ng-repeat=("group in user_data.groups") 
+                  .md-list-content
+                    span.md-list-heading
+                      a href="#"  Digital Marketing
+                    span.uk-text-small.uk-text-muted 176 Members
+                /! end ngRepeat: group in user_data.groups
+                li.ng-scope ng-repeat=("group in user_data.groups") 
+                  .md-list-content
+                    span.md-list-heading
+                      a href="#"  HR Professionals Association - Human Resources
+                    span.uk-text-small.uk-text-muted 104 Members
+                /! end ngRepeat: group in user_data.groups
+          h4.heading_c.uk-margin-bottom Timeline
+          .timeline
+            /! ngRepeat: event in user_data.timeline
+            .timeline_item.ng-scope ng-repeat=("event in user_data.timeline") 
+              /! ngIf: event.status == 'danger'
+              /! ngIf: event.status == 'success'
+              .timeline_icon.timeline_icon_success.ng-scope ng-if=("event.status == 'success'") 
+                i.material-icons ng-bind-html="event.icon"  
+              /! end ngIf: event.status == 'success'
+              /! ngIf: event.status == 'warning'
+              /! ngIf: event.status == 'primary'
+              /! ngIf: !event.status
+              .timeline_date
+                | 09
+                span Aug
+              .timeline_content
+                | Created ticket
+                /! ngIf: event.link_text
+                a.ng-scope href="#" ng-if="event.link_text" 
+                  strong #3289
+                /! end ngIf: event.link_text
+                /! ngIf: event.image || event.post_excerpt || event.user_name
+            /! end ngRepeat: event in user_data.timeline
+            .timeline_item.ng-scope ng-repeat=("event in user_data.timeline") 
+              /! ngIf: event.status == 'danger'
+              .timeline_icon.timeline_icon_danger.ng-scope ng-if=("event.status == 'danger'") 
+                i.material-icons ng-bind-html="event.icon"  
+              /! end ngIf: event.status == 'danger'
+              /! ngIf: event.status == 'success'
+              /! ngIf: event.status == 'warning'
+              /! ngIf: event.status == 'primary'
+              /! ngIf: !event.status
+              .timeline_date
+                | 08
+                span Aug
+              .timeline_content
+                | Deleted post
+                /! ngIf: event.link_text
+                a.ng-scope href="#" ng-if="event.link_text" 
+                  strong Reiciendis eligendi ullam earum in labore labore sit.
+                /! end ngIf: event.link_text
+                /! ngIf: event.image || event.post_excerpt || event.user_name
+            /! end ngRepeat: event in user_data.timeline
+            .timeline_item.ng-scope ng-repeat=("event in user_data.timeline") 
+              /! ngIf: event.status == 'danger'
+              /! ngIf: event.status == 'success'
+              /! ngIf: event.status == 'warning'
+              /! ngIf: event.status == 'primary'
+              /! ngIf: !event.status
+              .timeline_icon.ng-scope ng-if="!event.status" 
+                i.material-icons ng-bind-html="event.icon"  
+              /! end ngIf: !event.status
+              .timeline_date
+                | 07
+                span Aug
+              .timeline_content
+                | Added photo
+                /! ngIf: event.link_text
+                /! ngIf: event.image || event.post_excerpt || event.user_name
+                .timeline_content_addon.ng-scope ng-if=("event.image || event.post_excerpt || event.user_name") 
+                  /! ngIf: event.image
+                  img.ng-scope alt="" ng-if="event.image" ng-src="assets/img/gallery/Image16.jpg" src="assets/img/gallery/Image16.jpg" /
+                  /! end ngIf: event.image
+                  /! ngIf: event.post_excerpt
+                  /! ngIf: event.user_name
+                /! end ngIf: event.image || event.post_excerpt || event.user_name
+            /! end ngRepeat: event in user_data.timeline
+            .timeline_item.ng-scope ng-repeat=("event in user_data.timeline") 
+              /! ngIf: event.status == 'danger'
+              /! ngIf: event.status == 'success'
+              /! ngIf: event.status == 'warning'
+              /! ngIf: event.status == 'primary'
+              .timeline_icon.timeline_icon_primary.ng-scope ng-if=("event.status == 'primary'") 
+                i.material-icons ng-bind-html="event.icon"  
+              /! end ngIf: event.status == 'primary'
+              /! ngIf: !event.status
+              .timeline_date
+                | 06
+                span Aug
+              .timeline_content
+                | New comment on post
+                /! ngIf: event.link_text
+                a.ng-scope href="#" ng-if="event.link_text" 
+                  strong Magnam eos nesciunt.
+                /! end ngIf: event.link_text
+                /! ngIf: event.image || event.post_excerpt || event.user_name
+                .timeline_content_addon.ng-scope ng-if=("event.image || event.post_excerpt || event.user_name") 
+                  /! ngIf: event.image
+                  /! ngIf: event.post_excerpt
+                  blockquote.ng-scope ng-if="event.post_excerpt" 
+                    | Quo eos quis aut molestiae dolorem et sed quas iste voluptatibus ea ut voluptas distinctio…
+                  /! end ngIf: event.post_excerpt
+                  /! ngIf: event.user_name
+                /! end ngIf: event.image || event.post_excerpt || event.user_name
+            /! end ngRepeat: event in user_data.timeline
+            .timeline_item.ng-scope ng-repeat=("event in user_data.timeline") 
+              /! ngIf: event.status == 'danger'
+              /! ngIf: event.status == 'success'
+              /! ngIf: event.status == 'warning'
+              .timeline_icon.timeline_icon_warning.ng-scope ng-if=("event.status == 'warning'") 
+                i.material-icons ng-bind-html="event.icon"  
+              /! end ngIf: event.status == 'warning'
+              /! ngIf: event.status == 'primary'
+              /! ngIf: !event.status
+              .timeline_date
+                | 05
+                span Aug
+              .timeline_content
+                | Added to Friends
+                /! ngIf: event.link_text
+                /! ngIf: event.image || event.post_excerpt || event.user_name
+                .timeline_content_addon.ng-scope ng-if=("event.image || event.post_excerpt || event.user_name") 
+                  /! ngIf: event.image
+                  /! ngIf: event.post_excerpt
+                  /! ngIf: event.user_name
+                  ul.md-list.md-list-addon.ng-scope ng-if="event.user_name" 
+                    li
+                      /! ngIf: event.user_avatar
+                      .md-list-addon-element.ng-scope ng-if="event.user_avatar" 
+                        img.md-user-image.md-list-addon-avatar alt="" ng-src="assets/img/avatars/avatar_02_tn.png" src="assets/img/avatars/avatar_02_tn.png" /
+                      /! end ngIf: event.user_avatar
+                      .md-list-content
+                        /! ngIf: event.user_name
+                        span.md-list-heading.ng-scope ng-if="event.user_name"  Tia Rutherford
+                        /! end ngIf: event.user_name
+                        /! ngIf: event.user_status
+                        span.uk-text-small.uk-text-muted.ng-scope ng-if="event.user_status"  Repudiandae asperiores numquam et molestiae.
+                        /! end ngIf: event.user_status
+                  /! end ngIf: event.user_name
+                /! end ngIf: event.image || event.post_excerpt || event.user_name
+            /! end ngRepeat: event in user_data.timeline
+        li aria-hidden="true" 
+          #user_profile_gallery.uk-grid-width-small-1-2.uk-grid-width-medium-1-3.uk-grid-width-large-1-4 data-uk-check-display="" data-uk-grid=("{gutter: 4}") style=("position: relative; margin-left: -4px; height: 0px;") 
+            /! ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image01.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image01.jpg" src="assets/img/gallery/Image01.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image02.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image02.jpg" src="assets/img/gallery/Image02.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image03.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image03.jpg" src="assets/img/gallery/Image03.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image04.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image04.jpg" src="assets/img/gallery/Image04.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image05.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image05.jpg" src="assets/img/gallery/Image05.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image06.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image06.jpg" src="assets/img/gallery/Image06.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image07.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image07.jpg" src="assets/img/gallery/Image07.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image08.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image08.jpg" src="assets/img/gallery/Image08.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image09.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image09.jpg" src="assets/img/gallery/Image09.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image10.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image10.jpg" src="assets/img/gallery/Image10.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image11.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image11.jpg" src="assets/img/gallery/Image11.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image12.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image12.jpg" src="assets/img/gallery/Image12.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image13.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image13.jpg" src="assets/img/gallery/Image13.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image14.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image14.jpg" src="assets/img/gallery/Image14.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image15.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image15.jpg" src="assets/img/gallery/Image15.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image16.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image16.jpg" src="assets/img/gallery/Image16.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image17.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image17.jpg" src="assets/img/gallery/Image17.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image18.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image18.jpg" src="assets/img/gallery/Image18.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image19.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image19.jpg" src="assets/img/gallery/Image19.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image20.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image20.jpg" src="assets/img/gallery/Image20.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image21.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image21.jpg" src="assets/img/gallery/Image21.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image22.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image22.jpg" src="assets/img/gallery/Image22.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image23.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image23.jpg" src="assets/img/gallery/Image23.jpg" /
+            /! end ngRepeat: image in user_data.images
+            .ng-scope data-grid-prepared="true" ng-repeat=("image in user_data.images") style=("position: absolute; box-sizing: border-box; padding-left: 4px; padding-bottom: 4px;") 
+              a data-uk-lightbox="{group:'user_images'}" href="assets/img/gallery/Image24.jpg" 
+                img alt="" ng-src="assets/img/gallery/Image24.jpg" src="assets/img/gallery/Image24.jpg" /
+            /! end ngRepeat: image in user_data.images
+          ul.uk-pagination.uk-margin-large-top
+            li.uk-disabled
+              span
+                i.uk-icon-angle-double-left
+            li.uk-active
+              span 1
+            li
+              a href="#"  2
+            li
+              a href="#"  3
+            li
+              a href="#"  4
+            li
+              span …
+            li
+              a href="#"  20
+            li
+              a href="#" 
+                i.uk-icon-angle-double-right
+        li aria-hidden="true" 
+          ul.md-list
+            /! ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Nesciunt voluptatibus ea reprehenderit aperiam aliquid esse.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Thu 01.10.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 24
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 296
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Architecto consequatur nam ut.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Wed 30.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 11
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 831
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Reprehenderit a assumenda aperiam doloremque id animi.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Tue 29.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 29
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 182
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Maxime officiis dignissimos ipsam dolores ipsum veritatis.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Mon 28.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 21
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 333
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Temporibus officiis incidunt quo hic.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Sun 27.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 8
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 306
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Et quis officiis aspernatur facere nesciunt vel.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Sat 26.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 22
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 452
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Nihil ut quaerat repellendus quaerat.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Fri 25.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 9
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 414
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Vel similique sed ipsa eius.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Thu 24.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 27
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 711
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Est id doloremque assumenda.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Wed 23.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 4
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 704
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Nihil laboriosam mollitia nobis et optio.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Tue 22.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 29
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 179
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Cum suscipit praesentium dolor sunt dolore officiis.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Mon 21.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 12
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 921
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Qui nostrum quas veniam reiciendis.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Sun 20.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 9
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 181
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Aliquam in minima non ut odio.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Sat 19.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 5
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 362
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Sit animi quia quia quam.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Fri 18.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 23
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 688
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Quas necessitatibus mollitia error quis nam ipsa.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Thu 17.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 30
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 576
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Laudantium quas atque error ut optio repellendus.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Wed 16.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 20
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 320
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Quis et accusantium omnis est quaerat.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Tue 15.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 2
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 858
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Repellendus aut esse unde et atque.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Mon 14.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 27
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 851
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Rerum ad et natus veritatis omnis.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Sun 13.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 27
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 956
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Sapiente velit autem eum.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Sat 12.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 23
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 902
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Quam molestiae a itaque eos aut odio.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Fri 11.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 19
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 165
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Non rerum a repudiandae.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Thu 10.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 3
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 444
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Voluptatem et qui reprehenderit voluptatibus.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Wed 09.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 25
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 934
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Rerum voluptatibus modi saepe.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Tue 08.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 9
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 801
+            /! end ngRepeat: post in user_data.posts
+            li.ng-scope ng-repeat=("post in user_data.posts") 
+              .md-list-content
+                span.md-list-heading
+                  a href="#"  Facere nihil perferendis ipsum et voluptate quibusdam.
+                .uk-margin-small-top
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small Mon 07.09.2015
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 18
+                  span.uk-margin-right
+                    i.material-icons 
+                    span.uk-text-muted.uk-text-small 759
+            /! end ngRepeat: post in user_data.posts

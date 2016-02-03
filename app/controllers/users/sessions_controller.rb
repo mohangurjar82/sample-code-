@@ -1,4 +1,3 @@
-require 'theplatform'
 class Users::SessionsController < Devise::SessionsController
 
   def create
