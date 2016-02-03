@@ -12,4 +12,5 @@
  *
  *= require css/uikit.almost-flat
  *= require css/main
+ *= require_tree .
  */
