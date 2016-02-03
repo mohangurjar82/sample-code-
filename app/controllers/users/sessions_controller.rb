@@ -33,11 +33,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def get_mpx_token
-    ThePlatform::Identity.token(
-      username: "mpx/#{user_params[:email]}",
-      password: user_params[:password],
-      schema: '1.1', form: 'json'
-    )
+    MPX::Account.identity(user_params)
   end
 
   def user_params

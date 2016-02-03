@@ -10,8 +10,7 @@ class User < ActiveRecord::Base
   end
 
   def mpx_user
-    url = "https://identity.auth.theplatform.com/idm/web/Self/getSelf?schema=1.0&form=json&token=#{mpx_token}"
-    OpenStruct.new(JSON.parse(HTTParty.get(url).body)['getSelfResponse'])
+    MPX::Account.info(mpx_token)
   end
 
 end
