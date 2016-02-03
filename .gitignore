@@ -12,3 +12,7 @@
 !/log/.keep
 /tmp
 .env
+.todo
+config/database.yml
+.todo
+/public/uploads/*
