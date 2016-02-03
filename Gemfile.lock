@@ -96,6 +96,7 @@ GEM
       multi_json (~> 1.0)
       multi_xml
     i18n (0.7.0)
+    immutable-struct (2.2.1)
     jbuilder (2.4.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -258,6 +259,7 @@ DEPENDENCIES
   guard-foreman
   guard-rspec
   httparty
+  immutable-struct
   jbuilder (~> 2.0)
   jquery-rails
   pg (~> 0.15)
