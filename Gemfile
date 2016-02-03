@@ -39,6 +39,9 @@ group :development, :test do
   gem 'byebug'
   gem 'quiet_assets'
   gem 'dotenv-rails'
+  gem 'guard-foreman'
+  gem 'guard-rspec', require: false
+  gem 'rspec-rails'
 end
 
 group :development do
