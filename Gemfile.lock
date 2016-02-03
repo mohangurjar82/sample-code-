@@ -66,6 +66,9 @@ GEM
     execjs (2.6.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    httparty (0.9.0)
+      multi_json (~> 1.0)
+      multi_xml
     i18n (0.7.0)
     jbuilder (2.4.0)
       activesupport (>= 3.0.0, < 5.1)
@@ -83,6 +86,7 @@ GEM
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.11.2)
+    multi_xml (0.5.5)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
@@ -156,6 +160,8 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.2)
+    tpdata (1.1.5)
+      httparty (~> 0.9.0)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -189,6 +195,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   slim-rails
   spring
+  tpdata
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
