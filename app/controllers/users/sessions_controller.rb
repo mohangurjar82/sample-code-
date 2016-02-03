@@ -7,24 +7,22 @@ class Users::SessionsController < Devise::SessionsController
       user = create_user(user || User.new(user_params))
     end
     
-    if user && user.valid_password?(user_params[:password])
-      sign_in(user)
-      redirect_to after_sign_in_path_for(user), notice: 'Signed in'
-    else
-      flash[:alert] = 'Wrong email or password.'
-      redirect_to new_user_session_path
+    if user.present?
+      if user.valid_password?(user_params[:password]) || create_user(user)
+        sign_in(user)
+        redirect_to after_sign_in_path_for(user), notice: 'Signed in'
+        return  
+      end
     end
+
+    flash[:alert] = 'Wrong email or password.'
+    redirect_to new_user_session_path
   end
 
   private
 
   def create_user(user)
-    token = ThePlatform::Identity.token(
-      username: "mpx/#{user_params[:email]}",
-      password: user_params[:password],
-      schema: '1.1', form: 'json'
-    )
-
+    token = get_mpx_token
     if token['signInResponse']
       user.mpx_token = token['signInResponse']['token']
       user.mpx_user_id = token['signInResponse']['userId']
@@ -33,6 +31,14 @@ class Users::SessionsController < Devise::SessionsController
     else
       false
     end
+  end
+
+  def get_mpx_token
+    ThePlatform::Identity.token(
+      username: "mpx/#{user_params[:email]}",
+      password: user_params[:password],
+      schema: '1.1', form: 'json'
+    )
   end
 
   def user_params
