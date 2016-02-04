@@ -66,7 +66,7 @@ end
 # * :root - an alternate application root
 guard :foreman do
   # Rails example - Watch controllers, models, helpers, lib, and config files
-  watch(%r{^app/(controllers|models|helpers)/.+\.rb$})
+  watch(%r{^app/(controllers|models|helpers|services)/.+\.rb$})
   watch(%r{^lib/.+\.rb$})
   watch(%r{^config/*})
 end
