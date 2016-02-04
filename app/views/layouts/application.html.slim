@@ -31,15 +31,15 @@ html[lang="en"]
                       = link_to 'My profile', profile_path
                     li
                       = link_to 'Sign out', destroy_user_session_path, method: :delete
-    aside#sidebar_main
-      .sidebar_main_header
-        .sidebar_logo
-          a.sSidebar_hide[href=root_path]
-            img[src="/img/logo_main.png" alt="" height="15" width="71"]
-          a.sSidebar_show[href=root_path]
-            img[src="/img/logo_main_small.png" alt="" height="32" width="32"]
-      .menu_section
-    #page_content
+    / aside#sidebar_main
+    /   .sidebar_main_header
+    /     .sidebar_logo
+    /       a.sSidebar_hide[href=root_path]
+    /         img[src="/img/logo_main.png" alt="" height="15" width="71"]
+    /       a.sSidebar_show[href=root_path]
+    /         img[src="/img/logo_main_small.png" alt="" height="32" width="32"]
+    /   .menu_section
+    .uk-width-1-1
       
       -if content_for? :page_heading 
         #page_heading
