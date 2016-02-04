@@ -32,7 +32,7 @@ gem 'rails_12factor', group: :production
 gem 'slim-rails'
 
 gem 'httparty'
-gem 'tpdata'
+gem 'tpdata', require: 'theplatform'
 
 group :development, :test do
   gem 'pry'

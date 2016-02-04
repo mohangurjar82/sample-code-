@@ -1,4 +1,3 @@
-require 'theplatform'
 module MPX
   class Account
     class << self

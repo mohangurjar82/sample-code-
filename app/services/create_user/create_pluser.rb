@@ -1,5 +1,3 @@
-require 'theplatform'
-
 class CreateUser
   class CreatePluser
     Result = ImmutableStruct.new(:pluser_created?, :error_message)
