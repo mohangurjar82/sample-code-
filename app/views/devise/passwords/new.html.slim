@@ -7,4 +7,5 @@ h2 Forgot your password?
       = f.label :email
       = f.email_field :email, autofocus: true, class: 'md-input'
   .uk-margin-medium-top
-    = f.submit 'Send me reset password instructions', class: 'md-btn md-btn-primary md-btn-block'
+    = f.button class: 'md-btn md-btn-primary md-btn-block' do
+      | Send me reset password instructions
