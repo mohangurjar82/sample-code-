@@ -42,7 +42,12 @@ group :development, :test do
   gem 'guard-foreman'
   gem 'guard-rspec', require: false
   gem 'rspec-rails'
+end
+
+group :test do
   gem 'factory_girl_rails'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development do

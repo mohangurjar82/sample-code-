@@ -8,15 +8,20 @@ RSpec.describe CreateUser::CreatePluser, type: :service do
     end
   end
 
-  describe '#call' do
-    let(:tpdata) { double }
-    let(:user) { FactoryGirl.build :user }
-    subject { CreateUser::CreatePluser.new(tpdata).call(user) }
+  describe '#call', :vcr do
 
-    it 'creates pluser'
-    
-    it 'returns result' do
-      expect(subject).to be_pluser_created
+    let(:user) { FactoryGirl.build :user }
+
+    it 'creates pluser' do
+      result = CreateUser::CreatePluser.build.call(user)
+      expect(result).to be_pluser_created
+    end
+
+    it 'returns error' do
+      user.email = ''
+      result = CreateUser::CreatePluser.build.call(user)
+      expect(result).not_to be_pluser_created
+      expect(result.error_message).not_to be_nil
     end
   end
 end
