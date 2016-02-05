@@ -38,5 +38,5 @@ html[lang="en"]
             .md-card-content
               = yield
 
-    = javascript_include_tag 'application'
+    = javascript_include_tag 'application', 'data-turbolinks-eval': false
     = render '/layouts/style_switcher'
