@@ -1,6 +1,6 @@
 class CreateUser
   class CreatePluser
-    Result = ImmutableStruct.new(:pluser_created?, :error_message)
+    Result = ImmutableStruct.new(:pluser_created?, :error_message, :id)
 
     def initialize(tpdata)
       self.tpdata = tpdata
@@ -21,7 +21,7 @@ class CreateUser
       result = tpdata.euid.post("User/#{ENV['THEPLATFORM_DIRECTORY_PID']}", body, params) rescue nil
 
       if result && result.parsed_response['id']
-        Result.new(pluser_created: true)
+        Result.new(pluser_created: true, id: result.parsed_response['id'])
       else
         Result.new(pluser_created: false, error_message: 'Failed to create MPX user')
       end

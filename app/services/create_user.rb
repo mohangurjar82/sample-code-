@@ -15,6 +15,7 @@ class CreateUser
       result = create_pluser.call(user)
 
       if result.pluser_created?
+        user.mpx_user_id = result.id
         user.save
       else
         user.errors.add :base, result.error_message
