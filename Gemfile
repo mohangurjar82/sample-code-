@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.4'
+ruby ENV['CUSTOM_RUBY_VERSION'] || '2.2.4'
 #ruby-gemset=n2me
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
