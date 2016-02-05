@@ -1,0 +1,728 @@
+- content_for :body do
+  #user_profile.uk-grid[data-uk-grid-margin data-uk-grid-match]
+    .uk-width-large-7-10
+      .md-card
+        .user_heading
+          .user_heading_menu[data-uk-dropdown="{pos:'left-top'}"]
+            i.md-icon.material-icons.md-icon-light
+              | 
+            .uk-dropdown.uk-dropdown-small
+              ul.uk-nav
+                li
+                  a[href="#"]
+                    | Action 1
+                li
+                  a[href="#"]
+                    | Action 2
+          .user_heading_avatar
+            .thumbnail
+              img[src=current_user.avatar alt="user avatar"]
+          .user_heading_content
+            h2.heading_b.uk-margin-bottom
+              span.uk-text-truncate= current_user.mpx_user.fullName
+              span.sub-heading
+            ul.user_stats
+              li
+                h4.heading_a
+                  | 2391 
+                  span.sub-heading
+                    | Posts
+              li
+                h4.heading_a
+                  | 120 
+                  span.sub-heading
+                    | Photos
+              li
+                h4.heading_a
+                  | 284 
+                  span.sub-heading
+                    | Following
+          a.md-fab.md-fab-small.md-fab-accent[href=edit_user_registration_path]
+            i.material-icons
+              | 
+        .user_content
+          ul#user_profile_tabs.uk-tab[data-uk-tab="{connect:'#user_profile_tabs_content', animation:'slide-horizontal'}" data-uk-sticky="{ top: 48, media: 960 }"]
+            li.uk-active
+              a[href="#"]
+                | About
+            li
+              a[href="#"]
+                | Photos
+            li
+              a[href="#"]
+                | Posts
+          ul#user_profile_tabs_content.uk-switcher.uk-margin
+            li
+              |  Enim molestias enim expedita est voluptatem iste praesentium error et minima consequuntur quam amet explicabo eum sit id soluta hic odio magni repellendus eum optio voluptates dolore deleniti officiis repudiandae deleniti occaecati reprehenderit maxime molestias ut ea accusantium aut laborum non sint qui dignissimos numquam in nulla voluptates dolor delectus impedit sit odit distinctio omnis placeat repellendus ipsa qui harum rerum consequuntur libero placeat est eveniet reiciendis sunt sint sint quae consectetur corporis cum nihil cumque unde natus molestiae sequi aut non nihil ipsam qui expedita aut vitae recusandae doloribus labore occaecati voluptatem saepe nihil vitae et a enim enim odio dignissimos ipsum a ex quia accusantium minus explicabo et non soluta qui qui repellendus aliquid voluptatem pariatur rerum dolorem quidem exercitationem soluta et ipsa nemo aliquam autem voluptas rem. 
+              .uk-grid.uk-margin-medium-top.uk-margin-large-bottom[data-uk-grid-margin]
+                .uk-width-large-1-2
+                  h4.heading_c.uk-margin-small-bottom
+                    | Contact Info
+                  ul.md-list.md-list-addon
+                    li
+                      .md-list-addon-element
+                        i.md-list-addon-icon.material-icons
+                          | 
+                      .md-list-content
+                        span.md-list-heading= current_user.email
+                        span.uk-text-small.uk-text-muted
+                          | Email
+                    li
+                      .md-list-addon-element
+                        i.md-list-addon-icon.material-icons
+                          | 
+                      .md-list-content
+                        span.md-list-heading
+                          | (498)305-0871
+                        span.uk-text-small.uk-text-muted
+                          | Phone
+                    li
+                      .md-list-addon-element
+                        i.md-list-addon-icon.uk-icon-facebook-official
+                      .md-list-content
+                        span.md-list-heading
+                          | facebook.com/envato
+                        span.uk-text-small.uk-text-muted
+                          | Facebook
+                    li
+                      .md-list-addon-element
+                        i.md-list-addon-icon.uk-icon-twitter
+                      .md-list-content
+                        span.md-list-heading
+                          | twitter.com/envato
+                        span.uk-text-small.uk-text-muted
+                          | Twitter
+                .uk-width-large-1-2
+                  h4.heading_c.uk-margin-small-bottom
+                    | My groups
+                  ul.md-list
+                    li
+                      .md-list-content
+                        span.md-list-heading
+                          a[href="#"]
+                            | Cloud Computing
+                        span.uk-text-small.uk-text-muted
+                          | 78 Members
+                    li
+                      .md-list-content
+                        span.md-list-heading
+                          a[href="#"]
+                            | Account Manager Group
+                        span.uk-text-small.uk-text-muted
+                          | 28 Members
+                    li
+                      .md-list-content
+                        span.md-list-heading
+                          a[href="#"]
+                            | Digital Marketing
+                        span.uk-text-small.uk-text-muted
+                          | 289 Members
+                    li
+                      .md-list-content
+                        span.md-list-heading
+                          a[href="#"]
+                            | HR Professionals Association - Human Resources
+                        span.uk-text-small.uk-text-muted
+                          | 109 Members
+              h4.heading_c.uk-margin-bottom
+                | Timeline
+              .timeline
+                .timeline_item
+                  .timeline_icon.timeline_icon_success
+                    i.material-icons
+                      | 
+                  .timeline_date
+                    |  09 
+                    span
+                      | Jan
+                  .timeline_content
+                    | Created ticket 
+                    a[href="#"]
+                      strong
+                        | #3289
+                .timeline_item
+                  .timeline_icon.timeline_icon_danger
+                    i.material-icons
+                      | 
+                  .timeline_date
+                    |  15 
+                    span
+                      | Jan
+                  .timeline_content
+                    | Deleted post 
+                    a[href="#"]
+                      strong
+                        | Et et deserunt atque repudiandae commodi veritatis quaerat.
+                .timeline_item
+                  .timeline_icon
+                    i.material-icons
+                      | 
+                  .timeline_date
+                    |  19 
+                    span
+                      | Jan
+                  .timeline_content
+                    |  Added photo 
+                    .timeline_content_addon
+                      img[src="img/gallery/Image16.jpg" alt=""]
+                .timeline_item
+                  .timeline_icon.timeline_icon_primary
+                    i.material-icons
+                      | 
+                  .timeline_date
+                    |  21 
+                    span
+                      | Jan
+                  .timeline_content
+                    |  New comment on post 
+                    a[href="#"]
+                      strong
+                        | Ex maxime ut dolor.
+                    .timeline_content_addon
+                      blockquote
+                        |  Repellat vitae aut laboriosam quia et voluptatem ea ipsam hic voluptas voluptatem dignissimos rerum quaerat quas debitis.… 
+                .timeline_item
+                  .timeline_icon.timeline_icon_warning
+                    i.material-icons
+                      | 
+                  .timeline_date
+                    |  29 
+                    span
+                      | Jan
+                  .timeline_content
+                    |  Added to Friends 
+                    .timeline_content_addon
+                      ul.md-list.md-list-addon
+                        li
+                          .md-list-addon-element
+                            img.md-user-image.md-list-addon-avatar[src="img/avatars/avatar_02_tn.png" alt=""]
+                          .md-list-content
+                            span.md-list-heading
+                              | Roberta Leffler
+                            span.uk-text-small.uk-text-muted
+                              | At id ipsam ad.
+            li
+              #user_profile_gallery.uk-grid-width-small-1-2.uk-grid-width-medium-1-3.uk-grid-width-large-1-4[data-uk-check-display data-uk-grid="{gutter: 4}"]
+                div
+                  a[href="img/gallery/Image01.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image01.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image02.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image02.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image03.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image03.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image04.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image04.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image05.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image05.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image06.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image06.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image07.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image07.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image08.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image08.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image09.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image09.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image10.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image10.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image11.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image11.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image12.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image12.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image13.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image13.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image14.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image14.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image15.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image15.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image16.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image16.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image17.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image17.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image18.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image18.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image19.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image19.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image20.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image20.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image21.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image21.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image22.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image22.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image23.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image23.jpg" alt=""]
+                div
+                  a[href="img/gallery/Image24.jpg" data-uk-lightbox="{group:'user-photos'}"]
+                    img[src="img/gallery/Image24.jpg" alt=""]
+              ul.uk-pagination.uk-margin-large-top
+                li.uk-disabled
+                  span
+                    i.uk-icon-angle-double-left
+                li.uk-active
+                  span
+                    | 1
+                li
+                  a[href="#"]
+                    | 2
+                li
+                  a[href="#"]
+                    | 3
+                li
+                  a[href="#"]
+                    | 4
+                li
+                  span
+                    | …
+                li
+                  a[href="#"]
+                    | 20
+                li
+                  a[href="#"]
+                    i.uk-icon-angle-double-right
+            li
+              ul.md-list
+                li
+                  .md-list-content
+                    span.md-list-heading
+                      a[href="#"]
+                        | Sit et quia qui dolorem accusantium ut autem.
+                    .uk-margin-small-top
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 04 Jan 2016
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 16
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 131
+                li
+                  .md-list-content
+                    span.md-list-heading
+                      a[href="#"]
+                        | Quo quos aut quasi distinctio.
+                    .uk-margin-small-top
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 05 Jan 2016
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 28
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 733
+                li
+                  .md-list-content
+                    span.md-list-heading
+                      a[href="#"]
+                        | Iure quidem architecto ipsam consectetur.
+                    .uk-margin-small-top
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 07 Jan 2016
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 9
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 932
+                li
+                  .md-list-content
+                    span.md-list-heading
+                      a[href="#"]
+                        | Quas modi sed ex iusto consequatur aperiam.
+                    .uk-margin-small-top
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 02 Jan 2016
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 2
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 434
+                li
+                  .md-list-content
+                    span.md-list-heading
+                      a[href="#"]
+                        | Accusamus debitis non aut asperiores.
+                    .uk-margin-small-top
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 16 Jan 2016
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 26
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 787
+                li
+                  .md-list-content
+                    span.md-list-heading
+                      a[href="#"]
+                        | Est dolor qui et ipsa ea qui.
+                    .uk-margin-small-top
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 05 Jan 2016
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 6
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 495
+                li
+                  .md-list-content
+                    span.md-list-heading
+                      a[href="#"]
+                        | Eum odit consequatur repellendus labore.
+                    .uk-margin-small-top
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 29 Jan 2016
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 15
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 129
+                li
+                  .md-list-content
+                    span.md-list-heading
+                      a[href="#"]
+                        | Repellendus recusandae quis deserunt sit laboriosam et fugiat.
+                    .uk-margin-small-top
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 10 Jan 2016
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 10
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 492
+                li
+                  .md-list-content
+                    span.md-list-heading
+                      a[href="#"]
+                        | Ipsum exercitationem enim eveniet error dolor at neque pariatur.
+                    .uk-margin-small-top
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 24 Jan 2016
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 22
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 565
+                li
+                  .md-list-content
+                    span.md-list-heading
+                      a[href="#"]
+                        | Sapiente perspiciatis sunt odit dolores illo labore.
+                    .uk-margin-small-top
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 03 Jan 2016
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 24
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 529
+                li
+                  .md-list-content
+                    span.md-list-heading
+                      a[href="#"]
+                        | Temporibus ipsum et eius dolores.
+                    .uk-margin-small-top
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 12 Jan 2016
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 27
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 128
+                li
+                  .md-list-content
+                    span.md-list-heading
+                      a[href="#"]
+                        | Quo odio eaque fugit qui eum asperiores necessitatibus.
+                    .uk-margin-small-top
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 13 Jan 2016
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 2
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 102
+                li
+                  .md-list-content
+                    span.md-list-heading
+                      a[href="#"]
+                        | Maiores explicabo sit qui consequatur voluptatem iste quis.
+                    .uk-margin-small-top
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 05 Jan 2016
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 7
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 384
+                li
+                  .md-list-content
+                    span.md-list-heading
+                      a[href="#"]
+                        | Explicabo et accusantium et saepe.
+                    .uk-margin-small-top
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 03 Jan 2016
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 7
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 421
+                li
+                  .md-list-content
+                    span.md-list-heading
+                      a[href="#"]
+                        | Quaerat debitis nihil veritatis dolore.
+                    .uk-margin-small-top
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 13 Jan 2016
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 22
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 355
+                li
+                  .md-list-content
+                    span.md-list-heading
+                      a[href="#"]
+                        | Excepturi alias voluptas et suscipit ea necessitatibus.
+                    .uk-margin-small-top
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 07 Jan 2016
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 25
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 536
+                li
+                  .md-list-content
+                    span.md-list-heading
+                      a[href="#"]
+                        | Fugiat enim iste quo nobis et.
+                    .uk-margin-small-top
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 19 Jan 2016
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 25
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 105
+                li
+                  .md-list-content
+                    span.md-list-heading
+                      a[href="#"]
+                        | Neque magnam qui quod et reprehenderit libero.
+                    .uk-margin-small-top
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 20 Jan 2016
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 5
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 403
+                li
+                  .md-list-content
+                    span.md-list-heading
+                      a[href="#"]
+                        | Et aut dolorem et rerum cum porro quia fugiat.
+                    .uk-margin-small-top
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 04 Jan 2016
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 28
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 202
+                li
+                  .md-list-content
+                    span.md-list-heading
+                      a[href="#"]
+                        | Reprehenderit impedit voluptate et eligendi sed.
+                    .uk-margin-small-top
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 19 Jan 2016
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 1
+                      span.uk-margin-right
+                        i.material-icons
+                          | 
+                        span.uk-text-muted.uk-text-small
+                          | 959
+  script
+    |  WebFontConfig = { google: { families: [ 'Source+Code+Pro:400,700:latin', 'Roboto:400,300,500,700,400italic:latin' ] } }; (function() { var wf = document.createElement('script'); wf.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js'; wf.type = 'text/javascript'; wf.async = 'true'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wf, s); })(); 
+  script
+    |  $(function() { // enable hires images altair_helpers.retina_images(); // fastClick (touch devices) if(Modernizr.touch) { FastClick.attach(document.body); } }); 

@@ -1,5 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  layout 'application'
+  layout proc{ |controller| user_signed_in? ? 'application' : 'devise' }
 
   def profile
     
