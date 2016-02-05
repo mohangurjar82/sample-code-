@@ -15,4 +15,5 @@
 //= require js/altair_admin_common
 //= require jquery_ujs
 //= require turbolinks
+//= require init
 //= require style_switcher
