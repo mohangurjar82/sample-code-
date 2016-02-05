@@ -11,26 +11,7 @@ html[lang="en"]
   body.sidebar_main_open.sidebar_main_swipe
     header#header_main
       .header_main_content
-        nav.uk-navbar
-          a#sidebar_main_toggle.sSwitch.sSwitch_left[href="#"]
-            span.sSwitchIcon
-          a#sidebar_secondary_toggle.sSwitch.sSwitch_right.sidebar_secondary_check[href="#"]
-            span.sSwitchIcon
-          .uk-navbar-flip
-            ul.uk-navbar-nav.user_actions
-              li
-                a#full_screen_toggle.user_action_icon.uk-visible-large[href="#"]
-                  i.material-icons.md-24.md-light
-                    | 
-              li[data-uk-dropdown="{mode:'click',pos:'bottom-right'}"]
-                a.user_action_image[href="#"]
-                  img.md-user-image[src="/img/avatars/user.png" alt=""]
-                .uk-dropdown.uk-dropdown-small
-                  ul.uk-nav.js-uk-prevent
-                    li
-                      = link_to 'My profile', profile_path
-                    li
-                      = link_to 'Sign out', destroy_user_session_path, method: :delete
+        = render '/layouts/navbar'
     / aside#sidebar_main
     /   .sidebar_main_header
     /     .sidebar_logo
