@@ -18,9 +18,9 @@ class CreateUser
               'pluser$password' => user.password}.to_json
       params = {form: 'json', schema: '1.0', account: ENV['THEPLATFORM_ACCOUNT']}
 
-      result = tpdata.euid.post("User/#{ENV['THEPLATFORM_DIRECTORY_PID']}", body, params)
+      result = tpdata.euid.post("User/#{ENV['THEPLATFORM_DIRECTORY_PID']}", body, params) rescue nil
 
-      if result.parsed_response['id']
+      if result && result.parsed_response['id']
         Result.new(pluser_created: true)
       else
         Result.new(pluser_created: false, error_message: 'Failed to create MPX user')

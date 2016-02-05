@@ -23,5 +23,13 @@ RSpec.describe CreateUser::CreatePluser, type: :service do
       expect(result).not_to be_pluser_created
       expect(result.error_message).not_to be_nil
     end
+
+    it 'handles exception' do
+      tpdata = double
+      allow(tpdata).to receive(:euid).and_raise('Error')
+      result = CreateUser::CreatePluser.new(tpdata).call(user)
+      expect(result).not_to be_pluser_created
+      expect(result.error_message).not_to be_nil
+    end
   end
 end

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://euid.theplatform.com/idm/data/User/49UTt_4J_lY0iTNU?account=http://mps.theplatform.com/data/Account/2673674175&form=json&schema=1.0&token=RuKjsEeW82fMQwFsfImWUXDCsIDywGD0
+    uri: https://euid.theplatform.com/idm/data/User/49UTt_4J_lY0iTNU?account=http://mps.theplatform.com/data/Account/2673674175&form=json&schema=1.0&token=JRVtgTv4UvNQSiHcrFkCQaB0gIBecDAq
     body:
       encoding: UTF-8
       string: '{"$xmlns":{"pluser":"http://xml.theplatform.com/auth/data/User"},"pluser$ownerId":"http://mps.theplatform.com/data/Account/2673674175","pluser$userName":"person2@example.com","pluser$email":"person2@example.com","pluser$password":"good_password"}'
