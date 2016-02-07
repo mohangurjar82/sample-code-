@@ -20,58 +20,6 @@ link href="css/style.css" rel="stylesheet" /
   .container.container1
     .row
       .col-md-8.mainleft
-        .row
-          .col-md-12
-            p.maink The Good stuff: your channel
-        .row
-          .col-md-offset-1.col-md-8
-            p.mainline Best of Live Tv Packages
-            p.inlinestyle watch for only $20/mo
-          .col-md-3
-            p.rate Only $20/mo.
-          .col-md-offset-1.col-md-11
-            p.inlinestyle1
-              | Lorem ipsum dolor sit amet, consectetur adipisicing elit. At deserunt sapiente aspernatur voluptatum omnis molestias neque laudantium repellendus corporis nihil.
-        .row.container1row
-          .col-md-offset-1.col-md-11
-            .col-md-2.col-sm-3.col-xs-4.image
-              img.center-block.imag1 alt="" src="/products-demo/Duna-Black-256.png" /
-            .col-md-2.col-sm-3.col-xs-4.image
-              img.center-block.imag1 alt="" src="/products-demo/Animax-Black-256.png" /
-            .col-md-2.col-sm-3.col-xs-4.image
-              img.center-block.imag1 alt="" src="/products-demo/Axn-Black-256.png" /
-            .col-md-2.col-sm-3.col-xs-4.image
-              img.center-block.imag1 alt="" src="/products-demo/Best-Of-Music-Black-256.png" /
-            .col-md-2.col-sm-3.col-xs-4.image
-              img.center-block.imag1 alt="" src="/products-demo/Boomerang-Black-256.png" /
-            .col-md-2.col-sm-3.col-xs-4.image
-              img.center-block.imag1 alt="" src="/products-demo/Cinemax-2-Black-256.png" /
-          .col-md-offset-1.col-md-11
-            .col-md-2.col-sm-3.col-xs-4.image
-              img.center-block.imag1 alt="" src="/products-demo/Film-2-Black.ico" /
-            .col-md-2.col-sm-3.col-xs-4.image
-              img.center-block.imag1 alt="" src="/products-demo/Halozat-Black-256.png" /
-            .col-md-2.col-sm-3.col-xs-4.image
-              img.center-block.imag1 alt="" src="/products-demo/Hbo-2-Black-256.png" /
-            .col-md-2.col-sm-3.col-xs-4.image
-              img.center-block.imag1 alt="" src="/products-demo/Best-Of-Music-Black-256.png" /
-            .col-md-2.col-sm-3.col-xs-4.image
-              img.center-block.imag1 alt="" src="/products-demo/Boomerang-Black-256.png" /
-            .col-md-2.col-sm-3.col-xs-4.image
-              img.center-block.imag1 alt="" src="/products-demo/Cinemax-2-Black-256.png" /
-          .col-md-offset-1.col-md-11
-            .col-md-2.col-sm-3.col-xs-4.image
-              img.center-block.imag1 alt="" src="/products-demo/Duna-Black-256.png" /
-            .col-md-2.col-sm-3.col-xs-4.image
-              img.center-block.imag1 alt="" src="/products-demo/Animax-Black-256.png" /
-            .col-md-2.col-sm-3.col-xs-4.image
-              img.center-block.imag1 alt="" src="/products-demo/Axn-Black-256.png" /
-            .col-md-2.col-sm-3.col-xs-4.image
-              img.center-block.imag1 alt="" src="/products-demo/Film-2-Black.ico" /
-            .col-md-2.col-sm-3.col-xs-4.image
-              img.center-block.imag1 alt="" src="/products-demo/Halozat-Black-256.png" /
-            .col-md-2.col-sm-3.col-xs-4.image
-              img.center-block.imag1 alt="" src="/products-demo/Hbo-2-Black-256.png" /
         .row.name2
           .col-md-12.name2
             - @products.each do |p|
@@ -80,15 +28,15 @@ link href="css/style.css" rel="stylesheet" /
                   p.extra= p.title
                   p.price only $5/mo
                   p.inline2= p.description
-                - p.items.in_groups_of(4).each do |group|
+                - p.scopes.in_groups_of(4).each do |group|
                   .clearfix
                   br
                   .row
                     - group.each do |item|
-                      - next unless item
+                      - next if item.nil? || item.class.to_s =~ /subscription/i
                       .col-sm-3.col-xs-4.image
-                        - if item.image_url
-                          img.center-block.imagesmall src=item.image_url
+                        - if item.thumbnail_url
+                          img.center-block.imagesmall src=item.thumbnail_url
                         - else
                           h4
                             strong= item.title
