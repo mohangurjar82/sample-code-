@@ -16,3 +16,5 @@
 config/database.yml
 .todo
 /public/uploads/*
+.ruby-version
+.ruby-gemset
