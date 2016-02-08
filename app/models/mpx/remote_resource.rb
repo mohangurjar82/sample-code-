@@ -9,6 +9,11 @@ class MPX::RemoteResource
     resources.map { |r| new(r) }
   end
 
+  def self.find_by_number(number)
+    m = new(id: [self::ENDPOINT, number].join('/'))
+    m.fetch && m
+  end
+
   def initialize(params)
     self.attributes = OpenStruct.new(params)
   end

@@ -1,6 +1,6 @@
 class MPX::ResourceService
 
-  def initialize(endpoint, schema, token = ENV['THEPLATFORM_TOKEN'])
+  def initialize(endpoint, schema, token = ENV['MPX_TOKEN'])
     @endpoint = endpoint
     @schema = schema
     @token = token
