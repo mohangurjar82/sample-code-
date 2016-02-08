@@ -8,9 +8,4 @@ class User < ActiveRecord::Base
     gravatar_id = Digest::MD5::hexdigest(email).downcase
     "https://www.gravatar.com/avatar/#{gravatar_id}.jpg?d=identicon&s=150"
   end
-
-  def mpx_user
-    MPX::Account.info(mpx_token)
-  end
-
 end
