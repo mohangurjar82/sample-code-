@@ -22,6 +22,14 @@ class MPX::Product < MPX::RemoteResource
     active_pricing_tier['plproduct$subscriptionUnits']
   end
 
+  def id
+    attributes['id']
+  end
+
+  def as_json(options = nil)
+    {price: price, id: id}
+  end
+
   private
 
   def active_pricing_tier

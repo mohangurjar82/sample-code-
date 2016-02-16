@@ -17,12 +17,12 @@
             p.lorempmost
               | Stop suffering through thousands of channels just to find nothing on Tv. Start enjoying the best of live TV without the cable company. With Sling Tv, there's no installation and no crazy miscellaneous fees.
               span.spanprice $20/mo
-  .container.container1
+  .container.container1 ng-controller="cartController as cart"
     .row
       .col-md-8.mainleft
         .row.name2
           .col-md-12.name2
-            - @products.each do |p|
+            - @products.each_with_index do |p, i|
               .row
                 .col-md-offset-1.col-md-10.container2inline
                   p.extra= p.title
@@ -48,7 +48,7 @@
                             p= item.description
                 
                 .col-md-1.col-sm-1.col-xs-1
-                  input type="checkbox" value="1" /
+                  input type="checkbox" value="1" ng-model="cart.products[#{i}].checked" ng-change="cart.update()" /
             
             .row
               .col-md-offset-1.col-md-11
@@ -64,12 +64,12 @@
               .col-md-8.col-sm-8.col-xs-8
                 p.rightcontainer1 Subtotal
               .col-md-4.col-sm-4.col-xs-4
-                p.rightcontainer1 $336
+                p.rightcontainer1 ${{cart.subtotal}}
             .row
               .col-md-8.col-sm-8.col-xs-8
                 p.rightconatiner1-1 Estimated Taxes &amp; Fees
               .col-md-4.col-sm-4.col-xs-4
-                p.rightcontainer1 $336
+                p.rightcontainer1 $???
         .row.rightrow
           .col-md-12
             p.rightcontainer1 Lorem ipsum dolor .
@@ -200,3 +200,22 @@
 - content_for :javascript do
 
   script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+  script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"
+
+  javascript:
+    var cartApp = angular.module('cartApp', []);
+
+    angular.element(document).ready(function() {
+      angular.bootstrap(document, ['cartApp']);
+    });
+
+    cartApp.controller('cartController', function() {
+      this.products = #{@products.to_json.html_safe};
+      this.subtotal = 0;
+      
+      this.update = function() {
+        this.subtotal = this.products.reduce(function(prev, cur){
+          return prev + (cur.checked ? cur.price : 0);
+        }, 0);
+      }
+    });
