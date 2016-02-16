@@ -13,4 +13,18 @@ class MPX::Product < MPX::RemoteResource
                 description: scope['plproduct$description']) if klass
     end.compact
   end
+
+  def price
+    active_pricing_tier['plproduct$amounts']['USD']
+  end
+
+  def subscription_unit
+    active_pricing_tier['plproduct$subscriptionUnits']
+  end
+
+  private
+
+  def active_pricing_tier
+    attributes['plproduct$pricingPlan']['plproduct$pricingTiers'].detect{|t| t['plproduct$isActive']}
+  end
 end

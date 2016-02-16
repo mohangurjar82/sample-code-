@@ -1,10 +1,10 @@
-link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-link href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,500italic,700,700italic,900,300italic&subset=latin,greek,cyrillic,greek-ext,vietnamese,cyrillic-ext" rel="stylesheet" type="text/css" /
-link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" /
-link href="css/style.css" rel="stylesheet" /
-= stylesheet_link_tag('products/style.css')
-/! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
-/! WARNING: Respond.js do
+- content_for :head do
+  link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+  link href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,500italic,700,700italic,900,300italic&subset=latin,greek,cyrillic,greek-ext,vietnamese,cyrillic-ext" rel="stylesheet" type="text/css" /
+  link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" /
+  = stylesheet_link_tag('products/style.css')
+  /! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+  /! WARNING: Respond.js do
 .container-fluid.main-container
   .container style=("background:white;padding-bottom: 23px;") 
     .container.mostconatiner
@@ -26,7 +26,11 @@ link href="css/style.css" rel="stylesheet" /
               .row
                 .col-md-offset-1.col-md-10.container2inline
                   p.extra= p.title
-                  p.price only $5/mo
+                  p.price
+                    | $
+                    = p.price
+                    | /
+                    = p.subscription_unit
                   p.inline2= p.description
                 - p.scopes.in_groups_of(4).each do |group|
                   .clearfix
@@ -192,7 +196,7 @@ link href="css/style.css" rel="stylesheet" /
                   p.footp WATCH ANYTIME ANYWHERE
                   p.loremp Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   p.last Supported Devices
-/! jQuery (necessary for Bootstrap's JavaScript plugins)
-script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" 
-/! Include all compiled plugins (below), or include individual files as needed
-script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+
+- content_for :javascript do
+
+  script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"

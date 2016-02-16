@@ -8,6 +8,8 @@ html[lang="en"]
     = csrf_meta_tags
     title N2me
     = stylesheet_link_tag 'application', media: 'all'
+    -if content_for? :head
+      = content_for :head
   body.sidebar_main_open.sidebar_main_swipe
     header#header_main
       .header_main_content
@@ -39,4 +41,6 @@ html[lang="en"]
               = yield
 
     = javascript_include_tag 'application', 'data-turbolinks-eval': false
+    -if content_for? :javascript
+      = content_for :javascript
     = render '/layouts/style_switcher'
