@@ -40,7 +40,7 @@ html[lang="en"]
             .md-card-content
               = yield
 
-    = javascript_include_tag 'application', 'data-turbolinks-eval': false
+    = javascript_include_tag 'application'
     -if content_for? :javascript
       = content_for :javascript
     = render '/layouts/style_switcher'
