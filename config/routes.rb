@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users, controllers: { sessions: 'users/sessions',
                                     registrations: 'users/registrations' }
 
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
   root 'dashboard#index'
   resources :products
   get 'media/:number', to: 'media#show', as: 'media'
+  resource :checkout, only: :create
+  resources :orders, only: [:new, :create]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

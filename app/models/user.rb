@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :orders
+
   def avatar
     gravatar_id = Digest::MD5::hexdigest(email).downcase
     "https://www.gravatar.com/avatar/#{gravatar_id}.jpg?d=identicon&s=150"

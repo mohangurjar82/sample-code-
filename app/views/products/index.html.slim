@@ -65,11 +65,6 @@
                 p.rightcontainer1 Subtotal
               .col-md-4.col-sm-4.col-xs-4
                 p.rightcontainer1 ${{cart.subtotal}}
-            .row
-              .col-md-8.col-sm-8.col-xs-8
-                p.rightconatiner1-1 Estimated Taxes &amp; Fees
-              .col-md-4.col-sm-4.col-xs-4
-                p.rightcontainer1 $???
         .row.rightrow
           .col-md-12
             p.rightcontainer1 Lorem ipsum dolor .
@@ -100,14 +95,16 @@
                   option value=""  dsf up f
               .col-md-4.col-sm-4.col-xs-4
                 p.leftprice +55.00
-            button.btn.btn-warning.button1 type="button" 
-              | proceed to checkout
-              span.glyphicon.glyphicon-chevron-right aria-hidden="true" 
+            = form_tag checkout_path do
+              = hidden_field_tag 'product_ids[]', '', 'ng-repeat' => 'id in cart.product_ids', 'ng-value' => 'id'
+              button.btn.btn-warning.button1 type="submit" ng-disabled='cart.product_ids.length === 0'
+                | proceed to checkout
+                span.glyphicon.glyphicon-chevron-right aria-hidden="true" 
         .row.rightrow1
           .col-md-7x.col-sm-7.col-xs-7
             p.rightcontainer1 Total Saved
           .col-md-5.col-sm-5.col-xs-5
-            p.rightcontainer1 $ 110
+            p.rightcontainer1 $ 0
         .row.rightrow1
           .col-md-12
             p.newpara 100% risk Free 7 Days Free Trail
@@ -212,10 +209,17 @@
     cartApp.controller('cartController', function() {
       this.products = #{@products.to_json.html_safe};
       this.subtotal = 0;
+      this.product_ids = [];
       
       this.update = function() {
         this.subtotal = this.products.reduce(function(prev, cur){
           return prev + (cur.checked ? cur.price : 0);
         }, 0);
+        this.product_ids = this.products.reduce(function(prev, cur){
+          if(cur.checked) {
+            prev.push(cur.id);
+          }
+          return prev;
+        }, []);
       }
     });
