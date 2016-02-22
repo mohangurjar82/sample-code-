@@ -36,7 +36,7 @@ class CreateOrder
                     "properties" => {"TestOrder" => true}
                   }
                 }.to_json, headers: { 'Content-Type' => 'application/json' }) rescue nil
-
+      
       if result && (response = result.parsed_response['oneStepOrderResponse']) && response['status'] == 'Completed'
         order.mpxid = response['providerOrderRef']
         order.save

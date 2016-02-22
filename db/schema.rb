@@ -17,12 +17,12 @@ ActiveRecord::Schema.define(version: 20160222114806) do
   enable_extension "plpgsql"
 
   create_table "order_items", force: :cascade do |t|
-    t.integer  "product_id",         null: false
-    t.integer  "order_id",           null: false
+    t.integer  "product_id",        null: false
+    t.integer  "order_id",          null: false
     t.decimal  "price"
-    t.string   "subscription_units"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.string   "subscription_unit"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   add_index "order_items", ["order_id", "product_id"], name: "index_order_items_on_order_id_and_product_id", unique: true, using: :btree

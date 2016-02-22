@@ -1,1 +1,10 @@
-h1 Dashboard
+- if @orders.empty?
+  h1 No Orders
+- else
+  h1 Orders
+  ul
+    - for order in @orders
+      li
+        h3 Order ##{order.id}
+        - for product in order.products
+          = product.id

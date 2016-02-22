@@ -7,5 +7,5 @@ class ProductItem < ActiveRecord::Base
   
   def thumbnail_url
     raw['defaultThumbnailUrl']
-  end  
+  end
 end
