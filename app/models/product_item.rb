@@ -8,4 +8,8 @@ class ProductItem < ActiveRecord::Base
   def thumbnail_url
     raw['defaultThumbnailUrl']
   end
+  
+  def short_mpxid
+    mpxid.gsub(/\A.+\//,'') if mpxid
+  end
 end
