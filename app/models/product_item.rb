@@ -4,4 +4,8 @@ class ProductItem < ActiveRecord::Base
   def media?
     mpxid =~ /\/Media\/\d+\z/
   end
+  
+  def thumbnail_url
+    raw['defaultThumbnailUrl']
+  end  
 end

@@ -12,4 +12,12 @@ RSpec.describe ProductItem, type: :model do
       expect(pi).not_to be_media
     end
   end
+  
+  describe '#thumbnail_url' do
+    let(:product_item){ FactoryGirl.build :product_item }
+    
+    it 'returns default thumb url from raw' do
+      expect(product_item.thumbnail_url).to eq 'http://pmd369599tn.download.theplatform.com.edgesuite.net/Supercloud_-_Trial_Account/357/525/TVNX_00363747_0216631_4.jpg'
+    end
+  end
 end
