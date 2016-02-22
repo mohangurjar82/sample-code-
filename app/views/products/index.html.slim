@@ -206,7 +206,7 @@
     });
 
     cartApp.controller('cartController', function() {
-      this.products = #{@products.to_json.html_safe};
+      this.products = #{@products.to_json(only: [:id, :price]).html_safe};
       this.subtotal = 0;
       this.product_ids = [];
       

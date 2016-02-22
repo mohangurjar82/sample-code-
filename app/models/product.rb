@@ -12,6 +12,10 @@ class Product < ActiveRecord::Base
   def subscription_unit
     active_pricing_tier['subscriptionUnits']
   end
+  
+  def as_json(options = nil)
+    {price: price, id: id}
+  end
 
   private
 

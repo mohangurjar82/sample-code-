@@ -29,15 +29,16 @@ class CreateOrder
                 'form' => 'json'}, body: {
                   "oneStepOrder" => {
                     "paymentRef" => pi_result.id,
-                    "purchaseItemInfos" => order.product_ids.map{|id| {
-                        "productId" => id,
+                    "purchaseItemInfos" => order.products.map{|p| {
+                        "productId" => p.mpxid,
                         "quantity" => 1,
                         "currency" => "USD"}},
                     "properties" => {"TestOrder" => true}
                   }
-                }.to_json, headers: { 'Content-Type' => 'application/json' })# rescue nil
+                }.to_json, headers: { 'Content-Type' => 'application/json' }) rescue nil
 
       if result && (response = result.parsed_response['oneStepOrderResponse']) && response['status'] == 'Completed'
+        order.save
         Result.new(order_created: true, id: response['providerOrderRef'])
       else
         Result.new(order_created: false, error_message: 'Failed to create Order')
