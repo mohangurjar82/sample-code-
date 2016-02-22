@@ -24,11 +24,13 @@ class RetrieveProducts
       
       for entry in result.parsed_response['entries']
         product = Product.find_or_initialize_by(mpxid: entry['id'])
+        
+        product.pricing_plan = entry['pricingPlan']
+        
         product.update_attributes title: entry['title'],
           description: entry['longDescription'].empty? ? entry['description'] : entry['longDescription'],
           images: entry['images'].values.flatten.map{|i| i['url']},
-          pricing_plan: entry['pricingPlan'],
-          available: true
+          available: (product.price > 0)
         
         product_item_ids = []
         

@@ -52,13 +52,13 @@ RSpec.describe RetrieveProducts, type: :service do
       allow(result).to receive(:parsed_response).and_return('entries' => [entry], 'entryCount' => 1)
       allow(http).to receive(:get).and_return(result)
       
-      product = double(id: 123)
+      product = double(id: 123, price: 4.56)
       expect(Product).to receive(:find_or_initialize_by).with(mpxid: entry['id']).and_return(product)
+      expect(product).to receive(:pricing_plan=).with(entry['pricingPlan'])
       expect(product).to receive(:update_attributes).with(
         title: entry['title'],
         description: entry['longDescription'],
         images: ['http://someurl.jpg'],
-        pricing_plan: entry['pricingPlan'],
         available: true)
       
       product_item = double(id: 234, media?: true)

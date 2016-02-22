@@ -8,7 +8,7 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :product_items
   
   def price
-    active_pricing_tier ? active_pricing_tier['amounts']['USD'] : 0
+    active_pricing_tier ? active_pricing_tier['amounts']['USD'].to_f : 0.0
   end
 
   def subscription_unit
@@ -22,6 +22,6 @@ class Product < ActiveRecord::Base
   private
 
   def active_pricing_tier
-    pricing_plan['pricingTiers'].detect{|t| t['isActive']}
+    pricing_plan['pricingTiers'].detect{|t| t['isActive']} if pricing_plan
   end
 end

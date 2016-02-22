@@ -8,6 +8,10 @@ RSpec.describe Product, type: :model do
     it 'returns active price' do
       expect(product.price).to eq 14.99
     end
+    
+    it 'returns 0' do
+      expect(Product.new.price).to eq 0
+    end
   end
   
   describe '#subscription_unit' do
