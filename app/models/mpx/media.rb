@@ -2,10 +2,6 @@ class MPX::Media < MPX::RemoteResource
   ENDPOINT = 'http://data.media2.theplatform.com/media/data/Media'.freeze
   SCHEMA = '1.2'.freeze
 
-  def number
-    id.split('/')[-1]
-  end
-
   def file_url
     files = attributes['media$content']
     return files.first['plfile$url'] if files.present?

@@ -3,9 +3,10 @@ class MPX::RemoteResource
   SCHEMA = '1.1'.freeze
   attr_accessor :attributes, :fetched
 
-  def self.all
+  def self.all(options = {})
     resources = MPX::ResourceService.new(self::ENDPOINT,
-                                         self::SCHEMA).fetch['entries']
+                                         self::SCHEMA).fetch(options)['entries']
+    return [] unless resources
     resources.map { |r| new(r) }
   end
 
@@ -23,6 +24,10 @@ class MPX::RemoteResource
     self.attributes = OpenStruct.new(
       MPX::ResourceService.new(id, self.class::SCHEMA).fetch
     )
+  end
+
+  def number
+    id.split('/')[-1]
   end
 
   def_delegators :attributes, :id

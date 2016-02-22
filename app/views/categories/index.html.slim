@@ -1,0 +1,22 @@
+.content
+  .uk-container.uk-container-center
+    - @categories.each do |c|
+      - next if c.media.size == 0
+      .uk-width-1-1
+        h2= c.title
+      .uk-grid
+        - c.media.each_with_index do |m, i|
+          - break if i == 4
+          .uk-width-1-4
+            a href=media_path(m.number)
+              - if m.thumbnail_url.present?
+                img src=m.thumbnail_url
+              - else
+                img src=asset_path('movie-placeholder.jpg')
+              h5= m.title
+        - if c.media.size > 4
+          .uk-width-1-1
+            a.uk-badge href=category_path(c.number) Show more
+      hr
+      br
+

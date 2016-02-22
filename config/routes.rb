@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'dashboard#index'
   resources :products
+  resources :categories, only: [:index, :show]
   get 'media/:number', to: 'media#show', as: 'media'
   resource :checkout, only: :create
   resources :orders, only: [:new, :create]
