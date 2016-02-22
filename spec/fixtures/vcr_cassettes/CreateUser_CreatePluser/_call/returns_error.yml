@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://euid.theplatform.com/idm/data/User/49UTt_4J_lY0iTNU?account=http://mps.theplatform.com/data/Account/2673674175&form=json&schema=1.0&token=JRVtgTv4UvNQSiHcrFkCQaB0gIBecDAq
+    uri: https://euid.theplatform.com/idm/data/User/UBpRu2vqlRVlcA0H?account=http://mps.theplatform.com/data/Account/2673532949&form=json&schema=1.0&token=zBm3M7d2CChalDQWHOm2geAY4FCSEBDU
     body:
       encoding: UTF-8
-      string: '{"$xmlns":{"pluser":"http://xml.theplatform.com/auth/data/User"},"pluser$ownerId":"http://mps.theplatform.com/data/Account/2673674175","pluser$userName":"","pluser$email":"","pluser$password":"good_password"}'
+      string: '{"$xmlns":{"pluser":"http://xml.theplatform.com/auth/data/User"},"pluser$ownerId":"http://mps.theplatform.com/data/Account/2673532949","pluser$userName":"","pluser$email":"","pluser$password":"good_password"}'
     headers:
       User-Agent:
       - tpdata/1.1.5

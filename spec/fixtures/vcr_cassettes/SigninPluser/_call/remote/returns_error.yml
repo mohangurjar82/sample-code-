@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://euid.theplatform.com/idm/web/Authentication/signIn?form=json&password=bad&schema=1.1&userName=49UTt_4J_lY0iTNU/person2@example.com
+    uri: https://euid.theplatform.com/idm/web/Authentication/signIn?form=json&password=bad&schema=1.1&userName=UBpRu2vqlRVlcA0H/person2@example.com
     body:
       encoding: US-ASCII
       string: ''

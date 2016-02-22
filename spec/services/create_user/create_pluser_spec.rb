@@ -15,7 +15,7 @@ RSpec.describe CreateUser::CreatePluser, type: :service do
     it 'creates pluser' do
       result = CreateUser::CreatePluser.build.call(user)
       expect(result).to be_pluser_created
-      expect(result.id).to eq 'https://euid.theplatform.com/idm/data/User/49UTt_4J_lY0iTNU/244111143'
+      expect(result.id).to eq 'https://euid.theplatform.com/idm/data/User/UBpRu2vqlRVlcA0H/244111143'
     end
 
     it 'returns error' do
