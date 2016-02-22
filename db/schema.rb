@@ -11,10 +11,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203124713) do
+ActiveRecord::Schema.define(version: 20160221041700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer  "product_id",         null: false
+    t.integer  "order_id",           null: false
+    t.decimal  "price"
+    t.string   "subscription_units"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "order_items", ["order_id", "product_id"], name: "index_order_items_on_order_id_and_product_id", unique: true, using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.string   "mpxid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
+  create_table "product_items", force: :cascade do |t|
+    t.integer  "product_id",  null: false
+    t.string   "mpxid",       null: false
+    t.string   "title"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "product_items", ["mpxid"], name: "index_product_items_on_mpxid", using: :btree
+  add_index "product_items", ["product_id"], name: "index_product_items_on_product_id", using: :btree
+
+  create_table "products", force: :cascade do |t|
+    t.string   "mpxid",                    null: false
+    t.string   "title"
+    t.string   "description"
+    t.string   "images",      default: [],              array: true
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "products", ["mpxid"], name: "index_products_on_mpxid", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

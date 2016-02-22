@@ -25,5 +25,7 @@ RSpec.describe CreateOrder, type: :service do
       expect(result).to be_order_created
       expect(result.id).to eq 'http://storefront.commerce.theplatform.com/storefront/data/OrderHistory/47315677'
     end
+    
+    it 'saves order'
   end
 end
