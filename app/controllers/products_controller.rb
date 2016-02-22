@@ -1,9 +1,9 @@
 class ProductsController < ApplicationController
   
   def index
-    @products = MPX::Product.all
+    @products = Product.all
     # TODO: remove next line after demo products wil be deleted
-    @products.delete_if { |x| x.scopes.select{ |m| m.class.to_s == 'MPX::Media' }.size == 0 }
+    @products.delete_if{|p| p.product_items.detect{|pi| pi.media? }.nil? }
   end
 
 end

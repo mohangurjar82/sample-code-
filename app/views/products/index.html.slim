@@ -32,20 +32,19 @@
                     | /
                     = p.subscription_unit
                   p.inline2= p.description
-                - p.scopes.in_groups_of(4).each do |group|
+                - p.product_items.in_groups_of(4).each do |group|
                   .clearfix
                   br
                   .row
                     - group.each do |item|
-                      - next if item.nil? || item.class.to_s =~ /subscription/i
-                      a href=media_path(item.number)
-                        .col-sm-3.col-xs-4.image
-                          - if item.thumbnail_url
-                            img.center-block.imagesmall src=item.thumbnail_url
-                          - else
-                            h4
-                              strong= item.title
-                            p= item.description
+                      - next if item.nil? || item.mpxid =~ /subscription/i
+                      .col-sm-3.col-xs-4.image
+                      - if item.thumbnail_url
+                        img.center-block.imagesmall src=item.thumbnail_url
+                      - else
+                        h4
+                          strong= item.title
+                        p= item.description
                 
                 .col-md-1.col-sm-1.col-xs-1
                   input type="checkbox" value="1" ng-model="cart.products[#{i}].checked" ng-change="cart.update()" /

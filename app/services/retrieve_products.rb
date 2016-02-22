@@ -3,12 +3,13 @@ class RetrieveProducts
 
   Result = ImmutableStruct.new(:products_retrieved?, :error_message)
 
-  def initialize(http)
+  def initialize(http, retrieve_media)
     self.http = http
+    self.retrieve_media = retrieve_media
   end
 
   def self.build
-    new HTTParty
+    new HTTParty, RetrieveMedia.build
   end
 
   def call
@@ -16,20 +17,25 @@ class RetrieveProducts
               'token' => ENV['THEPLATFORM_TOKEN'],
               'schema' => '2.5.0',
               'form' => 'cjson',
-              'fields' => 'id,title,longDescription,images,scopes'}) rescue nil
+              'fields' => 'id,title,longDescription,images,scopes,pricingPlan'}) rescue nil
 
     if result && result.parsed_response['entryCount'].to_i > 0
       for entry in result.parsed_response['entries']
         product = Product.find_or_initialize_by(mpxid: entry['id'])
         product.update_attributes title: entry['title'],
           description: entry['longDescription'],
-          images: entry['images'].values.flatten.map{|i| i['url']}
+          images: entry['images'].values.flatten.map{|i| i['url']},
+          pricing_plan: entry['pricingPlan']
         
         product_item_ids = []
         
         for scope in entry['scopes']
           product_item = ProductItem.find_or_initialize_by(product_id: product.id,
             mpxid: scope['id'])
+          if product_item.media?
+            media_result = retrieve_media.call product_item
+            product_item.raw = media_result.raw if media_result.media_retrieved?
+          end
           product_item.update_attributes(title: scope['title'],
             description: scope['description'])
           product_item_ids << product_item.id
@@ -45,5 +51,5 @@ class RetrieveProducts
 
   private
 
-  attr_accessor :http
+  attr_accessor :http, :retrieve_media
 end
