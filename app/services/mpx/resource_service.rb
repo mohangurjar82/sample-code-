@@ -9,6 +9,9 @@ class MPX::ResourceService
   def fetch(options = {})
     options.merge! form: 'json', schema: @schema, token: @token
     full_url = "#{@endpoint}?" + options.to_query
-    Oj.load(HTTParty.get(full_url).body)
+    response = Rails.cache.fetch(full_url, expires: 15.minutes) do
+      HTTParty.get(full_url).body
+    end
+    Oj.load(response)
   end
 end
