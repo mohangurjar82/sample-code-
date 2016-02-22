@@ -1,6 +1,11 @@
 namespace :mpx do
   desc 'Retrieve products from MPX'
   task retrieve_products: :environment do
-    RetrieveProducts.build.call
+    result = RetrieveProducts.build.call
+    if result.products_retrieved?
+      puts 'Products retrieved'
+    else
+      puts result.error_message
+    end
   end
 end
