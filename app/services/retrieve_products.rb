@@ -17,13 +17,13 @@ class RetrieveProducts
               'token' => ENV['THEPLATFORM_TOKEN'],
               'schema' => '2.5.0',
               'form' => 'cjson',
-              'fields' => 'id,title,longDescription,images,scopes,pricingPlan'}) rescue nil
+      'fields' => 'id,title,longDescription,images,scopes,pricingPlan,description'}) rescue nil
 
     if result && result.parsed_response['entryCount'].to_i > 0
       for entry in result.parsed_response['entries']
         product = Product.find_or_initialize_by(mpxid: entry['id'])
         product.update_attributes title: entry['title'],
-          description: entry['longDescription'],
+          description: entry['longDescription'].empty? ? entry['description'] : entry['longDescription'],
           images: entry['images'].values.flatten.map{|i| i['url']},
           pricing_plan: entry['pricingPlan']
         
