@@ -10,7 +10,7 @@
           - group.each do |pi|
             .uk-width-1-4
               - if pi
-                a href=media_path(pi.short_mpxid)
+                a href=(pi.media? ? media_path(pi.short_mpxid) : '#')
                   - if pi.thumbnail_url.present?
                     img src=pi.thumbnail_url
                   - else
