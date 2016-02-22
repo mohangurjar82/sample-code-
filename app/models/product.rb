@@ -8,11 +8,11 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :product_items
   
   def price
-    active_pricing_tier['amounts']['USD']
+    active_pricing_tier ? active_pricing_tier['amounts']['USD'] : 0
   end
 
   def subscription_unit
-    active_pricing_tier['subscriptionUnits']
+    active_pricing_tier['subscriptionUnits'] if active_pricing_tier
   end
   
   def as_json(options = nil)

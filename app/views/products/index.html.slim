@@ -37,7 +37,7 @@
                   br
                   .row
                     - group.each do |item|
-                      - next if item.nil? || !item.media?
+                      - next if item.nil?
                       .col-sm-3.col-xs-4.image
                         - if item.thumbnail_url
                           img.center-block.imagesmall src=item.thumbnail_url

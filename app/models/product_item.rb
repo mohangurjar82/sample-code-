@@ -6,7 +6,7 @@ class ProductItem < ActiveRecord::Base
   end
   
   def thumbnail_url
-    raw['defaultThumbnailUrl']
+    raw['defaultThumbnailUrl'] if raw
   end
   
   def short_mpxid
