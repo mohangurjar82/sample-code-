@@ -3,6 +3,8 @@ class Product < ActiveRecord::Base
   has_many :orders, through: :order_items
   has_many :product_items
   
+  default_scope { where(available: true) }
+  
   accepts_nested_attributes_for :product_items
   
   def price
