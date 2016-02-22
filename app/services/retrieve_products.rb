@@ -23,7 +23,8 @@ class RetrieveProducts
       Product.update_all available: false
       
       for entry in result.parsed_response['entries']
-        product = Product.find_or_initialize_by(mpxid: entry['id'])
+
+        product = Product.unscoped.find_or_initialize_by(mpxid: entry['id'])
         
         product.pricing_plan = entry['pricingPlan']
         

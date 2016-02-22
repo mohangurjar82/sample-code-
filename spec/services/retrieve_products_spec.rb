@@ -17,7 +17,6 @@ RSpec.describe RetrieveProducts, type: :service do
 
     context 'remote', :vcr do
       it 'gets products' do
-        expect(Product).to receive(:find_or_initialize_by).exactly(11).times.and_call_original
         allow(retrieve_media).to receive(:call).and_return(double(media_retrieved?: false))
         
         result = RetrieveProducts.build.call
@@ -53,7 +52,9 @@ RSpec.describe RetrieveProducts, type: :service do
       allow(http).to receive(:get).and_return(result)
       
       product = double(id: 123, price: 4.56)
-      expect(Product).to receive(:find_or_initialize_by).with(mpxid: entry['id']).and_return(product)
+      unscoped = double
+      expect(Product).to receive(:unscoped).and_return(unscoped)
+      expect(unscoped).to receive(:find_or_initialize_by).with(mpxid: entry['id']).and_return(product)
       expect(product).to receive(:pricing_plan=).with(entry['pricingPlan'])
       expect(product).to receive(:update_attributes).with(
         title: entry['title'],
