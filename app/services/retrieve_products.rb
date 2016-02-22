@@ -20,12 +20,15 @@ class RetrieveProducts
       'fields' => 'id,title,longDescription,images,scopes,pricingPlan,description'}) rescue nil
 
     if result && result.parsed_response['entryCount'].to_i > 0
+      Product.update_all available: false
+      
       for entry in result.parsed_response['entries']
         product = Product.find_or_initialize_by(mpxid: entry['id'])
         product.update_attributes title: entry['title'],
           description: entry['longDescription'].empty? ? entry['description'] : entry['longDescription'],
           images: entry['images'].values.flatten.map{|i| i['url']},
-          pricing_plan: entry['pricingPlan']
+          pricing_plan: entry['pricingPlan'],
+          available: true
         
         product_item_ids = []
         

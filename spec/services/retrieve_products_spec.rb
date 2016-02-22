@@ -58,7 +58,8 @@ RSpec.describe RetrieveProducts, type: :service do
         title: entry['title'],
         description: entry['longDescription'],
         images: ['http://someurl.jpg'],
-        pricing_plan: entry['pricingPlan'])
+        pricing_plan: entry['pricingPlan'],
+        available: true)
       
       product_item = double(id: 234, media?: true)
       expect(ProductItem).to receive(:find_or_initialize_by).with(mpxid: 'http://Media/373829666', product_id: product.id).and_return(product_item)
