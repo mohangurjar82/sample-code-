@@ -4,7 +4,7 @@ class CreateOrderItems < ActiveRecord::Migration
       t.references :product, null: false
       t.references :order, null: false
       t.decimal :price
-      t.string :subscription_units
+      t.string :subscription_unit
 
       t.timestamps null: false
     end
