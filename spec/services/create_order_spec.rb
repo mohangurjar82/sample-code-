@@ -28,6 +28,7 @@ RSpec.describe CreateOrder, type: :service do
       
       expect(order).to be_persisted
       expect(order.products).to match_array [product1, product2]
+      expect(order.mpxid).to eq 'http://storefront.commerce.theplatform.com/storefront/data/OrderHistory/47315677'
     end
   end
 end
