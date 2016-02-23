@@ -13,7 +13,6 @@ nav.uk-navbar
         a#full_screen_toggle.user_action_icon.uk-visible-large[href="#"]
           i.material-icons.md-24.md-light
             | 
-      = render '/layouts/navbar_alerts'
       -if signed_in?
         li[data-uk-dropdown="{mode:'click',pos:'bottom-right'}"]
           a.user_action_image[href="#"]
