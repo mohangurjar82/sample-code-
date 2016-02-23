@@ -23,31 +23,18 @@
         .row.name2
           .col-md-12.name2
             - @products.each_with_index do |p, i|
-              .row
-                .col-md-offset-1.col-md-10.container2inline
+              .row.container2inline
+                .col-md-offset-1.col-md-9.col-sm-9.col-xs-12
                   p.extra= p.title
+                  p.inline2= p.description
+                .col-md-2.col-sm-3.col-xs-12.text-center
+                  p
+                    input type="checkbox" value="1" ng-model="cart.products[#{i}].checked" ng-change="cart.update()" /
                   p.price
                     | $
                     = p.price
                     | /
                     = p.subscription_unit
-                  p.inline2= p.description
-                - p.product_items.in_groups_of(4).each do |group|
-                  .clearfix
-                  br
-                  .row
-                    - group.each do |item|
-                      - next if item.nil?
-                      .col-sm-3.col-xs-4.image
-                        - if item.thumbnail_url
-                          img.center-block.imagesmall src=item.thumbnail_url
-                        - else
-                          h4
-                            strong= item.title
-                          p= item.description
-
-                .col-md-1.col-sm-1.col-xs-1
-                  input type="checkbox" value="1" ng-model="cart.products[#{i}].checked" ng-change="cart.update()" /
             
             .row
               .col-md-offset-1.col-md-11

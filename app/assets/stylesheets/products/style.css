@@ -42,9 +42,10 @@ body
     padding: 14px 6px;
     background: #FDC741;
 }
-.mostconatiner
-{
-  width:70%;
+@media(min-width: 780px) {
+  .mostconatiner {
+    width:70%;
+  }
 }
 .rate
 {
@@ -117,7 +118,6 @@ input[type=checkbox].maincheck{
 }
 .price
 {
-  float: right;
   color: #FC6300;
       font-size: 18px;
       font-weight: 700;
@@ -553,7 +553,6 @@ background-color: black;
     .container2inline
 {
         border-bottom: 1px solid #DCDBDB;
-        padding: 0px 21px
 }
 
 .button3
