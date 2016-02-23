@@ -2,6 +2,10 @@ body
 {
     font-family: 'Roboto', sans-serif;
 }
+.product-image {
+  min-height: 100px;
+  background-size: cover !important;
+}
 .money
 {
   font-size: 11px !important;

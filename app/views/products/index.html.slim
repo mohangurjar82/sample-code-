@@ -24,7 +24,11 @@
           .col-md-12.name2
             - @products.each_with_index do |p, i|
               .row.container2inline
-                .col-md-offset-1.col-md-9.col-sm-9.col-xs-12
+                - if p.images.any?
+                  .col-md-2.product-image style="background: url(#{p.images.first})"
+                - else
+                  .col-md-2.product-image style="background: url(#{asset_path('product-placeholder.jpg')})"
+                .col-md-8.col-sm-8.col-xs-12
                   p.extra= p.title
                   p.inline2= p.description
                 .col-md-2.col-sm-3.col-xs-12.text-center
@@ -53,10 +57,11 @@
                 p.rightcontainer1 ${{cart.subtotal | number:2}}
 
         .row.rightrow1
-          .col-md-12
-            p.rightcontainer1 Round up for Charity .
-            p.rightcontainer1 Round up for Charity .
-            p.rightconatiner1-1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas accusamus, porro cum atque nam Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla, dolorem??
+          .col-md-12 
+            div ng-repeat="product in cart.selected_products"
+              p.rightcontainer1 ng-bind="product.title"
+              p.rightconatiner1-1 ng-bind="product.description"
+              .clearfix
 
             = form_tag checkout_path do
               = hidden_field_tag 'product_ids[]', '', 'ng-repeat' => 'id in cart.product_ids', 'ng-value' => 'id'
@@ -168,9 +173,10 @@
     });
 
     cartApp.controller('cartController', function() {
-      this.products = #{@products.to_json(only: [:id, :price]).html_safe};
+      this.products = #{@products.to_json.html_safe};
       this.subtotal = 0;
       this.product_ids = [];
+      this.selected_products = [];
       
       this.update = function() {
         this.subtotal = this.products.reduce(function(prev, cur){
@@ -182,5 +188,12 @@
           }
           return prev;
         }, []);
+        this.selected_products = this.products.reduce(function(prev, cur){
+          if(cur.checked) {
+            prev.push(cur);
+          }
+          return prev;
+        }, []);
       }
     });
+

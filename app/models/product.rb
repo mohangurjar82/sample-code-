@@ -16,7 +16,7 @@ class Product < ActiveRecord::Base
   end
   
   def as_json(options = nil)
-    {price: price, id: id}
+    { price: price, id: id, title: title, description: description }
   end
 
   private
