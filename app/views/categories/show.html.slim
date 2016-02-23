@@ -5,6 +5,7 @@
     - @category.media.in_groups_of(4).each do |group|
       .uk-grid
         - group.each do |m|
+          - next unless m
           .uk-width-1-4
             a href=media_path(m.number)
               - if m.thumbnail_url.present?
