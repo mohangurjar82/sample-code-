@@ -51,53 +51,25 @@
                 p.rightcontainer1 Subtotal
               .col-md-4.col-sm-4.col-xs-4
                 p.rightcontainer1 ${{cart.subtotal}}
-        .row.rightrow
-          .col-md-12
-            p.rightcontainer1 Lorem ipsum dolor .
-            p.rightconatiner1-1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas accusamus, porro cum atque nam?
-            form action="" 
-              .row
-                .col-md-8.col-sm-8.col-xs-8
-                  input.maincheck type="checkbox" /
-                  select.firstfine id="" name="" 
-                    option value=""  Select up chrity
-                    option value=""  Select up fds
-                    option value=""  dsf up chrity
-                    option value=""  dsf up f
-                .col-md-4.col-sm-4.col-xs-4
-                  p.leftprice +55.00
+
         .row.rightrow1
           .col-md-12
             p.rightcontainer1 Round up for Charity .
             p.rightcontainer1 Round up for Charity .
             p.rightconatiner1-1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas accusamus, porro cum atque nam Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla, dolorem??
-            .row
-              .col-md-8.col-sm-8.col-xs-8
-                input.maincheck type="checkbox" /
-                select.firstfine id="" name="" 
-                  option value=""  Select up chrity
-                  option value=""  Select up fds
-                  option value=""  dsf up chrity
-                  option value=""  dsf up f
-              .col-md-4.col-sm-4.col-xs-4
-                p.leftprice +55.00
+
             = form_tag checkout_path do
               = hidden_field_tag 'product_ids[]', '', 'ng-repeat' => 'id in cart.product_ids', 'ng-value' => 'id'
               button.btn.btn-warning.button1 type="submit" ng-disabled='cart.product_ids.length === 0'
                 | proceed to checkout
                 span.glyphicon.glyphicon-chevron-right aria-hidden="true" 
         .row.rightrow1
-          .col-md-7x.col-sm-7.col-xs-7
-            p.rightcontainer1 Total Saved
-          .col-md-5.col-sm-5.col-xs-5
-            p.rightcontainer1 $ 0
-        .row.rightrow1
           .col-md-12
             p.newpara 100% risk Free 7 Days Free Trail
         .row.rightrow1
           .col-md-12
             p.rightcontainer1 Questions?
-            p.price2 Call Us +12020301
+            p.price2 Call Us +844-362-6388
             button.btn.btn-default.btn-sm.button2 type="button" 
               i.fa.fa-comment
               | Chat Now
