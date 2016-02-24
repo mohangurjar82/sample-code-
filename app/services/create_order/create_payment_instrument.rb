@@ -28,8 +28,10 @@ class CreateOrder
         Result.new(payment_instrument_created: true, id: response)
       elsif result && (response = result.parsed_response['description']) &&
             /\A(?<msg>Invalid token)\z|Exception: (?<msg>[^:]+)\z/ =~ response
+        Rails.logger.debug result.inspect
         Result.new(payment_instrument_created: false, invalid_token: msg == 'Invalid token', error_message: msg)
       else
+        Rails.logger.debug result.inspect
         Result.new(payment_instrument_created: false, error_message: 'Failed to create Payment Instrument')
       end
     end

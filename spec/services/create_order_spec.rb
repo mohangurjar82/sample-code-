@@ -22,7 +22,10 @@ RSpec.describe CreateOrder, type: :service do
         .and_return(double(payment_instrument_created?: true,
           id: 'http://storefront.commerce.theplatform.com/storefront/data/PaymentInstrumentInfo/31742720'))
       
+      expect(user).to receive(:update_attribute).with(:billing_address, credit_card.billing_address)
+      
       result = CreateOrder.new(HTTParty, cpi).call(user, order)
+      
       expect(result).to be_order_created
       expect(result.id).to eq 'http://storefront.commerce.theplatform.com/storefront/data/OrderHistory/47690326'
       

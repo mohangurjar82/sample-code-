@@ -13,6 +13,8 @@ class CreateOrder
   end
 
   def call(user, order)
+    user.update_attribute :billing_address, order.credit_card.billing_address
+
     pi_result = create_payment_instrument.call(user, order.credit_card)
 
     unless pi_result.payment_instrument_created?
@@ -37,11 +39,13 @@ class CreateOrder
                   }
                 }.to_json, headers: { 'Content-Type' => 'application/json' }) rescue nil
       
-      if result && (response = result.parsed_response['oneStepOrderResponse']) && response['status'] == 'Completed'
+      if result && (response = result.parsed_response['oneStepOrderResponse']) &&
+                    response['status'] == 'Completed'
         order.mpxid = response['providerOrderRef']
         order.save
         Result.new(order_created: true, id: response['providerOrderRef'])
       else
+        Rails.logger.debug result.inspect
         Result.new(order_created: false, error_message: 'Failed to create Order')
       end
     end
