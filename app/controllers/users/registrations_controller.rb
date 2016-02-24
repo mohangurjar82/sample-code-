@@ -2,7 +2,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   layout proc{ |controller| user_signed_in? ? 'application' : 'devise' }
 
   def profile
-    
+    @products = Product.all
   end
 
   # POST /resource
