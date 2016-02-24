@@ -22,17 +22,15 @@
           ul#user_profile_tabs_content.uk-switcher.uk-margin
             li
               .uk-grid.uk-margin-medium-top.uk-margin-large-bottom[data-uk-grid-margin]
-                - for group in @products.in_groups_of(4)
-                  - group.each do |product|
-                    .uk-width-large-1-4.uk-width-small-1-2
-                      - if product
-                        h4.heading_c.uk-margin-small-bottom
-                          = product.title
-                        span.uk-text-small.uk-text-muted
-                          | $
-                          = product.price
-                          | /
-                          = product.subscription_unit
+                - for product in @products
+                  .uk-width-large-1-4.uk-width-small-1-2
+                    h4.heading_c.uk-margin-small-bottom
+                      = product.title
+                    span.uk-text-small.uk-text-muted
+                      | $
+                      = product.price
+                      | /
+                      = product.subscription_unit
 
               .uk-grid.uk-margin-medium-top.uk-margin-large-bottom[data-uk-grid-margin]
                 .uk-width-large-1-2
