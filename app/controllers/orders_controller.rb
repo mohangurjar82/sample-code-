@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :check_token
   before_action :authenticate_user!
 
   def new
@@ -27,5 +28,11 @@ class OrdersController < ApplicationController
       flash[:error] = result.error_message
       render :new
     end
+  end
+  
+  private
+  
+  def check_token
+    sign_out if user_signed_in? && !GetPluser.build.call(current_user.mpx_token).pluser_gotten?
   end
 end
