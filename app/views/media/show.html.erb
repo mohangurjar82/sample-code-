@@ -3,9 +3,15 @@
     <%= @media.title %>
     <div class="uk-panel-badge uk-badge">TV</div>
   </h1>
-  <div id="media-player" data-media-url='<%= @media.file_url %>'>
-    <div id="strobe-player">
-      <object type="application/x-shockwave-flash" name="StrobeMediaPlayback" data="/StrobeMediaPlayback.swf" width="640" height="480" id="StrobeMediaPlayback" style="visibility: visible;"><param name="allowFullScreen" value="true"><param name="wmode" value="direct"><param name="flashvars" value="src=<%= @media.file_url %>&amp;autoPlay=true&amp;verbose=true&amp;controlBarAutoHide=true&amp;controlBarPosition=bottom&amp;poster=images/poster.png&amp;javascriptCallbackFunction=jsbridge&amp;plugin_hls=/flashlsOSMF.swf&amp;hls_minbufferlength=-1&amp;hls_maxbufferlength=30&amp;hls_lowbufferlength=3&amp;hls_seekmode=KEYFRAME&amp;hls_startfromlevel=-1&amp;hls_seekfromlevel=-1&amp;hls_live_flushurlcache=false&amp;hls_info=true&amp;hls_debug=false&amp;hls_debug2=false&amp;hls_warn=true&amp;hls_error=true&amp;hls_fragmentloadmaxretry=-1&amp;hls_manifestloadmaxretry=-1&amp;hls_capleveltostage=false&amp;hls_maxlevelcappingmode=downscale"></object>
+  <% if @mobile %>
+    <video width="100%" height="300" controls autoplay="autoplay">
+      <source src="<%= @media.file_url %>" type="application/x-mpegURL">
+    </video>
+  <% else %>
+    <div id="media-player" data-media-url='<%= @media.file_url %>'>
+      <div id="strobe-player">
+        <object type="application/x-shockwave-flash" name="StrobeMediaPlayback" data="/StrobeMediaPlayback.swf" width="640" height="480" id="StrobeMediaPlayback" style="visibility: visible;"><param name="allowFullScreen" value="true"><param name="wmode" value="direct"><param name="flashvars" value="src=<%= @media.file_url %>&amp;autoPlay=true&amp;verbose=true&amp;controlBarAutoHide=true&amp;controlBarPosition=bottom&amp;poster=images/poster.png&amp;javascriptCallbackFunction=jsbridge&amp;plugin_hls=/flashlsOSMF.swf&amp;hls_minbufferlength=-1&amp;hls_maxbufferlength=30&amp;hls_lowbufferlength=3&amp;hls_seekmode=KEYFRAME&amp;hls_startfromlevel=-1&amp;hls_seekfromlevel=-1&amp;hls_live_flushurlcache=false&amp;hls_info=true&amp;hls_debug=false&amp;hls_debug2=false&amp;hls_warn=true&amp;hls_error=true&amp;hls_fragmentloadmaxretry=-1&amp;hls_manifestloadmaxretry=-1&amp;hls_capleveltostage=false&amp;hls_maxlevelcappingmode=downscale"></object>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
