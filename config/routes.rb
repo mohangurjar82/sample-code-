@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'media/:number', to: 'media#show', as: 'media'
   resource :checkout, only: :create
   resources :orders, only: [:new, :create]
+  get 'music', to: 'categories#music', as: 'music'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

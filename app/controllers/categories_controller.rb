@@ -8,4 +8,8 @@ class CategoriesController < ApplicationController
     @category = MPX::Category.find_by_number(params[:id])
   end
 
+  def music
+    
+  end
+
 end
