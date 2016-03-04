@@ -11,7 +11,7 @@ nav.uk-navbar
         |  BROWSE
       .uk-dropdown.uk-dropdown-width-2
         .uk-grid.uk-dropdown-grid
-          - MPX::Category.all.in_groups(3).each do |group|
+          - MPX::Category.root_categories.in_groups(3).each do |group|
             .uk-width-1-3
               - group.each do |c|
                 - next unless c

@@ -1,9 +1,22 @@
 .content
-  .uk-container.uk-container-center
+  .uk-container.uk-container-center.categories
     - @categories.each do |c|
-      - next if c.media.size == 0
+      - next if c.media.size == 0 && c.categories.size == 0
       .uk-width-1-1
         h2= c.title
+      - if c.categories.any?
+        .nested-categories
+          - c.categories.in_groups_of(5) do |group|
+            .uk-grid
+              - group.each do |cat|
+                .uk-width-1-5
+                  - if cat
+                    a href=category_path(cat.number)
+                      - if cat.thumbnail_url.present?
+                        img src=cat.thumbnail_url
+                      - else
+                        img src=asset_path('product-placeholder.jpg')
+                      h5= cat.title
       .uk-grid
         - c.media.each_with_index do |m, i|
           - break if i == 4
@@ -14,9 +27,9 @@
               - else
                 img src=asset_path('movie-placeholder.jpg')
               h5= m.title
-        - if c.media.size > 4
-          .uk-width-1-1
-            a.uk-badge href=category_path(c.number) Show more
+      - if c.media.size > 4
+        .uk-width-1-1
+          a.uk-badge href=category_path(c.number) Show more
       hr
       br
 

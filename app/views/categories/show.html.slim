@@ -2,6 +2,19 @@
   .uk-container.uk-container-center
     .uk-width-1-1
       h2= @category.title
+    - if @category.categories.any?
+        .nested-categories
+          - @category.categories.in_groups_of(5) do |group|
+            .uk-grid
+              - group.each do |cat|
+                .uk-width-1-5
+                  - if cat
+                    a href=category_path(cat.number)
+                      - if cat.thumbnail_url.present?
+                        img src=cat.thumbnail_url
+                      - else
+                        img src=asset_path('product-placeholder.jpg')
+                      h5= cat.title
     - @category.media.in_groups_of(4).each do |group|
       .uk-grid
         - group.each do |m|
