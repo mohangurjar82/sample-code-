@@ -13,4 +13,12 @@ class MPX::Media < MPX::RemoteResource
     return url if url.present? || fetched
     fetch['plmedia$defaultThumbnailUrl']
   end
+
+  def category_name
+    if attributes['media$categories'].size > 0
+      attributes['media$categories'].first['media$name']
+    else
+      'TV'
+    end
+  end
 end
