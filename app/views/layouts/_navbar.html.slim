@@ -5,10 +5,12 @@ nav.uk-navbar
         = image_tag image_path('n2me-logo-blk.png'), alt: 'home', class: 'header-logo-img'
     li.menu
       a href=products_path Get media
+    li.menu
+      a href="/categories/599109816" EVENTS
     li.menu data-uk-dropdown=""
       a href=categories_path 
         i.fa.uk-icon-tv
-        |  BROWSE
+        |  BROWSE LIVE TV
       .uk-dropdown.uk-dropdown-width-2
         .uk-grid.uk-dropdown-grid
           - MPX::Category.root_categories.in_groups(3).each do |group|
