@@ -7,7 +7,7 @@ class MPX::Category < MPX::RemoteResource
   end
 
   def media
-    @media ||= MPX::Media.all(byCategories: title)
+    @media ||= MPX::Media.all(byCategoryIds: number)
   end
 
   def categories
