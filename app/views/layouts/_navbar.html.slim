@@ -5,8 +5,6 @@ nav.uk-navbar
         = image_tag image_path('n2me-logo-blk.png'), alt: 'home', class: 'header-logo-img'
     li.menu
       a href=products_path Get media
-    li.menu
-      a href="/categories/599109816" EVENTS
     li.menu data-uk-dropdown=""
       a href=categories_path 
         i.fa.uk-icon-tv
@@ -24,6 +22,19 @@ nav.uk-navbar
       a href=music_path
         i.fa.uk-icon-music
         |   MUSIC
+    li.menu
+      a href='#'
+        i.fa.uk-icon-gamepad
+        |   GAMES
+    li.menu
+      a href="/categories/599109816"
+        i.fa.uk-icon-calendar
+        |   EVENTS
+    li.menu
+      a href='#'
+        i.fa.uk-icon-book
+        |   BOOKS
+    
 
   .uk-navbar-flip
     ul.uk-navbar-nav.user_actions
