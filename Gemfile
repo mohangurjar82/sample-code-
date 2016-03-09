@@ -35,6 +35,9 @@ gem 'slim-rails'
 gem 'httparty'
 gem 'tpdata', require: 'theplatform'
 
+gem 'font-awesome-rails'
+gem 'bootstrap-sass', '~> 3.3.6'
+
 group :development, :test do
   gem 'pry'
   gem 'byebug'
