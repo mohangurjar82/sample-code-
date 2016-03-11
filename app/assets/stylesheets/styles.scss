@@ -13,3 +13,27 @@
 #style_switcher .switcher_app_themes li.app_style_default .app_color_main {
   background: #444444 !important;
 }
+.mobile-menu {
+  a {
+    color: #444444 !important;
+  }
+}
+@media (min-width:768px) and (max-width:1036px) {
+  .header-logo-img {
+    width: 130px;
+  }
+  ul.desktop-menu {
+    a {
+      padding-right: 0;
+      padding-left: 0;
+    }
+    li + li a {
+      margin-left: 10px;
+    }
+  }
+}
+@media (min-width:768px) and (max-width:799px)  {
+  ul.desktop-menu i {
+    display: none;
+  }
+}

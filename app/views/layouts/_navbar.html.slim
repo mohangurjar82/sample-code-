@@ -1,13 +1,44 @@
 nav.uk-navbar
-  ul.uk-navbar-nav.user_actions
+  .uk-visible-small data-uk-dropdown="{mode:'click'}"
+    a.uk-navbar-toggle href="#" data-uk-dropdown=""
+    .uk-dropdown
+      ul.uk-navbar-nav.user_actions.mobile-menu
+        li
+          a href=products_path
+            i.fa.uk-icon-credit-card
+            |   SUBSCRIBE
+        li
+          a href=categories_path 
+            i.fa.uk-icon-tv
+            |  BROWSE LIVE TV
+        li
+          a href=music_path
+            i.fa.uk-icon-music
+            |   MUSIC
+        li
+          a href='#'
+            i.fa.uk-icon-gamepad
+            |   GAMES
+        li
+          a href="/categories/599109816"
+            i.fa.uk-icon-calendar
+            |   EVENTS
+        li
+          a href='#'
+            i.fa.uk-icon-book
+            |   BOOKS
+      
+
+  ul.uk-navbar-nav.user_actions.desktop-menu
     li
       a.header-logo-link[href=root_path]
-        = image_tag image_path('n2me-logo-blk.png'), alt: 'home', class: 'header-logo-img'
-    li.menu
+        = image_tag image_path('n2me-logo-blk.png'), alt: 'home', class: 'header-logo-img uk-hidden-small'
+        = image_tag image_path('n2me-logo-blk.png'), alt: 'home', class: 'header-logo-img uk-visible-small', style: 'width: 130px;'
+    li.menu.uk-hidden-small
       a href=products_path
         i.fa.uk-icon-credit-card
         |   SUBSCRIBE
-    li.menu data-uk-dropdown=""
+    li.menu.uk-hidden-small data-uk-dropdown=""
       a href=categories_path 
         i.fa.uk-icon-tv
         |  BROWSE LIVE TV
@@ -20,19 +51,19 @@ nav.uk-navbar
                 .uk-panel
                   a href=category_path(c.number)
                     = c.title
-    li.menu
+    li.menu.uk-hidden-small
       a href=music_path
         i.fa.uk-icon-music
         |   MUSIC
-    li.menu
+    li.menu.uk-hidden-small
       a href='#'
         i.fa.uk-icon-gamepad
         |   GAMES
-    li.menu
+    li.menu.uk-hidden-small
       a href="/categories/599109816"
         i.fa.uk-icon-calendar
         |   EVENTS
-    li.menu
+    li.menu.uk-hidden-small
       a href='#'
         i.fa.uk-icon-book
         |   BOOKS
@@ -54,3 +85,5 @@ nav.uk-navbar
                 = link_to 'My profile', profile_path
               li
                 = link_to 'Sign out', destroy_user_session_path, method: :delete
+
+
