@@ -41,10 +41,10 @@ body
     
 }
 .footdivimg
-{    margin-bottom: 41px;
-       width: 63%;
-    padding: 14px 6px;
+{   width: 70%;
+    padding: 26px 8px;
     background: #FDC741;
+    margin-top: 30px;
 }
 @media(min-width: 780px) {
   .mostconatiner {
