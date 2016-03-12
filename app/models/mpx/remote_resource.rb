@@ -15,7 +15,7 @@ class MPX::RemoteResource
     m.fetch && m
   end
 
-  def initialize(params)
+  def initialize(params = {})
     self.attributes = OpenStruct.new(params)
   end
 
@@ -28,6 +28,16 @@ class MPX::RemoteResource
 
   def number
     id.split('/')[-1]
+  end
+
+  def save
+    if id.present?
+      raise 'Update not implemented'
+    else
+      self.attributes = OpenStruct.new MPX::ResourceService.create_resource(
+        self.class, attributes.to_h
+      )
+    end
   end
 
   def_delegators :attributes, :id
