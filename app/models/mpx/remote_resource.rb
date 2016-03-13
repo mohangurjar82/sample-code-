@@ -1,13 +1,15 @@
 class MPX::RemoteResource
   extend Forwardable
   SCHEMA = '1.1'.freeze
+  PER_PAGE = 44
+
   attr_accessor :attributes, :fetched
 
   def self.all(options = {})
     resources = MPX::ResourceService.new(self::ENDPOINT,
-                                         self::SCHEMA).fetch(options)['entries']
+                                         self::SCHEMA).fetch(options)
     return [] unless resources
-    resources.map { |r| new(r) }
+    MPX::RemoteResourceCollection.build(resources, self)
   end
 
   def self.find_by_number(number)
@@ -43,4 +45,5 @@ class MPX::RemoteResource
   def_delegators :attributes, :id
   def_delegators :attributes, :title
   def_delegators :attributes, :description
+  def_delegators :attributes, :author
 end

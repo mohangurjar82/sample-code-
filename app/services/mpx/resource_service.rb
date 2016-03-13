@@ -7,9 +7,11 @@ class MPX::ResourceService
   end
 
   def fetch(options = {})
-    options.merge! form: 'json', schema: @schema, token: @token
+    options[:range] = entries_range(options.delete(:page).to_i)
+
+    options = { form: 'json', schema: @schema, token: @token }.merge(options)
     full_url = "#{@endpoint}?" + options.to_query
-    response = Rails.cache.fetch(full_url, expires_in: 5.minutes) do
+    response = Rails.cache.fetch(full_url, expires_in: 10.minutes) do
       response = HTTParty.get(full_url).body
     end
     Oj.load(response)
@@ -29,5 +31,17 @@ class MPX::ResourceService
       headers: { 'Content-Type' => 'text/plain; charset=utf-8' }
     )
     Oj.load(response.body)
+  end
+
+  private
+
+  def entries_range(page)
+    per_page = MPX::RemoteResource::PER_PAGE
+    if page < 2
+      range = "1-#{per_page}"
+    else
+      start = per_page * (page - 1) + 1
+      range = "#{start}-#{start + per_page - 1}"
+    end
   end
 end

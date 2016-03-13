@@ -6,8 +6,8 @@ class MPX::Category < MPX::RemoteResource
     MPX::Category.all.select { |c| c.attributes['plcategory$parentId'].empty? }
   end
 
-  def media
-    @media ||= MPX::Media.all(byCategoryIds: number)
+  def media(params = {})
+    @media ||= MPX::Media.all(params.merge(byCategoryIds: number))
   end
 
   def categories

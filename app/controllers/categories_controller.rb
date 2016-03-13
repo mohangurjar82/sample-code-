@@ -6,6 +6,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = MPX::Category.find_by_number(params[:id])
+    @media = @category.media(page: params[:page])
   end
 
   def music

@@ -15,7 +15,7 @@
                       - else
                         img src=asset_path('product-placeholder.jpg')
                       h5= cat.title
-    - @category.media.in_groups_of(4).each do |group|
+    - @media.in_groups_of(4).each do |group|
       .uk-grid
         - group.each do |m|
           - next unless m
@@ -27,4 +27,14 @@
                 img src=asset_path('movie-placeholder.jpg')
               h5= m.title
       hr
+    - if @media.size >= MPX::RemoteResource::PER_PAGE
+      .uk-grid
+        .uk-width-1-1
+          - if params[:page].to_i >= 2
+            a.uk-button href="?page=#{params[:page].to_i - 1}" Prev page
+          div style="float:right"
+            a.uk-button href="?page=#{(params[:page] || 1).to_i + 1}" Next page
+
+
+
 

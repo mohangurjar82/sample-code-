@@ -16,7 +16,7 @@ nav.uk-navbar
             i.fa.uk-icon-music
             |   MUSIC
         li
-          a href='#'
+          a href='/categories/557637953'
             i.fa.uk-icon-gamepad
             |   GAMES
         li
@@ -24,7 +24,7 @@ nav.uk-navbar
             i.fa.uk-icon-calendar
             |   EVENTS
         li
-          a href='#'
+          a href='/categories/557637954'
             i.fa.uk-icon-book
             |   BOOKS
       
@@ -47,7 +47,7 @@ nav.uk-navbar
           - MPX::Category.root_categories.in_groups(3).each do |group|
             .uk-width-1-3
               - group.each do |c|
-                - next unless c
+                - next if c.nil? || c.title =~ /books/i
                 .uk-panel
                   a href=category_path(c.number)
                     = c.title
@@ -56,7 +56,7 @@ nav.uk-navbar
         i.fa.uk-icon-music
         |   MUSIC
     li.menu.uk-hidden-small
-      a href='#'
+      a href='/categories/599109816'
         i.fa.uk-icon-gamepad
         |   GAMES
     li.menu.uk-hidden-small
@@ -64,7 +64,7 @@ nav.uk-navbar
         i.fa.uk-icon-calendar
         |   EVENTS
     li.menu.uk-hidden-small
-      a href='#'
+      a href='/categories/557637954'
         i.fa.uk-icon-book
         |   BOOKS
     

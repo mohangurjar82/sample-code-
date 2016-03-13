@@ -15,8 +15,16 @@ class MPX::Media < MPX::RemoteResource
 
   def thumbnail_url
     url = attributes['plmedia$defaultThumbnailUrl']
-    return url if url.present? || fetched
-    fetch['plmedia$defaultThumbnailUrl']
+    return url if url.present?
+    fetch unless fetched
+    url = attributes['plmedia$defaultThumbnailUrl']
+    url.present? ? url : thumbnails.first
+  end
+
+  def thumbnails
+    attributes['media$thumbnails'].map do |file|
+      file['plfile$url']
+    end
   end
 
   def category_name

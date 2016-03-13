@@ -263,6 +263,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   byebug
   coffee-rails (~> 4.1.0)
+  concurrent-ruby
   devise
   dotenv-rails
   factory_girl_rails
