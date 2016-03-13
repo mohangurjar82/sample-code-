@@ -4,7 +4,7 @@ class MPX::RemoteResourceCollection < Concurrent::Array
   attr_accessor :total_entries
 
   def self.build(resources, klass)
-    pool = Thread.pool(10)
+    pool = Thread.pool(5)
     collection = new
     resources['entries'].each do |entry|
       pool.process do
@@ -13,7 +13,7 @@ class MPX::RemoteResourceCollection < Concurrent::Array
         collection.push resource
       end
     end
-    pool.wait(:done)
+    pool.shutdown
     collection.sort_by{ |entry| entry.id }
   end
 end
