@@ -1,5 +1,5 @@
 <div class="uk-panel media show-book">
-  <div class="uk-grid" style="padding-bottom: 40px;">
+  <div class="uk-grid">
     <div class="uk-width-1-3">
       <img src="<%= @media.thumbnail_url %>" alt="">
       <div class="clearfix"></div>
@@ -10,7 +10,7 @@
       <h2><%= @media.title %></h2>
       
       <h3><strong>Author:</strong><br><%= @media.author %></h3>
-      <a href="<%= @media.file_url %>">
+      <a class="download" href="<%= @media.file_url %>">
         <img src="<%= asset_path('download-pdf.png') %>">
       </a>
       <div class="uk-panel">
