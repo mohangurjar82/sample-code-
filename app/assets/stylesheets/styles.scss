@@ -13,6 +13,20 @@
 #style_switcher .switcher_app_themes li.app_style_default .app_color_main {
   background: #444444 !important;
 }
+.show-book {
+  .uk-grid {
+    padding: 20px 20px 40px;
+  }
+  .download{
+    a {
+      margin-bottom: 20px;
+      display: block;
+    }
+    img {
+      margin-left: -23px;
+    }
+  }
+}
 .mobile-menu {
   a {
     color: #444444 !important;
