@@ -14,5 +14,6 @@
 //= require js/uikit_custom
 //= require js/altair_admin_common
 //= require jquery_ujs
+//= require searchbar
 //= require init
 //= require style_switcher

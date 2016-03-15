@@ -8,5 +8,6 @@ class ApplicationController < ActionController::Base
     @root_categories = MPX::Category.root_categories.map do |cat|
       cat unless cat.title =~ /books/i
     end.compact
+    @categories = MPX::Category.all
   end
 end

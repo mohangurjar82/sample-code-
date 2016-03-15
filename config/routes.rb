@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resource :checkout, only: :create
   resources :orders, only: [:new, :create]
   get 'music', to: 'categories#music', as: 'music'
+  get 'search', to: 'search#index', as: 'search'
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

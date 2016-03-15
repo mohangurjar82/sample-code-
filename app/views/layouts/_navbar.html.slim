@@ -27,13 +27,15 @@ nav.uk-navbar
           a href='/categories/557637954'
             i.fa.uk-icon-book
             |   BOOKS
-      
 
   ul.uk-navbar-nav.user_actions.desktop-menu
     li
       a.header-logo-link[href=root_path]
         = image_tag image_path('n2me-logo-blk.png'), alt: 'home', class: 'header-logo-img uk-hidden-small'
         = image_tag image_path('n2me-logo-blk.png'), alt: 'home', class: 'header-logo-img uk-visible-small', style: 'width: 130px;'
+    li.search-icon
+      a href="#"
+        i.fa.uk-icon-search.fa-2x
     li.menu.uk-hidden-small
       a href=products_path
         i.fa.uk-icon-credit-card
@@ -67,7 +69,6 @@ nav.uk-navbar
       a href='/categories/557637954'
         i.fa.uk-icon-book
         |   BOOKS
-    
 
   .uk-navbar-flip
     ul.uk-navbar-nav.user_actions
@@ -85,5 +86,13 @@ nav.uk-navbar
                 = link_to 'My profile', profile_path
               li
                 = link_to 'Sign out', destroy_user_session_path, method: :delete
+nav.search-bar
+  form.uk-form action=search_path
+    fieldset
+      select.uk-margin-small-top name="category"
+        = options_for_select([['All departments', '']].concat(@categories.map { |c| [c.title, c.number] }), params[:category])
+      input.uk-margin-small-top type="text" placeholer="Search..." name="query" value=params[:query]
+  
+
 
 

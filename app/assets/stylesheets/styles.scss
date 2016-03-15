@@ -25,6 +25,38 @@
     }
   }
 }
+.search-icon {
+  a {
+    padding-top: 2px !important;
+    &:hover {
+      opacity: .7;
+    }
+    transition: .5s opacity ease;
+  }
+  i {
+    color: #fff;
+  }
+}
+.search-bar {
+  background: #444;
+  padding: 5px 10px 10px;
+  position: absolute;
+  width: 83%;
+  top: -53px;
+  transition: .5s ease-out top;
+  select {
+    width: 20%;
+  }
+  input {
+    margin-left: 2%;
+    width: 78%;
+  }
+  select, input {
+    &:focus, &:active {
+      background: #fff !important;
+    }
+  }
+}
 .mobile-menu {
   a {
     color: #444444 !important;
@@ -44,8 +76,8 @@
     }
   }
 }
-@media (min-width:768px) and (max-width:799px)  {
-  ul.desktop-menu i {
+@media (min-width:768px) and (max-width:822px)  {
+  ul.desktop-menu .menu i {
     display: none;
   }
 }
