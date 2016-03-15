@@ -7,9 +7,10 @@
 .media.uk-panel{
   min-height: 400px;
 }
-#header_main .uk-navbar .uk-navbar-nav > li .uk-dropdown {
+#header_main .uk-navbar .uk-navbar-nav > li.browse .uk-dropdown {
   right: initial !important;
 }
+
 #style_switcher .switcher_app_themes li.app_style_default .app_color_main {
   background: #444444 !important;
 }

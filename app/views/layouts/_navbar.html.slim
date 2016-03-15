@@ -40,7 +40,7 @@ nav.uk-navbar
       a href=products_path
         i.fa.uk-icon-credit-card
         |   SUBSCRIBE
-    li.menu.uk-hidden-small data-uk-dropdown=""
+    li.menu.uk-hidden-small.browse data-uk-dropdown=""
       a href=categories_path 
         i.fa.uk-icon-tv
         |  BROWSE LIVE TV
@@ -84,6 +84,8 @@ nav.uk-navbar
             ul.uk-nav.js-uk-prevent
               li
                 = link_to 'My profile', profile_path
+              li
+                = link_to 'My purchases', purchases_path
               li
                 = link_to 'Sign out', destroy_user_session_path, method: :delete
 nav.search-bar
