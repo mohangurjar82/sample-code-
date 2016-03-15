@@ -7,7 +7,7 @@ class MPX::ResourceService
   end
 
   def fetch(options = {})
-    options[:range] = entries_range(options.delete(:page).to_i)
+    options[:range] = entries_range(options.delete(:page).to_i, options.delete(:limit))
 
     options = { form: 'json', schema: @schema, token: @token }.merge(options)
     full_url = "#{@endpoint}?" + options.to_query
@@ -35,7 +35,8 @@ class MPX::ResourceService
 
   private
 
-  def entries_range(page)
+  def entries_range(page, limit = nil)
+    return "1-#{limit}" if limit.to_i > 0
     per_page = MPX::RemoteResource::PER_PAGE
     if page < 2
       range = "1-#{per_page}"
