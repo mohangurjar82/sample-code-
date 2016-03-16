@@ -11,6 +11,11 @@ nav.uk-navbar
           a href=categories_path 
             i.fa.uk-icon-tv
             |  BROWSE LIVE TV
+			 
+	    li
+          a href=categories_path 
+            i.fa.uk-icon-film
+            |  MOVIES
         li
           a href=music_path
             i.fa.uk-icon-music
@@ -43,7 +48,7 @@ nav.uk-navbar
     li.menu.uk-hidden-small.browse data-uk-dropdown=""
       a href=categories_path 
         i.fa.uk-icon-tv
-        |  BROWSE LIVE TV
+        |  Browse Live TV
       .uk-dropdown.uk-dropdown-width-2
         .uk-grid.uk-dropdown-grid
           - @root_categories.in_groups(3).each do |group|
@@ -53,8 +58,12 @@ nav.uk-navbar
                 .uk-panel
                   a href=category_path(c.number)
                     = c.title
-    li.menu.uk-hidden-small
-      a href=music_path
+     li.menu.uk-hidden-small
+      a href='/categories/599109816'
+        i.fa.uk-icon-fa-film
+        |   MOVIES
+	li.menu.uk-hidden-small
+      a href='/categories/143941606'
         i.fa.uk-icon-music
         |   MUSIC
     li.menu.uk-hidden-small
@@ -68,7 +77,7 @@ nav.uk-navbar
     li.menu.uk-hidden-small
       a href='/categories/557637954'
         i.fa.uk-icon-book
-        |   BOOKS
+        |   eBOOKS
 
   .uk-navbar-flip
     ul.uk-navbar-nav.user_actions
@@ -85,14 +94,14 @@ nav.uk-navbar
               li
                 = link_to 'My profile', profile_path
               li
-                = link_to 'My purchases', purchases_path
+                = link_to 'My Subscription', purchases_path
               li
                 = link_to 'Sign out', destroy_user_session_path, method: :delete
 nav.search-bar
   form.uk-form action=search_path
     fieldset
       select.uk-margin-small-top name="category"
-        = options_for_select([['All departments', '']].concat(@categories.map { |c| [c.title, c.number] }), params[:category])
+        = options_for_select([['All Content', '']].concat(@categories.map { |c| [c.title, c.number] }), params[:category])
       input.uk-margin-small-top type="text" placeholer="Search..." name="query" value=params[:query]
   
 
