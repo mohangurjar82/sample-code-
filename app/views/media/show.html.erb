@@ -10,7 +10,12 @@
   <% else %>
     <div class="itemVideoEmbedded">
       <script type="application/javascript" src="https://content.jwplatform.com/libraries/B2tmYadP.js"></script>
-      <div id='video-player'></div>
+      <div id='player-area'>
+        <% if @media.overlay.present? %>
+          <img src="<%= @media.overlay %>" class="overlay">
+        <% end %>
+        <div id='video-player'></div>
+      </div>
       <script type='text/javascript'>
         jwplayer('video-player').setup({
             playlist: [{

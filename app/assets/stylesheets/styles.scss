@@ -7,6 +7,14 @@
 .media.uk-panel{
   min-height: 400px;
 }
+.media #player-area {
+  background: #000;
+  padding-top: 5px;
+  .overlay {
+    display: block;
+    margin: 0 auto;
+  }
+}
 #header_main .uk-navbar .uk-navbar-nav > li.browse .uk-dropdown {
   right: initial !important;
 }

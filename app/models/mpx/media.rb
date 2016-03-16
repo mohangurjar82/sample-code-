@@ -35,6 +35,10 @@ class MPX::Media < MPX::RemoteResource
     end
   end
 
+  def overlay
+    attributes['pl1$overlay']
+  end
+
   def category=(name)
     self.attributes['media$categories'] ||= []
     self.attributes['media$categories'].push('media$name' => name)
