@@ -6,16 +6,11 @@ nav.uk-navbar
         li
           a href=products_path
             i.fa.uk-icon-credit-card
-            |   SUBSCRIBE
+            |  SUBSCRIBE
         li
           a href=categories_path 
             i.fa.uk-icon-tv
-            |  BROWSE LIVE TV
-			 
-	    li
-          a href=categories_path 
-            i.fa.uk-icon-film
-            |  MOVIES
+            |  Live TV &amp; Movies
         li
           a href=music_path
             i.fa.uk-icon-music
@@ -48,21 +43,16 @@ nav.uk-navbar
     li.menu.uk-hidden-small.browse data-uk-dropdown=""
       a href=categories_path 
         i.fa.uk-icon-tv
-        |  Browse Live TV
+        |  Live TV & Movies
       .uk-dropdown.uk-dropdown-width-2
         .uk-grid.uk-dropdown-grid
           - @root_categories.in_groups(3).each do |group|
             .uk-width-1-3
-              - group.each do |c|
-                - next if c.nil?
-                .uk-panel
-                  a href=category_path(c.number)
-                    = c.title
-     li.menu.uk-hidden-small
-      a href='/categories/599109816'
-        i.fa.uk-icon-fa-film
-        |   MOVIES
-	li.menu.uk-hidden-small
+              - group.compact.each do |c|
+                  .uk-panel
+                    a href=category_path(c.number)
+                      = c.title
+    li.menu.uk-hidden-small
       a href='/categories/143941606'
         i.fa.uk-icon-music
         |   MUSIC
@@ -77,7 +67,7 @@ nav.uk-navbar
     li.menu.uk-hidden-small
       a href='/categories/557637954'
         i.fa.uk-icon-book
-        |   eBOOKS
+        |   BOOKS
 
   .uk-navbar-flip
     ul.uk-navbar-nav.user_actions
