@@ -2,7 +2,7 @@
   = stylesheet_link_tag('products/style.css')
 
 .products ng-controller="cartController as cart"
-  .uk-grid
+  .uk-grid.hero
     .uk-width-7-10.footmain
       .uk-grid
         .uk-width-2-10.promo-img
@@ -42,22 +42,25 @@
           .uk-width-1-1
             .uk-grid
               .uk-width-7-10
-                p.rightcontainer1 Subtotal
+                p.rightcontainer1.subtotal Subtotal
               .uk-width-3-10
                 p.rightcontainer1 ${{cart.subtotal | number:2}}
         
         .uk-grid.rightrow1
           .uk-width-1-1
-            div ng-repeat="product in cart.selected_products"
-              p.rightcontainer1 ng-bind="product.title"
-              p.rightconatiner1-1 ng-bind="product.description"
+            div.listing ng-repeat="product in cart.selected_products"
+              p.rightcontainer1.title
+                span ng-bind="product.title"
+                span.right-price
+                  | ${{ product.price | number:2 }}
+              p.rightconatiner1-1.desc ng-bind="product.description"
               .clearfix
         
             = form_tag checkout_path do
               = hidden_field_tag 'product_ids[]', '', 'ng-repeat' => 'id in cart.product_ids', 'ng-value' => 'id'
               button.btn.btn-warning.button1 type="submit" ng-disabled='cart.product_ids.length === 0'
                 | proceed to checkout
-                span.glyphicon.glyphicon-chevron-right aria-hidden="true" 
+                span.uk-icon-chevron-right aria-hidden="true" 
         .uk-grid.rightrow1
           .uk-width-1-1
             p.newpara
@@ -71,7 +74,13 @@
             button.uk-button.button2 type="button" 
               i.uk-icon-comment
               | Chat Now
-
+  .uk-grid
+    .uk-width-1-1.uk-text-center
+      p.click 
+        | Want more ,Here check out our new stuff 
+        a href="#" id="liksss"
+          | Add more Channels
+          span.uk-icon-ok-sign
 
 - content_for :javascript do
   script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"
