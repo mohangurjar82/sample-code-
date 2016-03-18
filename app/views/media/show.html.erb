@@ -3,41 +3,15 @@
     <%= @media.title %>
     <div class="uk-panel-badge uk-badge"><%= @media.category_name %></div>
   </h1>
-  <% if @mobile %>
-    <video width="100%" height="300" controls autoplay="autoplay">
-      <source src="<%= @media.file_url %>" type="application/x-mpegURL">
-    </video>
-  <% else %>
-    <div class="itemVideoEmbedded">
-      <script type="application/javascript" src="https://content.jwplatform.com/libraries/B2tmYadP.js"></script>
-      <div id='player-area'>
-        <% if @media.overlay.present? %>
+  <div class="itemVideoEmbedded">
+    <script type="application/javascript" src="https://content.jwplatform.com/libraries/B2tmYadP.js"></script>
+    <div id='player-area'>
+      <% if @media.overlay.present? %>
+        <a href="<%= @media.overlay_link %>">
           <img src="<%= @media.overlay %>" class="overlay">
-        <% end %>
-        <div id='video-player'></div>
-      </div>
-      <script type='text/javascript'>
-        jwplayer('video-player').setup({
-            playlist: [{
-            image: '<%= @media.thumbnail_url %>',
-            title: '<%= @media.title %>',
-            sources: [
-               {
-                      file: "<%= @media.file_url %>"
-                }
-               ]
-            }],
-            image: '<%= @media.thumbnail_url %>',
-            title: '<%= @media.title %>',
-            width: '100%',
-            aspectratio: '16:9',
-            ga: '{}',
-            sharing: '{}',
-            androidhls: true,
-            autostart: true,
-            repeat: true
-        });
-      </script>
+        </a>
+      <% end %>
+      <%= render 'media/player' %>
     </div>
-  <% end %>
+  </div>
 </div>
