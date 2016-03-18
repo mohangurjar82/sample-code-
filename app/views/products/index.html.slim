@@ -1,7 +1,7 @@
 - content_for :head do
   = stylesheet_link_tag('products/style.css')
 
-.products
+.products ng-controller="cartController as cart"
   .uk-grid
     .uk-width-7-10.footmain
       .uk-grid
@@ -14,19 +14,21 @@
             span 
               | Starting at 
               span.spanprice $0.99/mo
-  
+
+  .clearfix style="margin-top: 40px"
+
   .uk-grid
-    .uk-width-6-10
+    .uk-width-7-10
       - @products.each_with_index do |p, i|
         .uk-grid.container2.inline
           - if p.images.any?
             .uk-width-2-10.product-image style="background: url(#{p.images.first})"
           - else
             .uk-width-2-10.product-image style="background: url(#{asset_path('product-placeholder.jpg')})"
-          .uk-width-7-10
+          .uk-width-6-10
             p.extra= p.title
             p.inline2= p.description
-          .uk-width-1-10.text-center
+          .uk-width-2-10.uk-text-center
             p
               input type="checkbox" value="1" ng-model="cart.products[#{i}].checked" ng-change="cart.update()" /
             p.price
@@ -34,40 +36,41 @@
               = p.price
               | /
               = p.subscription_unit
-    .uk-width-3-10.right
-      .uk-grid.row1.rightrow1
-        .uk-width-1-1
-          .uk-grid
-            .uk-width-7-10
-              p.rightcontainer1 Subtotal
-            .uk-width-3-10
-              p.rightcontainer1 ${{cart.subtotal | number:2}}
-  
-      .uk-grid.rightrow1
-        .uk-width-1-1
-          div ng-repeat="product in cart.selected_products"
-            p.rightcontainer1 ng-bind="product.title"
-            p.rightconatiner1-1 ng-bind="product.description"
-            .clearfix
-  
-          = form_tag checkout_path do
-            = hidden_field_tag 'product_ids[]', '', 'ng-repeat' => 'id in cart.product_ids', 'ng-value' => 'id'
-            button.btn.btn-warning.button1 type="submit" ng-disabled='cart.product_ids.length === 0'
-              | proceed to checkout
-              span.glyphicon.glyphicon-chevron-right aria-hidden="true" 
-      .uk-grid.rightrow1
-        .uk-width-1-1
-          p.newpara
-            | 100% risk Free
-            br
-            | 7 Days Free Trail
-      .uk-grid.rightrow1
-        .uk-width-1-1
-          p.rightcontainer1 Questions?
-          p.price2 Call Us +844-362-6388
-          button.uk-button.button2 type="button" 
-            i.uk-icon-comment
-            | Chat Now
+    .uk-width-3-10
+      .selected-listing.right
+        .uk-grid.row1.rightrow1
+          .uk-width-1-1
+            .uk-grid
+              .uk-width-7-10
+                p.rightcontainer1 Subtotal
+              .uk-width-3-10
+                p.rightcontainer1 ${{cart.subtotal | number:2}}
+        
+        .uk-grid.rightrow1
+          .uk-width-1-1
+            div ng-repeat="product in cart.selected_products"
+              p.rightcontainer1 ng-bind="product.title"
+              p.rightconatiner1-1 ng-bind="product.description"
+              .clearfix
+        
+            = form_tag checkout_path do
+              = hidden_field_tag 'product_ids[]', '', 'ng-repeat' => 'id in cart.product_ids', 'ng-value' => 'id'
+              button.btn.btn-warning.button1 type="submit" ng-disabled='cart.product_ids.length === 0'
+                | proceed to checkout
+                span.glyphicon.glyphicon-chevron-right aria-hidden="true" 
+        .uk-grid.rightrow1
+          .uk-width-1-1
+            p.newpara
+              | 100% risk Free
+              br
+              | 7 Days Free Trail
+        .uk-grid.rightrow1
+          .uk-width-1-1
+            p.rightcontainer1 Questions?
+            p.price2 Call Us +844-362-6388
+            button.uk-button.button2 type="button" 
+              i.uk-icon-comment
+              | Chat Now
 
 
 - content_for :javascript do

@@ -162,8 +162,7 @@ input[type=checkbox].maincheck{
 }
 .right
 {
-      border: 2px solid #ddd;
-    margin-top: 34px;
+    border: 2px solid #ddd;
     background-color: white;
    
 }
@@ -662,6 +661,10 @@ background-color: black;
     color: black;
 }
 }
+.products {
+  background: #F1F1F1;
+  padding: 20px;
+}
 .promo-img {
   padding: 20px;
   margin: 0;
@@ -673,8 +676,12 @@ background-color: black;
 .footdiv {
   padding: 20px;
 }
-
-
+.uk-grid.container2 {
+  margin-left: 0px !important;
+}
+.selected-listing {
+  padding: 20px;
+}
 
 
 
