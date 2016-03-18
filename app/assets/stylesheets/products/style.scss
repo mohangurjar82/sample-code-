@@ -32,7 +32,7 @@ body
       color: white;
     font-size: 20px;
     font-weight: 700;
-    margin-top: 7%;
+    margin-top: 23px;
     margin-left: -3%;
 }
 .footdiv3
@@ -545,6 +545,7 @@ background: white;
 }
 .footmain
 {
+margin: 0 auto;
 margin-top: 10px;
 background-color: black;
 }
@@ -661,3 +662,22 @@ background-color: black;
     color: black;
 }
 }
+.promo-img {
+  padding: 20px;
+  margin: 0;
+  text-align: center;
+  img {
+    margin: 0;
+  }
+}
+.footdiv {
+  padding: 20px;
+}
+
+
+
+
+
+
+
+

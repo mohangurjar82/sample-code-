@@ -1,170 +1,77 @@
 - content_for :head do
-  link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-  link href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,500italic,700,700italic,900,300italic&subset=latin,greek,cyrillic,greek-ext,vietnamese,cyrillic-ext" rel="stylesheet" type="text/css" /
-  link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" /
   = stylesheet_link_tag('products/style.css')
   /! HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
   /! WARNING: Respond.js do
-.container-fluid.main-container
-  .container style=("background:white;padding-bottom: 23px;") 
-    .container.mostconatiner
-      .col-md-12.col-xs-12.footmain
-        .row
-          .col-md-2.col-xs-hidden.footdiv3
-            img.center-block.img-responsive.footdivimg alt="" src="/products-demo/8i65B8AXT.png" /
-          .col-md-10.col-xs-12.footdiv
-            p.footpmost N2me.tv
-            p.lorempmost
-              | Stop suffering through thousands of channels just to find nothing on Tv. Start enjoying the best of live TV without the cable company. With Sling Tv, there's no installation and no crazy miscellaneous fees. 
-              span 
-                | Starting at 
-                span.spanprice $0.99/mo
-  .container.container1 ng-controller="cartController as cart"
-    .row
-      .col-md-8.mainleft
-        .row.name2
-          .col-md-12.name2
-            - @products.each_with_index do |p, i|
-              .row.container2inline
-                - if p.images.any?
-                  .col-md-2.product-image style="background: url(#{p.images.first})"
-                - else
-                  .col-md-2.product-image style="background: url(#{asset_path('product-placeholder.jpg')})"
-                .col-md-8.col-sm-8.col-xs-12
-                  p.extra= p.title
-                  p.inline2= p.description
-                .col-md-2.col-sm-3.col-xs-12.text-center
-                  p
-                    input type="checkbox" value="1" ng-model="cart.products[#{i}].checked" ng-change="cart.update()" /
-                  p.price
-                    | $
-                    = p.price
-                    | /
-                    = p.subscription_unit
-            
-            .row
-              .col-md-offset-1.col-md-11
-                p.click
-                  | Want more ,Here check out our new stuff 
-                  a#liksss href="#" 
-                    | Add more Channels
-                    span.glyphicon.glyphicon-ok-sign aria-hidden="true" 
-      .col-md-offset-1.col-md-3.right
-        .row.row1.rightrow1
-          .col-md-12
-            .row
-              .col-md-8.col-sm-8.col-xs-8
-                p.rightcontainer1 Subtotal
-              .col-md-4.col-sm-4.col-xs-4
-                p.rightcontainer1 ${{cart.subtotal | number:2}}
+.products
+  .uk-grid
+    .uk-width-7-10.footmain
+      .uk-grid
+        .uk-width-2-10.promo-img
+          img.center-block.img-responsive.footdivimg alt="" src="/products-demo/8i65B8AXT.png" /
+        .uk-width-8-10.footdiv
+          p.footpmost N2me.tv
+          p.lorempmost
+            | Stop suffering through thousands of channels just to find nothing on Tv. Start enjoying the best of live TV without the cable company. With Sling Tv, there's no installation and no crazy miscellaneous fees. 
+            span 
+              | Starting at 
+              span.spanprice $0.99/mo
+  
+  .uk-grid
+    .uk-width-6-10
+      - @products.each_with_index do |p, i|
+        .uk-grid.container2.inline
+          - if p.images.any?
+            .uk-width-2-10.product-image style="background: url(#{p.images.first})"
+          - else
+            .uk-width-2-10.product-image style="background: url(#{asset_path('product-placeholder.jpg')})"
+          .uk-width-7-10
+            p.extra= p.title
+            p.inline2= p.description
+          .uk-width-1-10.text-center
+            p
+              input type="checkbox" value="1" ng-model="cart.products[#{i}].checked" ng-change="cart.update()" /
+            p.price
+              | $
+              = p.price
+              | /
+              = p.subscription_unit
+    .uk-width-3-10.right
+      .uk-grid.row1.rightrow1
+        .uk-width-1-1
+          .uk-grid
+            .uk-width-7-10
+              p.rightcontainer1 Subtotal
+            .uk-width-3-10
+              p.rightcontainer1 ${{cart.subtotal | number:2}}
+  
+      .uk-grid.rightrow1
+        .uk-width-1-1
+          div ng-repeat="product in cart.selected_products"
+            p.rightcontainer1 ng-bind="product.title"
+            p.rightconatiner1-1 ng-bind="product.description"
+            .clearfix
+  
+          = form_tag checkout_path do
+            = hidden_field_tag 'product_ids[]', '', 'ng-repeat' => 'id in cart.product_ids', 'ng-value' => 'id'
+            button.btn.btn-warning.button1 type="submit" ng-disabled='cart.product_ids.length === 0'
+              | proceed to checkout
+              span.glyphicon.glyphicon-chevron-right aria-hidden="true" 
+      .uk-grid.rightrow1
+        .uk-width-1-1
+          p.newpara
+            | 100% risk Free
+            br
+            | 7 Days Free Trail
+      .uk-grid.rightrow1
+        .uk-width-1-1
+          p.rightcontainer1 Questions?
+          p.price2 Call Us +844-362-6388
+          button.uk-button.button2 type="button" 
+            i.uk-icon-comment
+            | Chat Now
 
-        .row.rightrow1
-          .col-md-12 
-            div ng-repeat="product in cart.selected_products"
-              p.rightcontainer1 ng-bind="product.title"
-              p.rightconatiner1-1 ng-bind="product.description"
-              .clearfix
-
-            = form_tag checkout_path do
-              = hidden_field_tag 'product_ids[]', '', 'ng-repeat' => 'id in cart.product_ids', 'ng-value' => 'id'
-              button.btn.btn-warning.button1 type="submit" ng-disabled='cart.product_ids.length === 0'
-                | proceed to checkout
-                span.glyphicon.glyphicon-chevron-right aria-hidden="true" 
-        .row.rightrow1
-          .col-md-12
-            p.newpara
-              | 100% risk Free
-              br
-              | 7 Days Free Trail
-        .row.rightrow1
-          .col-md-12
-            p.rightcontainer1 Questions?
-            p.price2 Call Us +844-362-6388
-            button.btn.btn-default.btn-sm.button2 type="button" 
-              i.fa.fa-comment
-              | Chat Now
-    .container.bonus style="display:none"
-      .row
-        p Bonus Offer
-        .col-md-4.col-sm-4
-          .col-md-12
-            .row
-              .col-md-12.image2
-                p.exclusive-offer EXCLUSIVE ROKU OFFERS
-                img.center-block.img-responsive alt="" src="/products-demo/imag1.png" /
-                .mask
-                  h2.h FREE ROKU 2
-                  p.mainpa
-                    | A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.
-            .col-md-12
-              p.value Value Option
-              p.nextp
-                | FREE ROKU 2
-                span.money reg. $69.0
-              p.nextone Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, ipsum.
-              button.btn.btn-warning.button3 type="button"  GET THIS DEAL
-            .col-md-12.footmain
-              .row
-                .col-md-offset1.col-sm-offset-1.col-xs-offset-1.col-md-2.col-xs-2.footdiv1
-                  img.center-block.img-responsive.footimg alt="" src="/products-demo/widescreen_tv.png" /
-                .col-md-9.col-xs-9.footdiv
-                  p.footp THE BEST OF LIVE TV
-                  p.loremp Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  p.last Pricing
-        .col-md-4.col-sm-4
-          .col-md-12
-            .row
-              .col-md-12.image2
-                p.exclusive-offer EXCLUSIVE OFFERS
-                img.center-block.img-responsive alt="" src="/products-demo/Videocon-UHD.png" /
-                .mask
-                  h2.h AMAZONE FIRE
-                  p.mainpa
-                    | A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.
-            .col-md-12
-              p.value Value Option
-              p.nextp
-                | AMAZONE FIRE
-                span.money reg. $69.0
-              p.nextone Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, consectetur!
-              button.btn.btn-warning.button3 type="button"  GET THIS DEAL
-            .col-md-12.footmain
-              .row
-                .col-md-offset1.col-sm-offset-1.col-xs-offset-1.col-md-2.col-xs-2.footdiv1
-                  img.center-block.img-responsive.footimg alt="" src="/products-demo/widescreen_tv.png" /
-                .col-md-9.col-xs-9.footdiv
-                  p.footp WATCH ANYTIME ANYWHERE
-                  p.loremp Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  p.last Supported Devices
-        .col-md-4.col-sm-4
-          .col-md-12
-            .row
-              .col-md-12.image2
-                p.exclusive-offer EXCLUSIVE OFFERS
-                img.center-block.img-responsive alt="" src="/products-demo/dish.joey.4k.chill.cbc6c19.png" /
-                .mask
-                  h2.h APPLE TV
-                  p.mainpa
-                    | A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.
-            .col-md-12
-              p.value Value Option
-              p.nextp
-                | APPLE TV
-                span.money reg. $69.0
-              p.nextone Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, expedita.
-              button.btn.btn-warning.button3 type="button"  GET THIS DEAL
-            .col-md-12.col-xs-12.footmain
-              .row
-                .col-md-offset1.col-sm-offset-1.col-xs-offset-1.col-md-2.col-xs-2.footdiv1
-                  img.center-block.img-responsive.footimg alt="" src="/products-demo/widescreen_tv.png" /
-                .col-md-9.col-xs-9.footdiv
-                  p.footp WATCH ANYTIME ANYWHERE
-                  p.loremp Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  p.last Supported Devices
 
 - content_for :javascript do
-
-  script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
   script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"
 
   javascript:
