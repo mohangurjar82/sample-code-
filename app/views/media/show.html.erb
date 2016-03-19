@@ -15,5 +15,10 @@
       <% end %>
       <%= render 'media/player' %>
     </div>
+    <% if @mobile %>
+      <a href="?flash">Switch to Flash player</a>
+    <% else %>
+      <a href="?html5=true">Try HTML5 player</a>
+    <% end %>
   </div>
 </div>

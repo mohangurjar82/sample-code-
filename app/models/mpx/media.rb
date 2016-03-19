@@ -29,7 +29,7 @@ class MPX::Media < MPX::RemoteResource
 
   def category_name
     if attributes['media$categories'].size > 0
-      attributes['media$categories'].first['media$name']
+      attributes['media$categories'].first['media$name'].to_s.sub(/\A\w--/, '')
     else
       'TV'
     end
