@@ -36,14 +36,22 @@ class RetrieveProducts
         product_item_ids = []
         
         for scope in entry['scopes']
+          next if scope['id'].blank?
           product_item = ProductItem.find_or_initialize_by(product_id: product.id,
             mpxid: scope['id'])
           if product_item.media?
             media_result = retrieve_media.call product_item
             product_item.raw = media_result.raw if media_result.media_retrieved?
           end
-          product_item.update_attributes(title: scope['title'],
-            description: scope['description'])
+          begin
+            product_item.update_attributes(
+              title: scope['title'],
+              description: scope['description']
+            )
+          rescue Exception => e
+            puts e.message
+            binding.pry
+          end
           product_item_ids << product_item.id
         end
         

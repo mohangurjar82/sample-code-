@@ -691,6 +691,9 @@ background-color: black;
 .selected-listing {
   padding: 0 20px 20px;
   margin-left: 3%;
+  &.uk-active {
+    margin-left: 0px;
+  }
 }
 .container2.inline {
   border-bottom: 1px solid #DCDBDB;
@@ -722,6 +725,30 @@ background-color: black;
   float: right;
   margin-right: 15px;
 }
-
-
-
+.uk-accordion {
+  margin-top: 10px;
+}
+.a-la-cart-product {
+  h2 {
+    margin-bottom: 25px !important;
+  }
+  .product-image {
+    min-height: 155px;
+  }
+  .title-desc {
+    font-weight: bold;
+  }
+  .price-cont {
+    padding: 0;
+    input {
+      margin-top: 0;
+      width: auto;
+    }
+  }
+  .price {
+    float: right;
+  }
+  .price-label {
+    margin: 0;
+  }
+}

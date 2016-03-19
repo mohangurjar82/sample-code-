@@ -7,7 +7,7 @@ class MPX::Category < MPX::RemoteResource
   end
 
   def title
-    attributes.title.to_s.sub(/\A\w\./, '')
+    attributes.title.to_s.sub(/\A\w--/, '')
   end
 
   def media(params = {})
