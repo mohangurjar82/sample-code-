@@ -21,7 +21,7 @@ class MPX::Category < MPX::RemoteResource
   end
 
   def thumbnail_url
-    return descriptiopn if description.present?
+    return description if description.present?
     media.find { |m| m.thumbnail_url.present? }.try :thumbnail_url
   end
 end
