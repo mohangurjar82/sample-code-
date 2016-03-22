@@ -6,6 +6,6 @@ class MPX::RemoteResourceCollection < Concurrent::Array
     resources['entries'].each do |entry|
       collection.push klass.new(entry)
     end
-    collection
+    collection.sort_by { |x| x.attributes[:title] }
   end
 end

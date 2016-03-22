@@ -6,6 +6,10 @@ class MPX::Category < MPX::RemoteResource
     MPX::Category.all.select { |c| c.attributes['plcategory$parentId'].empty? }
   end
 
+  def title
+    attributes.title.to_s.sub(/\A\w--/, '')
+  end
+
   def media(params = {})
     @media ||= MPX::Media.all(params.merge(byCategoryIds: number))
   end
@@ -17,6 +21,7 @@ class MPX::Category < MPX::RemoteResource
   end
 
   def thumbnail_url
+    return description if description.present?
     media.find { |m| m.thumbnail_url.present? }.try :thumbnail_url
   end
 end

@@ -16,23 +16,20 @@ nav.uk-navbar
             i.fa.uk-icon-music
             |   MUSIC
         li
-          a href='/categories/557637953'
+          a href='/categories/1422405926'
             i.fa.uk-icon-gamepad
             |   GAMES
         li
-          a href="/categories/599109816"
+          a href="/categories/1423429520"
             i.fa.uk-icon-calendar
             |   EVENTS
-        li
-          a href='/categories/557637954'
-            i.fa.uk-icon-book
-            |   BOOKS
+        
 
   ul.uk-navbar-nav.user_actions.desktop-menu
     li
       a.header-logo-link[href=root_path]
-        = image_tag image_path('n2me-logo-blk.png'), alt: 'home', class: 'header-logo-img uk-hidden-small'
-        = image_tag image_path('n2me-logo-blk.png'), alt: 'home', class: 'header-logo-img uk-visible-small', style: 'width: 130px;'
+        = image_tag image_path('n2me-logo-box.png'), alt: 'home', class: 'header-logo-img uk-hidden-small'
+        = image_tag image_path('n2me-logo-box.png'), alt: 'home', class: 'header-logo-img uk-visible-small', style: 'width: 130px;'
     li.search-icon
       a href="#"
         i.fa.uk-icon-search.fa-2x
@@ -53,21 +50,18 @@ nav.uk-navbar
                     a href=category_path(c.number)
                       = c.title
     li.menu.uk-hidden-small
-      a href='/categories/143941606'
+      a href=music_path
         i.fa.uk-icon-music
         |   MUSIC
     li.menu.uk-hidden-small
-      a href='/categories/599109816'
+      a href='/categories/1422405926'
         i.fa.uk-icon-gamepad
         |   GAMES
     li.menu.uk-hidden-small
-      a href="/categories/599109816"
+      a href="/categories/1423429520"
         i.fa.uk-icon-calendar
         |   EVENTS
-    li.menu.uk-hidden-small
-      a href='/categories/557637954'
-        i.fa.uk-icon-book
-        |   BOOKS
+    
 
   .uk-navbar-flip
     ul.uk-navbar-nav.user_actions

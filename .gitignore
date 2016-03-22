@@ -18,3 +18,4 @@ config/database.yml
 /public/uploads/*
 .ruby-version
 .ruby-gemset
+.idea*
