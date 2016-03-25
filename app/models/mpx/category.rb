@@ -3,7 +3,10 @@ class MPX::Category < MPX::RemoteResource
   SCHEMA = '1.0'.freeze
 
   def self.root_categories
-    MPX::Category.all.select { |c| c.attributes['plcategory$parentId'].empty? }
+    MPX::Category.all.select do |c|
+      c.attributes['plcategory$parentId'].empty? &&
+      !(c.attributes['title'].to_s =~ /books|games/i)
+    end
   end
 
   def title
@@ -22,6 +25,6 @@ class MPX::Category < MPX::RemoteResource
 
   def thumbnail_url
     return description if description.present?
-    media.find { |m| m.thumbnail_url.present? }.try :thumbnail_url
+    @thumbnail_url ||= media.find { |m| m.thumbnail_url.present? }.try :thumbnail_url
   end
 end
