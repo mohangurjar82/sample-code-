@@ -425,7 +425,7 @@ body.rtl .dropdown ul li.parent:hover > .item{border-radius:0 4px 4px 0;}
 .layout-mode-responsive .gf-menu{border-top:15px solid #FFFFFF;background-clip:content-box;-webkit-background-clip:content-box;background:#FFFFFF url(../images/menu/tree-main.png) repeat-y !important;}
 .layout-mode-responsive .gf-menu li{background:url(../images/menu/tree-node.png) no-repeat;padding-left:20px !important;margin-right:0 !important;}
 .layout-mode-responsive .gf-menu li.active.last{background:url(../images/menu/tree-node.png) no-repeat !important;border:0 !important;-webkit-box-shadow:none !important;-moz-box-shadow:none !important;box-shadow:none !important;}
-.layout-mode-responsive .gf-menu li.active.last > .item{background:;border-radius:4px;-webkit-box-shadow:;-moz-box-shadow:;box-shadow:;color:#0088cc;}
+.layout-mode-responsive .gf-menu li.active.last > .item{border-radius:4px;color:#0088cc;}
 .layout-mode-responsive .gf-menu li .columns-1 > .col1 > ul > li:last-child,.layout-mode-responsive .gf-menu li .columns-2 > .col2 > ul > li:last-child,.layout-mode-responsive .gf-menu li .columns-3 > .col3 > ul > li:last-child,.layout-mode-responsive .gf-menu li .columns-4 > .col4 > ul > li:last-child{background:#FFFFFF url(../images/menu/tree-node-last.png) 0 -2px no-repeat !important;}
 .layout-mode-responsive .gf-menu li ol > li:last-child{background:#FFFFFF url(../images/menu/tree-node-last.png) 0 -2px no-repeat !important;}
 .layout-mode-responsive .gf-menu li :hover{color:#0088cc !important;}
