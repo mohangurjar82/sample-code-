@@ -4,17 +4,17 @@
       h2= @category.title
     - if @category.categories.any?
         .nested-categories
-          - @category.categories.in_groups_of(5) do |group|
+          - columns_count = define_columns_count(@category.categories.count)
+          - @category.categories.in_groups_of(columns_count) do |group|
             .uk-grid
-              - group.each do |cat|
-                .uk-width-1-5
-                  - if cat
-                    a href=category_path(cat.number)
-                      - if cat.thumbnail_url.present?
-                        img src=cat.thumbnail_url
-                      - else
-                        img src=asset_path('product-placeholder.jpg')
-                      h5= cat.title
+              - group.compact.each do |cat|
+                div class="uk-width-1-#{columns_count}"
+                  a href=category_path(cat.number)
+                    - if cat.thumbnail_url.present?
+                      img.uk-thumbnail src=cat.thumbnail_url
+                    - else
+                      img.uk-thumbnail src=asset_path('product-placeholder.jpg')
+                    h5= cat.title
     - @media.in_groups_of(4).each do |group|
       .uk-grid
         - group.each do |m|
@@ -22,7 +22,7 @@
           .uk-width-1-4
             a href=media_path(m.number)
               - if m.thumbnail_url.present?
-                img src=m.thumbnail_url
+                img.uk-thumbnail src=m.thumbnail_url
               - else
                 img src=asset_path('movie-placeholder.jpg')
               h5= m.title

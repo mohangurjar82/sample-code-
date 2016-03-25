@@ -5,9 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :load_categories
 
   def load_categories
-    @root_categories = MPX::Category.root_categories.map do |cat|
-      cat unless cat.title =~ /books/i
-    end.compact
-    @categories = MPX::Category.all
+    @search_categories = MPX::Category.all
+    @root_categories = MPX::Category.root_categories
   end
 end
