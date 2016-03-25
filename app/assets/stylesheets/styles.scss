@@ -470,3 +470,8 @@ body.gf-sidemenu-size-marginleft{left:230px;position:relative;overflow:hidden;-w
 @media (min-width: 768px){.layout-mode-responsive .gf-menu-device-wrapper-sidemenu{left:-230px;}
 body.gf-sidemenu-size-marginleft{left:0;}
 }
+.gf-menu .dropdown a { color: #555555 !important;}
+.gf-menu .item {
+  color: #f5f5f5 !important;}
+.gf-menu-device-container-wrapper .gf-menu .item {
+  color: #0066f5 !important;}
