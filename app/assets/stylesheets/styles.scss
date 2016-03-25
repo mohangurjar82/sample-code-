@@ -353,7 +353,7 @@ html body * span.clear, html body * div.clear, html body * li.clear, html body *
 .gf-menu .position-right{float:right;margin-left:15px;}
 .gf-menu.gf-splitmenu li.parent:hover{border-radius:4px;}
 .gf-menu-toggle{padding:8px;position:absolute;z-index:30000;top:13px;left:13px;cursor:pointer;background-color:#e4e4e4;}
-.gf-menu-toggle.active{-webkit-box-shadow:;-moz-box-shadow:;box-shadow:;background-color:#f0f0f0;background-image:-moz-linear-gradient(top,#ffffff,#d9d9d9);background-image:-webkit-gradient(linear,0 0,0 100%,from(#ffffff),to(#d9d9d9));background-image:-webkit-linear-gradient(top,#ffffff,#d9d9d9);background-image:-o-linear-gradient(top,#ffffff,#d9d9d9);background-image:linear-gradient(to bottom,#ffffff,#d9d9d9);background-repeat:repeat-x;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffd8d8d8', GradientType=0);}
+
 .gf-menu-toggle .icon-bar{background-color:#777777;border-radius:1px 1px 1px 1px;display:block;height:2px;width:18px;margin:0px auto;}
 .gf-menu-toggle .icon-bar + .icon-bar{margin-top:3px;}
 @media only screen and (min-width: 960px) and (max-width: 1199px){.layout-mode-responsive .gf-menu.l1 > li{margin-right:5px;}
