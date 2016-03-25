@@ -204,7 +204,11 @@ body .nomargintopbottom {
 #rt-logo {
     background: url(http://www.n2me.tv/stream/templates/wt_plussone_jom/images/logo/hstyleone/logo.png) 0 0 no-repeat;
 }
-
+.rt-block {
+    padding: 15px;
+    margin: 10px;
+    position: relative;
+}
 .rt-grid-8 {
     width: 800px;
 }
