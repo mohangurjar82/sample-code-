@@ -420,7 +420,7 @@ body.rtl .dropdown ul li.parent:hover > .item{border-radius:0 4px 4px 0;}
 .layout-mode-960fixed body.rtl .dropdown ul li:hover > .item .border-fixer,.layout-mode-1200fixed body.rtl .dropdown ul li:hover > .item .border-fixer{right:inherit;left:-1px;}
 .layout-mode-960fixed body.rtl .dropdown ul li.parent:hover > .item,.layout-mode-1200fixed body.rtl .dropdown ul li.parent:hover > .item{border-radius:0 4px 4px 0;}
 @media (max-width: 767px){.layout-mode-responsive .gf-menu-device-wrapper{margin-bottom:15px !important;}
-.layout-mode-responsive .gf-menu-device-container{background:#FFFFFF;border:1px solid ;border-top:0;-webkit-box-shadow:;-moz-box-shadow:;box-shadow:;border-radius:5px;padding:5px;}
+.layout-mode-responsive .gf-menu-device-container{background:#FFFFFF;border:1px solid ;border-top:0;border-radius:5px;padding:5px;}
 .layout-mode-responsive .gf-menu-device-container select{margin-bottom:0;width:100%;}
 .layout-mode-responsive .gf-menu{border-top:15px solid #FFFFFF;background-clip:content-box;-webkit-background-clip:content-box;background:#FFFFFF url(../images/menu/tree-main.png) repeat-y !important;}
 .layout-mode-responsive .gf-menu li{background:url(../images/menu/tree-node.png) no-repeat;padding-left:20px !important;margin-right:0 !important;}
