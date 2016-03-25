@@ -11,9 +11,7 @@ html[lang="en"]
     -if content_for? :head
       = content_for :head
   body.sidebar_main_open.sidebar_main_swipe
-    header#header_main
-      .header_main_content
-        = render '/layouts/navbar'
+    = render '/layouts/navbar'
     / aside#sidebar_main
     /   .sidebar_main_header
     /     .sidebar_logo
