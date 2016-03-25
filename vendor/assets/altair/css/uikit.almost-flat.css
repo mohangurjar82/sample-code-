@@ -146,7 +146,6 @@ sub {
  */
 img {
   /* 1 */
-  max-width: 100%;
   height: auto;
   /* 2 */
   box-sizing: border-box;
