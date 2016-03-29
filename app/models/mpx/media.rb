@@ -7,6 +7,10 @@ class MPX::Media < MPX::RemoteResource
   ADVANCED_FIELDS = %w(eAN iSBN numberOfPages publicationDate publisherName
                        recordReference)
 
+  def title
+    attributes.title.to_s.sub(/\A\w--/, '')
+  end
+
   def file_url
     files = attributes['media$content']
     return files.first['plfile$url'] if files.present?
