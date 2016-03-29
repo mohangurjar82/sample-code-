@@ -116,6 +116,7 @@
 
 }
 
+.n2me-navbar {
 
 #rt-header {
     color: #6e6e6e;
@@ -481,3 +482,24 @@ body.gf-sidemenu-size-marginleft{left:0;}
   color: #f5f5f5 !important;}
 .gf-menu-device-container-wrapper .gf-menu .item {
   color: #0066f5 !important;}
+}
+@media (min-width: 1201px) {
+  .desktop-navbar {
+    display: block;
+  }
+  .mobile-navbar {
+    display: none;
+  }
+}
+@media (max-width: 1200px) {
+  .desktop-navbar {
+    display: none;
+  }
+  .mobile-navbar {
+    display: block;
+  }
+}
+
+
+
+
