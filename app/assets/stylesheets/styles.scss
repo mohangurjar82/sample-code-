@@ -497,6 +497,9 @@ body.gf-sidemenu-size-marginleft{left:0;}
   .mobile-navbar {
     display: block;
   }
+  .mobile-navbar + div {
+    margin-top: 30px;
+  }
 }
 #style_switcher {
   display: none;
