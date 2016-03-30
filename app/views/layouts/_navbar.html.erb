@@ -9,12 +9,14 @@
 
 <div class="customnopaddingtopbottom">
 	<div id="hid1">&nbsp;
-        <a href="/products">Register </a>
+        <a href="/products">Register | </a>
         <% if current_user.present? %>
           <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
         <% else %>
           <%= link_to 'Log In', new_user_session_path %>
         <% end %>
+        <%= link_to '| Profile', profile_path %>
+
         <a href="#">| Contact</a> | 
         <a href="#">Help</a>
         </div></div>
