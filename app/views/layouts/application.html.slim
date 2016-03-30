@@ -31,6 +31,10 @@ html[lang="en"]
           = content_for :page_heading
       
       #page_content_inner
+        - if current_user.present?
+          .uk-alert
+            | Welcome 
+            = current_user.display_name
         = render '/layouts/messages'
         -if content_for? :header
           h3.heading_b.uk-margin-bottom

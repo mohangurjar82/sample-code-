@@ -1,12 +1,10 @@
 class Users::SessionsController < Devise::SessionsController
-  after_action :flash_welcome
 
   def create
     if params[:user] && params[:user][:promo_code].present?
       user = User::Promo.find_or_create_by_code(params[:user][:promo_code])
       if user.present?
         sign_in(user, bypass: true)
-        flash_welcome
         redirect_to categories_path and return
       end
     end
@@ -20,10 +18,6 @@ class Users::SessionsController < Devise::SessionsController
   end
   
   private
-
-  def flash_welcome
-    flash[:success] = "Welcome, #{current_user.display_name}!" if current_user.present?
-  end
 
   def after_sign_in_path_for(resource)
     categories_path
