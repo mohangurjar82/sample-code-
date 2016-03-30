@@ -30,12 +30,6 @@
         = f.password_field :password_confirmation, autocomplete: 'off', class: 'md-input'
 
       .uk-form-row
-        = f.label :current_password
-        = f.password_field :current_password, autocomplete: 'off', class: 'md-input'
-        .uk-form-help-block
-          | (we need your current password to confirm your changes)
-
-      .uk-form-row
         = f.submit 'Update', class: 'md-btn md-btn-primary'
 
   .uk-width-medium-1-2
