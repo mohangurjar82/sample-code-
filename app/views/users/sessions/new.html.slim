@@ -14,6 +14,12 @@ h2 Log in
       = f.password_field :password, autocomplete: 'off', class: 'md-input'
       .md-input-bar
 
+  .uk-form-row
+    .md-input-wrapper.md-input-filled
+      = f.label :promo_code
+      = f.text_field :promo_code, autocomplete: 'off', class: 'md-input'
+      .md-input-bar
+
   .uk-margin-medium-top
     = f.submit 'Sign in', class: 'md-btn md-btn-primary md-btn-block md-btn-large'
 

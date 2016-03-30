@@ -1,6 +1,13 @@
 class Users::SessionsController < Devise::SessionsController
 
   def create
+    if params[:user] && params[:user][:promo_code].present?
+      user = User::Promo.find_or_create_by_code(params[:user][:promo_code])
+      if user.present?
+        sign_in(user, bypass: true)
+        redirect_to categories_path and return
+      end
+    end
     super do |user|
       result = SigninUser.build.call sign_in_params, user
 
