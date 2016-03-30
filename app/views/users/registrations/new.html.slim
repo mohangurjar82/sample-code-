@@ -4,6 +4,10 @@ h2 Sign up
   = devise_error_messages!
 
   .uk-form-row
+    = f.label :name
+    = f.text_field :name, class: 'md-input'
+
+  .uk-form-row
     = f.label :email
     = f.email_field :email, class: 'md-input'
 

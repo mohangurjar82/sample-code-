@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  PROMO_CODE_REGEXP = /\ASCI([0-2]\d\d|300)$/
+  PROMO_CODE_REGEXP = /\ASCI([0-2]\d\d|300)$/i
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   def avatar
     gravatar_id = Digest::MD5::hexdigest(email).downcase
     "https://www.gravatar.com/avatar/#{gravatar_id}.jpg?d=identicon&s=150"
+  end
+
+  def display_name
+    name.present? ? name : email
   end
 
   class Promo

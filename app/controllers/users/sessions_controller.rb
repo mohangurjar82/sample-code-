@@ -21,7 +21,7 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def flash_welcome
-    flash[:success] = "Welcome, #{current_user.email}!" if current_user.present?
+    flash[:success] = "Welcome, #{current_user.display_name}!" if current_user.present?
   end
 
   def after_sign_in_path_for(resource)
