@@ -21,6 +21,9 @@
 </style>
 <body id="page-top">
 
+  <% if current_user.present? %>
+    <%= render 'layouts/navbar' %>
+  <% else %>
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top nav-1">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -66,6 +69,7 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
+  <% end %>
 <!--
     <header>
         <div class="header-content">
@@ -135,7 +139,7 @@ Cancel Anytime, NO STRINGS atached!
  <br>
                      </p>
                      <h3 style="line-height:2;"> Monthly and A La Carte plans starting at just $0.99! </h3>
-                        <a href="<%= new_user_registration_path %>" class="btn btn-default btn-xl" style="color:#333;">Get Started!</a>
+                        <a href="<%= products_path %>" class="btn btn-default btn-xl" style="color:#333;">Get Started!</a>
                     </div>
                 </div>
             
@@ -446,7 +450,7 @@ This featurs is comning soon as we are working on it to provide access to bigges
         <div class="container text-center">
             <div class="call-to-action">
                 <h2>N2ME.TV has No Strings Attached! There are No Contracts and No Buffering. Stream live TV, Movies, Events, Games, and E-Books!</h2>
-                <a href="<%= new_user_session_path %>" class="btn btn-default btn-xl wow tada">Subscribe Now!</a>
+                <a href="<%= products_path %>" class="btn btn-default btn-xl wow tada">Subscribe Now!</a>
             </div>
         </div>
     </aside>
@@ -666,7 +670,7 @@ This featurs is comning soon as we are working on it to provide access to bigges
                     Get real-time stats and scores
                 </p>
     
-                <a style="visibility: visible; animation-name: tada;background-color:#439FE0;color:#fff;" href="<%= new_user_session_path %>" class="btn btn-default btn-xl wow tada">Buy Now</a>
+                <a style="visibility: visible; animation-name: tada;background-color:#439FE0;color:#fff;" href="<%= products_path %>" class="btn btn-default btn-xl wow tada">Buy Now</a>
 
           </div>
         </div>
@@ -680,7 +684,11 @@ This featurs is comning soon as we are working on it to provide access to bigges
     <section style=" background-image:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(img/banner.jpg);background-size:100%;color:#fff;background-attachment:fixed;">
     <div class="container txt-cnt">
       <h3 style="letter-spacing: 6px;">Join the N2ME Revolution!</h3>
-        <a style="visibility: visible; animation-name: tada; color:#439FE0" href="<%= new_user_session_path %>" class="btn btn-default btn-xl wow tada">Sign up Now!</a>
+        <% if current_user.present? %>
+          <a style="visibility: visible; animation-name: tada; color:#439FE0" href="<%= products_path %>" class="btn btn-default btn-xl wow tada">Subscribe Now!</a>
+        <% else %>
+          <a style="visibility: visible; animation-name: tada; color:#439FE0" href="<%= new_user_session_path %>" class="btn btn-default btn-xl wow tada">Sign up Now!</a>
+        <% end %>
         
     </div>
     </section>
