@@ -13,7 +13,11 @@
           <img src="<%= @media.overlay %>" class="overlay">
         </a>
       <% end %>
-      <%= render 'media/player' %>
+      <% if @media.file_url.length > 0 %>
+        <%= render 'media/player' %>
+      <% else %>
+        <%= @media.description %>
+      <% end %>
     </div>
     <% if @mobile %>
       <a href="?flash">Switch to Flash player</a>
