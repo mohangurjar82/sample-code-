@@ -4865,7 +4865,6 @@ body {
   border-radius: 50%;
   background-image: url("/img/avatars/user.png");
   background-repeat: no-repeat;
-  background-color: rgba(0, 0, 0, 0.085);
   background-position: 50% 1px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 192), only screen and (min-resolution: 192dppx), only screen and (min-resolution: 2dppx) {
