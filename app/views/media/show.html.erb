@@ -13,8 +13,12 @@
           <img src="<%= @media.overlay %>" class="overlay">
         </a>
       <% end %>
-      <% if @media.file_url.length > 0 %>
-        <%= render 'media/player' %>
+      <% if @media.file_url? %>
+        <% if @media.file_url.length > 0 %>
+          <%= render 'media/player' %>
+        <% else %>
+          <%= @media.description %>
+        <% end %>
       <% else %>
         <%= @media.description %>
       <% end %>
