@@ -50,7 +50,6 @@ class RetrieveProducts
             )
           rescue Exception => e
             puts e.message
-            binding.pry
           end
           product_item_ids << product_item.id
         end
