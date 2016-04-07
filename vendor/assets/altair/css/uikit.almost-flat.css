@@ -760,6 +760,7 @@ iframe {
 .uk-width-1-5,
 .uk-width-2-10 {
   width: 20%;
+  min-width: 180px;
 }
 .uk-width-2-5,
 .uk-width-4-10 {
