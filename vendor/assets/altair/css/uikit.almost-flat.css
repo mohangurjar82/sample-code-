@@ -752,6 +752,7 @@ iframe {
 /* Quarters */
 .uk-width-1-4 {
   width: 25%;
+  min-width: 200px;
 }
 .uk-width-3-4 {
   width: 75%;
