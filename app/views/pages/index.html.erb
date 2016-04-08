@@ -22,7 +22,12 @@
 <body id="page-top">
 
   <% if current_user.present? %>
-    <%= render 'layouts/navbar' %>
+    <div class="desktop-navbar n2me-navbar">
+      <%= render 'layouts/navbar' %>
+    </div>
+    <div class="mobile-navbar" id="header_main">
+      <%= render 'layouts/mobile_navbar' %>
+    </div>
   <% else %>
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top nav-1">
         <div class="container-fluid">
