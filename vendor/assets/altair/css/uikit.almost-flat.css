@@ -788,6 +788,7 @@ iframe {
 }
 .uk-width-3-10 {
   width: 30%;
+  min-width: 300px;
 }
 .uk-width-7-10 {
   width: 70%;
