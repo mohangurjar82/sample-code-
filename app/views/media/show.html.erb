@@ -9,9 +9,9 @@
   <div class="itemVideoEmbedded">
     <div id='player-area'>
       <% if @media.overlay.present? %>
-        <a href="<%= @media.overlay_link %>">
+          <p align="center"><a href="<%= @media.overlay_link %>" target="_blank">
           <img src="<%= @media.overlay %>" class="overlay">
-        </a>
+        </a></p>
       <% end %>
       <% if @media.file_url.nil? %>
         <%= @media.description.html_safe %>
