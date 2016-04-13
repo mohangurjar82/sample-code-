@@ -11,6 +11,7 @@
     <meta name="author" content="">
 
     <title>N2me.tv - Live TV, Movies, News, Sports, Events & More</title>
+    <script type="application/javascript" src="https://content.jwplatform.com/libraries/B2tmYadP.js"></script>
     <%= stylesheet_link_tag 'pages/style' %>
     <%= stylesheet_link_tag 'application' %>
 
@@ -485,7 +486,7 @@ N2ME is preparing to launch the largest E-Book library on the Web.
                                     <img src="img/price-img/news/1.jpg"  style="width:122px;height:107px;">
                                 </div>
                                 <div class="col-md-3 col-sm-3 col-xs-6 tab-tv-section">
-                                    <img src="img/price-img/news/2.png"  style="width:122px;height:107px;">
+                                    <%= render 'media/player', media: MPX::Media.find_by_number(52293608) %>
                                 </div>
                                 <div class="col-md-3 col-sm-3 col-xs-6">
                                     <img src="img/price-img/news/3.png"  style="width:122px;height:107px;">
@@ -514,7 +515,6 @@ N2ME is preparing to launch the largest E-Book library on the Web.
                                   <img src="img/price-img/news/10.png"  style="width:122px;height:107px;">
                                 </div>
                                 <div class="col-md-3 col-sm-3 col-xs-6 tab-tv-section">
-                               
                                   <img src="img/price-img/news/12.png"  style="width:122px;height:107px;">
                                 </div>
                                 <div class="col-md-3 col-sm-3 col-xs-6">

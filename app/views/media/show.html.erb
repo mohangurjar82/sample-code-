@@ -14,10 +14,10 @@
         </a></p>
       <% end %>
       <% if @media.file_url.nil? %>
-        <%= @media.description.html_safe %>
+        <desc><%= @media.description.html_safe %></desc>
       <% else %>
         <% if @media.file_url.length > 0 %>
-          <%= render 'media/player' %>
+          <%= render 'media/player', media: @media %>
         <% else %>
           <%= @media.description.html_safe %>
         <% end %>
