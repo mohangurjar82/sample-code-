@@ -806,10 +806,10 @@ Boxing Matches, Concerts, MMA Fights, Festivals, &amp; All Other Sporting Events
             img.css("position", "relative");
             img.css("left", Math.abs(offset.left) + "px");
           } else if (
-            offset.left + img.width() > $( document ).width()
+            offset.left + newWidth > $( document ).width()
               ) {
             img.css("position", "relative");
-            img.css("left", ($( document ).width() - (offset.left + img.width())) + "px");
+            img.css("left", ($( document ).width() - (offset.left + newWidth)) + "px");
           }
           var parts = img.attr("src").split(".");
           var imgIndex = 1;
