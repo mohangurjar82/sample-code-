@@ -362,7 +362,7 @@ N2ME is preparing to launch the largest E-Book library on the Web.
                 </div>
                 <div class="col-lg-4 col-sm-6 col-xs-6">
                     <a href="http://n2me-test.herokuapp.com/categories/1423429520" class="portfolio-box">
-                        <img src="img/portfolio/events.png" class="img-responsive hoverimage" alt="">
+                        <img src="img/portfolio/events.png" class="img-responsive hoverimage hidesixth" alt="">
                         
                     </a>
                 </div>
@@ -380,7 +380,7 @@ N2ME is preparing to launch the largest E-Book library on the Web.
                 </div>
                 <div class="col-lg-4 col-sm-6 col-xs-6">
                     <a href="#" class="portfolio-box">
-                        <img src="img/portfolio/ebooks.png" class="img-responsive hoverimage" alt="">
+                        <img src="img/portfolio/ebooks.png" class="img-responsive hoverimage" alt="" id="sixthimage">
                      
                     </a>
                 </div>
@@ -799,6 +799,10 @@ Boxing Matches, Concerts, MMA Fights, Festivals, &amp; All Other Sporting Events
         function () {
           var img = $(this);
 
+          if (img.hasClass("hidesixth")) {
+            $("#sixthimage").hide();
+          }
+
           img.addClass("transition");
 
           var offset = img.offset();
@@ -834,6 +838,7 @@ Boxing Matches, Concerts, MMA Fights, Festivals, &amp; All Other Sporting Events
           img.css("left", "0");
           img.attr("src", base + ".png");
           img.removeClass("transition");
+          $("#sixthimage").show();
         });
     });
 
