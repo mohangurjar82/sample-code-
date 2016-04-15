@@ -801,15 +801,15 @@ Boxing Matches, Concerts, MMA Fights, Festivals, &amp; All Other Sporting Events
           img.addClass("transition");
           var offset = img.offset();
           var newWidth = img.width() * 1.2;
-          console.log((offset.left + newWidth)  + " > " + $( document ).width());
+          console.log((offset.left + newWidth)  + " > " + $( window ).width());
           if (offset.left < 0) {
             img.css("position", "relative");
             img.css("left", Math.abs(offset.left) + "px");
           } else if (
-            offset.left + newWidth > $( document ).width()
+            offset.left + newWidth > $( window ).width()
               ) {
             img.css("position", "relative");
-            img.css("left", ($( document ).width() - (offset.left + newWidth)) + "px");
+            img.css("left", ($( window ).width() - (offset.left + newWidth)) + "px");
           }
           var parts = img.attr("src").split(".");
           var imgIndex = 1;
