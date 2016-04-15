@@ -799,11 +799,11 @@ Boxing Matches, Concerts, MMA Fights, Festivals, &amp; All Other Sporting Events
         function () {
           var img = $(this);
           img.addClass("transition");
-          console.log(img.offset());
           var parts = img.attr("src").split(".");
           var imgIndex = 1;
 
           var rotateImage = function () {
+          console.log(img.offset());
             img.attr("src", parts[0] + "-" + imgIndex + ".jpg");
             imgIndex++;
             if (imgIndex > 3) {
