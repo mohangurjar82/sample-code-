@@ -800,6 +800,7 @@ Boxing Matches, Concerts, MMA Fights, Festivals, &amp; All Other Sporting Events
           var img = $(this);
           img.addClass("transition");
           var offset = img.offset();
+          console.log((offset.left + img.width())  + " > " + $( document ).width());
           if (offset.left < 0) {
             img.css("position", "relative");
             img.css("left", Math.abs(offset.left) + "px");
@@ -809,7 +810,6 @@ Boxing Matches, Concerts, MMA Fights, Festivals, &amp; All Other Sporting Events
             img.css("position", "relative");
             img.css("left", ($( document ).width() - (offset.left + img.width())) + "px");
           }
-          console.log(offset);
           var parts = img.attr("src").split(".");
           var imgIndex = 1;
 
@@ -825,7 +825,6 @@ Boxing Matches, Concerts, MMA Fights, Festivals, &amp; All Other Sporting Events
           rotateImage();
         },
         function () {
-          console.log("out");
           window.clearInterval(rotateInterval);
           var base = $(this).attr("src").split("-")[0].split(".")[0];
           var img = $(this);
