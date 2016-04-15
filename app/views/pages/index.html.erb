@@ -799,6 +799,7 @@ Boxing Matches, Concerts, MMA Fights, Festivals, &amp; All Other Sporting Events
         function () {
           var img = $(this);
           img.addClass("transition");
+          console.log(img.left());
           var parts = img.attr("src").split(".");
           var imgIndex = 1;
 
