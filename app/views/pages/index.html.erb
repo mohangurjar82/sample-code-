@@ -800,7 +800,7 @@ Boxing Matches, Concerts, MMA Fights, Festivals, &amp; All Other Sporting Events
           var img = $(this);
           img.addClass("transition");
           var offset = img.offset();
-          var newWidth = img.width() + (img.width() * .2);
+          var newWidth = img.width() + (img.width() * 1.2);
           console.log((offset.left + newWidth)  + " > " + $( document ).width());
           if (offset.left < 0) {
             img.css("position", "relative");
