@@ -801,13 +801,16 @@ Boxing Matches, Concerts, MMA Fights, Festivals, &amp; All Other Sporting Events
           var parts = img.attr("src").split(".");
           var imgIndex = 1;
 
-          rotateInterval = window.setInterval(function () {
+          var rotateImage = function () {
             img.attr("src", parts[0] + "-" + imgIndex + ".jpg");
             imgIndex++;
             if (imgIndex > 3) {
               imgIndex = 1;
             }
-          }, 2000);
+          };
+
+          rotateInterval = window.setInterval(rotateImage, 3000);
+          rotateImage();
         },
         function () {
           window.clearInterval(rotateInterval);
