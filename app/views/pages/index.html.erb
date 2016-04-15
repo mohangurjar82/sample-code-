@@ -351,91 +351,37 @@ N2ME is preparing to launch the largest E-Book library on the Web.
                 <div class="col-lg-4 col-sm-6 col-xs-6">
                     <a href="http://beta.n2me.tv/categories/1422917786" class="portfolio-box">
                         <img src="img/portfolio/livetv.png" class="img-responsive hoverimage" alt="" >
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    
-                                </div>
-                                <div class="project-name">
-                                    Sports, News, Shows
-                                </div>
-                            </div>
-                        </div>
+                        
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6 col-xs-6">
                     <a href="http://beta.n2me.tv/categories/1422917786" class="portfolio-box">
                         <img src="img/portfolio/movies.png" class="img-responsive hoverimage" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    
-                                </div>
-                                <div class="project-name">
-                                    Movies
-                                </div>
-                            </div>
-                        </div>
+                       
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6 col-xs-6">
                     <a href="http://n2me-test.herokuapp.com/categories/1423429520" class="portfolio-box">
                         <img src="img/portfolio/events.png" class="img-responsive hoverimage" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    
-                                </div>
-                                <div class="project-name">
-                                    Live Events
-                                </div>
-                            </div>
-                        </div>
+                        
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6 col-xs-6">
                     <a href="http://beta.n2me.tv/music" class="portfolio-box">
                         <img src="img/portfolio/music.png" class="img-responsive hoverimage" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    
-                                </div>
-                                <div class="project-name">
-                                    Music
-                                </div>
-                            </div>
-                        </div>
+                       
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6 col-xs-6">
                     <a href="http://beta.n2me.tv/categories/1422405926" class="portfolio-box">
                         <img src="img/portfolio/games.png" class="img-responsive hoverimage" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    
-                                </div>
-                                <div class="project-name">
-                                    Online Games
-                                </div>
-                            </div>
-                        </div>
+                      
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6 col-xs-6">
                     <a href="#" class="portfolio-box">
                         <img src="img/portfolio/ebooks.png" class="img-responsive hoverimage" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    
-                                </div>
-                                <div class="project-name">
-                                    E-books
-                                </div>
-                            </div>
-                        </div>
+                     
                     </a>
                 </div>
             </div>
@@ -845,7 +791,32 @@ Boxing Matches, Concerts, MMA Fights, Festivals, &amp; All Other Sporting Events
 
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'pages/scripts' %>
+<script>
 
+    $(function () {
+      var rotateInterval;
+      $(".hoverimage").hover(
+        function () {
+          var img = $(this);
+          var parts = img.attr("src").split(".");
+          var imgIndex = 1;
+
+          rotateInterval = window.setInterval(function () {
+            img.attr("src", parts[0] + "-" + imgIndex + ".jpg");
+            imgIndex++;
+            if (imgIndex > 3) {
+              imgIndex = 1;
+            }
+          }, 2000);
+        },
+        function () {
+          window.clearInterval(rotateInterval);
+          var base = $(this).attr("src").split("-")[0].split(".")[0];
+          $(this).attr("src", base + ".png");
+        });
+    });
+
+</script>
 
 </body>
 
