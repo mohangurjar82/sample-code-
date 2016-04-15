@@ -75,8 +75,11 @@
             </li>
             <li class="item231">
 
-              <%= link_to 'Log In/Out', profile_path, class: "item" %>
-
+                  <% if current_user.present? %>
+                      <%= link_to 'Log In/Out', destroy_user_session_path, method: :delete, class: "item" %>
+                  <% else %>
+                      <%= link_to 'Log In/Out', new_user_session_path, class: "item" %>
+                  <% end %>
 
             </li>
             <li class="item251">
