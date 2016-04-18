@@ -536,3 +536,9 @@ h1, h2, h3, h4, h5, h6 {
     -o-transform: scale(1.2);
     transform: scale(1.2);
 }
+
+
+.foot-li li{line-height:3;color: #ccc; }
+.foot-li2 {padding-top:3%;}
+.foot-li2 li {overflow:auto;border-bottom:1px solid #ccc;margin-top: 15px;}
+.foot-li2 li:nth-child(3) {border-bottom:none;}
