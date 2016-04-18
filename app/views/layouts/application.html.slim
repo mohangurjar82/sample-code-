@@ -45,7 +45,9 @@ html[lang="en"]
           .md-card
             .md-card-content
               = yield
-
+    
+    = render '/layouts/footer'
+    
     = javascript_include_tag 'application'
     -if content_for? :javascript
       = content_for :javascript
