@@ -9,9 +9,9 @@
           .uk-width-1-4
             a href=media_path(m.number)
               - if m.thumbnail_url.present?
-                img src=m.thumbnail_url
+                img.uk-thumbnail src=m.thumbnail_url
               - else
-                img src=asset_path('movie-placeholder.jpg')
+                img.uk-thumbnail src=asset_path('movie-placeholder.jpg')
               h5= m.title
       hr
     - if @media.size >= MPX::RemoteResource::PER_PAGE
