@@ -349,38 +349,38 @@ N2ME is preparing to launch the largest E-Book library on the Web.
         <div class="container-fluid" style="background-color: #fff;">
             <div class="row no-gutter">
                 <div class="col-lg-4 col-sm-6 col-xs-6">
-                    <a href="http://beta.n2me.tv/categories/1422917786" class="portfolio-box">
-                        <img src="img/portfolio/livetv.png" class="img-responsive hoverimage" alt="" >
+                    <a data-modal="#live-tv" href="http://beta.n2me.tv/categories/1422917786" class="portfolio-box">
+                        <img src="img/portfolio/livetv.png" class="img-responsive" alt="" >
                         
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6 col-xs-6">
-                    <a href="http://beta.n2me.tv/categories/1422917786" class="portfolio-box">
-                        <img src="img/portfolio/movies.png" class="img-responsive hoverimage" alt="">
+                    <a data-modal="#movies" href="http://beta.n2me.tv/categories/1422917786" class="portfolio-box">
+                        <img src="img/portfolio/movies.png" class="img-responsive" alt="">
                        
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6 col-xs-6">
-                    <a href="http://n2me-test.herokuapp.com/categories/1423429520" class="portfolio-box">
-                        <img src="img/portfolio/events.png" class="img-responsive hoverimage hidesixth" alt="">
+                    <a data-modal="#events" href="http://n2me-test.herokuapp.com/categories/1423429520" class="portfolio-box">
+                        <img src="img/portfolio/events.png" class="img-responsive hidesixth" alt="">
                         
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6 col-xs-6">
-                    <a href="http://beta.n2me.tv/music" class="portfolio-box">
-                        <img src="img/portfolio/music.png" class="img-responsive hoverimage" alt="">
+                    <a data-modal="#music" href="http://beta.n2me.tv/music" class="portfolio-box">
+                        <img src="img/portfolio/music.png" class="img-responsive" alt="">
                        
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6 col-xs-6">
-                    <a href="http://beta.n2me.tv/categories/1422405926" class="portfolio-box">
-                        <img src="img/portfolio/games.png" class="img-responsive hoverimage" alt="">
+                    <a data-modal="#games" href="http://beta.n2me.tv/categories/1422405926" class="portfolio-box">
+                        <img src="img/portfolio/games.png" class="img-responsive" alt="">
                       
                     </a>
                 </div>
                 <div class="col-lg-4 col-sm-6 col-xs-6">
-                    <a href="#" class="portfolio-box">
-                        <img src="img/portfolio/ebooks.png" class="img-responsive hoverimage" alt="" id="sixthimage">
+                    <a data-modal="#ebooks" href="#" class="portfolio-box">
+                        <img src="img/portfolio/ebooks.png" class="img-responsive" alt="" id="sixthimage">
                      
                     </a>
                 </div>
@@ -462,10 +462,7 @@ N2ME is preparing to launch the largest E-Book library on the Web.
                                   <img src="img/price-img/news/12.png"  style="width:122px;height:107px;">
                                 </div>
                                 <div class="col-md-3 col-sm-3 col-xs-6">
-
-                                  <div style="width:122px;height:107px;">
-                                      <%= render 'media/player', media: MPX::Media.find_by_number(251973891) %>
-                                  </div>
+                                  <img src="img/price-img/news/11.png"  style="width:122px;height:107px;">
                                 </div>
                             </div> 
                              
@@ -683,11 +680,127 @@ N2ME is preparing to launch the largest E-Book library on the Web.
             </div>
         </div>
     </section>-->
+
+    <!-- Modals -->
+    <div id="live-tv" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Live TV</h4>
+          </div>
+          <div class="modal-body">
+            <%= render 'media/player', media: MPX::Media.find_by_number(1428037766) %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <a href="/categories/1422917786" type="button" class="btn btn-primary">See More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="movies" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Movies</h4>
+          </div>
+          <div class="modal-body">
+            <%= image_tag('/img/portfolio/movies-1.jpg', class: 'img-thumbnail hoverimage') %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <a href="/categories/1422917786" type="button" class="btn btn-primary">See More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="events" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Live Events</h4>
+          </div>
+          <div class="modal-body">
+            <%= render 'media/player', media: MPX::Media.find_by_number(605253547) %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <a href="/categories/1423429520" type="button" class="btn btn-primary">See More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="music" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Music</h4>
+          </div>
+          <div class="modal-body">
+            <%= image_tag('/img/portfolio/music-1.jpg', class: 'img-thumbnail hoverimage') %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <a href="/music" type="button" class="btn btn-primary">See More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="games" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Games</h4>
+          </div>
+          <div class="modal-body">
+            <%= image_tag('/img/portfolio/games-1.jpg', class: 'img-thumbnail hoverimage') %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <a href="/categories/1422405926" type="button" class="btn btn-primary">See More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="ebooks" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Games</h4>
+          </div>
+          <div class="modal-body">
+            <%= image_tag('/img/portfolio/ebooks-1.jpg', class: 'img-thumbnail hoverimage') %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <a href="#" type="button" class="btn btn-primary">See More</a>
+          </div>
+        </div>
+      </div>
+    </div>
     
     <%= render 'layouts/footer' %>
 
     <%= javascript_include_tag 'pages/scripts' %>
 <script>
+    
+    $('[data-modal]').click(function(e){
+      e.preventDefault();
+      $($(this).attr('data-modal')).modal('show');
+      return false;
+    })
+      
 
     $(function () {
       var rotateInterval;
@@ -717,7 +830,7 @@ N2ME is preparing to launch the largest E-Book library on the Web.
           var imgIndex = 1;
 
           var rotateImage = function () {
-            img.attr("src", parts[0] + "-" + imgIndex + ".jpg");
+            img.attr("src", parts[0].replace(/(-\d)$/, '') + "-" + imgIndex + ".jpg");
             imgIndex++;
             if (imgIndex > 3) {
               imgIndex = 1;
@@ -732,11 +845,12 @@ N2ME is preparing to launch the largest E-Book library on the Web.
           var base = $(this).attr("src").split("-")[0].split(".")[0];
           var img = $(this);
           img.css("left", "0");
-          img.attr("src", base + ".png");
+          img.attr("src", base + "-1.jpg");
           img.removeClass("transition");
           $("#sixthimage").show();
         });
     });
+
 
 </script>
 
