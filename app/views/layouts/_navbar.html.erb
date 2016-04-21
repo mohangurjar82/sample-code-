@@ -1,225 +1,196 @@
-<header id="rt-top-surround">
-  <div id="rt-top" class="">
-    <div class="rt-container">
-      <div class="rt-grid-4 rt-alpha">
-        <div class="rt-block nopaddingtopbottom jmoddiv">
-          <div class="module-surround">
-            <div class="module-content">
+<!--Header Start-->
+<header class="cp_header">
+  <!--Navigation Start-->
+  <div class="cp-navigation-row">
+    <!--Side Bar Menu Start-->
+    <div id="cp_side-menu"> <span id="cp-close-btn"><a href="#"><i class="fa fa-times"></i></a></span>
+      <div class="cp_side-navigation">
+        <ul class="cp-social-links">
+
+          <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+          <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+          <li><a href="#"><i class="fa fa-rss"></i></a></li>
+        </ul>
+        <div class="cp-right-outer">
+          <ul class="navbar-nav">
+            <!-- <li id="cp-close-btn"><a href="#"><img src="images/navi.png" alt="Close"></a></li> -->
+
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Browse Media<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Live TV</a></li>
+                <li><a href="#">Movies</a></li>
+                <li><a href="#">Events</a></li>
+                <li><a href="#">Games</a></li>
+                <li><a href="#">Music</a></li>
+                <li><a href="#">E-Books</a></li>
+                <li><a href="#">International</a></li>
+              </ul>
+            </li>
 
 
-              <div class="customnopaddingtopbottom">
-                <div id="hid1">&nbsp;
-                  <a href="/products">Register | </a>
-                  <% if current_user.present? %>
-                      <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
-                  <% else %>
-                      <%= link_to 'Log In', new_user_session_path %>
-                  <% end %>
-                  <%= link_to '| Profile', profile_path %>
-
-                  <a href="#">| Contact</a> |
-                  <a href="#">Help</a>
-                </div></div>
+            <li><a href="#">Live TV Guide</a> </li>
+          </ul>
+          <form action="form.php" method="get" class="cp-search-form-outer">
+            <div class="cp-search-form-outer">
+              <input type="text" placeholder="Search..." required>
+              <button class="btn-submit" type="submit"><i class="fa fa-search"></i></button>
             </div>
+            <label>... or refine by category.</label>
+          </form>
+          <div class="cp-upload-outer"> <a href="#" class="file-btn">My Account</a>
+            <ul class="cp-listed">
+              <li class="login-btn"><i class="fa fa-sign-in"></i> <a href="login.html">Log in</a></li>
+              <li class="signup-btn"><a href="register.html">Sign Up</a> <i class="fa fa-cart-plus"></i></li>
+            </ul>
           </div>
         </div>
-
       </div>
-      <div class="rt-grid-4">
-
-      </div>
-      <div class="rt-grid-4 rt-omega">
-        <div class="rt-block  nopaddingtopbottom align-right nomargintopbottom  jmoddiv">
-          <div class="module-surround">
-            <div class="module-content">
-
-
-              <div class="custom nopaddingtopbottom align-right nomargintopbottom ">
-                <div id="hid" class="rt-social-buttons">
-                  <a class="social-button rt-social-button-1" href="https://www.facebook.com/n2metv" target="_blank"><i class="fa fa-facebook"></i></a>
-                  <a class="social-button rt-social-button-2" href="https://twitter.com/N2meTV" target="_blank"><i class="fa fa-twitter"></i></a>
-                  <a class="social-button rt-social-button-3" href="https://plus.google.com/u/0/103265953848860159549/posts" target="_blank"><i class="fa fa-google-plus"></i></a>
-                  <a class="social-button rt-social-button-4" href="https://instagram.com/n2metv" target="_blank"><i class="fa fa-instagram"></i></a>
-                  <a class="social-button rt-social-button-6" href="https://www.pinterest.com/n2metv/" target="_blank"><i class="fa fa-pinterest"></i></a>
-                  <div class="clear"></div>
-                </div></div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <div class="clear"></div>
     </div>
-  </div>
-  <div id="rt-header" class="" style="height: 103px;">
-    <div class="rt-container">
-      <div class="rt-grid-2 rt-alpha">
-        <div class="rt-block logo-block">
-          <a href="/index.content"><img src="<%= image_path 'n2me-logo-box.png' %>" border="0"/></a>
-          <div style="color: #fff; width: 400px !important;">&nbsp;&nbsp;Powered by SuperCloud and brought to you by Hollywood TV</div>
-        </div>
+    <!--Side Bar Menu End-->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-9 col-sm-8 col-xs-12">
+          <!--Sidebar Menu Button -->
+          <div id="cp_side-menu-btn" class="cp_side-menu"> <a href="#" class=""><i class="fa fa-bars"></i></a> </div>
+          <!--Sidebar Menu Button End-->
 
-      </div>
-      <div class="rt-grid-8">
-        <div class="rt-block menu-block">
+          <!--Logo Start-->
+          <strong class="cp-logo"> <a href="index.html"><img src="images/cp-logo1.png" alt=""></a> </strong>
+          <!--Logo End-->
+          <!--Nav Holder Start-->
+          <div class="cp-nav-holder">
+            <div class="cp-megamenu">
+              <div class="cp-mega-menu">
+                <label for="mobile-button"> <img src="images/menu-bar.png" alt=""> </label>
+                <!-- mobile click button to show menu -->
+                <input id="mobile-button" type="checkbox">
+                <ul class="main-menu">
+                  <li><a href="#">Home</a></li>
+                  <li> <a href="#">Browse Media</a>
+                    <ul class="drop-down full-width col-5 hover-expand">
+                      <li>
+                        <div class="cp-categorie-item">
+                          <div class="cp-img"> <a href="#"><img src="images/cat-livetv.png" alt=""></a> </div>
+                          <a href="#">Live TV</a> </div>
+                        <div class="cp-categorie-item">
+                          <div class="cp-img"> <a href="#"><img src="images/cat-events.png" alt=""></a> </div>
+                          <a href="category-edu.html">Events</a> </div>
+                      </li>
+                      <li>
+                        <div class="cp-categorie-item">
+                          <div class="cp-img"> <a href="#"><img src="images/cat-games.png" alt=""></a> </div>
+                          <a href="#">Gaming</a> </div>
+                        <div class="cp-categorie-item">
+                          <div class="cp-img"> <a href="#"><img src="images/cat-music.png" alt=""></a> </div>
+                          <a href="#">Music</a> </div>
+                      </li>
+                      <li>
+                        <div class="cp-categorie-item">
+                          <div class="cp-img"> <a href="#"><img src="images/cat-movies.png" alt=""></a> </div>
+                          <a href="#">Movies</a> </div>
+                        <div class="cp-categorie-item">
+                          <div class="cp-img"> <a href="#"><img src="images/cat-international.png" alt=""></a> </div>
+                          <a href="category-food.html">International</a> </div>
+                      </li>
+                    </ul>
+                  </li>
+                  <li> <a href="#s">My Subscription</a></li>
+                  <li> <a href="#">My Watch List</a>
+                    <ul class="drop-down full-width col-4 hover-expand">
+                      <li>
+                        <!-- Video Item Start-->
+                        <div class="cp-video-item">
+                          <figure class="cp-thumb"> <img src="images/mega-img-01.jpg" alt="">
+                            <figcaption class="cp-caption"> <a href="video.html" class="play-video">Play</a> </figcaption>
+                          </figure>
+                          <div class="cp-text">
+                            <h4><a href="video.html">International</a></h4>
+                            <ul class="cp-meta-list">
+                              <li>Monday, Jan 26, 2016</li>
+                              <li>by Jiana Smith, <span>160 Views</span></li>
+                            </ul>
+                          </div>
+                        </div>
+                        <!-- Video Item End-->
+                      </li>
+                      <li>
+                        <!-- Video Item Start-->
+                        <div class="cp-video-item">
+                          <figure class="cp-thumb"> <img src="images/mega-img-02.jpg" alt="">
+                            <figcaption class="cp-caption"> <a href="video.html" class="play-video">Play</a> </figcaption>
+                          </figure>
+                          <div class="cp-text">
+                            <h4><a href="video.html">Category Title</a></h4>
+                            <ul class="cp-meta-list">
+                              <li>Monday, Jan 30, 2016</li>
+                              <li>by Bard, <span>260 Views</span></li>
+                            </ul>
+                          </div>
+                        </div>
+                        <!-- Video Item End-->
+                      </li>
+                      <li>
+                        <!-- Video Item Start-->
+                        <div class="cp-video-item">
+                          <figure class="cp-thumb"> <img src="images/mega-img-03.jpg" alt="">
+                            <figcaption class="cp-caption"> <a href="video.html" class="play-video">Play</a> </figcaption>
+                          </figure>
+                          <div class="cp-text">
+                            <h4><a href="video.html">Category Title</a></h4>
+                            <ul class="cp-meta-list">
+                              <li>Monday, Feb 10, 2016</li>
+                              <li>by John Doe, <span>310 Views</span></li>
+                            </ul>
+                          </div>
+                        </div>
+                        <!-- Item Holder End-->
+                      </li>
+                      <li>
+                        <!-- Video Item Start-->
+                        <div class="cp-video-item">
+                          <figure class="cp-thumb"> <img src="images/mega-img-04.jpg" alt="">
+                            <figcaption class="cp-caption"> <a href="video.html" class="play-video">Play</a> </figcaption>
+                          </figure>
+                          <div class="cp-text">
+                            <h4><a href="video.html">Category Title</a></h4>
+                            <ul class="cp-meta-list">
+                              <li>Monday, Feb 20, 2016</li>
+                              <li>by Jerif, <span>432 Views</span></li>
+                            </ul>
+                          </div>
+                        </div>
+                        <!-- Video Item End-->
+                      </li>
+                    </ul>
+                  </li>
 
-          <div class="clear"></div>
-          <ul class="gf-menu l1 ">
-            <li class="item101 italic">
-
-              <a class="item" href="/">
-
-                Home                            </a>
-
-
-            </li>
-            <li class="item231">
-
-                  <% if current_user.present? %>
-                      <%= link_to 'Log In/Out', destroy_user_session_path, method: :delete, class: "item" %>
-                  <% else %>
-                      <%= link_to 'Log In/Out', new_user_session_path, class: "item" %>
-                  <% end %>
-
-            </li>
-            <li class="item251">
-
-              <a class="item" href="/products">
-
-                Join                            </a>
-
-
-            </li>
-            <li class="item323 parent active">
-
-              <a class="item image subtext" href="/categories">
-
-                <img class="menu-image" src="http://www.n2me.tv/stream/templates/wt_plussone_jom/images/icons/icon-monitor.png" alt="icon-monitor.png">
-                Browse<em>Live TV, Movies, Games, Music, &amp; Live Events</em>                                <span class="border-fixer"></span>
-              </a>
-
-
-
-              <div class="dropdown columns-3 " style="width:320px;">
-                <div class="column col1" style="width:125px;">
-                  <ul class="l2">
-                    <li class="item228">
-                    <a class="item" href="/categories/1422405890">
-
-                      Live TV                            </a>
-
-
-                    </li>
-                    <li class="item227 active last">
-
-                    <li class="item228">
-
-                      <a class="item" href="/categories/1423429520">
-
-                        Events                            </a>
-
-
-                    </li>
-                  </ul>
-                </div>
-                <div class="column col2" style="width:97px;">
-                  <ul class="l2">
-                    <li class="item">
-                      <a class="item" href="/categories/1422405926">
-                        Gaming                           </a>
-
-
-                    </li>
-                    <li class="item250">
-
-                      <a class="item" href="/music">
-
-                        Music                            </a>
-
-
-                    </li>
-                  </ul>
-                </div>
-                <div class="column col3" style="width:97px;">
-                  <ul class="l2">
-                    <li class="item230">
-
-                      <a class="item" href="/categories/1423429519">
-
-                        Movies                           </a>
-
-
-                    </li>
-
-                    <li class="item229">
-                      <a class="item" href="/categories/1422405886">
-
-                        International                            </a>
-
-
-                    </li>
-                    <li class="item322">
-
-
-
-                    </li>
-                  </ul>
-                </div>
+                </ul>
               </div>
-
-            </li>
-          </ul></div>
-
-      </div>
-      <div class="rt-grid-2 rt-omega search-block">
-        <div class="rt-block  module_rokajaxsearch textright jmoddiv">
-          <div class="module-surround">
-            <div class="module-content">
-              <form action="/search" class="uk-form"><fieldset><select class="uk-margin-small-top" name="category"><option value="">All Content</option>
-                <div class="rokajaxsearch  module_rokajaxsearch textright">
-                  <div class="roksearch-wrapper">
-
-                    <option value="1428037784">A la carte Channels</option>
-                    <option value="1468997596">Action</option>
-                    <option value="1423429548">Action &amp; Adventure</option>
-                    <option value="1469509618">Action Adventure</option>
-                    <option value="1468997598">Adventure</option>
-                    <option value="1422405909">Broadcast</option>
-                    <option value="1423429518">Cloud French</option>
-                    <option value="1422405887">Cloud International</option>
-                    <option value="1423429517">Cloud Latino</option>
-                    <option value="1423429550">Comedy</option>
-                    <option value="1423429551">Drama</option>
-                    <option value="1422405910">Featured Live TV</option>
-                    <option value="1422405926">Games</option>
-                    <option value="1422405912">Historical</option>
-                    <option value="1422405913">Horror</option>
-                    <option value="1422917788">Kids &amp; Family</option>
-                    <option value="1422917786">News Channels</option>
-                    <option value="1423429521">Premium Movie Channels</option>
-                    <option value="1422917787">Premium VOD</option>
-                    <option value="1468997599">Role Playing</option>
-                    <option value="1422405915">Sci-fi</option>
-                    <option value="1469509617">Shooter</option>
-                    <option value="1468997600">Simulation</option>
-                    <option value="1468997602">Sports</option>
-                    <option value="1422405888">Sports Channels</option>
-                    <option value="1468997601">Strategy</option>
-                    <option value="1422405886">International</option>
-                    <option value="1422405890">Live TV</option>
-                    <option value="1423429520">Events</option>
-                    <option value="1423429519">Movies</option></select><input class="inputbox roksearch_search_str" name="query" placeholer="Search..." type="text"></fieldset>
             </div>
-
-            </form>
           </div>
-          <div id="rokajaxsearch_tmp" style="visibility:hidden;display:none;"></div>
+          <!--Nav Holder End-->
+        </div>
+        <div class="col-md-3 col-sm-4 col-xs-12">
+          <!--Right Holder Start-->
+          <div class="cp-right-holder"> <a href="#" class="file-btn">Live TV Guide</a>
+            <ul class="cp-social-links">
+
+              <li><a href="#"><i class="fa fa-heart-o"></i></a></li>
+              <li><a href="#"><i class="fa fa-film"></i></a></li>
+              <li><a href="#"><i class="fa fa-credit-card"></i></a></li>
+              <li class="cp-search-holder"><i class="fa fa-search"></i>
+                <form action="form.php" method="get" class="cp-search-form-outer">
+                  <input type="text" placeholder="Search..." required>
+                  <button class="btn-submit" type="submit"><i class="fa fa-search"></i></button>
+                </form>
+              </li>
+            </ul>
+          </div>
+          <!--Right Holder End-->
         </div>
       </div>
     </div>
-
   </div>
-  <div class="clear"></div>
-  </div>
-  </div>
+  <!--Navigation End-->
 </header>
+<!--Header End-->
