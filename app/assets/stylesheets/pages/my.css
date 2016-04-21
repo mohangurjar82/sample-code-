@@ -26,7 +26,7 @@ hr{border-color:#439FE0;}
 .foot-li2 li:nth-child(3) {border-bottom:none;}
 .navbar-default .nav > li.active > a {color:#439FE0 !important;}
 .navbar-default .nav > li.active > a, .navbar-default .nav > li.active > a:focus {color:#439FE0 !important;}
-.navbar-default.affix .nav > li > a:hover, .navbar-default.affix .nav > li > a:focus:hover {color: #439FE0 !important;}
+.navbar-default .nav > li > a:hover, .navbar-default .nav > li > a:focus:hover {color: #439FE0 !important;}
 
 .face:hover{color:#2E467C;}
 .linkd:hover{color:#136996;}
@@ -60,8 +60,8 @@ hr{border-color:#439FE0;}
 .area-sec2 a {padding: 7px !important;font-size: 10px !important;}
 }
 @media (min-width:768px) {
-.navbar-default.affix {background-color:#000;}
-.navbar-default.affix .nav > li > a {color:#fff;}
+.navbar-default {background-color:#000;}
+.navbar-default .nav > li > a {color:#fff;}
 .login{padding-top: 6px;margin-right:10px;}
 .buy-now-img{width:31%;}
 }
