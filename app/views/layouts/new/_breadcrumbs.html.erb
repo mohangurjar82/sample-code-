@@ -1,0 +1,21 @@
+<!--Banner Start-->
+<div class="cp_inner-banner">
+  <div class="container">
+    <div class="cp-inner-banner-holder">
+      <h2>Category: <strong><%= @category.title %></strong></h2>
+      <!--Breadcrumb Start-->
+      <% if @category.categories.any? %>
+        <ul class="breadcrumb">
+          <li><span>Filter:</span> 
+          <% @category.categories.each_with_index do |cat, i| %>
+            <%= " | " if i > 0 %>
+            <a href="/categories/<%= cat.number %>"><%= cat.title %></a>
+          <% end %>
+          </li>
+        </ul>
+      <% end %>
+      <!--Breadcrumb End-->
+    </div>
+  </div>
+</div>
+<!--Banner End -->

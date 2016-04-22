@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'music', to: 'categories#music', as: 'music'
   get 'search', to: 'search#index', as: 'search'
   
+  get '*unmatched', to: 'application#not_found'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

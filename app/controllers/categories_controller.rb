@@ -27,7 +27,9 @@ class CategoriesController < ApplicationController
     pool.shutdown
     @media = @category.media(page: params[:page]) 
     @oan = MPX::Media.find_by_number('1428037766')
-    @awe = MPX::Media.find_by_number('147013915') 
+    @awe = MPX::Media.find_by_number('147013915')
+    
+    render 'categories/show_new', layout: 'new_layout'
   end
 
 end

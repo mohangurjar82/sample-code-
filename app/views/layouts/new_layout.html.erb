@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     <meta charset="UTF-8" />
+     <meta content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+     <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+     <meta content="no" name="msapplication-tap-highlight" />
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <%= csrf_meta_tags %>
+     <title>N2me</title>
+     <%= stylesheet_link_tag 'new_layout', media: 'all' %>
+     <%= content_for(:head) if content_for? :head %>
+  </head>
+  <body>
+    <div class="wrapper">
+      <%= render 'layouts/new/navbar' %>
+      <%= render 'layouts/new/breadcrumbs' %>
+      <!--Main Content Start-->
+      <div id="cp-main-content">
+        <section class="cp-section pd-tb60">
+          <%= yield %>
+        </section>
+        <%= render 'layouts/new/footer' %>
+      </div>
+    </div>
+    <%= javascript_include_tag(:new_layout) %>
+  </body>
+</html>
