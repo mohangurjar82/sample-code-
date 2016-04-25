@@ -19,6 +19,18 @@ class User < ActiveRecord::Base
     name.present? ? name : email
   end
 
+  def push_media_to_history(media_id)
+    recently_viewed_media_ids.unshift(media_id)
+    self.recently_viewed_media_ids = self.recently_viewed_media_ids.uniq[0..7]
+    update_attributes(recently_viewed_media_ids: self.recently_viewed_media_ids)
+  end
+
+  def recently_viewed_media
+    recently_viewed_media_ids.map do |number|
+      MPX::Media.find_by_number(number)
+    end
+  end
+
   class Promo
     def self.find_or_create_by_code(code)
       return false unless code.match(User::PROMO_CODE_REGEXP)

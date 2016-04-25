@@ -8,6 +8,7 @@ class MediaController < ApplicationController
     elsif @media.category_name =~ /Games/
       render 'media/show_game'
     else
+      current_user.push_media_to_history(@media.number) if current_user.present?
       render 'media/new/show', layout: 'new_layout'
     end
   end

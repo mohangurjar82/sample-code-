@@ -1,53 +1,24 @@
 <footer class="cp_footer"> 
   <!--Instagram Section Start-->
+      <% if current_user.present? && current_user.recently_viewed_media.count > 0 %>
         <section class="cp-instagram-section">
           <div class="cp-ins-text">
             <h4>Recently Watched</h4>
             <i class="fa fa-history"></i>
           </div>
           <ul class="cp-instagram-listed">
-            <li>
-              <figure class="cp-ins-item">
-                <a href="#"><img src="<%= asset_path('new_layout/demo/amc-recent.jpg') %>"></a>
-              </figure>
-            </li>
-            <li>
-              <figure class="cp-ins-item">
-                <a href="#"><img src="<%= asset_path('new_layout/demo/espn-recent.jpg') %>"></a>
-              </figure>
-            </li>
-            <li>
-              <figure class="cp-ins-item">
-                <a href="#"><img src="<%= asset_path('new_layout/demo/awe-recent.jpg') %>"></a>
-              </figure>
-            </li>
-            <li>
-              <figure class="cp-ins-item">
-                <a href="#"><img src="<%= asset_path('new_layout/demo/amc-recent.jpg') %>"></a>
-              </figure>
-            </li>
-            <li>
-              <figure class="cp-ins-item">
-                <a href="#"><img src="<%= asset_path('new_layout/demo/awe-recent.jpg') %>"></a>
-              </figure>
-            </li>
-            <li>
-              <figure class="cp-ins-item">
-                <a href="#"><img src="<%= asset_path('new_layout/demo/espn-recent.jpg') %>"></a>
-              </figure>
-            </li>
-            <li>
-              <figure class="cp-ins-item">
-                <a href="#"><img src="<%= asset_path('new_layout/demo/awe-recent.jpg') %>"></a>
-              </figure>
-            </li>
-            <li>
-              <figure class="cp-ins-item">
-                <a href="#"><img src="<%= asset_path('new_layout/demo/amc-recent.jpg') %>"></a>
-              </figure>
-            </li>
+            <% current_user.recently_viewed_media.each do |m| %>
+              <li>
+                <figure class="cp-ins-item">
+                  <a href="/media/<%= m.number %>">
+                    <img src="<%= m.thumbnail_url %>">
+                  </a>
+                </figure>
+              </li>
+            <% end %>
           </ul>
         </section><!--Instagram Section End-->
+      <% end %>
     <!--Third Section Start-->
     <section class="cp-ft-third-section">
       <div class="container">
