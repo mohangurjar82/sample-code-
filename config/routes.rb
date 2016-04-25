@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get 'media/:number', to: 'media#show', as: 'media'
   resource :checkout, only: :create
   resources :orders, only: [:new, :create]
+  resources :favorite_media, only: [:create, :destroy]
+  
   get 'music', to: 'categories#music', as: 'music'
   get 'search', to: 'search#index', as: 'search'
   

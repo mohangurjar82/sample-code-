@@ -31,6 +31,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def favorite_media
+    FavoriteMedium.where(user_id: id).map do |fm|
+      MPX::Media.find_by_number(fm.media_number)
+    end
+  end
+
   class Promo
     def self.find_or_create_by_code(code)
       return false unless code.match(User::PROMO_CODE_REGEXP)

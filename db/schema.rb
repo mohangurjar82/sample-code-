@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425144903) do
+ActiveRecord::Schema.define(version: 20160425201007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "favorite_media", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "media_number"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "favorite_media", ["media_number"], name: "index_favorite_media_on_media_number", using: :btree
+  add_index "favorite_media", ["user_id"], name: "index_favorite_media_on_user_id", using: :btree
 
   create_table "order_items", force: :cascade do |t|
     t.integer  "product_id",        null: false

@@ -1,5 +1,5 @@
 <div class="list">
-  <% current_user.recently_viewed_media.in_groups_of(4).each do |group| %>
+  <% current_user.favorite_media.in_groups_of(4).each do |group| %>
     <div class="row">
       <% group.compact.each do |m| %>
         <div class="item col-sm-3"> 

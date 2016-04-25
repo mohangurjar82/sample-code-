@@ -37,6 +37,11 @@ gem 'tpdata', require: 'theplatform'
 
 gem 'font-awesome-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'sweet-alert-confirm'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-sweetalert'
+end
 
 group :development, :test do
   gem 'pry'
