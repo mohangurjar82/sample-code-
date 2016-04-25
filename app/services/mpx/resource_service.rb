@@ -12,7 +12,7 @@ class MPX::ResourceService
     options = { form: 'json', schema: @schema, token: @token }.merge(options)
     full_url = "#{@endpoint}?" + options.to_query
     puts "*** #{full_url}" if Rails.env.development?
-    response = Rails.cache.fetch(full_url, expires_in: 100.minutes) do
+    response = Rails.cache.fetch(full_url, expires_in: 15.minutes) do
       response = HTTParty.get(full_url).body
     end
     Oj.load(response)
