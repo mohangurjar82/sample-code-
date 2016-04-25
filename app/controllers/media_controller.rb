@@ -8,7 +8,7 @@ class MediaController < ApplicationController
     elsif @media.category_name =~ /Games/
       render 'media/show_game'
     else
-      render 'media/show'
+      render 'media/new/show', layout: 'new_layout'
     end
   end
 end

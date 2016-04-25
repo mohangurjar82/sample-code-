@@ -1,0 +1,108 @@
+<% content_for :head do %>
+  <script type="application/javascript" src="https://content.jwplatform.com/libraries/B2tmYadP.js"></script>
+<% end %>
+      <div id="cp-main-content">
+        <section class="cp-blog-section pd-tb60">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-9 col-lg-12">
+                <!--Video Detail Outer Start-->
+                <div class="cp-video-detail-outer">
+                  <div class="cp-video-outer2">
+                    <% if @media.file_url.nil? %>
+                      <%= @media.description.html_safe %>
+                    <% else %>
+                      <%= render 'media/player', media: @media %>
+                    <% end %>
+                  </div>
+                  <div class="cp-text-holder">
+                    <div class="cp-top">
+                      <h4><%= @media.title %></h4>
+                      <span class="viewer"><a href="#">Video Settings  <i class="fa fa-gear"></i></a></span>
+                    </div>
+                    <div class="cp-watch-holer mb-0">
+                      <ul class="cp-watch-listed">
+                        <li><a href="#"><i class="fa fa-heart"></i> Add to Favorites</a></li>
+                                                <li><a href="#"><i class="fa fa-film"></i> Record</a></li>                        
+                        <li class="dropdown">
+                           <button class="btn btn-default dropdown-toggle" type="button" id="cp-dropdown-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Language
+                          </button>
+                            <ul class="dropdown-menu" aria-labelledby="cp-dropdown-menu">
+                              <li><a href="#">English</a></li>
+                              <li><a href="#">Espanol</a></li>
+                              <li><a href="#">French</a></li>
+                            </ul>
+                        </li>
+                      </ul>
+                      <div class="cp-viewer-outer">
+                                            <i class="fa fa-star"></i><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i><i class="fa fa-star-half"></i> 
+                      <br /><a href="#">Based on 109 Reviews</a>
+                                            </div>
+                                            
+                    </div>
+                    <div class="cp-watch-holer">
+                      <ul class="cp-meta-list">
+                                    <li>Monday, Jan 26, 2016</li>
+                                    <li>by Jiana Smith, <span>160 Views</span></li>
+                                  </ul>
+                                  <a href="#" class="cp-show-more">Show More</a>
+                    </div>
+                    <!--Comments Holder Start-->
+                    <article class="cp-comments-holder">
+                      <h4>All Comments (2)</h4>
+                      <ul class="cp-comments-listed">
+                        <li>
+                          <div class="cp-author-info-holder">
+                            <div class="cp-thumb">
+                              <img src="<%= asset_path('new_layout/user-icon.png')%>" alt="">
+                            </div>
+                            <div class="cp-text">
+                              <h4><a href="#">Mink Shah</a></h4>
+                              <p>they should Telecasts  The show Without any Their Comedy Script. .﻿ </p>
+                              <div class="cp-viewer-outer">
+                                <a href="#"><i class="fa fa-thumbs-o-up"></i>59</a>
+                                <a href="#"><i class="fa fa-thumbs-o-down"></i>13</a>
+                                <a href="#">Reply</a>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="cp-author-info-holder">
+                            <div class="cp-thumb">
+                              <img src="<%= asset_path('new_layout/user-icon.png') %>" alt="">
+                            </div>
+                            <div class="cp-text">
+                              <h4><a href="#">Chad </a></h4>
+                              <p>Awesome Channel</p>
+                              <div class="cp-viewer-outer">
+                                <a href="#"><i class="fa fa-thumbs-o-up"></i>2</a>
+                                <a href="#"><i class="fa fa-thumbs-o-down"></i>0</a>
+                                <a href="#">Reply</a>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        
+                          </div>
+                        </li>
+                      </ul>
+                    </article><!--Comments Holder End-->
+                </div>
+                  <div class="cp-show-more-outer">
+                    <a href="#">Show More</a>
+                  </div>
+              </div><!--Video Detail Outer End-->
+
+            </div>
+              
+
+                </aside>
+          </div>
+            </div>
+          </div>
+        </section>
+</div><!--Main Content End-->
+
+      

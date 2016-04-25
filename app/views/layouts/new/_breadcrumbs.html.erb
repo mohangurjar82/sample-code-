@@ -1,23 +1,33 @@
 <% if @category %>
-<!--Banner Start-->
-<div class="cp_inner-banner">
-  <div class="container">
-    <div class="cp-inner-banner-holder">
-      <h2>Category: <strong><%= @category.title %></strong></h2>
-      <!--Breadcrumb Start-->
-      <% if @category.categories.any? %>
-        <ul class="breadcrumb">
-          <li><span>Filter:</span> 
-          <% @category.categories.each_with_index do |cat, i| %>
-            <%= " | " if i > 0 %>
-            <a href="/categories/<%= cat.number %>"><%= cat.title %></a>
-          <% end %>
-          </li>
-        </ul>
-      <% end %>
-      <!--Breadcrumb End-->
+  <div class="cp_inner-banner">
+    <div class="container">
+      <div class="cp-inner-banner-holder">
+        <h2>Category: <strong><%= @category.title %></strong></h2>
+        <!--Breadcrumb Start-->
+        <% if @category.categories.any? %>
+          <ul class="breadcrumb">
+            <li><span>Filter:</span> 
+            <% @category.categories.each_with_index do |cat, i| %>
+              <%= " | " if i > 0 %>
+              <a href="/categories/<%= cat.number %>"><%= cat.title %></a>
+            <% end %>
+            </li>
+          </ul>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
-<!--Banner End -->
+<% elsif @media %>
+  <div class="cp_inner-banner">
+    <div class="container">
+      <div class="cp-inner-banner-holder">
+        <h2><%= @media.category_name %>: <strong><%= @media.title %></strong></h2>
+          <ul class="breadcrumb">
+            <li>
+            <a href="/">Home</a> / <a href="#"><%= @media.category_name %></a> / <a href="#"><%= @media.title %></a>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
 <% end %>
