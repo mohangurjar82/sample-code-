@@ -7,7 +7,7 @@
             <i class="fa fa-history"></i>
           </div>
           <ul class="cp-instagram-listed">
-            <% current_user.recently_viewed_media.each do |m| %>
+            <% current_user.recently_viewed_media[0..7].each do |m| %>
               <li>
                 <figure class="cp-ins-item">
                   <a href="/media/<%= m.number %>">

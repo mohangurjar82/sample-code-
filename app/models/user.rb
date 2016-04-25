@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
   def push_media_to_history(media_id)
     recently_viewed_media_ids.unshift(media_id)
-    self.recently_viewed_media_ids = self.recently_viewed_media_ids.uniq[0..7]
+    self.recently_viewed_media_ids = self.recently_viewed_media_ids.uniq[0..15]
     update_attributes(recently_viewed_media_ids: self.recently_viewed_media_ids)
   end
 
