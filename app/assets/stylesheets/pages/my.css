@@ -234,3 +234,6 @@ border-right: 1px dashed #DDD;}
     border-top: 1px dashed #DDD;}
 
 /*-----------------------------------------------------------*/
+.cp-ft-nav li, .cp-ft-nav li a {
+  color: #ccc;
+}
