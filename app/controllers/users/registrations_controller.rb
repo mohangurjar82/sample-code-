@@ -4,6 +4,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def profile
     redirect_to new_user_session_path if current_user.blank?
     @products = Product.all
+
+    render 'users/registrations/profile', layout: 'new_layout'
   end
 
   # POST /resource

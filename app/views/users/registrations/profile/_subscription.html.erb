@@ -1,0 +1,15 @@
+<div class="uk-grid uk-margin-medium-top uk-margin-large-bottom" data-uk-grid-margin="">
+  <% @products.each do |product| %>
+    <div class="col-md-3">
+      <h4 class="heading_c uk-margin-small-bottom">
+        <%= product.title %>
+      </h4>
+      <span class="uk-text-small uk-text-muted">
+      $
+      <%= product.price %>
+      /
+      <%= product.subscription_unit %>
+      </span>
+    </div>
+  <% end %>
+</div>
