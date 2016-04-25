@@ -2,7 +2,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   layout proc{ |controller| user_signed_in? ? 'application' : 'devise' }
   
   def profile
-    redirect_to new_user_session_path if current_user.blank?
+    redirect_to new_user_session_path and return if current_user.blank?
     @products = Product.all
 
     render 'users/registrations/profile', layout: 'new_layout'
