@@ -132,7 +132,7 @@ ul {
 }
 .cp-heading-outer h2:before {
 	content: '';
-	background: url(../images/heading-img.png);
+	background: url(/assets/new_layout/heading-img.png);
 	position: absolute;
 	left: 0;
 	bottom: 0px;

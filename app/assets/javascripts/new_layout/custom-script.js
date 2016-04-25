@@ -236,6 +236,60 @@ jQuery(document).ready(function($) {
         });
     }
 
+    /* Owl Slider For categories list
+    ======================================================*/
+    if ($('.categories-list').length) {
+        $('.categories-list').owlCarousel({
+            loop:true,
+            dots: false,
+            nav:true,
+            navText:'',
+            items:4,
+            autoplay: false,
+            smartSpeed:1500,
+            margin:30,
+            responsiveClass:true,
+            responsive:{
+                0:{
+                    items:1,
+                },
+                768:{
+                    items:2,
+                },
+                1199:{
+                    items:4,
+                }
+            }
+        });
+    }
+
+    /* Owl Slider For videos list
+    ======================================================*/
+    if ($('.videos-list').length) {
+        $('.videos-list').owlCarousel({
+            loop:true,
+            dots: false,
+            nav:true,
+            navText:'',
+            items:4,
+            autoplay: false,
+            smartSpeed:1500,
+            margin:30,
+            responsiveClass:true,
+            responsive:{
+                0:{
+                    items:1,
+                },
+                768:{
+                    items:2,
+                },
+                1199:{
+                    items:4,
+                }
+            }
+        });
+    }
+
     /* Audio Player
     ======================================================*/
     if ($('audio').length) {

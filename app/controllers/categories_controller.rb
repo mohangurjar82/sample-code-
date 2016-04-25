@@ -8,9 +8,11 @@ class CategoriesController < ApplicationController
         category.thumbnail_url.to_s
       end
       pool.process do
-        category.media(limit: 4).to_a
+        category.media.to_a
       end
     end
+    pool.shutdown
+    render 'categories/index_new', layout: 'new_layout'
   end
 
   def show
