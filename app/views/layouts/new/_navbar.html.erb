@@ -98,67 +98,23 @@
                     <ul class="drop-down full-width col-4 hover-expand">
                       <li>
                         <!-- Video Item Start-->
-                        <div class="cp-video-item">
-                          <figure class="cp-thumb"> <img src="<%= asset_path('new_layout/mega-img-01.jpg') %>">
-                            <figcaption class="cp-caption"> <a href="video.html" class="play-video">Play</a> </figcaption>
-                          </figure>
-                          <div class="cp-text">
-                            <h4><a href="video.html">International</a></h4>
-                            <ul class="cp-meta-list">
-                              <li>Monday, Jan 26, 2016</li>
-                              <li>by Jiana Smith, <span>160 Views</span></li>
-                            </ul>
-                          </div>
-                        </div>
-                        <!-- Video Item End-->
-                      </li>
-                      <li>
-                        <!-- Video Item Start-->
-                        <div class="cp-video-item">
-                          <figure class="cp-thumb"> <img src="<%= asset_path('new_layout/mega-img-02.jpg') %>">
-                            <figcaption class="cp-caption"> <a href="video.html" class="play-video">Play</a> </figcaption>
-                          </figure>
-                          <div class="cp-text">
-                            <h4><a href="video.html">Category Title</a></h4>
-                            <ul class="cp-meta-list">
-                              <li>Monday, Jan 30, 2016</li>
-                              <li>by Bard, <span>260 Views</span></li>
-                            </ul>
-                          </div>
-                        </div>
-                        <!-- Video Item End-->
-                      </li>
-                      <li>
-                        <!-- Video Item Start-->
-                        <div class="cp-video-item">
-                          <figure class="cp-thumb"> <img src="<%= asset_path('new_layout/mega-img-03.jpg') %>">
-                            <figcaption class="cp-caption"> <a href="video.html" class="play-video">Play</a> </figcaption>
-                          </figure>
-                          <div class="cp-text">
-                            <h4><a href="video.html">Category Title</a></h4>
-                            <ul class="cp-meta-list">
-                              <li>Monday, Feb 10, 2016</li>
-                              <li>by John Doe, <span>310 Views</span></li>
-                            </ul>
-                          </div>
-                        </div>
-                        <!-- Item Holder End-->
-                      </li>
-                      <li>
-                        <!-- Video Item Start-->
-                        <div class="cp-video-item">
-                          <figure class="cp-thumb"> <img src="<%= asset_path('new_layout/mega-img-04.jpg') %>">
-                            <figcaption class="cp-caption"> <a href="video.html" class="play-video">Play</a> </figcaption>
-                          </figure>
-                          <div class="cp-text">
-                            <h4><a href="video.html">Category Title</a></h4>
-                            <ul class="cp-meta-list">
-                              <li>Monday, Feb 20, 2016</li>
-                              <li>by Jerif, <span>432 Views</span></li>
-                            </ul>
-                          </div>
-                        </div>
-                        <!-- Video Item End-->
+                        <% if current_user.present? && current_user.recently_viewed_media.count > 0 %>
+                            <div class="cp-video-item">
+
+                              <figure class="cp-thumb"> <img src="<%= m.thumbnail_url %>">
+                                <figcaption class="cp-caption"> <a href="/media/<%= m.number %>" class="play-video">Play</a> </figcaption>
+                              </figure>
+                              <div class="cp-text">
+                                <% current_user.recently_viewed_media[0..4].each do |m| %>
+                                    <h4><a href="video.html">International</a></h4>
+                                    <ul class="cp-meta-list">
+                                      <li>Monday, Jan 26, 2016</li>
+                                      <li>by Jiana Smith, <span>160 Views</span></li>
+                                    </ul>
+                                    </div>
+                                    </div>
+                                <% end %>
+
                       </li>
                     </ul>
                   </li>
