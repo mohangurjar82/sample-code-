@@ -1,4 +1,6 @@
-.content
+- content_for :head do
+  = stylesheet_link_tag('application')
+.content.col-sm-10.col-sm-offset-1
   .uk-container.uk-container-center
     - if @product_items.empty?
       h1 No Items
