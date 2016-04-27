@@ -1,6 +1,16 @@
+- content_for :head do
+  = stylesheet_link_tag('application')
+  css:
+    label {
+      font-weight: normal;
+    }
+    .single {
+      padding: 0 8px;
+    }
+
 = form_for @order do |f|
   = f.fields_for :credit_card, @order.credit_card do |cc|
-    .md-card
+    .md-card.col-sm-10.col-sm-offset-1
       .md-card-content
         h3.heading_a Checkout
         = image_tag('credit_cards.png', style: 'height: 30px; margin:10px 0;')
@@ -105,3 +115,5 @@
                 | checkout  
                 i.uk-icon-angle-double-right
                 
+- content_for :javascript do
+  = javascript_include_tag :application

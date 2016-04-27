@@ -2,6 +2,8 @@ class OrdersController < ApplicationController
   before_action :check_token
   before_action :authenticate_user!
 
+  layout 'new_layout'
+
   def new
     redirect_to(root_path) if session[:product_ids].blank?
 
