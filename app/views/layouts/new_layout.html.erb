@@ -24,6 +24,9 @@
         <%= render 'layouts/new/footer' %>
       </div>
     </div>
-    <%= javascript_include_tag(:new_layout) %>
+    <%= javascript_include_tag(:new_layout) unless @skip_javascript %>
+    <% if content_for? :javascript %>
+      <%= content_for :javascript %>
+    <% end %>
   </body>
 </html>

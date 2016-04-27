@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
   before_filter :authenticate_user!
+
+  layout 'new_layout'
   
   def index
     all_products = Product.all
@@ -8,6 +10,8 @@ class ProductsController < ApplicationController
       tags.find { |t| t['title'].to_s =~ /A La Carte/i }
     end
     @json_products = all_products.map { |p| [p.id, p] }.to_h
+
+    @skip_javascript = true
   end
 
 end

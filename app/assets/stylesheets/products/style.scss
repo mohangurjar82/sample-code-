@@ -44,6 +44,7 @@ body
 {   width: 70%;
     padding: 26px 8px;
     background: #FDC741;
+    margin: 0 auto !important;
     margin-top: 30px;
 }
 @media(min-width: 780px) {
@@ -96,7 +97,6 @@ input[type=checkbox].maincheck{
 {
   font-size: 15px;
   color: gray;
-  margin-top: -11px;
 }
 .container1row
 {
@@ -551,11 +551,10 @@ background: white;
    -ms-transition-delay: 0.1s;
    transition-delay: 0.1s;
 }
-.footmain
-{
-margin: 0 auto;
-margin-top: 10px;
-background-color: black;
+.footmain {
+  margin: 0 auto !important;
+  margin-top: 10px;
+  background-color: black;
 }
 .name2
 {
@@ -704,8 +703,9 @@ background-color: black;
 }
 .hero {
   background: #fff;
-  margin: -10px -10px 0;
   padding-bottom: 20px;
+  margin: 10px;
+  padding: 23px;
 }
 .subtotal {
   margin-top: 10px !important;

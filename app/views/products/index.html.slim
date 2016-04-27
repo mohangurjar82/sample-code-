@@ -1,8 +1,9 @@
 - content_for :head do
   = stylesheet_link_tag('products/style.css')
+  = stylesheet_link_tag('application')
 
-.products ng-controller="cartController as cart"
-  .uk-grid.hero
+.products.col-sm-10.col-sm-offset-1 ng-controller="cartController as cart"
+  .hero
     .uk-width-7-10.footmain
       .uk-grid
         .uk-width-2-10.promo-img
@@ -38,7 +39,7 @@
               = p.subscription_unit
 
     .uk-width-3-10#subtotal
-      .selected-listing.right data-uk-sticky="{top:10,getWidthFrom:'.selected-listing'}"
+      .selected-listing.right data-uk-sticky="{top:95,getWidthFrom:'.selected-listing'}"
         .uk-grid.row1.rightrow1
           .uk-width-1-1
             .uk-grid
@@ -111,6 +112,7 @@
    
 
 - content_for :javascript do
+  = javascript_include_tag :application
   script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"
 
   javascript:
