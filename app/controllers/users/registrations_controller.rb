@@ -1,5 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  layout proc{ |controller| user_signed_in? ? 'application' : 'devise' }
+  layout proc{ |controller| user_signed_in? ? 'new_layout' : 'devise' }
   
   def profile
     redirect_to new_user_session_path and return if current_user.blank?

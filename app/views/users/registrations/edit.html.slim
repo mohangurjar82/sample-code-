@@ -1,40 +1,42 @@
 - content_for :header do
   | My profile
 
-.uk-grid[data-uk-grid-margin]
-  .uk-width-medium-1-2
-    h3.heading_a Edit
-
-    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-      = devise_error_messages!
+.row.edit-profile
+  .col-sm-8.col-sm-offset-2.gray-card
+    .row
+      .col-sm-8
+        h3.heading_a Edit Profile
+        br
+        br
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+          = devise_error_messages!
+          
+          .uk-form-row
+            = f.label :name
+            = f.text_field :name, class: 'md-input'
+    
+          .uk-form-row
+            = f.label :email
+            = f.email_field :email, class: 'md-input'
+    
+            - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+              .uk-form-help-block Currently waiting confirmation for: #{resource.unconfirmed_email}
+    
+          .uk-form-row
+            = f.label :password
+            = f.password_field :password, autocomplete: 'off', class: 'md-input'
+            .uk-form-help-block
+              | (leave blank if you don't want to change it)
+    
+          .uk-form-row
+            = f.label :password_confirmation
+            = f.password_field :password_confirmation, autocomplete: 'off', class: 'md-input'
+    
+          .uk-form-row
+            = f.submit 'Update', class: 'md-btn md-btn-primary'
       
-      .uk-form-row
-        = f.label :name
-        = f.text_field :name, class: 'md-input'
-
-      .uk-form-row
-        = f.label :email
-        = f.email_field :email, class: 'md-input'
-
-        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-          .uk-form-help-block Currently waiting confirmation for: #{resource.unconfirmed_email}
-
-      .uk-form-row
-        = f.label :password
-        = f.password_field :password, autocomplete: 'off', class: 'md-input'
-        .uk-form-help-block
-          | (leave blank if you don't want to change it)
-
-      .uk-form-row
-        = f.label :password_confirmation
-        = f.password_field :password_confirmation, autocomplete: 'off', class: 'md-input'
-
-      .uk-form-row
-        = f.submit 'Update', class: 'md-btn md-btn-primary'
-
-  .uk-width-medium-1-2
-    h3.heading_a Cancel my account
-
-    p
-      | Unhappy?
-      = button_to 'Cancel my account', registration_path(resource_name), data: { confirm: 'Are you sure?' }, method: :delete, class: 'uk-button uk-button-danger'
+      .col-sm-4
+        h3.heading_a Cancel my account
+    
+        p.unhappy Unhappy?
+        = button_to 'Cancel my account', registration_path(resource_name), data: { confirm: 'Are you sure?' }, method: :delete, class: 'red-btn'
