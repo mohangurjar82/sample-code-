@@ -8,5 +8,9 @@ jQuery(document).ready(function(){
     return false;
   });
 
+  var hash = document.location.hash;
+  if (hash != '' && $(hash).length){
+    $('[href="' + hash + '"]').tab('show');
+  }
 
 });
