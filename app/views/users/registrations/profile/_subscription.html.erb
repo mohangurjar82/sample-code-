@@ -4,12 +4,16 @@
       <h4 class="heading_c uk-margin-small-bottom">
         <%= product.title %>
       </h4>
+      <% if m.thumbnail_url.present? %>
+          <img alt="" src="<%= m.thumbnail_url %>">
+      <% else %>
+          <img src="<%= asset_path('movie-placeholder.jpg') %>') %>">
+      <% end %>
       <span class="uk-text-small uk-text-muted">
       $
       <%= product.price %>
       /
       <%= product.subscription_unit %>
-        <img src="<%= asset_path('product-placeholder.jpg') %>" alt=" <%= product.title %>" />
       </span>
     </div>
   <% end %>
