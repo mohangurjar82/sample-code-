@@ -72,44 +72,23 @@
                     </div>
                     <!--Comments Holder Start-->
                     <article class="cp-comments-holder">
-                      <h4>All Comments (2)</h4>
-                      <ul class="cp-comments-listed">
-                        <li>
-                          <div class="cp-author-info-holder">
-                            <div class="cp-thumb">
-                              <img src="<%= asset_path('new_layout/user-icon.png')%>" alt="">
-                            </div>
-                            <div class="cp-text">
-                              <h4><a href="#">Mink Shah</a></h4>
-                              <p>they should Telecasts  The show Without any Their Comedy Script. .﻿ </p>
-                              <div class="cp-viewer-outer">
-                                <a href="#"><i class="fa fa-thumbs-o-up"></i>59</a>
-                                <a href="#"><i class="fa fa-thumbs-o-down"></i>13</a>
-                                <a href="#">Reply</a>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                        <li>
-                          <div class="cp-author-info-holder">
-                            <div class="cp-thumb">
-                              <img src="<%= asset_path('new_layout/user-icon.png') %>" alt="">
-                            </div>
-                            <div class="cp-text">
-                              <h4><a href="#">Chad </a></h4>
-                              <p>Awesome Channel</p>
-                              <div class="cp-viewer-outer">
-                                <a href="#"><i class="fa fa-thumbs-o-up"></i>2</a>
-                                <a href="#"><i class="fa fa-thumbs-o-down"></i>0</a>
-                                <a href="#">Reply</a>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
+                      <div id="disqus_thread"></div>
+                      <script>
+                        var disqus_config = function () {
+                          this.page.url = '<%= "http://www.n2me.tv" + request.original_fullpath %>';
+                          this.page.identifier = '<%= @media.number %>';
+                        };
                         
-                          </div>
-                        </li>
-                      </ul>
+                        (function() { // DON'T EDIT BELOW THIS LINE
+                          var d = document, s = d.createElement('script');
+                          
+                          s.src = '//n2metv.disqus.com/embed.js';
+                          
+                          s.setAttribute('data-timestamp', +new Date());
+                          (d.head || d.body).appendChild(s);
+                        })();
+                      </script>
+                      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
                     </article><!--Comments Holder End-->
                 </div>
                   <div class="cp-show-more-outer">
