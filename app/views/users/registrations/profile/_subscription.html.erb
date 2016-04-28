@@ -4,10 +4,10 @@
       <h4 class="heading_c uk-margin-small-bottom">
         <%= product.title %>
       </h4>
-      <% if m.thumbnail_url.present? %>
+      <% if p.images.any? %>
           <img alt="" src="<%= product.images.first %>">
       <% else %>
-          <img src="<%= asset_path('movie-placeholder.jpg') %>') %>">
+          <img src="<%= asset_path('product-placeholder.jpg') %>') %>">
       <% end %>
       <span class="uk-text-small uk-text-muted">
       $
