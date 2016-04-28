@@ -26,6 +26,9 @@ gem 'concurrent-ruby'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'activeadmin', '~> 1.0.0.pre2'
+gem 'active_admin_flat_skin'
+
 gem 'devise'
 gem 'immutable-struct'
 gem 'puma'
