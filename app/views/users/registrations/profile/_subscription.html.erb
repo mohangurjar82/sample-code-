@@ -5,7 +5,7 @@
         <%= product.title %>
       </h4>
       <% if m.thumbnail_url.present? %>
-          <img alt="" src="<%= m.thumbnail_url %>">
+          <img alt="" src="<%= product.images.first %>">
       <% else %>
           <img src="<%= asset_path('movie-placeholder.jpg') %>') %>">
       <% end %>
