@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160428225629) do
+ActiveRecord::Schema.define(version: 20160428230907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,20 @@ ActiveRecord::Schema.define(version: 20160428225629) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "categories", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "order",       default: 0
+    t.integer  "category_id"
+    t.string   "image_url"
+    t.string   "number"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "categories", ["category_id"], name: "index_categories_on_category_id", using: :btree
+  add_index "categories", ["number"], name: "index_categories_on_number", using: :btree
+
   create_table "favorite_media", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "media_number"
@@ -58,6 +72,34 @@ ActiveRecord::Schema.define(version: 20160428225629) do
 
   add_index "favorite_media", ["media_number"], name: "index_favorite_media_on_media_number", using: :btree
   add_index "favorite_media", ["user_id"], name: "index_favorite_media_on_user_id", using: :btree
+
+  create_table "media", force: :cascade do |t|
+    t.integer  "admin_user_id"
+    t.string   "title"
+    t.text     "description"
+    t.string   "number"
+    t.string   "image_url"
+    t.string   "source_url"
+    t.text     "extra_sources"
+    t.string   "language"
+    t.integer  "rating",        default: 0
+    t.integer  "price",         default: 99
+    t.integer  "order",         default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "media", ["number"], name: "index_media_on_number", using: :btree
+
+  create_table "media_categories", force: :cascade do |t|
+    t.integer  "media_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "media_categories", ["category_id"], name: "index_media_categories_on_category_id", using: :btree
+  add_index "media_categories", ["media_id"], name: "index_media_categories_on_media_id", using: :btree
 
   create_table "order_items", force: :cascade do |t|
     t.integer  "product_id",        null: false
