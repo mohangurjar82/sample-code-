@@ -301,10 +301,10 @@ jQuery(document).ready(function($) {
     if($('.cp-off-countdown').length){
         var austDay = new Date();
         austDay = new Date(2016, 3-1, 5,3,15)
-        $('.cp-off-countdown').countdown({
+        /*$('.cp-off-countdown').countdown({
         labels: ['Years', 'Months', 'Weeks', 'Days', 'Hors', 'Min', 'Sec'],
         until: austDay
-        });
+        });*/
         $('#year').text(austDay.getFullYear());
     }
 
@@ -313,10 +313,10 @@ jQuery(document).ready(function($) {
     if($('.cp-coming-countdown').length){
         var austDay = new Date();
         austDay = new Date(2016, 1-1, 5,12,15)
-        $('.cp-coming-countdown').countdown({
+       /* $('.cp-coming-countdown').countdown({
         labels: ['Years', 'Months', 'Weeks', 'Days', 'Hours', 'Min', 'Sec'],
         until: austDay
-        });
+        });*/
         $('#year').text(austDay.getFullYear());
     }
 
