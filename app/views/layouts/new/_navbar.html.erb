@@ -37,12 +37,7 @@
           </form>
           <div class="cp-upload-outer"> <a href="/profile" class="file-btn">My Account</a>
             <ul class="cp-listed">
-              <%=if signed_in?%>
                  <li class="login-btn"><i class="fa fa-sign-out"></i><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
-                  <% else %>
-              <li class="login-btn"><i class="fa fa-sign-in"></i> <a href="login.html">Log in</a></li>
-              <li class="signup-btn"><a href="register.html">Sign Up</a> <i class="fa fa-cart-plus"></i></li>
-                  <% end %>
             </ul>
           </div>
         </div>
