@@ -3,4 +3,5 @@ class Media < ActiveRecord::Base
 
   has_many :media_categories
   has_many :categories, through: :media_categories
+
 end

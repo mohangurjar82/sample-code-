@@ -5,8 +5,8 @@ class ApplicationController < ActionController::Base
   before_action :load_categories, except: :not_found
 
   def load_categories
-    @search_categories = MPX::Category.all
-    @root_categories = MPX::Category.root_categories
+    @search_categories = [] # MPX::Category.all
+    @root_categories = [] # MPX::Category.root_categories
   end
 
   def not_found
