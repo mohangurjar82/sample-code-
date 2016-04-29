@@ -42,6 +42,8 @@ gem 'sweet-alert-confirm'
 gem "administrate"
 gem "administrate-field-image"
 
+gem 'carrierwave-aws'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-sweetalert'
 end
