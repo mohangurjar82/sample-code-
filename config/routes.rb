@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+  namespace :admin do
+    resources :media
+    resources :categories
+    resources :users
+    root to: "media#index"
+  end
+
   devise_for :users, controllers: { sessions: 'users/sessions',
                                     registrations: 'users/registrations' }
 

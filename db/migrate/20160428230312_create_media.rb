@@ -12,6 +12,8 @@ class CreateMedia < ActiveRecord::Migration
       t.integer :rating, default: 0
       t.integer :price, default: 99
       t.integer :order, default: 0
+      t.text :embedded_code, :text
+      t.text :overlay_code, :text
 
       t.timestamps null: false
     end
