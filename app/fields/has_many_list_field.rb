@@ -1,7 +1,4 @@
-require "administrate/field/base"
+require "administrate/field/has_many"
 
-class HasManyListField < Administrate::Field::Base
-  def to_s
-    title
-  end
+class HasManyListField < Administrate::Field::HasMany
 end

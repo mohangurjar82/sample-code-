@@ -16,6 +16,7 @@ class CategoryDashboard < Administrate::BaseDashboard
     order: Field::Number,
     category: Field::BelongsTo,
     image_url: Field::String,
+    picture: ImageField,
     number: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -28,6 +29,7 @@ class CategoryDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :id,
+    :picture,
     :title,
     :order
   ].freeze
@@ -37,6 +39,7 @@ class CategoryDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = [
     :id,
     :title,
+    :picture,
     :description,
     :order,
     :category,
@@ -52,6 +55,7 @@ class CategoryDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :title,
     :description,
+    :picture,
     :order,
     :category,
     :image_url,

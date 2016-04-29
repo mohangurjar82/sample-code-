@@ -9,7 +9,7 @@ class MediumDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     media_categories: Field::HasMany,
-    categories: HasManyListField,
+    categories: Field::HasMany,
     id: Field::Number,
     admin_user_id: Field::Number,
     title: Field::String,
@@ -24,6 +24,7 @@ class MediumDashboard < Administrate::BaseDashboard
     order: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    picture: ImageField
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -33,6 +34,7 @@ class MediumDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :id,
+    :picture,
     :title,
     :description,
     :categories,
@@ -47,6 +49,7 @@ class MediumDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :id,
+    :picture,
     :title,
     :description,
     :categories,
@@ -68,6 +71,7 @@ class MediumDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :title,
     :description,
+    :picture,
     :categories,
     :number,
     :image_url,

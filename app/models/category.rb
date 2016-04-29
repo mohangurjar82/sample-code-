@@ -5,4 +5,6 @@ class Category < ActiveRecord::Base
 
   belongs_to :category
   has_many :categories
+
+  mount_uploader :picture, PictureUploader, mount_on: :image
 end
