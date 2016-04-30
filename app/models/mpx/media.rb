@@ -2,6 +2,7 @@ class MPX::Media < MPX::RemoteResource
   ENDPOINT = 'http://data.media2.theplatform.com/media/data/Media'.freeze
   IDENTITY = 'http://xml.theplatform.com/media/data/Media'.freeze
   SCHEMA = '1.2'.freeze
+  LOCAL = 'Medium'
 
   FIELDS = %w(title description author)
   ADVANCED_FIELDS = %w(eAN iSBN numberOfPages publicationDate publisherName

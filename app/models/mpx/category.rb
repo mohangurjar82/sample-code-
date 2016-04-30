@@ -1,6 +1,7 @@
 class MPX::Category < MPX::RemoteResource
   ENDPOINT = 'http://data.media2.theplatform.com/media/data/Category'.freeze
   SCHEMA = '1.0'.freeze
+  LOCAL = 'Category'
 
   def self.root_categories
     MPX::Category.all.select do |c|

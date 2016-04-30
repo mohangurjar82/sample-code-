@@ -17,7 +17,7 @@
                         <% if m.thumbnail_url.present? %>
                           <img alt="" src="<%= m.thumbnail_url %>">
                         <% else %>
-                          <img src="<%= asset_path('movie-placeholder.jpg') %>') %>">
+                          <img src="<%= asset_path('movie-placeholder.jpg') %>">
                         <% end %>
                         <figcaption class="cp-caption">
                           <a class="play-video" href="/categories/<%= m.number %>">Play</a>
@@ -97,7 +97,7 @@
                         <% if m.thumbnail_url.present? %>
                           <img alt="" src="<%= m.thumbnail_url %>">
                         <% else %>
-                          <img src="<%= asset_path('movie-placeholder.jpg') %>') %>">
+                          <img src="<%= asset_path('movie-placeholder.jpg') %>">
                         <% end %>
                         <figcaption class="cp-caption">
                           <a class="play-video" href="/media/<%= m.number %>">Play</a>

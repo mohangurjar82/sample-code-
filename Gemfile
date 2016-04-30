@@ -44,6 +44,8 @@ gem "administrate-field-image"
 
 gem 'carrierwave-aws'
 
+gem 'kaminari'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-sweetalert'
 end

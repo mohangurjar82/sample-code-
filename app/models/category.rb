@@ -7,4 +7,12 @@ class Category < ActiveRecord::Base
   has_many :categories
 
   mount_uploader :picture, PictureUploader, mount_on: :image
+
+  # mpx compatibility
+  def thumbnail_url
+    self_image = picture.present? ? picture_url : image_url
+    return self_image if self_image
+    medium = media.where('image IS NOT NULL').limit(0).first
+    medium.thumbnail_url
+  end
 end

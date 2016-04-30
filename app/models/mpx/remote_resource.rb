@@ -13,6 +13,11 @@ class MPX::RemoteResource
   end
 
   def self.find_by_number(number)
+    model = self::LOCAL.constantize rescue nil
+    if model
+      object = model.find_by(number: number)
+      return object if object.present?
+    end
     m = new(id: [self::ENDPOINT, number].join('/'))
     m.fetch && m
   end
