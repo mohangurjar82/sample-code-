@@ -35,12 +35,15 @@ jQuery(document).ready(function($) {
     /* Side Bar Menu Js
     ======================================================*/
     if ($('#cp_side-menu-btn, #cp-close-btn').length) {
-        $('#cp_side-menu-btn, #cp-close-btn').on('click', function(){
-            var $navigacia = $('body, #cp_side-menu'),
-            val = $navigacia.css('left') === '300px' ? '0px' : '300px';
-            $navigacia.animate({
-            left: val
-            }, 300)
+        $('#cp_side-menu-btn').on('click', function(){
+            $('body, #cp_side-menu').animate({
+              left: '300px'
+            }, 300);
+        });
+        $('#cp-close-btn').on('click', function(){
+            $('body, #cp_side-menu').animate({
+              left: '0px'
+            }, 300);
         });
     }
 	
