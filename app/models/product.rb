@@ -1,11 +1,14 @@
 class Product < ActiveRecord::Base
-  has_many :order_items
-  has_many :orders, through: :order_items
+  # has_many :order_items
+  # has_many :orders, through: :order_items
   has_many :product_items
+
+  has_many :media, through: :product_items, source: :item, source_type: Medium
+  has_many :categories, through: :product_items, source: :item, source_type: Category
   
   default_scope { where(available: true) }
   
-  accepts_nested_attributes_for :product_items
+  mount_uploader :picture, PictureUploader, mount_on: :image
   
   def price
     active_pricing_tier ? active_pricing_tier['amounts']['USD'].to_f : 0.0

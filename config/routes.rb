@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :media
     resources :categories
+    resources :products
     resources :users
     root to: "media#index"
   end

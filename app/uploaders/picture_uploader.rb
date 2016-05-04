@@ -53,7 +53,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   end
 
   def present?
-    model.image.sub("#{model.id}-", '').present?
+    model.image && model.image.sub("#{model.id}-", '').present?
   end
 
 end
