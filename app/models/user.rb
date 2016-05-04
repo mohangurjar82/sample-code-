@@ -4,9 +4,13 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable
 
-  has_many :orders
+  # has_many :orders
+
+  validates :name, :email, presence: true
+  validates_uniqueness_of :email
+  validate :confirmation_matches_password
   
   attr_accessor :promo_code
 
@@ -42,7 +46,15 @@ class User < ActiveRecord::Base
       return false unless code.match(User::PROMO_CODE_REGEXP)
       user = User.find_or_create_by(email: "#{code}@n2me.tv".downcase)
       user.password = code * 2
-      user.save && user
+      user.save(validate: false) && user
+    end
+  end
+
+  private
+
+  def confirmation_matches_password
+    unless self.password == password_confirmation
+      errors.add(:base, "Password confirmation doesn't match password")
     end
   end
 end
