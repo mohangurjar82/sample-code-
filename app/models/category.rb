@@ -17,6 +17,6 @@ class Category < ActiveRecord::Base
   end
 
   def self.root_categories
-    Category.where(category_id: nil)
+    Category.where(category_id: nil).select { |x| !(x.title =~ /books|games/i) }
   end
 end

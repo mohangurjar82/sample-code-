@@ -1,6 +1,7 @@
 <div class="container">
     <!--Outer Holder Start-->
     <% @categories.each do |cat| %>
+      <% next unless cat.media.any? %>
         <div class="cp-outer-holder cp-featured-video cp-comedy-video">
           <div class="row">
             <div class="col-md-12 cp-heading-outer">
