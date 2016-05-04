@@ -52,4 +52,8 @@ class PictureUploader < CarrierWave::Uploader::Base
     "#{model.id}-#{original_filename}" if original_filename
   end
 
+  def present?
+    model.image.sub("#{model.id}-", '').present?
+  end
+
 end

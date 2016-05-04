@@ -9,8 +9,8 @@
                 <!--Video Detail Outer Start-->
                 <div class="cp-video-detail-outer">
                   <div class="cp-video-outer2">
-                    <% if @media.file_url.nil? %>
-                      <%= @media.description.html_safe %>
+                    <% if @media.embedded_code.present? %>
+                      <%= @media.embedded_code.html_safe %>
                     <% else %>
                       <%= render 'media/player', media: @media %>
                     <% end %>

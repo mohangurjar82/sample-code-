@@ -15,4 +15,8 @@ class Category < ActiveRecord::Base
     medium = media.where('image IS NOT NULL').limit(0).first
     medium.thumbnail_url
   end
+
+  def self.root_categories
+    Category.where(category_id: nil)
+  end
 end

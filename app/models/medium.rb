@@ -16,7 +16,7 @@ class Medium < ActiveRecord::Base
   end
 
   def category_name
-    categories.first.title
+    categories.first.try(:title) || 'TV'
   end
 
   def thumbnails

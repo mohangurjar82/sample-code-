@@ -11,6 +11,7 @@
      <title>N2me</title>
      <%= stylesheet_link_tag 'new_layout', media: 'all' %>
      <%= content_for(:head) if content_for? :head %>
+     <%= javascript_include_tag(:new_layout) unless @skip_javascript %>
   </head>
   <body>
     <div id="wrapper">
@@ -24,7 +25,6 @@
         <%= render 'layouts/new/footer' %>
       </div>
     </div>
-    <%= javascript_include_tag(:new_layout) unless @skip_javascript %>
     <% if content_for? :javascript %>
       <%= content_for :javascript %>
     <% end %>
