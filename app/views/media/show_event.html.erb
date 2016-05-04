@@ -1,0 +1,46 @@
+<% content_for :head do %>
+  <script type="application/javascript" src="https://content.jwplatform.com/libraries/B2tmYadP.js"></script>
+<% end %>
+<div class="uk-panel media">
+  <h1>
+    <%= @media.title %>
+    <div class="uk-panel-badge uk-badge"><%= @media.category_name %></div>
+  </h1>
+  <% if @hasNextEvent %>
+    <h2>Upcoming Event</h2>
+    <div class="eventdetails uk-grid">
+      <div class="uk-width-1-3">
+        <h2><%= @nextEvent.title %></h2>
+        <%= @nextEvent.description %>
+      </div>
+      <div class="uk-width-1-3">
+        <%= @nextEvent.start_date %>
+        <div id="countdown"></div>
+      </div>
+      <div class="uk-width-1-3">
+        <button id="purchase">Purchase</button>
+      </div>
+    </div>
+  <% end %>
+  <div class="itemVideoEmbedded">
+    <div id='player-area'>
+      <% if @media.overlay.present? %>
+          <p align="center"><a href="<%= @media.overlay_link %>" target="_blank">
+          <img src="<%= @media.overlay %>" class="overlay">
+        </a></p>
+      <% end %>
+      <% if @media.file_url.nil? %>
+        <desc><%= @media.description.html_safe %></desc>
+      <% else %>
+        <% if @media.file_url.length > 0 %>
+          <%= render 'media/player', media: @media %>
+        <% else %>
+          <%= @media.description.html_safe %>
+        <% end %>
+      <% end %>
+    </div>
+    <% if @mobile %>
+      <a href="?flash">Switch to Flash player</a>
+    <% end %>
+  </div>
+</div>
