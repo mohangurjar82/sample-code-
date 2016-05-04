@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
   
+  layout 'new_layout'
+
   def index
     @categories = Category.root_categories
     render 'categories/index_new', layout: 'new_layout'
@@ -11,7 +13,7 @@ class CategoriesController < ApplicationController
     @awe = MPX::Media.find_by_number('147013915')
     @media = @category.media(page: params[:page]) 
     
-    render 'categories/show_new', layout: 'new_layout'
+    render 'categories/show_new'
   end
 
 end
