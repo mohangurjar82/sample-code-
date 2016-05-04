@@ -2,8 +2,3 @@
  *= require_tree ../music
  *= require_self
  */
-
- 
- .box {
-  height: 100vh;
- }
