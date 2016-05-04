@@ -17,7 +17,6 @@ class PricingPlanDashboard < Administrate::BaseDashboard
     trial_period_days: Field::Number,
     unique_key: Field::String,
     stripe_id: Field::String,
-    pricing_plan: Field::BelongsTo,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -30,7 +29,6 @@ class PricingPlanDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :id,
     :title,
-    :pricing_plan,
     :price,
     :products
   ].freeze
@@ -41,7 +39,6 @@ class PricingPlanDashboard < Administrate::BaseDashboard
     :id,
     :title,
     :price,
-    :pricing_plan,
     :interval,
     :interval_count,
     :trial_period_days,
@@ -59,8 +56,7 @@ class PricingPlanDashboard < Administrate::BaseDashboard
     :price,
     :interval,
     :interval_count,
-    :trial_period_days,
-    :pricing_plan
+    :trial_period_days
   ].freeze
 
   # Overwrite this method to customize how pricing plans are displayed

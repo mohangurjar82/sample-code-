@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resource :checkout, only: :create
   resources :orders, only: [:new, :create]
   resources :favorite_media, only: [:create, :destroy]
+  resources :subscriptions
   
   get 'music', to: 'categories#music', as: 'music'
   get 'search', to: 'search#index', as: 'search'

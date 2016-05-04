@@ -4,6 +4,8 @@ class Medium < ActiveRecord::Base
   has_many :media_categories, dependent: :destroy
   has_many :categories, through: :media_categories
 
+  belongs_to :pricing_plan
+
   mount_uploader :picture, PictureUploader, mount_on: :image
 
   # mpx compatibility

@@ -20,7 +20,7 @@ class MediumDashboard < Administrate::BaseDashboard
     extra_sources: Field::Text,
     language: Field::String,
     rating: Field::Number,
-    price: Field::Number,
+    pricing_plan: Field::BelongsTo,
     order: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -40,7 +40,6 @@ class MediumDashboard < Administrate::BaseDashboard
     :categories,
     :order,
     :rating,
-    :price,
     :created_at,
     :updated_at
   ].freeze
@@ -59,8 +58,8 @@ class MediumDashboard < Administrate::BaseDashboard
     :extra_sources,
     :language,
     :rating,
-    :price,
     :order,
+    :pricing_plan,
     :created_at,
     :updated_at,
   ].freeze
@@ -79,8 +78,8 @@ class MediumDashboard < Administrate::BaseDashboard
     :extra_sources,
     :language,
     :rating,
-    :price,
     :order,
+    :pricing_plan,
   ].freeze
 
   # Overwrite this method to customize how media are displayed
