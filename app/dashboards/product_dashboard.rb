@@ -18,7 +18,7 @@ class ProductDashboard < Administrate::BaseDashboard
     picture: ImageField,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    pricing_plan: Field::String.with_options(searchable: false),
+    pricing_plan: Field::BelongsTo,
     available: Field::Boolean,
   }.freeze
 
@@ -58,6 +58,7 @@ class ProductDashboard < Administrate::BaseDashboard
     :description,
     :media,
     :categories,
+    :pricing_plan,
     :picture,
     :available,
   ].freeze
