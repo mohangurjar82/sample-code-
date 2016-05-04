@@ -46,6 +46,8 @@ gem 'carrierwave-aws'
 
 gem 'kaminari'
 
+gem 'stripe'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-sweetalert'
 end

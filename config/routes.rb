@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :media
     resources :categories
     resources :products
+    resources :pricing_plans
     resources :users
     root to: "media#index"
   end
