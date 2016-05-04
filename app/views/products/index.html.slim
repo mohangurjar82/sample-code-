@@ -22,8 +22,8 @@
     .uk-width-7-10
       - @products.each_with_index do |p, i|
         .uk-grid.container2.inline
-          - if p.images.any?
-            .uk-width-2-10.product-image style="background: url(#{p.images.first})"
+          - if p.picture.present?
+            .uk-width-2-10.product-image style="background: url(#{p.picture_url})"
           - else
             .uk-width-2-10.product-image style="background: url(#{asset_path('product-placeholder.jpg')})"
           .uk-width-6-10
@@ -34,9 +34,9 @@
               input type="checkbox" value="1" ng-model="cart.products[#{p.id}].checked" ng-change="cart.update(#{p.id})" /
             p.price
               | $
-              = p.price
+              = p.pricing_plan.price / 100.0
               | /
-              = p.subscription_unit
+              = p.pricing_plan.interval
 
     .uk-width-3-10#subtotal
       .selected-listing.right data-uk-sticky="{top:95,getWidthFrom:'.selected-listing'}"
