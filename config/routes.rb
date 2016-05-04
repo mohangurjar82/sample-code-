@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :products
     resources :pricing_plans
     resources :users
+    resources :subscriptions
     root to: "media#index"
   end
 

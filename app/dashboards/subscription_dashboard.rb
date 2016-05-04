@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class ProductDashboard < Administrate::BaseDashboard
+class SubscriptionDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,18 +8,18 @@ class ProductDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    product_items: Field::HasMany,
+    user: Field::BelongsTo,
+    product: Field::BelongsTo,
+    subscription_items: Field::HasMany,
     media: Field::HasMany,
     categories: Field::HasMany,
     id: Field::Number,
-    mpxid: Field::String,
-    title: Field::String,
-    description: Field::Text,
-    picture: ImageField,
+    stripe_id: Field::String,
+    stripe_plan_id: Field::String,
+    price: Field::String,
+    billing_period: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    pricing_plan: Field::BelongsTo,
-    available: Field::Boolean,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -28,45 +28,39 @@ class ProductDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :id,
-    :title,
-    :description,
-    :picture,
+    :user,
+    :product,
     :media,
     :categories,
+    :price
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
     :id,
-    :title,
-    :description,
-    :picture,
+    :user,
+    :product,
     :media,
     :categories,
+    :stripe_id,
+    :stripe_plan_id,
     :created_at,
     :updated_at,
-    :available,
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :title,
-    :description,
-    :media,
-    :categories,
-    :pricing_plan,
-    :picture,
-    :available,
+    :user,
+    :product,
   ].freeze
 
-  # Overwrite this method to customize how products are displayed
+  # Overwrite this method to customize how subscriptions are displayed
   # across all pages of the admin dashboard.
   #
-  def display_resource(product)
-    "#{product.title} ID##{product.id}"
-  end
+  # def display_resource(subscription)
+  #   "Subscription ##{subscription.id}"
+  # end
 end
