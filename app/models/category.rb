@@ -12,8 +12,8 @@ class Category < ActiveRecord::Base
   def thumbnail_url
     self_image = picture.present? ? picture_url : image_url
     return self_image if self_image
-    medium = media.where('image IS NOT NULL').limit(0).first
-    medium.thumbnail_url
+    medium = media.where('image IS NOT NULL').limit(1).first
+    medium.try :thumbnail_url
   end
 
   def self.root_categories
