@@ -1,14 +1,14 @@
 <div class="uk-grid uk-margin-medium-top uk-margin-large-bottom" data-uk-grid-margin="">
-  <% @products.each do |product| %>
+  <% @subscriptions.each do |subs| %>
     <div class="col-md-3">
       <h4 class="heading_c uk-margin-small-bottom">
-        <%= product.title %>
+        <%= subs.title %>
       </h4>
       <span class="uk-text-small uk-text-muted">
       $
-      <%= product.price %>
+      <%= subs.pricing_plan.price / 100.0 %>
       /
-      <%= product.subscription_unit %>
+      <%= subs.pricing_plan.interval %>
       </span>
     </div>
   <% end %>
