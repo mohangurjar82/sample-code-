@@ -7,7 +7,17 @@
     <%= @media.title %>
     <div class="uk-panel-badge uk-badge"><%= @media.category_name %></div>
   </h1>
-  <% if @hasNextEvent %>
+  <% if @hasCurrentEvent %>
+  <div class="itemVideoEmbedded">
+    <div id='player-area'>
+          <%= render 'media/player_event', media: @media, event: @currentEvent %>
+    </div>
+    <% if @mobile %>
+      <a href="?flash">Switch to Flash player</a>
+    <% end %>
+  </div>
+  <% else %>
+    <% if @hasNextEvent %>
     <h2>Upcoming Event</h2>
     <div class="eventdetails uk-grid">
       <div class="uk-width-1-3">
@@ -81,4 +91,5 @@
       <a href="?flash">Switch to Flash player</a>
     <% end %>
   </div>
+  <% end %>
 </div>
