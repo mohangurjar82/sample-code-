@@ -1,5 +1,4 @@
 require 'thread/pool'
-require 'pry'
 namespace :mpx do
   desc 'Download games from MPX'
   task :download_games => :environment do
@@ -26,9 +25,9 @@ namespace :mpx do
         page += 1
   
         # process categories
-        #pool.process do
+        # pool.process do
           begin
-            ActiveRecord::Base.connection_pool.with_connection do
+            # ActiveRecord::Base.connection_pool.with_connection do
               media.each do |m|
                 if m.file_url.blank?
                   puts "skip empty game"
@@ -36,15 +35,15 @@ namespace :mpx do
                 end
                 download_game(m)
               end
-            end
+            # end
           rescue Exception => e
             error_raised = true
             error_message = e.message
             puts "!!!!!!!!!!!!!!! #{e.message}"
             p e.backtrace
           end
-        #end
-        #pool.wait(:idle)
+        # end
+        # pool.wait(:idle)
       end
       pool.shutdown
       if error_message.present?
@@ -56,8 +55,16 @@ namespace :mpx do
   end
 
   def download_game(m)
+    new_medium = Medium.find_by(number: m.number)
+    if new_medium.present? && m.attributes['media$categories'].present?
+      attach_categories(new_medium, m)
+    end
+
+    return if new_medium.present?
+
     new_medium = Medium.create(title: m.title, number: m.number, is_a_game: true,
                                embedded_code: m.file_url, description: m.description)
+
     if m.attributes['media$categories'].present?
       attach_categories(new_medium, m)
     end
