@@ -22,6 +22,11 @@ class MPX::RemoteResource
     m.fetch && m
   end
 
+  def self.mpx_find_by_number(number)
+    m = new(id: [self::ENDPOINT, number].join('/'))
+    m.fetch && m
+  end
+
   def initialize(params = {})
     self.attributes = OpenStruct.new(params)
   end

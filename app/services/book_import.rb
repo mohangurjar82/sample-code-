@@ -10,26 +10,33 @@ class BookImport
   def process
     books = Concurrent::Array.new(@doc.xpath('//Product'))
     books_count = books.count
-    pool = Thread.pool(5)
+    pool = Thread.pool(20)
     books_count.times do |n|
-      # pool.process do
-        puts "process book #{n}"
+      pool.process do
+        puts "process book #{n}"ç
         begin
-          import_book(books[n])
-          break if n > 9
+          ActiveRecord::Base.connection_pool.with_connection do
+            import_book(books[n])
+          end
+          break if n > 100
         rescue Exception => e
           puts "Exception with book #{n}!"
           puts e.class.to_s + ' ' + e.message
         end
-        
-      # end
+      end
+      pool.wait(:idle)
     end
-    pool.wait(:done)
+    pool.shutdown
 
     puts "#{books.size} books imported"
   end
 
   def import_book(book)
+    ebook = Ebook.new(parse_book_attributes(book))
+    if Ebook.find_by(title: ebook.title)
+      puts "Book already exists"
+      return
+    end
     # pdf file
     pdf_file_url = pdf_file(book)
     file_response = HTTParty.head(pdf_file_url)
@@ -37,7 +44,6 @@ class BookImport
       puts "Book has no pdf file"
       return
     end
-    ebook = Ebook.new(parse_book_attributes(book))
     ebook.save
     ebook.remote_file_url = pdf_file_url
 

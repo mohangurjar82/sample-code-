@@ -13,53 +13,19 @@
               <div class="col-md-9 col-lg-12">
                 <!--Video Detail Outer Start-->
                 <div class="cp-video-detail-outer">
-                  <div class="cp-video-outer2">
-                    <% if @media.embedded_code.present? %>
+                  <div class="cp-video-outer2" style="background:#fff">
+                    <div class="wrapper" style="display:inline-block;margin:0 auto;">
                       <%= @media.embedded_code.html_safe %>
-                    <% else %>
-                      <%= render 'media/player', media: @media %>
-                    <% end %>
+                    </div>
                   </div>
                   <div class="cp-text-holder">
                     <div class="cp-top">
                       <h4><%= @media.title %></h4>
-                      <span class="viewer"><a href="#">Video Settings  <i class="fa fa-gear"></i></a></span>
                     </div>
                     <div class="cp-watch-holer mb-0">
                       <ul class="cp-watch-listed">
                         <li>
-                          <% if in_favorites_list(@media, current_user) %>
-                            <a href="/favorite_media/<%= @media.number %>"
-                               id="remove-favorite"
-                               data-method="delete"
-                               data-sweet-alert-confirm="Remove from favorites?">
-                              <i class="fa fa-heart"></i>
-                              Remove from Favorites
-                            </a>
-                          <% else %>
-                            <a href="/favorite_media?media_number=<%= @media.number %>"
-                               id="add-favorite"
-                               data-method="post"
-                               data-sweet-alert-confirm="Add to favorites?">
-                              <i class="fa fa-heart"></i>
-                              Add to Favorites
-                            </a>
-                          <% end %>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <i class="fa fa-film"></i> Record
-                          </a>
-                        </li>                        
-                        <li class="dropdown">
-                           <button class="btn btn-default dropdown-toggle" type="button" id="cp-dropdown-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Language
-                          </button>
-                            <ul class="dropdown-menu" aria-labelledby="cp-dropdown-menu">
-                              <li><a href="#">English</a></li>
-                              <li><a href="#">Espanol</a></li>
-                              <li><a href="#">French</a></li>
-                            </ul>
+                          <%= @media.description %>
                         </li>
                       </ul>
                       <div class="cp-viewer-outer">
