@@ -7,7 +7,7 @@ class MediaController < ApplicationController
       render 'media/show_book'
     elsif @media.category_name =~ /Games/
       render 'media/show_game'
-    elsif @media.category_name =~ /Events/
+    elsif @media.category_name =~ /Eventsx/
       @results = Events.where("start_date > ? AND end_date < ? AND media_id = ?", Time.now, Time.now, @media.number)
       if @results.first.nil?
         @hasCurrentEvent = false
