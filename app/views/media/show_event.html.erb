@@ -35,9 +35,18 @@
         <button id="purchase">Purchase</button>
       </div>
     </div>
+
+    <form method="get" action="<%= new_subscription_path %>" id="purchaseform">
+    <input type="hidden" name="product_ids[]" value="<%= @nextEvent.product_id %>"/>
+    </form>
+
     <script>
 
     window.onload = function () {
+      $("#purchase").click(function () {
+        $("#purchaseform").submit();
+      });
+
       var current_date = new Date($("#current_date").text());
       var start_date = new Date($("#event_start").text());
 
