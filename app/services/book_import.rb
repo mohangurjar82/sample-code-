@@ -13,7 +13,7 @@ class BookImport
     pool = Thread.pool(20)
     books_count.times do |n|
       pool.process do
-        puts "process book #{n}"ç
+        puts "process book #{n}"
         begin
           ActiveRecord::Base.connection_pool.with_connection do
             import_book(books[n])
