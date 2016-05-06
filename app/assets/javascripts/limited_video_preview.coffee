@@ -1,5 +1,5 @@
 jQuery(document).ready ->
-  return if ('.is-guest-user').length == 0
+  return if $('.is-guest-user').length == 0
 
   setTimeout(
     ()->
