@@ -55,7 +55,7 @@
       var start_date = new Date($("#event_start").text());
 
       window.setInterval(function () {
-        var delta = start_date.valueOf() - current_date.valueOf() / 1000;
+        var delta = Math.abs(start_date.valueOf() - current_date.valueOf()) / 1000;
 
         // calculate (and subtract) whole days
         var days = Math.floor(delta / 86400);
