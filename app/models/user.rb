@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable
 
-  # has_many :orders
+  has_many :subscriptions
 
   validates :name, :email, presence: true
   validates_uniqueness_of :email
