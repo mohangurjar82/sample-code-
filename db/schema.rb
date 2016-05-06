@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506152335) do
+ActiveRecord::Schema.define(version: 20160506211707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,22 @@ ActiveRecord::Schema.define(version: 20160506152335) do
 
   add_index "categories", ["category_id"], name: "index_categories_on_category_id", using: :btree
   add_index "categories", ["number"], name: "index_categories_on_number", using: :btree
+
+  create_table "ebooks", force: :cascade do |t|
+    t.string   "image"
+    t.string   "file"
+    t.string   "author"
+    t.string   "title"
+    t.text     "description"
+    t.string   "ean"
+    t.string   "isbn"
+    t.integer  "number_of_pages"
+    t.date     "publication_date"
+    t.string   "publisher_name"
+    t.string   "record_reference"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "favorite_media", force: :cascade do |t|
     t.integer  "user_id"
