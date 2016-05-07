@@ -12,45 +12,41 @@ namespace :mpx do
     Category
     #
     pool = Thread.pool(10)
-    page = 1
     error_raised = false
     error_message = ''
     ["1468997596", "1469509618", "1468997598", "1468997599", "1469509617",
      "1468997600", "1468997602", "1468997601", "1422405926"].each do |cat_number|
       category = MPX::Category.mpx_find_by_number(cat_number)
-      loop do
-        puts "Loading page #{page} of category #{category.title}"
-        media = category.media(page: page)
-        break if media.empty? || error_raised
-        page += 1
-  
-        # process categories
-        # pool.process do
-          begin
-            # ActiveRecord::Base.connection_pool.with_connection do
-              media.each do |m|
-                if m.file_url.blank?
-                  puts "skip empty game"
-                  next
-                end
-                download_game(m)
-              end
-            # end
-          rescue Exception => e
-            error_raised = true
-            error_message = e.message
-            puts "!!!!!!!!!!!!!!! #{e.message}"
-            p e.backtrace
+      puts "Loading category #{category.title}"
+      media = category.media
+      begin
+        media.each do |m|
+          if m.file_url.blank?
+            puts "skip empty game"
+            next
           end
-        # end
-        # pool.wait(:idle)
+          pool.process do
+            ActiveRecord::Base.connection_pool.with_connection do
+              download_game(m)
+            end
+          end
+          pool.wait(:idle)
+        end
+      rescue Exception => e
+        error_raised = true
+        error_message = e.message
+        puts "!!!!!!!!!!!!!!! #{e.message}"
+        p e.backtrace
       end
-      pool.shutdown
-      if error_message.present?
-        puts "Failed #{error_message}"
-      else
-        puts "Job done, media downloaded."
-      end
+    end
+    sleep(3)
+    pool.wait(:done)
+    pool.shutdown
+    
+    if error_message.present?
+      puts "Failed #{error_message}"
+    else
+      puts "Job done, media downloaded."
     end
   end
 
