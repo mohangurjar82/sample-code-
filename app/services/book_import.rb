@@ -10,7 +10,7 @@ class BookImport
   def process
     books = Concurrent::Array.new(@doc.xpath('//Product'))
     books_count = books.count
-    pool = Thread.pool(20)
+    pool = Thread.pool(50)
     books_count.times do |n|
       pool.process do
         puts "process book #{n}"
@@ -18,7 +18,6 @@ class BookImport
           ActiveRecord::Base.connection_pool.with_connection do
             import_book(books[n])
           end
-          break if n > 100
         rescue Exception => e
           puts "Exception with book #{n}!"
           puts e.class.to_s + ' ' + e.message
