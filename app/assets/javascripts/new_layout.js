@@ -5,3 +5,4 @@
 //= require idle_redirect
 //= require sweetalert
 //= require sweet-alert-confirm
+//= require limited_video_preview

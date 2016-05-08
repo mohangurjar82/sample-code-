@@ -3,6 +3,8 @@ class Subscription < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :product
+  belongs_to :pricing_plan
+  
   has_many :subscription_items
   has_many :media, through: :subscription_items, source: :item, source_type: Medium
   has_many :categories, through: :subscription_items, source: :item, source_type: Category

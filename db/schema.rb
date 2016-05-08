@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504185654) do
+ActiveRecord::Schema.define(version: 20160506224836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,22 @@ ActiveRecord::Schema.define(version: 20160504185654) do
 
   add_index "categories", ["category_id"], name: "index_categories_on_category_id", using: :btree
   add_index "categories", ["number"], name: "index_categories_on_number", using: :btree
+
+  create_table "ebooks", force: :cascade do |t|
+    t.string   "image"
+    t.string   "file"
+    t.string   "author"
+    t.string   "title"
+    t.text     "description"
+    t.string   "ean"
+    t.string   "isbn"
+    t.integer  "number_of_pages"
+    t.date     "publication_date"
+    t.string   "publisher_name"
+    t.string   "record_reference"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "favorite_media", force: :cascade do |t|
     t.integer  "user_id"
@@ -55,10 +71,11 @@ ActiveRecord::Schema.define(version: 20160504185654) do
     t.text     "embedded_code"
     t.text     "text"
     t.text     "overlay_code"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "image"
     t.integer  "pricing_plan_id"
+    t.boolean  "is_a_game",       default: false
   end
 
   add_index "media", ["number"], name: "index_media_on_number", using: :btree
@@ -147,13 +164,13 @@ ActiveRecord::Schema.define(version: 20160504185654) do
 
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "price"
     t.string   "billing_period"
     t.string   "stripe_id"
     t.integer  "product_id"
     t.string   "stripe_plan_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "pricing_plan_id"
   end
 
   create_table "users", force: :cascade do |t|

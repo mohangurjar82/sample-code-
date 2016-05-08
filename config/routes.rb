@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:new, :create]
   resources :favorite_media, only: [:create, :destroy]
   resources :subscriptions
+  resources :ebooks
   
   get 'music', to: 'categories#music', as: 'music'
   get 'search', to: 'search#index', as: 'search'

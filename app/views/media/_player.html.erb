@@ -5,7 +5,7 @@
 <% else %>
   <div id="video-player<%= media.number %>"></div>
   <script type='text/javascript'>
-    jwplayer("video-player<%= media.number %>").setup({
+    window.player = jwplayer("video-player<%= media.number %>").setup({
         playlist: [{
         image: '<%= media.thumbnail_url %>',
         title: '<%= media.title %>',

@@ -1,5 +1,7 @@
 class MediaController < ApplicationController
   
+  layout 'new_layout'
+
   def show
     @mobile = params[:html5] || request.user_agent =~ /mobile/i
     @media = MPX::Media.find_by_number(params[:number])
@@ -25,7 +27,12 @@ class MediaController < ApplicationController
       render 'media/show_event'
     else
       current_user.push_media_to_history(@media.number) if current_user.present?
-      render 'media/new/show', layout: 'new_layout'
+      
+      if @media.is_a_game
+        render 'media/new/show_game'
+      else 
+        render 'media/new/show'
+      end
     end
   end
 end
