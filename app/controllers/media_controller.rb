@@ -15,7 +15,7 @@ class MediaController < ApplicationController
         @hasCurrentEvent = true
         @currentEvent = @results.first
       end
-      @results = Events.where("end_date > ? AND media_id = ?", Time.now, @media.number).order('start_date DESC').limit(1)
+      @results = Events.where("end_date > ? AND media_id = ?", Time.now, @media.number).order(:start_date).limit(1)
       if @results.first.nil?
         @hasNextEvent = false
       else
