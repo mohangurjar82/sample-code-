@@ -3641,6 +3641,14 @@ ul.cp-meta-post-list:last-child {
   font-weight: bold;
 }
 
+.centerme {
+	text-align: center;
+}
+
+.rightme {
+	text-align: right;
+}
+
 /*===========================================================================*/
 						/*Transition Css*/
 /*===========================================================================*/
