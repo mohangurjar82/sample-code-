@@ -77,7 +77,11 @@
 
         current_date.setSeconds(current_date.getSeconds() + 1);
 
-        if (current_date.valueOf() > start_date.valueOf()) document.location.href = document.location.href.split("?")[0] + "?t=" + current_date.valueOf();
+        if (current_date.valueOf() > start_date.valueOf()) {
+          window.setTimeout(function () {
+            document.location.href = document.location.href.split("?")[0] + "?t=" + current_date.valueOf();
+          }, 5000);
+        }
       }, 1000);
     };
 
