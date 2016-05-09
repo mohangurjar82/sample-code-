@@ -35,7 +35,7 @@
         <div id="current_date" style="display: none;"><%= Time.now.strftime("%m/%d/%Y %H:%M") %></div>
       </div>
       <div class="col-md-4 col-lg-4 rightme">
-        <div id="event_price">$<%= @nextEvent.price / 100.00 %></div>
+        <div id="event_price">$<%= '%.2f' % (@nextEvent.price / 100.0) %></div>
         <button id="purchase" style="color: #000;">Buy Now</button>
       </div>
     </div>
