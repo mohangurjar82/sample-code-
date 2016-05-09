@@ -3635,6 +3635,10 @@ ul.cp-meta-post-list:last-child {
 .cp-video-grid-listing .cp-caption strong {font-size:14px; font-weight:700; color:#99a3b1;}
 
 
+.eventdetails {
+  background-color: #f6ff0c;
+  color: #ff0006;
+}
 
 /*===========================================================================*/
 						/*Transition Css*/
