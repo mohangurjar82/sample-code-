@@ -963,7 +963,7 @@ figure figcaption {
 .cp_inner-banner {
 	float: left;
 	width: 100%;
-	background-color: #fff;
+	background-color: #191919;
 	box-shadow: 0 0 27px rgba(0,0,0,0.22);
 	padding: 38px 0;
 	text-align: center;
@@ -981,7 +981,7 @@ figure figcaption {
 	font-size: 36px;
 	font-weight: 300;
 	margin: 0 0 10px;
-	color: #050505;
+	color: #ccc;
 }
 .cp-inner-banner-holder h2 strong {
 	font-size: 48px;
