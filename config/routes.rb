@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :media
+    resources :games
     resources :categories
     resources :products
     resources :pricing_plans
