@@ -20,6 +20,7 @@ class CategoryDashboard < Administrate::BaseDashboard
     number: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    categories: Field::HasMany.with_options(label: "Roles")
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -58,6 +59,7 @@ class CategoryDashboard < Administrate::BaseDashboard
     :picture,
     :order,
     :category,
+    :categories,
     :image_url,
     :number,
   ].freeze
