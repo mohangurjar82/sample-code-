@@ -79,7 +79,7 @@
 
         if (current_date.valueOf() > start_date.valueOf()) {
           window.setTimeout(function () {
-            document.location.href = document.location.href.split("?")[0] + "?t=" + current_date.valueOf();
+            window.location.reload(true);
           }, 5000);
         }
       }, 1000);
