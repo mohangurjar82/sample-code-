@@ -24,7 +24,10 @@ class MediumDashboard < Administrate::BaseDashboard
     order: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    picture: ImageField
+    picture: ImageField,
+    is_a_game: Field::Boolean,
+    embedded_code: Field::Text,
+    overlay_code: Field::Text
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -76,10 +79,13 @@ class MediumDashboard < Administrate::BaseDashboard
     :image_url,
     :source_url,
     :extra_sources,
+    :embedded_code,
+    :overlay_code,
     :language,
     :rating,
     :order,
     :pricing_plan,
+    :is_a_game
   ].freeze
 
   # Overwrite this method to customize how media are displayed
