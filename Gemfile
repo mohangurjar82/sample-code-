@@ -48,6 +48,8 @@ gem 'kaminari'
 
 gem 'stripe'
 
+gem 'language_list'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-sweetalert'
 end

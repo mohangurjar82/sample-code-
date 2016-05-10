@@ -18,7 +18,7 @@ class MediumDashboard < Administrate::BaseDashboard
     image_url: Field::String,
     source_url: Field::String,
     extra_sources: Field::Text,
-    language: Field::String,
+    language: Field::Select.with_options(collection: ['English', 'Español', 'Français', 'Português', 'Deutsch', 'Russian']),
     rating: Field::Number,
     pricing_plan: Field::BelongsTo,
     order: Field::Number,
@@ -27,7 +27,9 @@ class MediumDashboard < Administrate::BaseDashboard
     picture: ImageField,
     is_a_game: Field::Boolean,
     embedded_code: Field::Text,
-    overlay_code: Field::Text
+    overlay_code: Field::Text,
+    media: Field::HasMany,
+    medium: Field::BelongsTo
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -39,7 +41,6 @@ class MediumDashboard < Administrate::BaseDashboard
     :id,
     :picture,
     :title,
-    :description,
     :categories,
     :order,
     :rating,
@@ -60,6 +61,8 @@ class MediumDashboard < Administrate::BaseDashboard
     :source_url,
     :extra_sources,
     :language,
+    :medium,
+    :media,
     :rating,
     :order,
     :pricing_plan,
@@ -82,6 +85,8 @@ class MediumDashboard < Administrate::BaseDashboard
     :embedded_code,
     :overlay_code,
     :language,
+    :medium,
+    :media,
     :rating,
     :order,
     :pricing_plan,

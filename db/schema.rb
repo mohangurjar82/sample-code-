@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506224836) do
+ActiveRecord::Schema.define(version: 20160510214619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20160506224836) do
     t.string   "image"
     t.integer  "pricing_plan_id"
     t.boolean  "is_a_game",       default: false
+    t.integer  "medium_id"
   end
 
   add_index "media", ["number"], name: "index_media_on_number", using: :btree
