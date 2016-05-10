@@ -3364,7 +3364,7 @@ ul.cp-meta-post-list:last-child {
 .cp-ft-nav li {
 	font-size: 14px;
 	font-weight: 900;
-	color: #1f1f1f;
+	color: #ccc;
 	line-height: 14px;
 	display: inline-block;
 	margin-right: 30px;
@@ -3374,7 +3374,7 @@ ul.cp-meta-post-list:last-child {
 }
 .cp-ft-nav li a {
 	display: inline-block;
-	color: #1f1f1f;
+	color: #ccc;
 }
 .cp-ft-nav2 li {
 	font-weight: 400;
