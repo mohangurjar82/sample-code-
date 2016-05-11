@@ -18,7 +18,7 @@ class MediumDashboard < Administrate::BaseDashboard
     image_url: Field::String,
     source_url: Field::String,
     extra_sources: Field::Text,
-    language: Field::Select.with_options(collection: ['English', 'Español', 'Français', 'Português', 'Deutsch', 'Russian']),
+    language: Field::Select.with_options(collection: ['English', 'Español', 'Español Latinamericano', 'Français', 'Português', 'Deutsch', 'Russian']),
     rating: Field::Number,
     pricing_plan: Field::BelongsTo,
     order: Field::Number,
