@@ -385,13 +385,15 @@ jQuery(document).ready(function($) {
     }
 
     $('#browselink').hover(function () {
-        var dropdown = $("#browsedropdown");
-        var offset = dropdown.offset();
-        console.log(offset.left + " + " + dropdown.width() + ": " + (offset.left + dropdown.width()));
-        if (offset.left + dropdown.width() > $(window).width()) {
-            var left = "-" + ((offset.left + dropdown.width()) - $(window).width());
-            dropdown.css("left", left + "px");
-        }
+        window.setTimeout(function () {
+            var dropdown = $("#browsedropdown");
+            var offset = dropdown.offset();
+            console.log(offset.left + " + " + dropdown.width() + ": " + (offset.left + dropdown.width()));
+            if (offset.left + dropdown.width() > $(window).width()) {
+                var left = "-" + ((offset.left + dropdown.width()) - $(window).width());
+                dropdown.css("left", left + "px");
+            }
+        }, 51);
     }, function () {
         $("#browsedropdown").css("left", "auto");
     });
