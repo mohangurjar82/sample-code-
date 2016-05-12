@@ -389,7 +389,7 @@ jQuery(document).ready(function($) {
         var offset = dropdown.offset();
         console.log(offset.left + " + " + dropdown.width() + ": " + (offset.left + dropdown.width()));
         if (offset.left + dropdown.width() > $(window).width()) {
-            dropdown.css("right", "0");
+            dropdown.css("left", $(window).width() - dropdown.width() + "px");
         }
     }, function () {
         $("#browsedropdown").css("right", "auto");
