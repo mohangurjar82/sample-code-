@@ -387,6 +387,7 @@ jQuery(document).ready(function($) {
     $('#browselink').hover(function () {
         var dropdown = $("#browsedropdown");
         var offset = dropdown.offset();
+        console.log(offset.left + " + " + dropdown.width() + ": " + (offset.left + dropdown.width()));
         if (offset.left + dropdown.width() > $(window).width()) {
             dropdown.css("right", "0");
         }
