@@ -393,9 +393,8 @@ jQuery(document).ready(function($) {
                 var left = "-" + ((offset.left + dropdown.width()) - $(window).width());
                 dropdown.css("left", left + "px");
             }
-        }, 551);
+        }, 751);
     }, function () {
-        $("#browsedropdown").css("left", "auto");
     });
 
     $('#watchlistlink').hover(function () {
@@ -407,9 +406,8 @@ jQuery(document).ready(function($) {
                 var left = "-" + ((offset.left + dropdown.width()) - $(window).width());
                 dropdown.css("left", left + "px");
             }
-        }, 551);
+        }, 751);
     }, function () {
-        $("#watchlistdropdown").css("left", "auto");
-    });
+   });
 
 });
