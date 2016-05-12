@@ -384,4 +384,14 @@ jQuery(document).ready(function($) {
         //infowindow.open(map);
     }
 
+    $('#browselink').hover(function () {
+        var dropdown = $("#browsedropdown");
+        var offset = dropdown.offset();
+        if (offset.left + dropdown.width() > $(window).width()) {
+            dropdown.css("right", "0");
+        }
+    }, function () {
+        $("#browsedropdown").css("right", "auto");
+    });
+
 });
