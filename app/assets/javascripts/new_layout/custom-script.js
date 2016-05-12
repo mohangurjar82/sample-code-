@@ -389,10 +389,11 @@ jQuery(document).ready(function($) {
         var offset = dropdown.offset();
         console.log(offset.left + " + " + dropdown.width() + ": " + (offset.left + dropdown.width()));
         if (offset.left + dropdown.width() > $(window).width()) {
-            dropdown.css("left", $(window).width() - dropdown.width() + "px");
+            var left = "-" + ((offset.left + dropdown.width()) - $(window).width());
+            dropdown.css("left", left + "px");
         }
     }, function () {
-        $("#browsedropdown").css("right", "auto");
+        $("#browsedropdown").css("left", "auto");
     });
 
 });
