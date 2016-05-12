@@ -110,9 +110,9 @@
                     </ul>
                   </li>
                   <li> <a href="/profile">My Subscription</a></li>
-                  <li> <a href="#">My Watch List</a>
+                  <li> <a href="#" id="watchlistlink">My Watch List</a>
                     <% if current_user.present? && current_user.recently_viewed_media.count > 0 %>
-                      <ul class="drop-down full-width col-4 hover-expand">
+                      <ul class="drop-down full-width col-4 hover-expand" id="watchlistdropdown">
                         <% current_user.recently_viewed_media[0..3].each do |m| %>
                           <li>
                             <div class="cp-video-item">
