@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class MediumDashboard < Administrate::BaseDashboard
+class GameDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -18,7 +18,7 @@ class MediumDashboard < Administrate::BaseDashboard
     image_url: Field::String,
     source_url: Field::String,
     extra_sources: Field::Text,
-    language: Field::Select.with_options(collection: ['English', 'Español', 'Español Latinamericano', 'Français', 'Português', 'Deutsch', 'Russian', 'Italiano']),
+    language: Field::String,
     rating: Field::Number,
     pricing_plan: Field::BelongsTo,
     order: Field::Number,
@@ -27,9 +27,7 @@ class MediumDashboard < Administrate::BaseDashboard
     picture: ImageField,
     is_a_game: Field::Boolean,
     embedded_code: Field::Text,
-    overlay_code: Field::Text,
-    media: Field::HasMany,
-    medium: Field::BelongsTo
+    overlay_code: Field::Text
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -41,6 +39,7 @@ class MediumDashboard < Administrate::BaseDashboard
     :id,
     :picture,
     :title,
+    :description,
     :categories,
     :order,
     :rating,
@@ -61,8 +60,6 @@ class MediumDashboard < Administrate::BaseDashboard
     :source_url,
     :extra_sources,
     :language,
-    :medium,
-    :media,
     :rating,
     :order,
     :pricing_plan,
@@ -85,8 +82,6 @@ class MediumDashboard < Administrate::BaseDashboard
     :embedded_code,
     :overlay_code,
     :language,
-    :medium,
-    :media,
     :rating,
     :order,
     :pricing_plan,

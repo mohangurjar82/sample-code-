@@ -21,3 +21,16 @@
 
 en:
   hello: "Hello world"
+
+en:
+  helpers:
+    label:
+      category:
+        title: "Category name"
+        category_id: "Parent category"
+      category_ids:
+        categories: "Sub categories"
+      medium:
+        medium_id: "Is a localized version of"
+      medium_ids:
+        media: 'Localized versions'

@@ -157,6 +157,7 @@ GEM
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    language_list (1.1.0)
     listen (3.0.5)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -341,6 +342,7 @@ DEPENDENCIES
   immutable-struct
   jquery-rails
   kaminari
+  language_list
   oj
   pg (~> 0.15)
   pry
