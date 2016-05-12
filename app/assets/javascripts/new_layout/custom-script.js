@@ -398,4 +398,18 @@ jQuery(document).ready(function($) {
         $("#browsedropdown").css("left", "auto");
     });
 
+    $('#watchlistlink').hover(function () {
+        window.setTimeout(function () {
+            var dropdown = $("#watchlistdropdown");
+            var offset = dropdown.offset();
+            console.log(offset.left + " + " + dropdown.width() + ": " + (offset.left + dropdown.width()));
+            if (offset.left + dropdown.width() > $(window).width()) {
+                var left = "-" + ((offset.left + dropdown.width()) - $(window).width());
+                dropdown.css("left", left + "px");
+            }
+        }, 551);
+    }, function () {
+        $("#watchlistdropdown").css("left", "auto");
+    });
+
 });
