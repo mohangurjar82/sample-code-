@@ -1,9 +1,8 @@
 
 <script>
-    var chat_name = <%= current_user.name %> ;
+    var chat_name = "<%= current_user.name %>" ;
     var chat_id = <%= current_user.id %>;
-    var chat_avatar = <%= image_tag current_user.avatar %>;
-    var chat_link = <%= link_to "Profile", profile_path(:id => current_user.id) %> ;
+    var chat_avatar = "<%= current_user.avatar %>";
 </script>
 
 <div id="cometchat_embed_synergy_container" style="width: 100%; height: 420px;max-width:100%;border:1px solid #CCCCCC;" ></div>
