@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'mechat/index'
+
   namespace :admin do
     resources :media
     resources :games
