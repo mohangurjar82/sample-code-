@@ -1,6 +1,6 @@
 <script>
-    var chat_name = 'LOGGEDIN_USERS_NAME';
-    var chat_id = 'LOGGEDIN_USERS_UNIQUE_ID';
+    var chat_name = <%= current_user.name %> ;
+    var chat_id = <%= current_user.id %>;
     var chat_avatar = 'LOGGEDIN_PROFILE_IMAGE';
     var chat_link = 'LOGGEDIN_USERS_PROFILE_LINK';
 </script>
