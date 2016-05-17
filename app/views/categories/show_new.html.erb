@@ -1,4 +1,5 @@
 <% is_game = @category.title.match("Games") ||(@category.category && @category.category.title.match("Games")) ? true : false %>
+
 <div class="container">
   <!--Featured Video Block 2-->
   <% if @category.categories.count > 0 %>
