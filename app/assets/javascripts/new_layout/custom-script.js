@@ -298,14 +298,14 @@ jQuery(document).ready(function($) {
             items:4,
             autoplay: false,
             smartSpeed:1500,
-            margin:30,
+            margin:10,
             responsiveClass:true,
             responsive:{
                 0:{
-                    items:1,
+                    items:2,
                 },
                 768:{
-                    items:2,
+                    items:3,
                 },
                 1199:{
                     items:4,
