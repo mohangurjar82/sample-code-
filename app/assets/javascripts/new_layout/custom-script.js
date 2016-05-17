@@ -249,7 +249,7 @@ jQuery(document).ready(function($) {
             navText:'',
             items:4,
             autoplay: false,
-      
+
             margin:10,
             responsiveClass:true,
             responsive:{

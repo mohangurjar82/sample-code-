@@ -1,8 +1,12 @@
 
 <script>
-    var chat_name = "<%= current_user.name %>" ;
-    var chat_id = <%= current_user.id %>;
-    var chat_avatar = "<%= current_user.avatar %>";
+  <% if current_user.name.present? %>
+  var chat_name = "<%= current_user.name %>" ;
+  <% else %>
+  var chat_name = "Promo User" ;
+  <%end %>
+  var chat_id = <%= current_user.id %>;
+  var chat_avatar = "<%= current_user.avatar  %>";
 </script>
 
 <div id="cometchat_embed_synergy_container" style="width: 100%; height: 420px;max-width:100%;border:1px solid #CCCCCC;" ></div>
