@@ -69,11 +69,11 @@
                       <figure class="cp-thumb">
                         <% m = m.becomes(Game) if is_game %>
                         <% if m.thumbnail_url.present? %>
-                              <% if @category.title.match("Movies") %>
-                                <img alt="" src="<%= m.thumbnail_url %>" class="makemetaller">
-                              <% else %>
-                          <img alt="" src="<%= m.thumbnail_url %>">
-                              <% end %>
+                          <% if @category.title.match("Movies") %>
+                            <img alt="" src="<%= m.thumbnail_url %>" class="makemetaller">
+                          <% else %>
+                            <img alt="" src="<%= m.thumbnail_url %>">
+                          <% end %>
                         <% else %>
                           <img src="<%= asset_path('movie-placeholder.jpg') %>') %>">
                         <% end %>
