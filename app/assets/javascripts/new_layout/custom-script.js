@@ -249,7 +249,7 @@ jQuery(document).ready(function($) {
             navText:'',
             items:4,
             autoplay: false,
-            smartSpeed:1500,
+      
             margin:10,
             responsiveClass:true,
             responsive:{
@@ -297,7 +297,7 @@ jQuery(document).ready(function($) {
             navText:'',
             items:4,
             autoplay: false,
-            smartSpeed:1500,
+
             margin:10,
             responsiveClass:true,
             responsive:{
