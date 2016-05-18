@@ -59,7 +59,11 @@
                 <div class="cp-video-item">
                   <figure class="cp-thumb">
                     <% if m.thumbnail_url.present? %>
+                          <% if @category.title.match("Movies") %>
+                            <img alt="" src="<%= m.thumbnail_url %>" class="makemetaller">
+                          <% else %>
                       <img alt="" src="<%= m.thumbnail_url %>">
+                          <% end %>
                     <% else %>
                       <img src="<%= asset_path('movie-placeholder.jpg') %>') %>">
                     <% end %>
@@ -97,12 +101,17 @@
                   <div class="single-category-block">
                       <figure class="cp-thumb">
                         <% if m.thumbnail_url.present? %>
+                          <% if @category.title.match("Movies") %>
+                            <img alt="" src="<%= m.thumbnail_url %>" class="makemetaller">
+                          <% else %>
                           <img alt="" src="<%= m.thumbnail_url %>">
+                          <% end %>
                         <% else %>
                           <img src="<%= asset_path('movie-placeholder.jpg') %>">
                         <% end %>
                         <figcaption class="cp-caption">
                           <a class="play-video" href="/media/<%= m.number %>">Play</a>
+                        <% if !m.category_name.match("Events") %>
                           <div class="cp-text">
                               <h4><%= m.title %></h4>
                             <!--Add features later<ul class="cp-meta-list">
@@ -111,6 +120,7 @@
                                 </li>
                             </ul>-->
                             </div>
+                            <% end %>
                         </figcaption>
                       </figure>
                   </div>

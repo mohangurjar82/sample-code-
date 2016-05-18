@@ -249,15 +249,15 @@ jQuery(document).ready(function($) {
             navText:'',
             items:4,
             autoplay: false,
-            smartSpeed:1500,
-            margin:30,
+      
+            margin:10,
             responsiveClass:true,
             responsive:{
                 0:{
-                    items:1,
+                    items:2,
                 },
                 768:{
-                    items:2,
+                    items:3,
                 },
                 1199:{
                     items:4,
@@ -268,6 +268,27 @@ jQuery(document).ready(function($) {
 
     /* Owl Slider For videos list
     ======================================================*/
+
+    $('.owl-carousel').owlCarousel({
+        loop:true,
+        margin:10,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1,
+                nav:true
+            },
+            600:{
+                items:3,
+                nav:false
+            },
+            1000:{
+                items:5,
+                nav:true,
+                loop:false
+            }
+        }
+    })
     if ($('.videos-list').length) {
         $('.videos-list').owlCarousel({
             loop:true,
@@ -276,15 +297,15 @@ jQuery(document).ready(function($) {
             navText:'',
             items:4,
             autoplay: false,
-            smartSpeed:1500,
-            margin:30,
+
+            margin:10,
             responsiveClass:true,
             responsive:{
                 0:{
-                    items:1,
+                    items:2,
                 },
                 768:{
-                    items:2,
+                    items:3,
                 },
                 1199:{
                     items:4,
@@ -383,5 +404,31 @@ jQuery(document).ready(function($) {
         //});
         //infowindow.open(map);
     }
+
+    $('#browselink').hover(function () {
+        window.setTimeout(function () {
+            var dropdown = $("#browsedropdown");
+            var offset = dropdown.offset();
+            console.log(offset.left + " + " + dropdown.width() + ": " + (offset.left + dropdown.width()));
+            if (offset.left + dropdown.width() > $(window).width()) {
+                var left = "-" + ((offset.left + dropdown.width()) - $(window).width());
+                dropdown.css("left", left + "px");
+            }
+        }, 751);
+    }, function () {
+    });
+
+    $('#watchlistlink').hover(function () {
+        window.setTimeout(function () {
+            var dropdown = $("#watchlistdropdown");
+            var offset = dropdown.offset();
+            console.log(offset.left + " + " + dropdown.width() + ": " + (offset.left + dropdown.width()));
+            if (offset.left + dropdown.width() > $(window).width()) {
+                var left = "-" + ((offset.left + dropdown.width()) - $(window).width());
+                dropdown.css("left", left + "px");
+            }
+        }, 751);
+    }, function () {
+   });
 
 });

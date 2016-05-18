@@ -759,6 +759,7 @@ figure figcaption {
 	text-align: center;
 	margin: 0 auto;
 }
+
 .owl-carousel {
 	float: left;
 	width: 100%;
@@ -3649,6 +3650,12 @@ ul.cp-meta-post-list:last-child {
 	text-align: right;
 }
 
+.makemetaller {
+	min-height: auto !important;
+	max-height: none !important;
+	height: auto !important;
+}
+
 /*===========================================================================*/
 						/*Transition Css*/
 /*===========================================================================*/
@@ -3677,3 +3684,8 @@ ul.cp-meta-post-list:last-child {
 /*===========================================================================*/
 						/*Wrapper Css End*/
 /*===========================================================================*/
+
+
+.cp-copyright-section .container {
+	background: initial;
+}
