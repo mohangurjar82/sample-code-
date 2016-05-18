@@ -3697,3 +3697,36 @@ ul.cp-meta-post-list:last-child {
 .cp-copyright-section .container {
 	background: initial;
 }
+
+/*===========================================================================*/
+/* Mobile slider*/
+/*===========================================================================*/
+
+@media(max-width: 992px) {
+    .cloned {
+        display: none;
+    }
+}
+
+@media(max-width: 767px) {
+    .cloned,
+    .item .cp-video-item .cp-text {
+        display: none;
+    }
+
+    .cp-thumb:hover:before {
+        display: none;
+        visibility: hidden;
+    }
+}
+
+.owl-carousel .owl-item img {
+    max-width: 200px;
+    margin: 0 auto;
+    min-height: 207px;
+    max-height: 207px;
+}
+
+.cp-thumb {
+    background: #000;
+}
