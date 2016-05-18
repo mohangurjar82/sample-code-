@@ -3728,7 +3728,6 @@ visibility: hidden;
 
     .cp-video-item:hover .play-video, .cp-thumb:hover .play-video {
         display: none;
-        visibility: hidden;
     }
 }
 
