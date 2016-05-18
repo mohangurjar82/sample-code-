@@ -3702,40 +3702,19 @@ ul.cp-meta-post-list:last-child {
 /* Mobile slider*/
 /*===========================================================================*/
 
-@media(max-width: 992px) {
-    .cloned {
+@media(max-width: 767px){
+    .item .cp-video-item .cp-text{
         display: none;
     }
-}
-
-@media(max-width: 768px) {
-    .cloned,
-    .item .cp-video-item .cp-text {
-        display: none;
-    }
-    .cp-md-banner-item:hover img {
+    .cp-thumb:hover:before{
         display: none;
         visibility: hidden;
-    }
-    .cp_banner-slider2 .cp-md-banner-item:hover img {
-     display: none;
-visibility: hidden;
-    }
-    .cp-thumb:hover:before {
-        display: none;
-        visibility: hidden;
-    }
-
-    .cp-video-item:hover .play-video, .cp-thumb:hover .play-video {
-        display: none;
     }
 }
 
 .owl-carousel .owl-item img {
     max-width: 200px;
     margin: 0 auto;
-    min-height: 207px;
-    max-height: 207px;
 }
 
 .cp-thumb {
