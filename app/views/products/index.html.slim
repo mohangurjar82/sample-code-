@@ -1,148 +1,163 @@
-- content_for :head do
-  = stylesheet_link_tag('products/style.css')
-  = stylesheet_link_tag('application')
+<% content_for :head do %>
+  <%= stylesheet_link_tag('products/style') %>
+  <%= stylesheet_link_tag('application') %>
+<% end %>
+<div class="cp_inner-banner">
+  <div class="container">
+    <div class="cp-inner-banner-holder">
+      <h2>Cart: <strong>Choose a Package</strong></h2>
+      <!--Breadcrumb Start-->
+      <ul class="breadcrumb">
+        <li><span><a href="#">Buy Indiviudal Channels starting @ $0.99</a></span></li>
 
-.products.col-sm-10.col-sm-offset-1 ng-controller="cartController as cart"
-  .hero
-    .uk-width-7-10.footmain
-      .uk-grid
-        .uk-width-2-10.promo-img
-          img.center-block.img-responsive.footdivimg alt="" src="/products-demo/8i65B8AXT.png" /
-        .uk-width-8-10.footdiv
-          p.footpmost N2me.tv
-          p.lorempmost
-            | Stop Suffering through hundreds of channels just to find nothing on TV. Start enjoying the best of live TV without the overpriced Cable Company. 
-            span 
-              | With N2ME, there is no installation and no crazy fees. Monthly &amp; A La Carte plans starting at just 99 cents.
+      </ul><!--Breadcrumb End-->
+    </div>
+  </div>
+</div>
+<!--Main Content Start-->
+<div id="cp-main-content">
+  <section class="cp-section">
+    <div class="container"> 
+      <section class="cart">
+        <div class="container"> 
+          <div class="row"> 
+            <div class="col-md-8">
+              <% @products.each_with_index do |p, i| %>
+                <div class="cart-item">
+                  <div class="item-image-container">
+                    <% if p.picture.present? %>
+                      <%= image_tag(p.picture_url, class: "img-responsive", alt: "")%>
+                    <% else %>
+                      <%= image_tag("product-placeholder.jpg", class: "img-responsive", alt: "")%>
+                    <% end %>
+                  </div>
+                  <div>&nbsp;</div> 
+                  <div class="item-details">
+                    <h5><%= p.title %></h5> 
+                    <p>
+                      <%= p.pricing_plan.price %><%= p.pricing_plan.interval %>
+                    </p>
+                    <a href="#" class="item-action remove-from-cart"><i class="ion-ios-trash-outline"></i>See full Channel Lineup</a>
+                    <a href="#" class="item-action remove-from-cart"><i class="ion-ios-trash-outline"></i> Remove</a>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <div class="col-md-4"> 
+              <div class="cart_totals">
+                <h5>Your Order</h5> 
+                <table cellspacing="0">
+                  <tbody>
+                    <tr class="cart-subtotal">
+                      <th>2 Items</th>
+                      <td><span class="amount">$131</span></td>
+                    </tr>
+                    <tr class="shipping">
+                      <th>Delivery</th>
+                      <td><span>$7.99</span></td>
+                    </tr>
+                    <tr class="cart-returns">
+                      <th>Returns</th>
+                      <td><span class="amount">Free for 90 days</span></td>
+                    </tr> 
+                    <tr class="order-total">
+                      <th>Total</th>
+                      <td><strong><span class="amount">$138.99</span></strong> </td>
+                    </tr>
+                  </tbody>
+                </table> 
+              </div>
+              <a href="#" class="btn btn-primary btn-md btn-appear btn-cart-checkout"><span>Place Your Order <i class="ion-ios-arrow-forward"></i></span></a> 
+              <p class="bold">Free 7 Day Trial!</p>
+              <p class="small-print">By clicking 'Place your order', you agree to the <a href="#" class="highlight">Terms &amp;<br>Conditions</a></p>
 
-  .clearfix style="margin-top: 40px"
+            </div>
+          </div> 
+        </div>
+      </section> 
+    </div>
+  </section>
+</div>
 
-  .uk-grid
-    .uk-width-7-10
-      - @products.each_with_index do |p, i|
-        .uk-grid.container2.inline
-          - if p.picture.present?
-            .uk-width-2-10.product-image style="background: url(#{p.picture_url})"
-          - else
-            .uk-width-2-10.product-image style="background: url(#{asset_path('product-placeholder.jpg')})"
-          .uk-width-6-10
-            p.extra= p.title
-            p.inline2= p.description
-          .uk-width-2-10.uk-text-center
-            p
-              input type="checkbox" value="1" ng-model="cart.products[#{p.id}].checked" ng-change="cart.update(#{p.id})" /
-            p.price
-              | $
-              = p.pricing_plan.price / 100.0
-              | /
-              = p.pricing_plan.interval
+<style type="text/css">
+  body, section {
+    background-color: #f0f2f1;
+    color: #ccc;
+  }
+  .cp_inner-banner {
+    background-color: #fff;
+    box-shadow: 0 0 27px rgba(0, 0, 0, 0.22);
+    float: left;
+    padding: 38px 0;
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+  .cp-inner-banner-holder h2 {
+    color: #111;
+    font-size: 34px;
+    font-weight: 100;
+    margin: 0 0 10px;
+  }
+  .cp-inner-banner-holder h2 strong {
+    color: #111;
+    font-size: 42px;
+    margin: 0;
+  }
+  .pd-tb60 {
+    padding: 0 !important;
+  }
 
-    .uk-width-3-10#subtotal
-      .selected-listing.right data-uk-sticky="{top:95,getWidthFrom:'.selected-listing'}"
-        .uk-grid.row1.rightrow1
-          .uk-width-1-1
-            .uk-grid
-              .uk-width-7-10
-                p.rightcontainer1.subtotal Subtotal
-              .uk-width-3-10
-                p.rightcontainer1 ${{cart.subtotal | number:2}}
-        
-        .uk-grid.rightrow1
-          .uk-width-1-1
-            div.listing ng-repeat="product in cart.selected_products"
-              p.rightcontainer1.title
-                span ng-bind="product.title"
-                span.right-price
-                  | ${{ product.price | number:2 }}
-              p.rightconatiner1-1.desc ng-bind="product.description"
-              .clearfix
-        
-            form action=new_subscription_path method='GET'
-              = hidden_field_tag 'product_ids[]', '', 'ng-repeat' => 'id in cart.product_ids', 'ng-value' => 'id'
-              button.btn.btn-warning.button1 type="submit" ng-disabled='cart.product_ids.length === 0'
-                | proceed to checkout
-                span.uk-icon-chevron-right aria-hidden="true" 
-        .uk-grid.rightrow1
-          .uk-width-1-1
-            p.newpara
-              | 100% risk Free
-              br
-              | 7 Days Free Trial
-        .uk-grid.rightrow1
-          .uk-width-1-1
-            p.rightcontainer1 Questions?
-            p.price2 Call Us 855-957-8732
-            button.uk-button.button2 type="button" 
-              i.uk-icon-comment
-              | Chat Now
-  .uk-accordion data-uk-accordion="{showfirst: false}"
-    .uk-grid.uk-accordion-title.uk-width-7-10
-      .uk-width-1-1.uk-text-center
-        p.click 
-          | Want more? Check out our new stuff:  
-          a href="#" id="liksss"
-            | Add more Channels
-            span.uk-icon-ok-sign
-    .uk-grid.a-la-cart-product.uk-accordion-content
-      .uk-width-7-10
-        h2 A la Cart Channels
-      .uk-width-7-10
-        - @additional_products.in_groups_of(4).each do |group|
-          .uk-grid
-            - group.compact.each do |p|
-              .uk-width-1-4
-                - if p.picture.present?
-                  .product-image style="background: url(#{p.picture_url})"
-                - else
-                  .product-image style="background: url(#{asset_path('product-placeholder.jpg')})"
-                .uk-grid
-                  .uk-width-7-10.title-desc
-                    p= p.title
-                    - if p.description.present?
-                      p= p.description
-                  .uk-width-3-10.price-cont
-                    .price
-                      p.price-label= "$#{p.pricing_plan.price / 100.0}"
-                      span
-                        span Buy
-                        input type="checkbox" value="1" ng-model="cart.products['a#{p.id}'].checked" ng-change="cart.update('a#{p.id}')"
+  .cart_totals {
+    background-color: #191a1c;
+    border-radius: 4px;
+    margin-top: 20px;
+    padding: 30px 40px 24px;
+    text-align: center;
+  }
 
+  .cart table tr, .cart_totals table tr {
+    font-size: 12px;
+    line-height: 3.6;
+  }
 
-   
+  .cart_totals table td {
+    padding-right: 0;
+    text-align: right;
+  }
 
-- content_for :javascript do
-  = javascript_include_tag :application
-  script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"
+  .cart table, .cart_totals table {
+    color: #fff;
+  }
 
-  javascript:
-    var cartApp = angular.module('cartApp', []);
+  .cart table, .cart_totals table {
+    color: #fff;
+    width: 100%;
+  }
 
-    angular.element(document).ready(function() {
-      angular.bootstrap(document, ['cartApp']);
-    });
+  table {
+    background-color: transparent;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
 
-    cartApp.controller('cartController', function() {
-      this.products = #{@json_products.to_json.html_safe};
-      window.products = this.products;
-      this.subtotal = 0;
-      this.product_ids = [];
-      this.selected_products = [];
-      
-      this.update = function(id) {
-        var index = this.product_ids.indexOf(id);
-        console.log(id);
-        console.log(this.products[id]);
-
-        if (index == -1){
-          this.product_ids.push(id)
-          this.selected_products.push(this.products[id])
-        } else {
-          this.product_ids.splice(index, 1)
-          this.selected_products.splice(index, 1)
-        }
-        this.subtotal = 0;
-        for(i in this.selected_products) {
-          this.subtotal += this.selected_products[i].price
-        }
-      }
-    });
+  .btn-cart-checkout {
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    margin-left: 0;
+    margin-top: 5px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    width: 100%;
+  }
+  body p {
+    color: #ccc;
+    font-family: "Roboto",sans-serif;
+    font-size: 12px;
+    line-height: 22px;
+    margin: 0;
+  }
+</style>
