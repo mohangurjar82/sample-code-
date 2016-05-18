@@ -3721,6 +3721,7 @@ ul.cp-meta-post-list:last-child {
 
     .cp-video-item:hover .play-video, .cp-thumb:hover .play-video {
         display: none;
+        visibility: hidden;
     }
     .cp-video-item .play-video, .cp-thumb .cp-caption .play-video {
     display: none;
