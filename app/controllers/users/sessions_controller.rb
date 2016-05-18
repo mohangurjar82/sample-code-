@@ -6,6 +6,10 @@ class Users::SessionsController < Devise::SessionsController
       user = User::Promo.find_or_create_by_code(params[:user][:promo_code])
       if user.present?
         sign_in(user, bypass: true)
+        if params[:user][:promo_code].present?
+          user.promo = params[:user][:promo_code]
+          user.save
+        end
         redirect_to categories_path and return
       end
     end
