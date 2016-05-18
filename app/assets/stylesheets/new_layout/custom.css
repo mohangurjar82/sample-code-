@@ -3712,7 +3712,6 @@ ul.cp-meta-post-list:last-child {
     }
     .cp-thumb:hover img{
         display: none;
-        visibility: hidden;
     }
 }
 
