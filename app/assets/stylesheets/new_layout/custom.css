@@ -3710,6 +3710,10 @@ ul.cp-meta-post-list:last-child {
         display: none;
         visibility: hidden;
     }
+    .cp-thumb:hover img{
+        display: none;
+        visibility: hidden;
+    }
 }
 
 .owl-carousel .owl-item img {
