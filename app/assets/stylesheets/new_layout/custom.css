@@ -3713,7 +3713,14 @@ ul.cp-meta-post-list:last-child {
     .item .cp-video-item .cp-text {
         display: none;
     }
-
+    .cp-md-banner-item:hover img {
+        display: none;
+        visibility: hidden;
+    }
+    .cp_banner-slider2 .cp-md-banner-item:hover img {
+     display: none;
+visibility: hidden;
+    }
     .cp-thumb:hover:before {
         display: none;
         visibility: hidden;
@@ -3723,10 +3730,6 @@ ul.cp-meta-post-list:last-child {
         display: none;
         visibility: hidden;
     }
-    .cp-video-item .play-video, .cp-thumb .cp-caption .play-video {
-    display: none;
-    visibility: hidden;
-}
 }
 
 .owl-carousel .owl-item img {
