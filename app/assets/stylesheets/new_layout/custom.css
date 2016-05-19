@@ -3702,6 +3702,12 @@ ul.cp-meta-post-list:last-child {
 
 @media(max-width: 768px) {
     .cloned,
+     .cp-video-item .play-video, .cp-thumb .cp-caption .play-video {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
     .item .cp-video-item .cp-text {
         display: none;
     }
