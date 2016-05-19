@@ -3127,15 +3127,7 @@ ul.cp-meta-post-list:last-child {
 	-moz-transition: all 1s ease-in-out;
 	transition: all 1s ease-in-out;
 }
-.cp-thumb > img {
-    max-height: 200px;
-    min-height: 200px;
-}
 
-.cp-ins-item img {
-    max-height: 200px;
-    min-height: 200px;
-}
 @-webkit-keyframes scale {
  0% {
    -webkit-transform: scale(1.5);
