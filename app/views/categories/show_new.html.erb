@@ -20,7 +20,7 @@
                           <img src="<%= asset_path('movie-placeholder.jpg') %>">
                         <% end %>
                         <figcaption class="cp-caption">
-                          <a class="play-video" href="/categories/<%= m.number %>">Play</a>
+                          <a class="play-video" href="/categories/<%= m.number %>">View <%= @category.title %> Category</a>
 
                         </figcaption>
                       </figure>
@@ -45,7 +45,7 @@
                 <% end %>
 
 
-                <% unless cat.media.first.try(:is_a_game) %> Channels <% end %></h2>
+
               <ul class="cp-listed">
                   <li class="view-all"><a href="/categories/<%= cat.number %>">View All:</a>
                   </li>
