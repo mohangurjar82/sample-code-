@@ -3694,22 +3694,36 @@ ul.cp-meta-post-list:last-child {
 /* Mobile slider*/
 /*===========================================================================*/
 
-@media(max-width: 768px){
-    .item .cp-video-item .cp-text{
+@media(max-width: 992px) {
+    .cloned {
         display: none;
     }
-    .cp-thumb:hover:before{
+}
+
+@media(max-width: 767px) {
+    .cloned,
+    .item .cp-video-item .cp-text {
+        display: none;
+    }
+
+    .cp-thumb:hover:before {
         display: none;
         visibility: hidden;
     }
-    .cp-thumb:hover img{
-        display: none;
+    .cp-thumb:hover img {
+        -moz-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        -o-transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
     }
 }
 
 .owl-carousel .owl-item img {
     max-width: 200px;
     margin: 0 auto;
+    min-height: 207px;
+    max-height: 207px;
 }
 
 .cp-thumb {
