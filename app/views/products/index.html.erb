@@ -52,17 +52,9 @@
                     <th>2 Items</th>
                     <td><span class="amount">$131</span></td>
                   </tr>
-                  <tr class="shipping">
-                    <th>Delivery</th>
-                    <td><span>$7.99</span></td>
-                  </tr>
-                  <tr class="cart-returns">
-                    <th>Returns</th>
-                    <td><span class="amount">Free for 90 days</span></td>
-                  </tr>
                   <tr class="order-total">
                     <th>Total</th>
-                    <td><strong><span class="amount">$138.99</span></strong> </td>
+                    <td><strong><span class="amount"><%= {{cart.subtotal | number:2} &></span></strong> </td>
                   </tr>
                   </tbody>
                 </table>
