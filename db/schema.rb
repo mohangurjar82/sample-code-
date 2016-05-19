@@ -191,7 +191,6 @@ ActiveRecord::Schema.define(version: 20160510214619) do
     t.string   "mpx_user_id"
     t.json     "billing_address"
     t.string   "name"
-    t.string   "promo_code"
     t.text     "recently_viewed_media_ids", default: [],              array: true
   end
 
