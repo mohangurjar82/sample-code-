@@ -3700,7 +3700,7 @@ ul.cp-meta-post-list:last-child {
     }
 }
 
-@media(max-width: 767px) {
+@media(max-width: 768px) {
     .cloned,
     .item .cp-video-item .cp-text {
         display: none;
