@@ -26,7 +26,7 @@ namespace :mpx do
             next
           end
           pool.process do
-            ActiveRecord::Base.connection_pool.with_connection do
+             ActiveRecord::Base.connection_pool.with_connection do
               download_game(m)
             end
           end
@@ -55,18 +55,23 @@ namespace :mpx do
     if new_medium.present? && m.attributes['media$categories'].present?
       attach_categories(new_medium, m)
     end
+    
+    if new_medium.present?
+      puts "Game already exists"
+      return
+    end
 
-    return if new_medium.present?
-
-    new_medium = Medium.create(title: m.title, number: m.number, is_a_game: true,
+    new_medium = Game.create(title: m.title, number: m.number, is_a_game: true,
                                embedded_code: m.file_url, description: m.description)
 
     if m.attributes['media$categories'].present?
       attach_categories(new_medium, m)
     end
 
+
     if m.thumbnail_url.present?
       begin
+        new_medium.save
         new_medium.picture.download! m.thumbnail_url
         new_medium.picture.store!
         new_medium.save
@@ -74,7 +79,7 @@ namespace :mpx do
         puts "Cannot download thumbnail, #{e.message}"
       end
     end
-
+    
     new_medium.save
     puts "Game saved: #{new_medium.title}"
     new_medium

@@ -8,8 +8,6 @@ class Medium < ActiveRecord::Base
 
   mount_uploader :picture, PictureUploader, mount_on: :image
 
-# default_scope -> { where(is_a_game: false) }
-
   validates :title, presence: true
   validate :has_or_belongs_to_language_group
 
