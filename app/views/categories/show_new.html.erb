@@ -37,8 +37,15 @@
           <div class="row">
             <div class="col-md-12 cp-heading-outer">
               <h2>
-                <%= cat.title %>
-                <% unless cat.media.first.try(:is_a_game) %> Videos <% end %></h2>
+                <%= cat.title %> <% if @category.title.match("Movies") %>
+                    Movies
+                <% else %>
+                    Channels
+                    <% unless cat.media.first.try(:is_a_game) %> Channels <% end %></h2>
+                <% end %>
+
+
+                <% unless cat.media.first.try(:is_a_game) %> Channels <% end %></h2>
               <ul class="cp-listed">
                   <li class="view-all"><a href="/categories/<%= cat.number %>">View All:</a>
                   </li>
