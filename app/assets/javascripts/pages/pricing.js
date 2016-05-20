@@ -30,6 +30,16 @@ Cart.prototype.bindEvents = function () {
     }
     return false;
   })
+  $(window).unbind("scroll").scroll(function (e) {
+    var top = $(window).scrollTop()
+    if ( top <= 250){
+      top = 0;
+    }else{
+      top = top - 250;
+    }
+
+    $('.cart-items').css({top: top+"px"})
+  })
 }
 
 Cart.prototype.addItem = function (productId, productDetails) {
