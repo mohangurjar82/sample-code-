@@ -1,0 +1,133 @@
+body {
+  section {
+    background-color: #f0f2f1;
+    color: #ccc;
+  }
+  p {
+    color: #797777;
+    font-family: "Roboto",sans-serif;
+    font-size: 12px;
+    line-height: 22px;
+    margin: 0;
+  }
+  .cp_inner-banner {
+      background-color: #fff;
+      box-shadow: 0 0 27px rgba(0, 0, 0, 0.22);
+      float: left;
+      padding: 38px 0;
+      position: relative;
+      text-align: center;
+      width: 100%;
+  }
+  .pd-tb60 {
+    padding: 0 !important;
+  }
+  .cp_inner-banner {
+    background-color: #fff;
+    box-shadow: 0 0 27px rgba(0, 0, 0, 0.22);
+    float: left;
+    padding: 38px 0;
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+  .cp-inner-banner-holder h2 {
+    color: #111;
+    font-size: 34px;
+    font-weight: 100;
+    margin: 0 0 10px;
+  }
+  .cp-inner-banner-holder h2 strong {
+    color: #111;
+    font-size: 42px;
+    margin: 0;
+  }
+  .pricing{
+    .cart-item{
+      border-bottom: 3px solid #FB8C29;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+    }
+    .cart-item.product .item-details{
+      margin-top: 65px;
+    }
+    .cart-item .item-details h2{
+      font-weight: bold;
+      color: #050505;
+      margin-bottom: 10px;
+    }
+    .cart-item .item-details .description{
+      color: #252726;
+    }
+    .cart-item .item-details .price{
+      color: #F37728;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+    .buttons{
+      float: right;
+      margin-top: 15px;
+      input{
+        display: inline;
+        margin-left: 20px;
+        cursor: pointer;
+      }
+      .btn-subcribe{
+        i{
+          margin-right: 5px;
+        }
+      }
+    }
+    .cart table tr, .cart_totals table tr {
+      font-size: 12px;
+      line-height: 3.6;
+    }
+
+    .cart_totals {
+      background-color: #191a1c;
+      border-radius: 4px;
+      margin-top: 20px;
+      padding: 30px 40px 24px;
+      text-align: center;
+    }
+
+    .cart table tr, .cart_totals table tr {
+      font-size: 12px;
+      line-height: 3.6;
+    }
+
+    .cart_totals table td {
+      padding-right: 0;
+      text-align: right;
+    }
+
+    .cart table, .cart_totals table {
+      color: #fff;
+    }
+
+    .cart table, .cart_totals table {
+      color: #fff;
+      width: 100%;
+    }
+
+    table {
+      background-color: transparent;
+    }
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    .btn-cart-checkout {
+      font-size: 14px;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      margin-left: 0;
+      margin-top: 5px;
+      padding-bottom: 20px;
+      padding-top: 20px;
+      width: 100%;
+    }
+  }
+}

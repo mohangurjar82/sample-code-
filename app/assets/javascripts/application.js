@@ -19,4 +19,4 @@
 //= require init
 //= require style_switcher
 //= require idle_redirect
-
+//= require pages/pricing
