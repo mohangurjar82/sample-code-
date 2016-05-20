@@ -43,6 +43,9 @@ body {
     margin: 0;
   }
   .pricing{
+    .cart-items{
+      z-index: 1;
+    }
     .cart-item.product{
       border-bottom: 3px solid #FB8C29;
       padding-bottom: 15px;
