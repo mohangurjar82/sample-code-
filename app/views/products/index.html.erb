@@ -23,24 +23,24 @@
           <div class="row">
             <div class="col-md-8">
               <% @products.each_with_index do |p, i| %>
-                  <div class="cart-item">
-                    <div class="item-image-container">
-                      <% if p.picture.present? %>
-                          <%= image_tag(p.picture_url, class: "img-responsive", alt: "")%>
-                      <% else %>
-                          <%= image_tag("product-placeholder.jpg", class: "img-responsive", alt: "")%>
-                      <% end %>
-                    </div>
-                    <div>&nbsp;</div>
-                    <div class="item-details">
-                      <h5><%= p.title %></h5>
-                      <p>
-                        <%= p.pricing_plan.price %><%= p.pricing_plan.interval %>
-                      </p>
-                      <a href="#" class="item-action remove-from-cart"><i class="ion-ios-trash-outline"></i>See full Channel Lineup</a>
-                      <a href="#" class="item-action remove-from-cart"><i class="ion-ios-trash-outline"></i> Remove</a>
-                    </div>
+                <div class="cart-item">
+                  <div class="item-image-container col-md-4">
+                    <% if p.picture.present? %>
+                        <%= image_tag(p.picture_url, class: "img-responsive", alt: "")%>
+                    <% else %>
+                        <%= image_tag("product-placeholder.jpg", class: "img-responsive", alt: "")%>
+                    <% end %>
                   </div>
+                  <div class="item-details col-md-8">
+                    <h2><%= p.title %></h2>
+                    <div class="description"> <%= p.description %></div>
+                    <div class='price'>
+                      <%= p.pricing_plan.price.to_f/100 %> / <%= p.pricing_plan.interval.titlecase %>
+                    </div>
+                    <a href="#" class="item-action">See full Channel Lineup</a>
+                  </div>
+                  <div class="clear"></div>
+                </div>
               <% end %>
             </div>
             <div class="col-md-4">
@@ -77,6 +77,32 @@
   body, section {
     background-color: #f0f2f1;
     color: #ccc;
+  }
+  .cart-item{
+    border-bottom: 3px solid #FB8C29;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+  .cart-item .item-details{
+    margin-top: 65px;
+  }
+  .cart-item .item-details h2{
+    font-weight: bold;
+    color: #050505;
+    margin-bottom: 10px;
+  }
+  .cart-item .item-details .description{
+    color: #252726;
+  }
+  .cart-item .item-details .price{
+    color: #F37728;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+  .cart table tr, .cart_totals table tr {
+    font-size: 12px;
+    line-height: 3.6;
   }
   .cp_inner-banner {
     background-color: #fff;
