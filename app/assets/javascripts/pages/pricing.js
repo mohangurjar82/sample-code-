@@ -10,7 +10,6 @@ Cart.prototype.bindEvents = function () {
   $('.pricing input.checkbox').click(function(){
     var flag = $(this).is(':checked')
     var productId = $(this).data('product')
-    console.log(flag)
     if(flag){
       self.items[productId] = self.products[productId]
       self.addItem(productId, self.items[productId])
@@ -44,16 +43,16 @@ Cart.prototype.addItem = function (productId, productDetails) {
   html += '</tr>'
   var subTotalEl = $('.cart-items .cart-total')
   $(html).insertBefore(subTotalEl)
-  subTotalEl.find('.amount').text('$' + this.subTotal())
+  subTotalEl.find('.amount').text('$' + this.subTotal().toFixed(2))
 }
 
 Cart.prototype.deleteItem = function(productId){
   $('.cart-items .cart-item-' +productId).remove()
-  $('.cart-itemss .cart-total .amount').text('$' + this.subTotal())
+  $('.cart-items .cart-total .amount').text('$' + this.subTotal())
 };
 
 Cart.prototype.subTotal = function(){
-  var subTotal = 0
+  var subTotal = 0.00
   $.each(this.items, function(productId, details){
     subTotal = subTotal + details.price
   })
