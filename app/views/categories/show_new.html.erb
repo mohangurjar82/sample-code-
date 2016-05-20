@@ -39,7 +39,9 @@
               <h2>
                 <%= cat.title %> <% if @category.title.match("Movies") %>
                     Movies
-                <% else %>
+                <% else if @category.title.match("Games") %>
+                 Games
+                    <% else %>
                     Channels
                 <% end %></h2>
 
