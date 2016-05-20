@@ -36,7 +36,8 @@
         <div class="cp-outer-holder cp-featured-video cp-comedy-video">
           <div class="row">
             <div class="col-md-12 cp-heading-outer">
-              <h2> <%= cat.title %> <%= (@category.match("Games") || @category.match("Movies") || "Channels").to_s if @category %> </h2>
+
+              <h2> <%= cat.title %> <%= (@category.title.match("Games") || @category.title.match("Movies") || "Channels").to_s if @category %> </h2>
 
 
 
