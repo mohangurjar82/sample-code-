@@ -42,25 +42,35 @@
                         = "#{p.price} / #{p.pricing_plan.interval.titlecase}"
                       a.item-action href="#"  See full Channel Lineup
                     .clear
-                / - @additional_products.each_with_index do |p, i|
-                /   .cart-item.medium
-                /     .item-image-container.col-md-4
-                /       - if p.picture.present?
-                /         = image_tag(p.thumbnail_url, class: "img-responsive", alt: "")
-                /       - else
-                /         = image_tag("product-placeholder.jpg", class: "img-responsive", alt: "")
-                /     .item-details.col-md-8
-                /       h2= p.title
-                /       .description= p.description
-                /       .buttons
-                /         a.btn.btn-danger.btn-subcribe
-                /           i.fa.fa-caret-square-o-right aria-hidden="true" 
-                /           | Subcribe
-                /         input.checkbox name="product_a#{p.id}" type="checkbox" value="1" data-product="a#{p.id}"
-                /       .price
-                /         = "#{p.price} / #{p.pricing_plan.interval.titlecase}"
-                /       a.item-action href="#"  See full Channel Lineup
-                /     .clear
+                #accordion.panel-group aria-multiselectable="true" role="tablist" 
+                  .panel.panel-default
+                    #headingTwo.panel-heading role="tab" 
+                      h4.panel-title.text-center.collapsed aria-controls="collapseTwo" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#collapseTwo" role="button" 
+                        | Want more? Check out our new stuff:  
+                        a href="#"
+                          | Add more Channels
+                    #collapseTwo.panel-collapse.collapse aria-labelledby="headingTwo" role="tabpanel" 
+                      .panel-body
+                        - @additional_products.in_groups_of(4).each do |group|
+                          .row.items
+                            - group.compact.each do |p|
+                              .cart-item.medium.col-md-3
+                                .item-image-container
+                                  - if p.picture.present?
+                                    = image_tag(p.thumbnail_url, class: "img-responsive", alt: "")
+                                  - else
+                                    = image_tag("product-placeholder.jpg", class: "img-responsive", alt: "")
+                                .item-details
+                                  h5= p.title
+                                  .description= p.description
+                                  .buttons
+                                    a.btn.btn-danger.btn-subcribe title="Subcribe"
+                                      i.fa.fa-caret-square-o-right aria-hidden="true" 
+                                    input.checkbox name="product_a#{p.id}" type="checkbox" value="1" data-product="a#{p.id}"
+
+                                  .price
+                                    = "#{p.price} / #{p.pricing_plan.interval.titlecase}"
+                                .clear
               .col-md-4.cart-items
                 .cart_totals
                   h5 Your Order
