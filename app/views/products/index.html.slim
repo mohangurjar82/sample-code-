@@ -97,5 +97,7 @@
   = javascript_include_tag :application
 
   javascript:
-    cart = new Cart()
-    cart.products = #{@json_products.to_json.html_safe};
+    cart = new Cart({
+      products: #{@json_products.to_json.html_safe},
+      userAgent: #{request.variant.first.to_json.html_safe}
+    })

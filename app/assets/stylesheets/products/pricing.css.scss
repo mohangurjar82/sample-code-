@@ -180,3 +180,23 @@ body {
     }
   }
 }
+
+@media (max-width: 993px){
+  body .pricing {
+    .cart-item.product{
+      .item-details{
+        margin-top:10px;
+      }  
+    } 
+  }  
+}
+
+@media (max-width: 992){
+  body .pricing {
+    .cart-item.product{
+      .item-details{
+        margin-top:10px;
+      }  
+    } 
+  } 
+}
