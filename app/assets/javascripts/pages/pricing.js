@@ -12,13 +12,16 @@ Cart.prototype.bindEvents = function () {
     var flag = $(this).is(':checked')
     var productId = $(this).data('product')
     if(flag){
-      self.items[productId] = self.products[productId]
-      self.addItem(productId, self.items[productId])
+      if (typeof(self.items[productId]) === 'undefined'){
+        self.items[productId] = self.products[productId]
+        self.addItem(productId, self.items[productId])
+      }
     }else{
       delete self.items[productId]
       self.deleteItem(productId)
     }
   })
+
   $('.cart-items .btn-cart-checkout').click(function(){
     if(!$.isEmptyObject(self.items)){
       var productIds = []
@@ -31,6 +34,14 @@ Cart.prototype.bindEvents = function () {
     }
     return false;
   })
+
+  $('.cart-item .btn-subcribe').click(function(){
+    var input = $(this).parents('.buttons').find('input.checkbox');
+    if(!input.is(':checked')){
+      input.click()
+    }
+  })
+
   if(self.userAgent === 'desktop'){
     $(window).unbind("scroll").scroll(function (e) {
       var top = $(window).scrollTop()
