@@ -241,8 +241,8 @@ jQuery(document).ready(function($) {
 
     /* Owl Slider For categories list
     ======================================================*/
-    if ($('.categories-list').length) {
-        $('.categories-list').owlCarousel({
+    if ($('.categories-list:not(.medium)').length) {
+        $('.categories-list:not(.medium)').owlCarousel({
             loop:true,
             dots: false,
             nav:true,

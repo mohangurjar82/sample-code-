@@ -14,3 +14,16 @@
     margin: 0 auto;
   }
 }
+.medium .single-category-block{
+  margin-bottom: 20px;
+  padding-right: 0px;
+  .cp-thumb{
+    border:1px solid #eaeaea;
+    height: 207px;
+    padding-left: 30px;
+    padding-right: 30px;
+    img{
+      height: 100%;
+    }
+  }
+}

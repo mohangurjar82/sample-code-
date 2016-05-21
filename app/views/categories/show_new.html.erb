@@ -39,8 +39,6 @@
 
               <h2> <%= cat.title %> <%= (@category.title.match("Games") || @category.title.match("Movies") || "Channels").to_s if @category %> </h2>
 
-
-
               <ul class="cp-listed">
                   <li class="view-all"><a href="/categories/<%= cat.number %>">View All:</a>
                   </li>
@@ -80,14 +78,14 @@
           <div class="row">
               <div class="col-md-12 cp-heading-outer">
                   <h2>All <%= @category.title %></h2>
-                  <ul class="cp-listed">
+                  <!-- <ul class="cp-listed">
                       <li class="view-all"><a href="#">View All:</a>
                       </li>
-                  </ul>
+                  </ul> -->
               </div>
-              <div class="col-md-12 featured-blocks categories-list">
+              <div class="col-md-12 featured-blocks categories-list <%= 'medium' if @category.categories.count == 0 %>">
                 <% @media.each do |m| %>
-                  <div class="single-category-block">
+                  <div class="single-category-block <%= 'col-md-3' if @category.categories.count == 0 %>">
                       <figure class="cp-thumb">
                         <% if m.thumbnail_url.present? %>
                           <% if @category.title.match("Movies") %>
