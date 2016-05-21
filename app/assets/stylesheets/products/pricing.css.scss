@@ -186,8 +186,15 @@ body {
     .cart-item.product{
       .item-details{
         margin-top:10px;
+        max-width: 500px;
       }  
-    } 
+    }
+    .cart-item.medium{
+      .item-details{
+        max-width: 200px;
+        margin-bottom: 10px;
+      }  
+    }
   }  
 }
 
