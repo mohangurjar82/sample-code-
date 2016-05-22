@@ -49,7 +49,7 @@
   }
 }
 
-@media (max-width: 960px){
+@media (max-width: 400px){
   .uk-slider{ 
       li .cp-thumb{
       width: 97%;
@@ -57,28 +57,12 @@
   }
   .categories-list{
     figure{
-      height: 180px;
+      height: 140px;
     }
   }
   .videos-list{
     figure{
-      border: 1px solid #eaeaea;
-      height: 230px;   
-    }
-  }
-}
-
-@media (max-width: 480px){
-
-  .categories-list{
-    figure{
-      height: 180px;
-    }
-  }
-  .videos-list{
-    figure{
-      border: 1px solid #eaeaea;
-      height: 220px;   
+      height: 220px;
     }
   }
 }
