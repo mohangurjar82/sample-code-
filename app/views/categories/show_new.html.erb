@@ -3,7 +3,7 @@
     <% if @category.categories.count > 0 %>
       <div class="cp-featured-block m60 cp-comedy-video">
           <div class="row">
-              <div class="col-md-12 cp-heading-outer">
+              <div class="cp-heading-outer col-md-12">
                   <h2><%= @category.title %> Categories</h2>
                   <ul class="cp-listed">
                       <li class="view-all"><a href="#">View All</a>
@@ -11,7 +11,7 @@
                   </ul>
               </div>
             </div>
-              <div class="col-md-12 featured-blocks categories-list">
+              <div class="featured-blocks categories-list">
                 <div class="uk-slidenav-position" data-uk-slider>
                   <div class="uk-slider-container">
                     <ul class="uk-slider uk-grid-width-medium-1-<%= slide_item_number %>">
@@ -39,7 +39,6 @@
                 </div>
               </div>
           </div>
-      </div>
     <% end %>
     <!--Featured Video Block 2 End-->
     <!--Outer Holder Start-->
