@@ -1,6 +1,6 @@
 .categories-list{
   figure{
-    height: 207px;
+    height: 150px;
   }
 }
 .videos-list{
@@ -10,7 +10,7 @@
   }
 }
 
-.videos-list li.left{
+.videos-list li.left, .categories-list li.left{
   float: left;
   margin-bottom: 15px;
   padding-right: 10px;
@@ -70,7 +70,7 @@
   }
   .categories-list{
     figure{
-      height: 140px;
+      height: 130px;
     }
   }
   .videos-list{

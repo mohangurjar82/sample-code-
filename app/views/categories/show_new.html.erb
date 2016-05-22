@@ -1,3 +1,4 @@
+<% is_game = @category.title.match("Games") ||(@category.category && @category.category.title.match("Games")) ? true : false %>
 <div class="container">
     <!--Featured Video Block 2-->
     <% if @category.categories.count > 0 %>
@@ -19,7 +20,7 @@
                         <li>
                           <div class="single-category-block">
                               <figure class="cp-thumb">
-                                <% m = m.becomes(Game) if @category.title.match("Games") %>
+                                <% m = m.becomes(Game) if is_game %>
                                 <% if m.thumbnail_url.present? %>
                                   <img alt="" src="<%= m.thumbnail_url %>">
                                 <% else %>
@@ -56,7 +57,7 @@
               </ul>
             </div>
           </div>
-          <div class="videos-list">
+          <div class="<%= is_game ? 'categories-list' : 'videos-list' %>">
             <div class="uk-slidenav-position" data-uk-slider>
               <div class="uk-slider-container">
                 <ul class="uk-slider uk-grid-width-medium-1-<%= slide_item_number %>">
@@ -66,7 +67,7 @@
                         <!-- Video Item Start-->
                         <div class="cp-video-item">
                           <figure class="cp-thumb">
-                            <% m = m.becomes(Game) if @category.title.match("Games") %>
+                            <% m = m.becomes(Game) if is_game %>
                             <% if m.thumbnail_url.present? %>
                                   <% if @category.title.match("Movies") %>
                                     <img alt="" src="<%= m.thumbnail_url %>" class="makemetaller">

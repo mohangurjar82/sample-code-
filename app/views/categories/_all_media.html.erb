@@ -3,7 +3,8 @@
       <div class="col-md-12 cp-heading-outer">
         <h2>All <%= @category.title %></h2>
       </div>
-      <div class="col-md-12 featured-blocks videos-list medium">
+      <% is_game = @category.title.match("Games") ||(@category.category && @category.category.title.match("Games")) ? true : false %>
+      <div class="col-md-12 featured-blocks <%= is_game ? 'categories-list' : 'videos-list' %> medium">
         <% @media.in_groups_of(slide_item_number).each do |group|%>
         <ul class="uk-grid-width-medium-1-<%= slide_item_number %>">
         <% group.each do |m| %>
@@ -11,7 +12,7 @@
             <li class="left">
               <div class="single-category-block">
                   <figure class="cp-thumb">
-                    <% m = m.becomes(Game) if @category.title.match("Games") ||(@category.category && @category.category.title.match("Games")) %>
+                    <% m = m.becomes(Game) if is_game  %>
                     <% if m.thumbnail_url.present? %>
                       <% if @category.title.match("Movies") %>
                         <img alt="" src="<%= m.thumbnail_url %>" class="makemetaller">

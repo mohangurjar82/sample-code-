@@ -1,3 +1,4 @@
+<% is_game = @category.title.match("Games") ||(@category.category && @category.category.title.match("Games")) ? true : false %>
 <div class="cp-featured-block m60 cp-comedy-video">
       <div class="row">
         <div class="col-md-12 cp-heading-outer">
@@ -8,7 +9,7 @@
           </ul>
         </div>
       </div>
-        <div class="featured-blocks videos-list">
+        <div class="featured-blocks <%= is_game ? 'categories-list' : 'videos-list' %>">
           <div class="uk-slidenav-position" data-uk-slider>
             <div class="uk-slider-container">
               <ul class="uk-slider uk-grid-width-medium-1-<%= slide_item_number %>">
@@ -16,7 +17,7 @@
                   <li>
                     <div class="cp-video-item">
                         <figure class="cp-thumb">
-                          <% m = m.becomes(Game) if @category.title.match("Games") %>
+                          <% m = m.becomes(Game) if is_game %>
                           <% if m.thumbnail_url.present? %>
                             <% if @category.title.match("Movies") %>
                               <img alt="" src="<%= m.thumbnail_url %>" class="makemetaller">
