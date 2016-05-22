@@ -11,6 +11,7 @@
             <li class="left">
               <div class="single-category-block">
                   <figure class="cp-thumb">
+                    <% m = m.becomes(Game) if @category.title.match("Games") ||(@category.category && @category.category.title.match("Games")) %>
                     <% if m.thumbnail_url.present? %>
                       <% if @category.title.match("Movies") %>
                         <img alt="" src="<%= m.thumbnail_url %>" class="makemetaller">
