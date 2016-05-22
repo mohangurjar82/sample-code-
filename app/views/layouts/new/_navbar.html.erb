@@ -166,24 +166,25 @@
   <!--Navigation End-->
 </header>
 <!--Header End-->
+<%= content_for :javascript do %>
+  <script type="text/javascript">
+    /* Side Bar Menu Js
+     ======================================================*/
+    $(document).ready(function(){
+      if($('#cp_side-menu-btn, #cp-close-btn').length) {
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-  /* Side Bar Menu Js
-   ======================================================*/
-  $(document).ready(function(){
-    if($('#cp_side-menu-btn, #cp-close-btn').length) {
+        $(document).on('click', '#cp_side-menu-btn',  function(){
 
-      $(document).on('click', '#cp_side-menu-btn',  function(){
-
-        $('body, #cp_side-menu').animate({
-          left: '300px'
-        }, 300);
-      });
-      $(document).on('click', '#cp-close-btn', function(){
-        $('body, #cp_side-menu').animate({
-          left: '0px'
-        }, 300);
-      });
-    }
-  })
+          $('body, #cp_side-menu').animate({
+            left: '300px'
+          }, 300);
+        });
+        $(document).on('click', '#cp-close-btn', function(){
+          $('body, #cp_side-menu').animate({
+            left: '0px'
+          }, 300);
+        });
+      }
+    })
+  </script>
+<% end %>

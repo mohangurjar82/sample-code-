@@ -11,7 +11,7 @@ jQuery(document).ready(function($) {
     $('.pretty-gallery a[rel^=\'prettyPhoto\']').prettyPhoto();
 
     //STICKY HEADER
-    if($('.cp_header').length){
+    if($('.cp_header').length && $('#cp-main-content').length){
       // grab the initial top offset of the navigation
       var stickyNavTop = $('#cp-main-content').offset().top;
       // our function that decides weather the navigation bar should have "fixed" css position or not.
