@@ -3736,3 +3736,29 @@ ul.cp-meta-post-list:last-child {
 .cp-thumb {
     background: #000;
 }
+
+#my.css
+
+.carousel-control.right, .carousel-control.left {
+    background:none;
+    margin-top: 45%;
+}
+
+.mobile-navbar{
+    position:relative;
+    z-index:1000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

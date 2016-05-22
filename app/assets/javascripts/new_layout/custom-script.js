@@ -432,3 +432,22 @@ jQuery(document).ready(function($) {
    });
 
 });
+
+/* Side Bar Menu Js
+ ======================================================*/
+$(document).ready(function(){
+    if($('#cp_side-menu-btn, #cp-close-btn').length) {
+
+        $(document).on('click', '#cp_side-menu-btn',  function(){
+
+            $('body, #cp_side-menu').animate({
+                left: '300px'
+            }, 300);
+        });
+        $(document).on('click', '#cp-close-btn', function(){
+            $('body, #cp_side-menu').animate({
+                left: '0px'
+            }, 300);
+        });
+    }
+})
