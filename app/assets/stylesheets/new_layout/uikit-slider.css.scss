@@ -10,6 +10,11 @@
   }
 }
 
+.videos-list li.left{
+  float: left;
+  margin-bottom: 15px;
+  padding-right: 10px;
+}
 .uk-slider{ 
   li{
     overflow: hidden;
@@ -46,6 +51,14 @@
 .uk-grid-width-medium-1-2{
   li{
     width: 50%;
+  }
+}
+
+@media (max-width: 960px){
+  .videos-list{
+    figure{
+      height: 250px;
+    }
   }
 }
 

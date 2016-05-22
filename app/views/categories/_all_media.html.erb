@@ -4,28 +4,37 @@
         <h2>All <%= @category.title %></h2>
       </div>
       <div class="col-md-12 featured-blocks videos-list medium">
-        <% @media.each do |m| %>
-          <div class="single-category-block col-md-3">
-              <figure class="cp-thumb">
-                <% if m.thumbnail_url.present? %>
-                  <% if @category.title.match("Movies") %>
-                    <img alt="" src="<%= m.thumbnail_url %>" class="makemetaller">
-                  <% else %>
-                  <img alt="" src="<%= m.thumbnail_url %>">
-                  <% end %>
-                <% else %>
-                  <img src="<%= asset_path('movie-placeholder.jpg') %>">
-                <% end %>
-                <figcaption class="cp-caption">
-                  <a class="play-video" href="/media/<%= m.number %>">Play</a>
-                <% if !m.category_name.match("Events") %>
-                   <div class="cp-text">
-                      <h4><%= m.title %></h4>
-                    </div>
+        <% @media.in_groups_of(slide_item_number).each do |group|%>
+        <ul class="uk-grid-width-medium-1-<%= slide_item_number %>">
+        <% group.each do |m| %>
+          <% if m %>
+            <li class="left">
+              <div class="single-category-block">
+                  <figure class="cp-thumb">
+                    <% if m.thumbnail_url.present? %>
+                      <% if @category.title.match("Movies") %>
+                        <img alt="" src="<%= m.thumbnail_url %>" class="makemetaller">
+                      <% else %>
+                      <img alt="" src="<%= m.thumbnail_url %>">
+                      <% end %>
+                    <% else %>
+                      <img src="<%= asset_path('movie-placeholder.jpg') %>">
                     <% end %>
-                </figcaption>
-              </figure>
-          </div>
+                    <figcaption class="cp-caption">
+                      <a class="play-video" href="/media/<%= m.number %>">Play</a>
+                    <% if !m.category_name.match("Events") %>
+                       <div class="cp-text">
+                          <h4><%= m.title %></h4>
+                        </div>
+                        <% end %>
+                    </figcaption>
+                  </figure>
+              </div>
+            </li>
+          <% end%>
+        <% end %>
+        </ul>
+        <div class="clear"></div>
         <% end %>
       </div>
     </div>
