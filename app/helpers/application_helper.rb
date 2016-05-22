@@ -14,7 +14,7 @@ module ApplicationHelper
       when :phone
         2
       else
-        4
+        3
     end
   end
 end

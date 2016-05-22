@@ -10,7 +10,7 @@
   }
 }
 
-.uk-slider{
+.uk-slider{ 
   li{
     overflow: hidden;
     .cp-video-item{
@@ -43,9 +43,42 @@
     width: 33.3%;
   }
 }
-
 .uk-grid-width-medium-1-2{
   li{
     width: 50%;
+  }
+}
+
+@media (max-width: 960px){
+  .uk-slider{ 
+      li .cp-thumb{
+      width: 97%;
+    }
+  }
+  .categories-list{
+    figure{
+      height: 180px;
+    }
+  }
+  .videos-list{
+    figure{
+      border: 1px solid #eaeaea;
+      height: 230px;   
+    }
+  }
+}
+
+@media (max-width: 480px){
+
+  .categories-list{
+    figure{
+      height: 180px;
+    }
+  }
+  .videos-list{
+    figure{
+      border: 1px solid #eaeaea;
+      height: 220px;   
+    }
   }
 }

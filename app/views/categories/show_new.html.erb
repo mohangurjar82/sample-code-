@@ -58,7 +58,7 @@
           <div class="videos-list">
             <div class="uk-slidenav-position" data-uk-slider>
               <div class="uk-slider-container">
-                <ul class="uk-slider uk-grid-width-medium-1-4">
+                <ul class="uk-slider uk-grid-width-medium-1-<%= slide_item_number %>">
                   <% cat.media.limit(12).each do |m| %>
                     <li>
                       <div class="item"> 
