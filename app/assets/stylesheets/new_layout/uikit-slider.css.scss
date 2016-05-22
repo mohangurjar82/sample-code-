@@ -1,0 +1,51 @@
+.categories-list{
+  figure{
+    height: 207px;
+  }
+}
+.videos-list{
+  figure{
+    border: 1px solid #eaeaea;
+    height: 302px;   
+  }
+}
+
+.uk-slider{
+  li{
+    overflow: hidden;
+    .cp-video-item{
+      background: transparent;
+      border: none;
+    }
+    img{
+      width: 100%;
+      height: 100%;
+    }
+    .cp-thumb{
+      padding-left: 35px;
+      padding-right: 35px;
+      width: 95%;
+    }
+  }
+}
+.cp-listed .view-all{
+  margin-right: 0px;
+}
+
+
+.uk-grid-width-medium-1-4{
+  li{
+    width: 25%;
+  }
+}
+.uk-grid-width-medium-1-3{
+  li{
+    width: 33.3%;
+  }
+}
+
+.uk-grid-width-medium-1-2{
+  li{
+    width: 50%;
+  }
+}

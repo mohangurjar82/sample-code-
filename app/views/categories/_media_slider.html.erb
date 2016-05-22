@@ -1,0 +1,53 @@
+<div class="cp-featured-block m60 cp-comedy-video">
+    <div class="row">
+        <div class="col-md-12 cp-heading-outer">
+          <h2>All <%= @category.title %></h2>
+          <ul class="cp-listed">
+              <li class="view-all"><a href="<%= category_media_path(@category.number) %>">View All</a>
+              </li>
+          </ul>
+        </div>
+        <div class="col-md-12 featured-blocks videos-list">
+          <div class="uk-slidenav-position" data-uk-slider>
+            <div class="uk-slider-container">
+              <ul class="uk-slider uk-grid-width-medium-1-<%= slide_item_number %>">
+                <% @media[0..12].each do |m| %>
+                  <li>
+                    <div class="cp-video-item">
+                        <figure class="cp-thumb">
+                          <% if m.thumbnail_url.present? %>
+                            <% if @category.title.match("Movies") %>
+                              <img alt="" src="<%= m.thumbnail_url %>" class="makemetaller">
+                            <% else %>
+                            <img alt="" src="<%= m.thumbnail_url %>">
+                            <% end %>
+                          <% else %>
+                            <img src="<%= asset_path('movie-placeholder.jpg') %>">
+                          <% end %>
+                          <figcaption class="cp-caption">
+                            <a class="play-video" href="/media/<%= m.number %>">Play</a>
+                          <% if !m.category_name.match("Events") %>
+                             <div class="cp-text">
+                                <h4><%= m.title %></h4>
+                              <!-- Add features later<ul class="cp-meta-list">
+                                  <li>Feb 26, 2016</li>
+                                  <li>by Jiana Smith, <span>19 Views</span>
+                                  </li>
+                              </ul> -->
+                              </div>
+                              <% end %>
+                          </figcaption>
+                        </figure>
+                    </div>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+            <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slider-item="previous"></a>
+            <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slider-item="next"></a>
+
+          </div>
+
+        </div>
+    </div>
+</div>

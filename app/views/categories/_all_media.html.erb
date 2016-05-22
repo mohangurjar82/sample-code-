@@ -1,0 +1,45 @@
+  <div class="cp-featured-block m60 cp-comedy-video">
+    <div class="row">
+      <div class="col-md-12 cp-heading-outer">
+        <h2>All <%= @category.title %></h2>
+      </div>
+      <div class="col-md-12 featured-blocks videos-list medium">
+        <% @media.each do |m| %>
+          <div class="single-category-block col-md-3">
+              <figure class="cp-thumb">
+                <% if m.thumbnail_url.present? %>
+                  <% if @category.title.match("Movies") %>
+                    <img alt="" src="<%= m.thumbnail_url %>" class="makemetaller">
+                  <% else %>
+                  <img alt="" src="<%= m.thumbnail_url %>">
+                  <% end %>
+                <% else %>
+                  <img src="<%= asset_path('movie-placeholder.jpg') %>">
+                <% end %>
+                <figcaption class="cp-caption">
+                  <a class="play-video" href="/media/<%= m.number %>">Play</a>
+                <% if !m.category_name.match("Events") %>
+                   <div class="cp-text">
+                      <h4><%= m.title %></h4>
+                    </div>
+                    <% end %>
+                </figcaption>
+              </figure>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% if @media.size >= MPX::RemoteResource::PER_PAGE || params[:page].to_i > 1 %>
+  <div class="row">
+    <div class="col-md-12">
+      <% if params[:page].to_i >= 2 %>
+        <a class="btn btn-sm btn-primary" href="?page=<%= params[:page].to_i - 1 %>">
+         Prev page
+        </a>
+      <% end %>
+      <div style="float:right">
+        <a class="btn btn-sm btn-primary" href="?page=<%= (params[:page] || 1).to_i + 1 %>"> Next page</a>
+      </div>
+    </div>
+<% end %>

@@ -6,3 +6,5 @@
 //= require sweetalert
 //= require sweet-alert-confirm
 //= require limited_video_preview
+//= require uikit.min
+//= require slider.min

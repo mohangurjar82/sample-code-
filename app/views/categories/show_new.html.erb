@@ -6,26 +6,36 @@
               <div class="col-md-12 cp-heading-outer">
                   <h2><%= @category.title %> Categories</h2>
                   <ul class="cp-listed">
-                      <li class="view-all"><a href="#">View All:</a>
+                      <li class="view-all"><a href="#">View All</a>
                       </li>
                   </ul>
               </div>
               <div class="col-md-12 featured-blocks categories-list">
-                <% @category.categories.each do |m| %>
-                  <div class="single-category-block">
-                      <figure class="cp-thumb">
-                        <% if m.thumbnail_url.present? %>
-                          <img alt="" src="<%= m.thumbnail_url %>">
-                        <% else %>
-                          <img src="<%= asset_path('movie-placeholder.jpg') %>">
-                        <% end %>
-                        <figcaption class="cp-caption">
-                          <a class="play-video" href="/categories/<%= m.number %>">View <%= @category.title %> Category</a>
+                <div class="uk-slidenav-position" data-uk-slider>
+                  <div class="uk-slider-container">
+                    <ul class="uk-slider uk-grid-width-medium-1-<%= slide_item_number %>">
+                      <% @category.categories.each do |m| %>
+                        <li>
+                          <div class="single-category-block">
+                              <figure class="cp-thumb">
+                                <% if m.thumbnail_url.present? %>
+                                  <img alt="" src="<%= m.thumbnail_url %>">
+                                <% else %>
+                                  <img src="<%= asset_path('movie-placeholder.jpg') %>">
+                                <% end %>
+                                <figcaption class="cp-caption">
+                                  <a class="play-video" href="/categories/<%= m.number %>">View <%= @category.title %> Category</a>
 
-                        </figcaption>
-                      </figure>
+                                </figcaption>
+                              </figure>
+                          </div>
+                        </li>
+                      <% end %>
+                    </ul>
                   </div>
-                <% end %>
+                  <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slider-item="previous"></a>
+                  <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slider-item="next"></a>
+                </div>
               </div>
           </div>
       </div>
@@ -40,93 +50,54 @@
               <h2> <%= cat.title %> <%= (@category.title.match("Games") || @category.title.match("Movies") || "Channels").to_s if @category %> </h2>
 
               <ul class="cp-listed">
-                  <li class="view-all"><a href="/categories/<%= cat.number %>">View All:</a>
+                  <li class="view-all"><a href="/categories/<%= cat.number %>">View All</a>
                   </li>
               </ul>
             </div>
           </div>
           <div class="videos-list">
-            <% cat.media.each do |m| %>
-              <div class="item"> 
-                <!-- Video Item Start-->
-                <div class="cp-video-item">
-                  <figure class="cp-thumb">
-                    <% if m.thumbnail_url.present? %>
-                          <% if @category.title.match("Movies") %>
-                            <img alt="" src="<%= m.thumbnail_url %>" class="makemetaller">
-                          <% else %>
-                      <img alt="" src="<%= m.thumbnail_url %>">
-                          <% end %>
-                    <% else %>
-                      <img src="<%= asset_path('movie-placeholder.jpg') %>') %>">
-                    <% end %>
-                    <figcaption class="cp-caption">
-                      <a href="/media/<%= m.number %>" class="play-video">Play</a>
-                    </figcaption>
-                  </figure>
+            <div class="uk-slidenav-position" data-uk-slider>
+              <div class="uk-slider-container">
+                <ul class="uk-slider uk-grid-width-medium-1-4">
+                  <% cat.media.limit(12).each do |m| %>
+                    <li>
+                      <div class="item"> 
+                        <!-- Video Item Start-->
+                        <div class="cp-video-item">
+                          <figure class="cp-thumb">
+                            <% if m.thumbnail_url.present? %>
+                                  <% if @category.title.match("Movies") %>
+                                    <img alt="" src="<%= m.thumbnail_url %>" class="makemetaller">
+                                  <% else %>
+                              <img alt="" src="<%= m.thumbnail_url %>">
+                                  <% end %>
+                            <% else %>
+                              <img src="<%= asset_path('movie-placeholder.jpg') %>') %>">
+                            <% end %>
+                            <figcaption class="cp-caption">
+                              <a href="/media/<%= m.number %>" class="play-video">Play</a>
+                            </figcaption>
+                          </figure>
 
-                </div>
-                <!-- Video Item End--> 
+                        </div>
+                        <!-- Video Item End--> 
+                      </div>
+                    </li>
+                  <% end %>
+                </ul>
               </div>
-            <% end %>
+              <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slider-item="previous"></a>
+              <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slider-item="next"></a>
+            </div>
           </div>
         </div>
     <% end %>
     <!--Outer Holder End-->
     <% if @media.size > 0 %>
-      <div class="cp-featured-block m60 cp-comedy-video">
-          <div class="row">
-              <div class="col-md-12 cp-heading-outer">
-                  <h2>All <%= @category.title %></h2>
-                  <!-- <ul class="cp-listed">
-                      <li class="view-all"><a href="#">View All:</a>
-                      </li>
-                  </ul> -->
-              </div>
-              <div class="col-md-12 featured-blocks categories-list <%= 'medium' if @category.categories.count == 0 %>">
-                <% @media.each do |m| %>
-                  <div class="single-category-block <%= 'col-md-3' if @category.categories.count == 0 %>">
-                      <figure class="cp-thumb">
-                        <% if m.thumbnail_url.present? %>
-                          <% if @category.title.match("Movies") %>
-                            <img alt="" src="<%= m.thumbnail_url %>" class="makemetaller">
-                          <% else %>
-                          <img alt="" src="<%= m.thumbnail_url %>">
-                          <% end %>
-                        <% else %>
-                          <img src="<%= asset_path('movie-placeholder.jpg') %>">
-                        <% end %>
-                        <figcaption class="cp-caption">
-                          <a class="play-video" href="/media/<%= m.number %>">Play</a>
-                        <% if !m.category_name.match("Events") %>
-                           <div class="cp-text">
-                              <h4><%= m.title %></h4>
-                            <!--Add features later<ul class="cp-meta-list">
-                                <li>Feb 26, 2016</li>
-                                <li>by Jiana Smith, <span>19 Views</span>
-                                </li>
-                            </ul>-->
-                            </div>
-                            <% end %>
-                        </figcaption>
-                      </figure>
-                  </div>
-                <% end %>
-              </div>
-          </div>
-      </div>
-      <% if @media.size >= MPX::RemoteResource::PER_PAGE || params[:page].to_i > 1 %>
-        <div class="row">
-          <div class="col-md-12">
-            <% if params[:page].to_i >= 2 %>
-              <a class="btn btn-sm btn-primary" href="?page=<%= params[:page].to_i - 1 %>">
-               Prev page
-              </a>
-            <% end %>
-            <div style="float:right">
-              <a class="btn btn-sm btn-primary" href="?page=<%= (params[:page] || 1).to_i + 1 %>"> Next page</a>
-            </div>
-          </div>
+      <% if @category.categories.size > 0%>
+        <%= render :partial => 'media_slider'%>
+      <% else %>
+        <%= render :partial => 'all_media'%>
       <% end %>
     <% end %>
 </div>

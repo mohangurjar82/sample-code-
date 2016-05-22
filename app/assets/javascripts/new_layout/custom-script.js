@@ -241,30 +241,30 @@ jQuery(document).ready(function($) {
 
     /* Owl Slider For categories list
     ======================================================*/
-    if ($('.categories-list:not(.medium)').length) {
-        $('.categories-list:not(.medium)').owlCarousel({
-            loop:true,
-            dots: false,
-            nav:true,
-            navText:'',
-            items:4,
-            autoplay: false,
+    // if ($('.categories-list:not(.medium)').length) {
+    //     $('.categories-list:not(.medium)').owlCarousel({
+    //         loop:true,
+    //         dots: false,
+    //         nav:true,
+    //         navText:'',
+    //         items:4,
+    //         autoplay: false,
 
-            margin:10,
-            responsiveClass:true,
-            responsive:{
-                0:{
-                    items:2,
-                },
-                768:{
-                    items:3,
-                },
-                1199:{
-                    items:4,
-                }
-            }
-        });
-    }
+    //         margin:10,
+    //         responsiveClass:true,
+    //         responsive:{
+    //             0:{
+    //                 items:2,
+    //             },
+    //             768:{
+    //                 items:3,
+    //             },
+    //             1199:{
+    //                 items:4,
+    //             }
+    //         }
+    //     });
+    // }
 
     /* Owl Slider For videos list
     ======================================================*/
@@ -289,30 +289,30 @@ jQuery(document).ready(function($) {
             }
         }
     })
-    if ($('.videos-list').length) {
-        $('.videos-list').owlCarousel({
-            loop:true,
-            dots: false,
-            nav:true,
-            navText:'',
-            items:4,
-            autoplay: false,
+    // if ($('.videos-list').length) {
+    //     $('.videos-list').owlCarousel({
+    //         loop:true,
+    //         dots: false,
+    //         nav:true,
+    //         navText:'',
+    //         items:4,
+    //         autoplay: false,
 
-            margin:10,
-            responsiveClass:true,
-            responsive:{
-                0:{
-                    items:2,
-                },
-                768:{
-                    items:3,
-                },
-                1199:{
-                    items:4,
-                }
-            }
-        });
-    }
+    //         margin:10,
+    //         responsiveClass:true,
+    //         responsive:{
+    //             0:{
+    //                 items:2,
+    //             },
+    //             768:{
+    //                 items:3,
+    //             },
+    //             1199:{
+    //                 items:4,
+    //             }
+    //         }
+    //     });
+    // }
 
     /* Audio Player
     ======================================================*/
