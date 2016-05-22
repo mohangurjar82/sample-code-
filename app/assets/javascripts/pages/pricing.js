@@ -44,13 +44,17 @@ Cart.prototype.bindEvents = function () {
 
   if(self.userAgent === 'desktop'){
     $(window).unbind("scroll").scroll(function (e) {
-      var top = $(window).scrollTop()
-      if ( top <= 250){
-        top = 0;
+      if($(document).width() >= 993){
+        var top = $(window).scrollTop()
+        if ( top <= 250){
+          top = 0;
+        }else{
+          top = top - 250;
+        }
+        $('.cart-items').css({top: top+"px"})
       }else{
-        top = top - 250;
+        $('.cart-items').css({top: "0px"})
       }
-      $('.cart-items').css({top: top+"px"})
     })
   }
 }
