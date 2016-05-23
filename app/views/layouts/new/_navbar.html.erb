@@ -151,8 +151,8 @@
               <li><a href="/profile#recently-watched"><i class="fa fa-film"></i></a></li>
               <li><a href="/products"><i class="fa fa-credit-card"></i></a></li>
               <li class="cp-search-holder"><i class="fa fa-search"></i>
-                <form action="form.php" method="get" class="cp-search-form-outer">
-                  <input type="text" placeholder="Search..." required>
+                <form action="<%= search_path %>" method="get" class="cp-search-form-outer">
+                  <input type="text" placeholder="Search..." name="query" required>
                   <button class="btn-submit" type="submit"><i class="fa fa-search"></i></button>
                 </form>
               </li>
@@ -187,3 +187,4 @@
       });
     }
   })
+</script>
