@@ -450,4 +450,24 @@ $(document).ready(function(){
             }, 300);
         });
     }
+
+    setSlideItems()
+    $(window).resize(function () {
+        setSlideItems()
+    })
+
 })
+var slideItems = 4;
+
+function setSlideItems(){
+    var width = $(window).width()
+    if(width >= 960){
+        slideItems = 4;
+    }else if(width >= 768){
+        slideItems = 3;
+    }else if(width >= 480){
+        slideItems = 2;
+    }else{
+        slideItems = 1;
+    }
+}
