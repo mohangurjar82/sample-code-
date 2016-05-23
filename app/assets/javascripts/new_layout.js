@@ -15,5 +15,4 @@
 //= require ./bower_components/moment-duration-format/lib/moment-duration-format
 
 //= require uikit.min
-//= require slider.min
-
+//= require slider

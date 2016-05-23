@@ -172,25 +172,8 @@
   <!--Navigation End-->
 </header>
 <!--Header End-->
-<<<<<<< HEAD
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('#utc_offset').val(moment().utcOffset());
-
-    $('.get-location .file-btn').click(function(event){
-      event.preventDefault();
-      var now = moment().format('YYYY-MM-DD HH:mm:ss');
-      $('#now').val(now);
-      
-      $('.get-location').submit();
-    });
-  });
- 
-</script>
 
 
-=======
 <%= content_for :javascript do %>
   <script type="text/javascript">
     /* Side Bar Menu Js
@@ -211,6 +194,17 @@
         });
       }
     })
+
+  $(document).ready(function(){
+    $('#utc_offset').val(moment().utcOffset());
+
+    $('.get-location .file-btn').click(function(event){
+      event.preventDefault();
+      var now = moment().format('YYYY-MM-DD HH:mm:ss');
+      $('#now').val(now);
+      
+      $('.get-location').submit();
+    });
+  });
   </script>
 <% end %>
->>>>>>> 4b2e9255522c56ce830a3603e8f307539001c0c6

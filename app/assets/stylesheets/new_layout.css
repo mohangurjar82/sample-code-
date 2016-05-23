@@ -1,5 +1,6 @@
 /*
- *= require slider.min
+ *= require uikit
+ *= require slider
  *= require css/main
  *= require_tree ./new_layout
  *= require font-awesome
