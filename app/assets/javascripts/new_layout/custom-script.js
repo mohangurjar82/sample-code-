@@ -8,21 +8,21 @@ jQuery(document).ready(function($) {
     $('a[data-rel]').each(function () {
         $(this).attr('rel', $(this).data('rel'));
     });
-    $(".pretty-gallery a[rel^='prettyPhoto']").prettyPhoto();
+    $('.pretty-gallery a[rel^=\'prettyPhoto\']').prettyPhoto();
 
     //STICKY HEADER
-    if($('.cp_header').length){
-      // grab the initial top offset of the navigation 
+    if($('.cp_header').length && $('#cp-main-content').length){
+      // grab the initial top offset of the navigation
       var stickyNavTop = $('#cp-main-content').offset().top;
       // our function that decides weather the navigation bar should have "fixed" css position or not.
       var stickyNav = function(){
         var scrollTop = $(window).scrollTop(); // our current vertical position from the top
         // if we've scrolled more than the navigation, change its position to fixed to stick to top,
         // otherwise change it back to relative
-        if (scrollTop > stickyNavTop) { 
+        if (scrollTop > stickyNavTop) {
           $('.cp_header').addClass('cp_sticky');
         } else {
-          $('.cp_header').removeClass('cp_sticky'); 
+          $('.cp_header').removeClass('cp_sticky');
         }
       };
       stickyNav();
@@ -241,30 +241,30 @@ jQuery(document).ready(function($) {
 
     /* Owl Slider For categories list
     ======================================================*/
-    if ($('.categories-list').length) {
-        $('.categories-list').owlCarousel({
-            loop:true,
-            dots: false,
-            nav:true,
-            navText:'',
-            items:4,
-            autoplay: false,
+    // if ($('.categories-list:not(.medium)').length) {
+    //     $('.categories-list:not(.medium)').owlCarousel({
+    //         loop:true,
+    //         dots: false,
+    //         nav:true,
+    //         navText:'',
+    //         items:4,
+    //         autoplay: false,
 
-            margin:10,
-            responsiveClass:true,
-            responsive:{
-                0:{
-                    items:2,
-                },
-                768:{
-                    items:3,
-                },
-                1199:{
-                    items:4,
-                }
-            }
-        });
-    }
+    //         margin:10,
+    //         responsiveClass:true,
+    //         responsive:{
+    //             0:{
+    //                 items:2,
+    //             },
+    //             768:{
+    //                 items:3,
+    //             },
+    //             1199:{
+    //                 items:4,
+    //             }
+    //         }
+    //     });
+    // }
 
     /* Owl Slider For videos list
     ======================================================*/
@@ -289,30 +289,30 @@ jQuery(document).ready(function($) {
             }
         }
     })
-    if ($('.videos-list').length) {
-        $('.videos-list').owlCarousel({
-            loop:true,
-            dots: false,
-            nav:true,
-            navText:'',
-            items:4,
-            autoplay: false,
+    // if ($('.videos-list').length) {
+    //     $('.videos-list').owlCarousel({
+    //         loop:true,
+    //         dots: false,
+    //         nav:true,
+    //         navText:'',
+    //         items:4,
+    //         autoplay: false,
 
-            margin:10,
-            responsiveClass:true,
-            responsive:{
-                0:{
-                    items:2,
-                },
-                768:{
-                    items:3,
-                },
-                1199:{
-                    items:4,
-                }
-            }
-        });
-    }
+    //         margin:10,
+    //         responsiveClass:true,
+    //         responsive:{
+    //             0:{
+    //                 items:2,
+    //             },
+    //             768:{
+    //                 items:3,
+    //             },
+    //             1199:{
+    //                 items:4,
+    //             }
+    //         }
+    //     });
+    // }
 
     /* Audio Player
     ======================================================*/

@@ -2,6 +2,14 @@ class MediaController < ApplicationController
   
   layout 'new_layout'
 
+  def index
+    @category = MPX::Category.find_by_number(params[:category_id])
+    @oan = MPX::Media.find_by_number('1428037766')
+    @awe = MPX::Media.find_by_number('147013915')
+    @media = @category.media(page: params[:page]) 
+    render 'media/new/index'
+  end
+
   def show
     @mobile = params[:html5] || request.user_agent =~ /mobile/i
     @media = MPX::Media.find_by_number(params[:number])

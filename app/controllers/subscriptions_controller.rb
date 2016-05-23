@@ -2,7 +2,7 @@ class SubscriptionsController < ApplicationController
   layout 'new_layout'
 
   def new
-    media_ids, product_ids = params[:product_ids].partition { |x| x.start_with?('a') }
+    media_ids, product_ids = params[:product_ids].split(',').partition { |x| x.start_with?('a') }
     @products = product_ids.any? ? Product.where(id: product_ids) : []
     @medias = media_ids.any? ? Media.where(id: media_ids.map{ |x| x[/[\d]+/].to_i }) : []
     @total_price = @products.map { |x| x.pricing_plan.price }.sum

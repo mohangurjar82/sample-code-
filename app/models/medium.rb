@@ -21,6 +21,10 @@ class Medium < ActiveRecord::Base
                     end
   end
   
+  def price
+    pricing_plan.price / 100.00
+  end
+  
   def language_list
     return medium.language_list if medium_id.present?
     list = [language] + media.pluck(:language)
