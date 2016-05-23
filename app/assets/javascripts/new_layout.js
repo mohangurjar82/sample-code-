@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.idle
+//= require uikit.min
 //= require_tree ./new_layout
 //= require idle_redirect
 //= require sweetalert
@@ -14,5 +15,3 @@
 //= require ./bower_components/moment-timezone/builds/moment-timezone-with-data
 //= require ./bower_components/moment-duration-format/lib/moment-duration-format
 
-//= require uikit.min
-//= require slider

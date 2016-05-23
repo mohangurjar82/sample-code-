@@ -16,7 +16,7 @@
             <div class="uk-slidenav-position" data-uk-slider="{infinite: false, slideItems: <%= slide_item_number %>}">
               <div class="uk-slider-container">
                 <ul class="uk-slider uk-grid-width-small-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-4">
-                  <% cat.media.limit(12).each do |m| %>
+                  <% cat.media.each do |m| %>
                     <li>
                       <div class="item"> 
                         <!-- Video Item Start-->

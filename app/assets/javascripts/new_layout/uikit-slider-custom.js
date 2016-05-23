@@ -169,22 +169,19 @@
             this.items = this.container.children().filter(':visible');
             this.vp    = this.element[0].getBoundingClientRect().width;
 
+
             this.container.css({'min-width': '', 'min-height': ''});
 
-            this.items.each(function(idx){
+            item      = this.items.first()
+            size      = item.css({'left': '', 'width':''})[0].getBoundingClientRect();
+            width     = size.width;
+            cwidth    = item.width();
+            maxheight = size.height;
+            this.width = size.width;
+            this.items.css({'width':width})
 
-                item      = UI.$(this);
-                size      = item.css({'left': '', 'width':''})[0].getBoundingClientRect();
-                width     = size.width;
-                cwidth    = item.width();
-                maxheight = Math.max(maxheight, size.height);
 
-                item.css({'left': pos, 'width':width}).data({'idx':idx, 'left': pos, 'width': width, 'cwidth':cwidth, 'area': (pos+width), 'center':(pos - ($this.vp/2 - cwidth/2))});
-
-                pos += width;
-            });
-
-            this.container.css({'min-width': pos, 'min-height': maxheight});
+            this.container.css({'min-width': (width*this.items.length), 'min-height': maxheight});
 
             if (this.options.infinite && (pos <= (2*this.vp) || this.items.length < 5) && !this.itemsResized) {
 
@@ -223,11 +220,6 @@
         },
 
         updateFocus: function(idx, dir) {
-
-            if (!this.active) {
-                return;
-            }
-
             dir = dir || (idx > this.focus ? 1:-1);
 
             var item = this.items.eq(idx), area, i;
@@ -236,75 +228,8 @@
                 this.infinite(idx, dir);
             }
 
-            if (this.options.center) {
-
-                this.updatePos(item.data('center')*-1);
-
-                this.items.filter('.'+this.options.activecls).removeClass(this.options.activecls);
-                item.addClass(this.options.activecls);
-
-            } else {
-
-                if (this.options.infinite) {
-
-                    this.updatePos(item.data('left')*-1);
-
-                } else {
-
-                    area = 0;
-
-                    for (i=idx;i<this.items.length;i++) {
-                        area += this.items.eq(i).data('width');
-                    }
-
-
-                    if (area > this.vp) {
-
-                        this.updatePos(item.data('left')*-1);
-
-                    } else {
-
-                        if (dir == 1) {
-
-                            area = 0;
-
-                            for (i=this.items.length-1;i>=0;i--) {
-
-                                area += this.items.eq(i).data('width');
-
-                                if (area == this.vp) {
-                                    idx = i;
-                                    break;
-                                }
-
-                                if (area > this.vp) {
-                                    idx = (i < this.items.length-1) ? i+1 : i;
-                                    break;
-                                }
-                            }
-
-                            if (area > this.vp) {
-                                this.updatePos((this.container.width() - this.vp) * -1);
-                            } else {
-                                this.updatePos(this.items.eq(idx).data('left')*-1);
-                            }
-                        }
-                    }
-                }
-            }
-
-            // mark elements
-            var left = this.items.eq(idx).data('left');
-
-            this.items.removeClass('uk-slide-before uk-slide-after').each(function(i){
-                if (i!==idx) {
-                    UI.$(this).addClass(UI.$(this).data('left') < left ? 'uk-slide-before':'uk-slide-after');
-                }
-            });
-
             this.focus = idx;
-
-            this.trigger('focusitem.uk.slider', [idx,this.items.eq(idx),this]);
+            this.container.parent().animate( { scrollLeft: idx*this.width }, 200)
         },
 
         next: function() {
