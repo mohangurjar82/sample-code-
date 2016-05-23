@@ -49,7 +49,7 @@
       <div class="row">
         <div class="col-md-9 col-sm-8 col-xs-12">
           <!--Sidebar Menu Button -->
-          <div id="cp_side-menu-btn" class="cp_side-menu"> <a href="#" class=""><i class="fa fa-bars"></i></a> </div>
+          <div id="cp_side-menu-btn" class="cp_side-menu"> <a href="javascript:void(0)" class=""><i class="fa fa-bars"></i></a> </div>
           <!--Sidebar Menu Button End-->
 
           <!--Logo Start-->
@@ -166,3 +166,24 @@
   <!--Navigation End-->
 </header>
 <!--Header End-->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  /* Side Bar Menu Js
+   ======================================================*/
+  $(document).ready(function(){
+    if($('#cp_side-menu-btn, #cp-close-btn').length) {
+
+      $(document).on('click', '#cp_side-menu-btn',  function(){
+
+        $('body, #cp_side-menu').animate({
+          left: '300px'
+        }, 300);
+      });
+      $(document).on('click', '#cp-close-btn', function(){
+        $('body, #cp_side-menu').animate({
+          left: '0px'
+        }, 300);
+      });
+    }
+  })

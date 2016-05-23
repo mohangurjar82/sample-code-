@@ -1,0 +1,157 @@
+<% content_for :head do %>
+    <%= stylesheet_link_tag('products/style') %>
+    <%= stylesheet_link_tag('application') %>
+<% end %>
+<div class="cp_inner-banner">
+  <div class="container">
+    <div class="cp-inner-banner-holder">
+      <h2>Cart: <strong>Choose a Package</strong></h2>
+      <!--Breadcrumb Start-->
+      <ul class="breadcrumb">
+        <li><span><a href="#">Buy Indiviudal Channels starting @ $0.99</a></span></li>
+
+      </ul><!--Breadcrumb End-->
+    </div>
+  </div>
+</div>
+<!--Main Content Start-->
+<div id="cp-main-content">
+  <section class="cp-section">
+    <div class="container">
+      <section class="cart">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <% @products.each_with_index do |p, i| %>
+                  <div class="cart-item">
+                    <div class="item-image-container">
+                      <% if p.picture.present? %>
+                          <%= image_tag(p.picture_url, class: "img-responsive", alt: "")%>
+                      <% else %>
+                          <%= image_tag("product-placeholder.jpg", class: "img-responsive", alt: "")%>
+                      <% end %>
+                    </div>
+                    <div>&nbsp;</div>
+                    <div class="item-details">
+                      <h5><%= p.title %></h5>
+                      <p>
+                        <%= p.pricing_plan.price %><%= p.pricing_plan.interval %>
+                      </p>
+                      <a href="#" class="item-action remove-from-cart"><i class="ion-ios-trash-outline"></i>See full Channel Lineup</a>
+                      <a href="#" class="item-action remove-from-cart"><i class="ion-ios-trash-outline"></i> Remove</a>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+            <div class="col-md-4">
+              <div class="cart_totals">
+                <h5>Your Order</h5>
+                <table cellspacing="0">
+                  <tbody>
+                  <tr class="cart-subtotal">
+                    <th>2 Items</th>
+                    <td><span class="amount">$131</span></td>
+                  </tr>
+
+
+                  <tr class="order-total">
+                    <th>Total</th>
+                    <td><strong><span class="amount">$138.99</span></strong> </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <a href="#" class="btn btn-primary btn-md btn-appear btn-cart-checkout"><span>Place Your Order <i class="ion-ios-arrow-forward"></i></span></a>
+              <p class="bold">Free 7 Day Trial!</p>
+              <p class="small-print">By clicking 'Place your order', you agree to the <a href="#" class="highlight">Terms &amp;<br>Conditions</a></p>
+
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</div>
+
+<style type="text/css">
+  body, section {
+    background-color: #f0f2f1;
+    color: #ccc;
+  }
+  .cp_inner-banner {
+    background-color: #fff;
+    box-shadow: 0 0 27px rgba(0, 0, 0, 0.22);
+    float: left;
+    padding: 38px 0;
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+  .cp-inner-banner-holder h2 {
+    color: #111;
+    font-size: 34px;
+    font-weight: 100;
+    margin: 0 0 10px;
+  }
+  .cp-inner-banner-holder h2 strong {
+    color: #111;
+    font-size: 42px;
+    margin: 0;
+  }
+  .pd-tb60 {
+    padding: 0 !important;
+  }
+
+  .cart_totals {
+    background-color: #191a1c;
+    border-radius: 4px;
+    margin-top: 20px;
+    padding: 30px 40px 24px;
+    text-align: center;
+  }
+
+  .cart table tr, .cart_totals table tr {
+    font-size: 12px;
+    line-height: 3.6;
+  }
+
+  .cart_totals table td {
+    padding-right: 0;
+    text-align: right;
+  }
+
+  .cart table, .cart_totals table {
+    color: #fff;
+  }
+
+  .cart table, .cart_totals table {
+    color: #fff;
+    width: 100%;
+  }
+
+  table {
+    background-color: transparent;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  .btn-cart-checkout {
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    margin-left: 0;
+    margin-top: 5px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    width: 100%;
+  }
+  body p {
+    color: #ccc;
+    font-family: "Roboto",sans-serif;
+    font-size: 12px;
+    line-height: 22px;
+    margin: 0;
+  }
+</style>
