@@ -309,7 +309,7 @@
 
         next: function() {
             var focus;
-            var slideNum = this.options.slideItems
+            var slideNum = slideItems || this.options.slideItems
             var remainItems = this.items.length - (this.focus + slideNum)
             if(remainItems < slideNum){
                 focus = this.items.length - slideNum + 1
@@ -317,12 +317,11 @@
             }else{
                 focus = this.items[this.focus + slideNum] ? (this.focus + slideNum) : (this.options.infinite ? 0:this.focus);
             }
-            console.log(focus, slideNum)
             this.updateFocus(focus, slideNum);
         },
 
         previous: function() {
-            var slideNum = this.options.slideItems
+            var slideNum = slideItems || this.options.slideItems
             if (typeof(this.items[this.focus - slideNum]) === 'undefined'){
                 focus = 0
                 slideNum = 1
