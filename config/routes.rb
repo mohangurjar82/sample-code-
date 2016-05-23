@@ -25,6 +25,12 @@ Rails.application.routes.draw do
   root 'pages#index'
   get 'purchases', to: 'dashboard#purchases', as: 'purchases'
   get 'index', to: 'pages#index', as: 'index' # landing page
+  
+  post 'schedule', to: 'schedules#index'
+  get 'schedule', to: 'schedules#index'
+  post 'schedule/:show', to: 'schedules#show'
+
+
   resources :products
   resources :categories, only: [:index, :show]
   get 'media/:number', to: 'media#show', as: 'media'
@@ -34,6 +40,8 @@ Rails.application.routes.draw do
   resources :subscriptions
   resources :ebooks
   
+  
+
   get 'music', to: 'categories#music', as: 'music'
   get 'search', to: 'search#index', as: 'search'
   

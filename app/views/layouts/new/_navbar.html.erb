@@ -142,7 +142,13 @@
         </div>
         <div class="col-md-3 col-sm-4 col-xs-12">
           <!--Right Holder Start-->
-          <div class="cp-right-holder"> <a href="#" class="file-btn">Live TV Guide</a>
+          <div class="cp-right-holder"> 
+          <%= form_tag("/schedule", method: "post", class: "get-location") do %>
+            <input type="hidden" name="utc_offset" id="utc_offset" />
+            <input type="hidden" name="now" id="now"></input>
+            
+            <%= link_to "Live TV Guide", 'schedule_path', class: 'file-btn' %>
+          <% end %>
             <ul class="cp-social-links">
 
               <li><a href="/profile#favorites"><i class="fa fa-heart-o"></i></a></li>
@@ -164,3 +170,20 @@
   <!--Navigation End-->
 </header>
 <!--Header End-->
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#utc_offset').val(moment().utcOffset());
+
+    $('.get-location .file-btn').click(function(event){
+      event.preventDefault();
+      var now = moment().format('YYYY-MM-DD HH:mm:ss');
+      $('#now').val(now);
+      
+      $('.get-location').submit();
+    });
+  });
+ 
+</script>
+
+

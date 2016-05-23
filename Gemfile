@@ -17,6 +17,14 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
+# Utilize the TVDB API from Ruby to fetch shows, track updates to the tvdb and sync your media database
+# gem 'tvdbr'
+
+# gem 'program-tv'
+
+gem 'httparty'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 #gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
