@@ -10,7 +10,8 @@
 .txt-cnt {text-align:center;}
 h1{font-size:45px !important;margin-top:0px;}
 section {padding: 60px 0px;}
-a {outline:none !important;}
+a {outline:none !important; color: white;}
+a:hover, a:selected{color: white;}
 .txt-cap {text-transform:uppercase;}
 .text-primary{color:#439FE0;}
 hr{border-color:#439FE0;}
@@ -237,3 +238,4 @@ border-right: 1px dashed #DDD;}
 .cp-ft-nav li, .cp-ft-nav li a {
   color: #ccc;
 }
+

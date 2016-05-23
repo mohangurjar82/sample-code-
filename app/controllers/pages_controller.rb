@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  layout 'landing'
+  layout 'new_layout'
 
   def index
   end

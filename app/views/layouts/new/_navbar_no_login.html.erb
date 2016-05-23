@@ -59,88 +59,36 @@
           <!--Logo End-->
           <!--Nav Holder Start-->
           <div class="cp-nav-holder">
-            <div class="cp-megamenu">
+			<div class="cp-megamenu">
               <div class="cp-mega-menu">
                 <label for="mobile-button"> <img src="<%= asset_path('new_layout/menu-bar.png') %>" alt=""> </label>
                 <!-- mobile click button to show menu -->
                 <input id="mobile-button" type="checkbox">
                 <ul class="main-menu">
-                  <li><a href="/categories">Home</a></li>
-                  <li> <a href="#" id="browselink">Browse Media</a>
-                    <ul class="drop-down full-width col-5 hover-expand" id="browsedropdown">
-                      <li>
-                        <div class="cp-categorie-item">
-                          <div class="cp-img"> <a href="/categories/1422405890"><img src="<%= asset_path('new_layout/cat-livetv.png') %>" alt=""></a> </div>
-                          <a href="/categories/1422405890">Live TV</a> </div>
-                        <div class="cp-categorie-item">
-                          <div class="cp-img"> <a href="/categories/1423429520"><img src="<%= asset_path('new_layout/cat-events.png') %>" alt=""></a> </div>
-                          <a href="/categories/1423429520">Events</a> </div>
-                      </li>
-                      <li>
-                        <div class="cp-categorie-item">
-                          <div class="cp-img"> <a href="/categories/1422405926"><img src="<%= asset_path('new_layout/cat-games.png') %>"></a> </div>
-                          <a href="/categories/1422405926">Gaming</a> </div>
-
-                        <div class="cp-categorie-item">
-                          <div class="cp-img"> <a href="/music"><img src="<%= asset_path('new_layout/cat-music.png') %>"></a> </div>
-                          <a href="/music">Music</a> </div>
-                      </li>
-                      <li>
-                        <div class="cp-categorie-item">
-                          <div class="cp-img"> <a href="/categories/1423429519"><img src="<%= asset_path('new_layout/cat-movies.png') %>"></a> </div>
-                          <a href="/categories/1423429519">Movies</a> </div>
-                        <div class="cp-categorie-item">
-                          <div class="cp-img"> <a href="/categories/1422405886"><img src="<%= asset_path('new_layout/cat-international.png') %>"></a> </div>
-                          <a href="/categories/1422405886">International</a> </div>
-                      </li>
-                      <li>
-                        <div class="cp-categorie-item">
-                          <div class="cp-img"> <a href="<%= ebooks_path %>"><img src="<%= asset_path('cat-ebooks.png') %>"></a> </div>
-                          <a href="<%= ebooks_path %>">Ebooks</a> </div>
-                        <div class="cp-categorie-item">
-                          <div class="cp-img"> <a href="http://imdb.n2me.tv" target="_blank"><img src="<%= asset_path('cat-imdb-reviews.png') %>"></a> </div>
-                          <a href="http://imdb.n2me.tv">Reviews & News</a> </div>
-                      </li>
-                      <li>
-                        <div class="cp-categorie-item">
-                          <div class="cp-img"> <a href="/profile#favorites"><img src="<%= asset_path('cat-favorites.png') %>"></a> </div>
-                          <a href="/profile#favorites">My Favorites</a> </div>
-                        <div class="cp-categorie-item">
-                          <div class="cp-img"> <a href="/profile#recently-watched" target="_blank"><img src="<%= asset_path('cat-recently-watched.png') %>"></a> </div>
-                          <a href="/profile#recently-watched">Watch Again</a> </div>
-                      </li>
-                    </ul>
-                  </li>
-                  <li> <a href="/profile">My Subscription</a></li>
-                  <li> <a href="#" id="watchlistlink">My Watch List</a>
-                    <% if current_user.present? && current_user.recently_viewed_media.count > 0 %>
-                      <ul class="drop-down full-width col-4 hover-expand" id="watchlistdropdown">
-                        <% current_user.recently_viewed_media[0..3].each do |m| %>
-                          <li>
-                            <div class="cp-video-item">
-                              <figure class="cp-thumb"> <img src="<%= m.thumbnail_url %>">
-                                <figcaption class="cp-caption"> <a href="/media/<%= m.number %>" class="play-video">Play</a> </figcaption>
-                              </figure>
-                              <div class="cp-text">
-
-                                <h4><a href="/media/<%= m.number %>"><%= m.title %></a></h4>
-                                <!--Add Dynamic Content Later <ul class="cp-meta-list">
-                                      <li>Monday, Jan 26, 2016</li>
-                                      <li>by Jiana Smith, <span>160 Views</span></li>
-                                    </ul>-->
-                              </div>
-                            </div>
-                          </li>
-
-                        <% end %>
-                        <li><a href="/profile#favorites">Show all</a></li>
-                      </ul>
-                    <% end %>
-                  </li>
-                  <li> <a href="/mechat/index">MeChat</a></li>
+                    <li>
+                        <a class="page-scroll" href="#content">Streaming Content</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#pricing">Pricing</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#portfolio">Live Preview</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                    <li class="login">
+                        <a class="page-scroll" href="<%= new_user_session_path %>">
+                          Login <i class="fa fa-user"></i>
+            			</a>
+                    </li>
+                    <li class="login f-r">
+                        <a class="page-scroll" href="<%= new_user_registration_path %>">Register <i class="fa fa-file-text-o"></i>
+						</a>
+                    </li>
                 </ul>
-              </div>
-            </div>
+               </div>
+             </div>
           </div>
           <!--Nav Holder End-->
         </div>
