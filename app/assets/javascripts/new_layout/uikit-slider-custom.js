@@ -84,81 +84,7 @@
                 }
             });
 
-            this.container.on({
-
-                'touchstart mousedown': function(evt) {
-
-                    if (evt.originalEvent && evt.originalEvent.touches) {
-                        evt = evt.originalEvent.touches[0];
-                    }
-
-                    // ignore right click button
-                    if (evt.button && evt.button==2 || !$this.active) {
-                        return;
-                    }
-
-                    // stop autoplay
-                    $this.stop();
-
-                    anchor  = UI.$(evt.target).is('a') ? UI.$(evt.target) : UI.$(evt.target).parents('a:first');
-                    dragged = false;
-
-                    if (anchor.length) {
-
-                        anchor.one('click', function(e){
-                            if (dragged) e.preventDefault();
-                        });
-                    }
-
-                    delayIdle = function(e) {
-
-                        dragged  = true;
-                        dragging = $this;
-                        store    = {
-                            touchx : parseInt(e.pageX, 10),
-                            dir    : 1,
-                            focus  : $this.focus,
-                            base   : $this.options.center ? 'center':'area'
-                        };
-
-                        if (e.originalEvent && e.originalEvent.touches) {
-                            e = e.originalEvent.touches[0];
-                        }
-
-                        dragging.element.data({
-                            'pointer-start': {x: parseInt(e.pageX, 10), y: parseInt(e.pageY, 10)},
-                            'pointer-pos-start': $this.pos
-                        });
-
-                        $this.container.addClass('uk-drag');
-
-                        delayIdle = false;
-                    };
-
-                    delayIdle.x         = parseInt(evt.pageX, 10);
-                    delayIdle.threshold = $this.options.threshold;
-
-                },
-
-                mouseenter: function() { if ($this.options.pauseOnHover) $this.hovering = true;  },
-                mouseleave: function() { $this.hovering = false; }
-            });
-
             this.resize(true);
-
-            this.on('display.uk.check', function(){
-                if ($this.element.is(":visible")) {
-                    $this.resize(true);
-                }
-            });
-
-            // prevent dragging links + images
-            this.element.find('a,img').attr('draggable', 'false');
-
-            // Set autoplay
-            if (this.options.autoplay) {
-                this.start();
-            }
 
         },
 
@@ -229,7 +155,7 @@
             }
 
             this.focus = idx;
-            this.container.parent().animate( { scrollLeft: idx*this.width }, 200)
+            this.container.parent().animate( { scrollLeft: idx*this.width }, 500)
         },
 
         next: function() {

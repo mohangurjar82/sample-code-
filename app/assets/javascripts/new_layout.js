@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.idle
+//= require jquery.mobile-1.4.5
 //= require uikit.min
 //= require_tree ./new_layout
 //= require idle_redirect
