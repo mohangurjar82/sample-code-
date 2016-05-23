@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
     @json_products = @products.map { |p| [p.id, p.slice(:title, :price)] }.to_h
 
     @additional_products.each do |p|
-      @json_products["a#{p.id}"] = { title: p.title, price: p.pricing_plan.price / 100.0 }
+      @json_products["a#{p.id}"] = { title: p.title, price: p.price}
     end
 
     @skip_javascript = true

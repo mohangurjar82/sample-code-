@@ -2,148 +2,102 @@
   = stylesheet_link_tag('products/style.css')
   = stylesheet_link_tag('application')
 
-.products.col-sm-10.col-sm-offset-1 ng-controller="cartController as cart"
-  .hero
-    .uk-width-7-10.footmain
-      .uk-grid
-        .uk-width-2-10.promo-img
-          img.center-block.img-responsive.footdivimg alt="" src="/products-demo/8i65B8AXT.png" /
-        .uk-width-8-10.footdiv
-          p.footpmost N2me.tv
-          p.lorempmost
-            | Stop suffering through thousands of channels just to find nothing on Tv. Start enjoying the best of live TV without the cable company. With N2me Tv, there's no installation and no crazy miscellaneous fees. 
-            span 
-              | Starting at 
-              span.spanprice $0.99/mo
+.pricing
+  .cp_inner-banner
+    .container
+      .cp-inner-banner-holder
+        h2
+          | Cart:
+          strong Choose a Package
+        /! Breadcrumb Start
+        ul.breadcrumb
+          li
+            span
+              a href="#"  Buy Indiviudal Channels starting @ $0.99
+        /! Breadcrumb End
+  /! Main Content Start
+  #cp-main-content
+    section.cp-section
+      .container
+        section.cart
+          .container
+            .row
+              .col-md-8
+                - @products.each_with_index do |p, i|
+                  .cart-item.product
+                    .item-image-container.col-md-4
+                      - if p.picture.present?
+                        = image_tag(p.picture_url, class: "img-responsive", alt: "")
+                      - else
+                        = image_tag("product-placeholder.jpg", class: "img-responsive", alt: "")
+                    .item-details.col-md-8
+                      h2= p.title
+                      .description= p.description
+                      .buttons
+                        a.btn.btn-danger.btn-subcribe
+                          i.fa.fa-caret-square-o-right aria-hidden="true" 
+                          | Subcribe
+                        input.checkbox name="product_#{p.id}" type="checkbox" value="1" data-product="#{p.id}"
+                      .price
+                        = "#{p.price} / #{p.pricing_plan.interval.titlecase}"
+                      a.item-action href="#"  See full Channel Lineup
+                    .clear
+                #accordion.panel-group aria-multiselectable="true" role="tablist" 
+                  .panel.panel-default
+                    #headingTwo.panel-heading role="tab" 
+                      h4.panel-title.text-center.collapsed aria-controls="collapseTwo" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#collapseTwo" role="button" 
+                        | Want more? Check out our new stuff:  
+                        a href="#"
+                          | Add more Channels
+                    #collapseTwo.panel-collapse.collapse aria-labelledby="headingTwo" role="tabpanel" 
+                      .panel-body
+                        - @additional_products.in_groups_of(4).each do |group|
+                          .row.items
+                            - group.compact.each do |p|
+                              .cart-item.medium.col-md-3
+                                .item-image-container
+                                  - if p.picture.present?
+                                    = image_tag(p.thumbnail_url, class: "img-responsive", alt: "")
+                                  - else
+                                    = image_tag("product-placeholder.jpg", class: "img-responsive", alt: "")
+                                .item-details
+                                  h5= p.title
+                                  .description= p.description
+                                  .buttons
+                                    a.btn.btn-danger.btn-subcribe title="Subcribe"
+                                      i.fa.fa-caret-square-o-right aria-hidden="true" 
+                                    input.checkbox name="product_a#{p.id}" type="checkbox" value="1" data-product="a#{p.id}"
 
-  .clearfix style="margin-top: 40px"
-
-  .uk-grid
-    .uk-width-7-10
-      - @products.each_with_index do |p, i|
-        .uk-grid.container2.inline
-          - if p.picture.present?
-            .uk-width-2-10.product-image style="background: url(#{p.picture_url})"
-          - else
-            .uk-width-2-10.product-image style="background: url(#{asset_path('product-placeholder.jpg')})"
-          .uk-width-6-10
-            p.extra= p.title
-            p.inline2= p.description
-          .uk-width-2-10.uk-text-center
-            p
-              input type="checkbox" value="1" ng-model="cart.products[#{p.id}].checked" ng-change="cart.update(#{p.id})" /
-            p.price
-              | $
-              = p.pricing_plan.price / 100.0
-              | /
-              = p.pricing_plan.interval
-
-    .uk-width-3-10#subtotal
-      .selected-listing.right data-uk-sticky="{top:95,getWidthFrom:'.selected-listing'}"
-        .uk-grid.row1.rightrow1
-          .uk-width-1-1
-            .uk-grid
-              .uk-width-7-10
-                p.rightcontainer1.subtotal Subtotal
-              .uk-width-3-10
-                p.rightcontainer1 ${{cart.subtotal | number:2}}
-        
-        .uk-grid.rightrow1
-          .uk-width-1-1
-            div.listing ng-repeat="product in cart.selected_products"
-              p.rightcontainer1.title
-                span ng-bind="product.title"
-                span.right-price
-                  | ${{ product.price | number:2 }}
-              p.rightconatiner1-1.desc ng-bind="product.description"
-              .clearfix
-        
-            form action=new_subscription_path method='GET'
-              = hidden_field_tag 'product_ids[]', '', 'ng-repeat' => 'id in cart.product_ids', 'ng-value' => 'id'
-              button.btn.btn-warning.button1 type="submit" ng-disabled='cart.product_ids.length === 0'
-                | proceed to checkout
-                span.uk-icon-chevron-right aria-hidden="true" 
-        .uk-grid.rightrow1
-          .uk-width-1-1
-            p.newpara
-              | 100% risk Free
-              br
-              | 7 Days Free Trail
-        .uk-grid.rightrow1
-          .uk-width-1-1
-            p.rightcontainer1 Questions?
-            p.price2 Call Us 855-957-8732
-            button.uk-button.button2 type="button" 
-              i.uk-icon-comment
-              | Chat Now
-  .uk-accordion data-uk-accordion="{showfirst: false}"
-    .uk-grid.uk-accordion-title.uk-width-7-10
-      .uk-width-1-1.uk-text-center
-        p.click 
-          | Want more? Check out our new stuff:  
-          a href="#" id="liksss"
-            | Add more Channels
-            span.uk-icon-ok-sign
-    .uk-grid.a-la-cart-product.uk-accordion-content
-      .uk-width-7-10
-        h2 A la Cart Channels
-      .uk-width-7-10
-        - @additional_products.in_groups_of(4).each do |group|
-          .uk-grid
-            - group.compact.each do |p|
-              .uk-width-1-4
-                - if p.picture.present?
-                  .product-image style="background: url(#{p.picture_url})"
-                - else
-                  .product-image style="background: url(#{asset_path('product-placeholder.jpg')})"
-                .uk-grid
-                  .uk-width-7-10.title-desc
-                    p= p.title
-                    - if p.description.present?
-                      p= p.description
-                  .uk-width-3-10.price-cont
-                    .price
-                      p.price-label= "$#{p.pricing_plan.price / 100.0}"
-                      span
-                        span Buy
-                        input type="checkbox" value="1" ng-model="cart.products['a#{p.id}'].checked" ng-change="cart.update('a#{p.id}')"
-
-
-   
+                                  .price
+                                    = "#{p.price} / #{p.pricing_plan.interval.titlecase}"
+                                .clear
+              .col-md-4.cart-items
+                .cart_totals
+                  h5 Your Order
+                  table cellspacing="0" 
+                    tbody
+                      tr.cart-total
+                        th Total
+                        td
+                          strong
+                            span.amount $0
+                a.btn.btn-primary.btn-md.btn-appear.btn-cart-checkout href="#" 
+                  span
+                    | Place Your Order
+                    i.ion-ios-arrow-forward
+                p.bold Free 7 Day Trial!
+                p.small-print
+                  | By clicking 'Place your order', you agree to the
+                  a.highlight href="#" 
+                    | Terms &amp;
+                    br
+                    | Conditions
 
 - content_for :javascript do
   = javascript_include_tag :application
-  script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"
 
   javascript:
-    var cartApp = angular.module('cartApp', []);
-
-    angular.element(document).ready(function() {
-      angular.bootstrap(document, ['cartApp']);
-    });
-
-    cartApp.controller('cartController', function() {
-      this.products = #{@json_products.to_json.html_safe};
-      window.products = this.products;
-      this.subtotal = 0;
-      this.product_ids = [];
-      this.selected_products = [];
-      
-      this.update = function(id) {
-        var index = this.product_ids.indexOf(id);
-        console.log(id);
-        console.log(this.products[id]);
-
-        if (index == -1){
-          this.product_ids.push(id)
-          this.selected_products.push(this.products[id])
-        } else {
-          this.product_ids.splice(index, 1)
-          this.selected_products.splice(index, 1)
-        }
-        this.subtotal = 0;
-        for(i in this.selected_products) {
-          this.subtotal += this.selected_products[i].price
-        }
-      }
-    });
+    cart = new Cart({
+      products: #{@json_products.to_json.html_safe},
+      userAgent: #{request.variant.first.to_json.html_safe}
+    })

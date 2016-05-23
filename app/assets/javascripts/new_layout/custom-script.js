@@ -8,21 +8,21 @@ jQuery(document).ready(function($) {
     $('a[data-rel]').each(function () {
         $(this).attr('rel', $(this).data('rel'));
     });
-    $(".pretty-gallery a[rel^='prettyPhoto']").prettyPhoto();
+    $('.pretty-gallery a[rel^=\'prettyPhoto\']').prettyPhoto();
 
     //STICKY HEADER
-    if($('.cp_header').length){
-      // grab the initial top offset of the navigation 
+    if($('.cp_header').length && $('#cp-main-content').length){
+      // grab the initial top offset of the navigation
       var stickyNavTop = $('#cp-main-content').offset().top;
       // our function that decides weather the navigation bar should have "fixed" css position or not.
       var stickyNav = function(){
         var scrollTop = $(window).scrollTop(); // our current vertical position from the top
         // if we've scrolled more than the navigation, change its position to fixed to stick to top,
         // otherwise change it back to relative
-        if (scrollTop > stickyNavTop) { 
+        if (scrollTop > stickyNavTop) {
           $('.cp_header').addClass('cp_sticky');
         } else {
-          $('.cp_header').removeClass('cp_sticky'); 
+          $('.cp_header').removeClass('cp_sticky');
         }
       };
       stickyNav();
@@ -241,57 +241,78 @@ jQuery(document).ready(function($) {
 
     /* Owl Slider For categories list
     ======================================================*/
-    if ($('.categories-list').length) {
-        $('.categories-list').owlCarousel({
-            loop:true,
-            dots: false,
-            nav:true,
-            navText:'',
-            items:4,
-            autoplay: false,
-            smartSpeed:1500,
-            margin:30,
-            responsiveClass:true,
-            responsive:{
-                0:{
-                    items:1,
-                },
-                768:{
-                    items:2,
-                },
-                1199:{
-                    items:4,
-                }
-            }
-        });
-    }
+    // if ($('.categories-list:not(.medium)').length) {
+    //     $('.categories-list:not(.medium)').owlCarousel({
+    //         loop:true,
+    //         dots: false,
+    //         nav:true,
+    //         navText:'',
+    //         items:4,
+    //         autoplay: false,
+
+    //         margin:10,
+    //         responsiveClass:true,
+    //         responsive:{
+    //             0:{
+    //                 items:2,
+    //             },
+    //             768:{
+    //                 items:3,
+    //             },
+    //             1199:{
+    //                 items:4,
+    //             }
+    //         }
+    //     });
+    // }
 
     /* Owl Slider For videos list
     ======================================================*/
-    if ($('.videos-list').length) {
-        $('.videos-list').owlCarousel({
-            loop:true,
-            dots: false,
-            nav:true,
-            navText:'',
-            items:4,
-            autoplay: false,
-            smartSpeed:1500,
-            margin:30,
-            responsiveClass:true,
-            responsive:{
-                0:{
-                    items:1,
-                },
-                768:{
-                    items:2,
-                },
-                1199:{
-                    items:4,
-                }
+
+    $('.owl-carousel').owlCarousel({
+        loop:true,
+        margin:10,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:1,
+                nav:true
+            },
+            600:{
+                items:3,
+                nav:false
+            },
+            1000:{
+                items:5,
+                nav:true,
+                loop:false
             }
-        });
-    }
+        }
+    })
+    // if ($('.videos-list').length) {
+    //     $('.videos-list').owlCarousel({
+    //         loop:true,
+    //         dots: false,
+    //         nav:true,
+    //         navText:'',
+    //         items:4,
+    //         autoplay: false,
+
+    //         margin:10,
+    //         responsiveClass:true,
+    //         responsive:{
+    //             0:{
+    //                 items:2,
+    //             },
+    //             768:{
+    //                 items:3,
+    //             },
+    //             1199:{
+    //                 items:4,
+    //             }
+    //         }
+    //     });
+    // }
 
     /* Audio Player
     ======================================================*/
@@ -384,4 +405,49 @@ jQuery(document).ready(function($) {
         //infowindow.open(map);
     }
 
+    $('#browselink').hover(function () {
+        window.setTimeout(function () {
+            var dropdown = $("#browsedropdown");
+            var offset = dropdown.offset();
+            console.log(offset.left + " + " + dropdown.width() + ": " + (offset.left + dropdown.width()));
+            if (offset.left + dropdown.width() > $(window).width()) {
+                var left = "-" + ((offset.left + dropdown.width()) - $(window).width());
+                dropdown.css("left", left + "px");
+            }
+        }, 751);
+    }, function () {
+    });
+
+    $('#watchlistlink').hover(function () {
+        window.setTimeout(function () {
+            var dropdown = $("#watchlistdropdown");
+            var offset = dropdown.offset();
+            console.log(offset.left + " + " + dropdown.width() + ": " + (offset.left + dropdown.width()));
+            if (offset.left + dropdown.width() > $(window).width()) {
+                var left = "-" + ((offset.left + dropdown.width()) - $(window).width());
+                dropdown.css("left", left + "px");
+            }
+        }, 751);
+    }, function () {
+   });
+
 });
+
+/* Side Bar Menu Js
+ ======================================================*/
+$(document).ready(function(){
+    if($('#cp_side-menu-btn, #cp-close-btn').length) {
+
+        $(document).on('click', '#cp_side-menu-btn',  function(){
+
+            $('body, #cp_side-menu').animate({
+                left: '300px'
+            }, 300);
+        });
+        $(document).on('click', '#cp-close-btn', function(){
+            $('body, #cp_side-menu').animate({
+                left: '0px'
+            }, 300);
+        });
+    }
+})

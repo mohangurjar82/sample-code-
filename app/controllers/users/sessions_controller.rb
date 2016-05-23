@@ -9,15 +9,9 @@ class Users::SessionsController < Devise::SessionsController
         redirect_to categories_path and return
       end
     end
-    super do |user|
-      result = SigninUser.build.call sign_in_params, user
-      unless result.user_signedin?
-        sign_out
-        throw :warden, message: result.error_message
-      end
-    end
+    super
   end
-  
+
   private
 
   def after_sign_in_path_for(resource)

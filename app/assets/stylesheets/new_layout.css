@@ -1,7 +1,9 @@
 /*
+ *= require slider.min
  *= require css/main
  *= require_tree ./new_layout
  *= require font-awesome
  *= require new_layout/custom
  *= require sweetalert
+
 */

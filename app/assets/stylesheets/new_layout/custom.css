@@ -145,6 +145,7 @@ ul {
 	font-weight: 700;
 	line-height: 24px;
 	padding-bottom: 10px;
+    padding-top: 10px;
 	position: relative;
 	margin: 0;
 }
@@ -759,6 +760,7 @@ figure figcaption {
 	text-align: center;
 	margin: 0 auto;
 }
+
 .owl-carousel {
 	float: left;
 	width: 100%;
@@ -1226,7 +1228,7 @@ ul.cp-categories-outer {
 .cp-video-item .cp-text {
 	float: left;
 	width: 100%;
-	padding: 20px 14px 23px;
+	padding: inherit;
 }
 .cp-video-item .cp-text h4 {
 	font-weight: 500;
@@ -3649,6 +3651,12 @@ ul.cp-meta-post-list:last-child {
 	text-align: right;
 }
 
+.makemetaller {
+	min-height: auto !important;
+	max-height: none !important;
+	height: auto !important;
+}
+
 /*===========================================================================*/
 						/*Transition Css*/
 /*===========================================================================*/
@@ -3677,3 +3685,80 @@ ul.cp-meta-post-list:last-child {
 /*===========================================================================*/
 						/*Wrapper Css End*/
 /*===========================================================================*/
+
+
+.cp-copyright-section .container {
+	background: initial;
+}
+
+/*===========================================================================*/
+/* Mobile slider*/
+/*===========================================================================*/
+
+@media(max-width: 992px) {
+    .cloned {
+        display: none;
+    }
+}
+
+@media(max-width: 768px) {
+    .cloned,
+    .cp-video-item .play-video, .cp-thumb .cp-caption .play-video {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
+    .item .cp-video-item .cp-text {
+        display: none;
+    }
+
+    .cp-thumb:hover:before {
+        display: none;
+        visibility: hidden;
+    }
+    .cp-thumb:hover img {
+        -moz-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        -o-transform: scale(1.2);
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+}
+
+.owl-carousel .owl-item img {
+    max-width: 200px;
+    margin: 0 auto;
+    min-height: 207px;
+    max-height: 207px;
+}
+
+.cp-thumb {
+    background: #000;
+}
+
+#my.css
+
+.carousel-control.right, .carousel-control.left {
+    background:none;
+    margin-top: 45%;
+}
+
+.mobile-navbar{
+    position:relative;
+    z-index:1000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

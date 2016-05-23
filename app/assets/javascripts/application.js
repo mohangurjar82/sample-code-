@@ -15,8 +15,9 @@
 //= require js/altair_admin_common
 //= require jquery_ujs
 //= require jquery.idle
+//= require bootstrap-sprockets
 //= require searchbar
 //= require init
 //= require style_switcher
 //= require idle_redirect
-
+//= require pages/pricing

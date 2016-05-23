@@ -25,7 +25,7 @@
               </ul>
             </li>
 
-
+            <li><a href="/mechat/index">MeChat Video Chat & Broadcasting</a> </li>
             <li><a href="#">Live TV Guide</a> </li>
             <li><a href="http://imdb.n2me.tv">TV & Movie Reviews and More</a></li>
           </ul>
@@ -49,7 +49,7 @@
       <div class="row">
         <div class="col-md-9 col-sm-8 col-xs-12">
           <!--Sidebar Menu Button -->
-          <div id="cp_side-menu-btn" class="cp_side-menu"> <a href="#" class=""><i class="fa fa-bars"></i></a> </div>
+          <div id="cp_side-menu-btn" class="cp_side-menu"> <a href="javascript:void(0)" class=""><i class="fa fa-bars"></i></a> </div>
           <!--Sidebar Menu Button End-->
 
           <!--Logo Start-->
@@ -64,8 +64,8 @@
                 <input id="mobile-button" type="checkbox">
                 <ul class="main-menu">
                   <li><a href="/categories">Home</a></li>
-                  <li> <a href="#">Browse Media</a>
-                    <ul class="drop-down full-width col-5 hover-expand">
+                  <li> <a href="#" id="browselink">Browse Media</a>
+                    <ul class="drop-down full-width col-5 hover-expand" id="browsedropdown">
                       <li>
                         <div class="cp-categorie-item">
                           <div class="cp-img"> <a href="/categories/1422405890"><img src="<%= asset_path('new_layout/cat-livetv.png') %>" alt=""></a> </div>
@@ -110,9 +110,9 @@
                     </ul>
                   </li>
                   <li> <a href="/profile">My Subscription</a></li>
-                  <li> <a href="#">My Watch List</a>
+                  <li> <a href="#" id="watchlistlink">My Watch List</a>
                     <% if current_user.present? && current_user.recently_viewed_media.count > 0 %>
-                      <ul class="drop-down full-width col-4 hover-expand">
+                      <ul class="drop-down full-width col-4 hover-expand" id="watchlistdropdown">
                         <% current_user.recently_viewed_media[0..3].each do |m| %>
                           <li>
                             <div class="cp-video-item">
@@ -129,11 +129,13 @@
                               </div>
                             </div>
                           </li>
+
                         <% end %>
                         <li><a href="/profile#favorites">Show all</a></li>
                       </ul>
                     <% end %>
                   </li>
+                  <li> <a href="/mechat/index">MeChat</a></li>
                 </ul>
               </div>
             </div>
@@ -170,6 +172,7 @@
   <!--Navigation End-->
 </header>
 <!--Header End-->
+<<<<<<< HEAD
 
 <script type="text/javascript">
   $(document).ready(function(){
@@ -187,3 +190,27 @@
 </script>
 
 
+=======
+<%= content_for :javascript do %>
+  <script type="text/javascript">
+    /* Side Bar Menu Js
+     ======================================================*/
+    $(document).ready(function(){
+      if($('#cp_side-menu-btn, #cp-close-btn').length) {
+
+        $(document).on('click', '#cp_side-menu-btn',  function(){
+
+          $('body, #cp_side-menu').animate({
+            left: '300px'
+          }, 300);
+        });
+        $(document).on('click', '#cp-close-btn', function(){
+          $('body, #cp_side-menu').animate({
+            left: '0px'
+          }, 300);
+        });
+      }
+    })
+  </script>
+<% end %>
+>>>>>>> 4b2e9255522c56ce830a3603e8f307539001c0c6

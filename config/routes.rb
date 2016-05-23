@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'mechat/index'
+
   namespace :admin do
     resources :media
     resources :games
@@ -32,7 +34,9 @@ Rails.application.routes.draw do
 
 
   resources :products
-  resources :categories, only: [:index, :show]
+  resources :categories, only: [:index, :show] do
+    resources :media, only: [:index]
+  end
   get 'media/:number', to: 'media#show', as: 'media'
   resource :checkout, only: :create
   resources :orders, only: [:new, :create]
