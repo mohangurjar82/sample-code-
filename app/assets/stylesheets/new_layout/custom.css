@@ -1228,7 +1228,7 @@ ul.cp-categories-outer {
 .cp-video-item .cp-text {
 	float: left;
 	width: 100%;
-	padding: 20px 14px 23px;
+	padding: inherit;
 }
 .cp-video-item .cp-text h4 {
 	font-weight: 500;

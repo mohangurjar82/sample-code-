@@ -1,0 +1,584 @@
+// Place all the styles related to the Schedules controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* Declarating mixins and variables
+/* ========================================================= */
+
+@mixin board-common($backcolor, $height) {
+	background-color: rgb($backcolor, $backcolor, $backcolor);
+	height: $height;
+}
+
+@mixin padding($size) {
+	padding: $size;
+}
+
+$channel-height: 100px;
+
+
+
+/* Styling For Arrows
+/* ========================================================= */
+
+.arrow-common {
+	color: #fff;
+	text-align: center;
+	font-size: 30px;
+}
+
+.left-arrow {
+	@extend .arrow-common;
+
+}
+
+.right-arrow {
+	@extend .arrow-common;
+}
+
+.side-arrow-board {
+	background-color: rgb(40, 40, 40);
+	height: 870px;
+	position: relative;
+
+	a {
+		color: rgb(212, 212, 212);
+
+		&:hover {
+		    color: #fbf;
+		}
+	}
+}
+
+.top-bottom-arrow-board {
+	@include board-common(92, 50px);
+	position: relative;
+	border: solid 2px #777;
+
+	a {
+		color: rgb(212, 212, 212);
+
+		&:hover {
+		    color: #fbf;
+		}
+	}
+}
+
+
+
+.category-board {
+	@include board-common(125, 70px);	
+}
+
+.search-board {
+	@include board-common(92, 70px);
+}
+
+
+
+.categories-links {
+	li {
+		float: left;
+		line-height: 25px;
+
+		a {
+			text-decoration: none;
+			color: rgb(242, 242, 242);
+			@include padding(5px);
+
+			&:hover {
+			    color: #90f;
+			}
+		}
+
+		.active {
+			color: rgb(98, 98, 98);
+			background-color: rgb(242, 242, 242);
+			border: solid 1px rgb(242, 242, 242);
+			border-radius: 10px;
+		}
+	}
+}
+
+.view-links {
+	li {
+		float: right;
+		line-height: 25px;
+
+		a {
+			text-decoration: none;
+			color: rgb(242, 242, 242);
+			@include padding(5px);
+			
+			&:hover {
+			    color: #90f;
+			}
+		}
+
+		.active {
+			background-color: rgb(164, 164, 164);
+			border: solid 1px rgb(164, 164, 164);
+			border-radius: 10px;
+		}
+	}
+}
+
+.navbar-default {
+	background-color: rgb(125, 125, 125);
+	border: none;
+}
+
+.navbar {
+	border: none;
+	min-height: 0px;
+}
+
+.navbar .container-fluid {
+	background-color: rgb(125, 125, 125);
+	height: 70px;
+	padding-top: 22px;
+	padding-bottom: 22px;
+}
+
+li.last {
+	float: right;
+}
+
+.channel-height {
+	height: $channel-height;
+}
+
+.blank-space {
+	height: 70px;
+	background-color: rgb(67, 67, 67);	
+}
+
+.relative-pos {
+	position: relative;
+}
+
+.center {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.search-bar {
+	background-color: white;
+	border: 1px solid rgb(190, 190, 190);
+	border-radius: 5px;
+	height: 66px;
+	margin-top: 2px;
+}
+
+.search-bar select {
+    padding: 5px 8px;
+    width: inherit;
+    border: solid 1px;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+}
+
+.search-bar select:focus {
+    outline: none;
+}
+
+
+.select-style .glyphicon {
+
+	position: absolute;
+	top: 0;
+	right: 6px;
+}
+
+.time-board {
+	@include board-common(46, 70px);
+	color: white;
+	font-size: 30px;
+	padding: 0;
+}
+
+div.each-time {
+		border-left: 1px solid white;	
+		padding-top: 30px;
+		height: 70px;
+}
+
+.grid-view {
+	height: 700px;
+	div {
+		@extend .channel-height;
+	}	
+}
+
+.twelve {
+	font-size: 15px;
+}
+
+.channel-board {
+	background-color: rgb(79, 79, 79);
+	border-bottom: solid 1px rgb(92, 92, 92);
+	border-right: solid 1px rgb(157, 157, 157);
+	padding: 30px 0 20px 20px;
+
+	.pull-left {
+		position: relative;
+		width: 50px;
+		
+		img {
+			@extend .center;
+		}
+	}
+
+	p {
+		font-size: 15px;
+
+		a {
+			color: rgb(212, 212, 212);
+
+			&:hover {
+			    color: #fef;
+			}
+		}
+	}
+}
+
+.program-board {
+	background-color: rgb(59, 59, 59);
+	border-bottom: solid 1px rgb(92, 92, 92);
+	padding: 0;
+}
+
+p.channel_name {
+	font-size: 20px;
+	color: white;
+}
+
+.channel_info {
+	display: inline-block;
+	
+	span {
+		color: rgb(255, 255, 100);
+	}
+}
+
+.right-border {
+	border-right: 1px solid rgb(157, 157, 157);
+}
+
+.show-type {
+	padding: 5px 0 3px 10px;	
+}
+
+.episode-title {
+	padding: 0px 0px 3px 10px;
+	color: #fff;
+	font-size: 12px;
+}
+
+.duration {
+	padding: 0px 0px 0px 10px;
+	color: #f9f;
+	font-size: 12px;
+}
+
+.date-board {
+	height: 70px;
+	color: white;
+	font-size: 25px;
+	text-align: center;
+	padding-top: 23px;
+
+	p {
+		font-family: 'Roboto', sans-serif;
+	    line-height: 30px;
+	    font-size: 25px;
+	    color: #ccc;
+	}
+}
+
+
+/* Styling For Search
+/* ========================================================= */
+
+#listings-search-term {
+	border-radius: 10px;
+	border-width: 1px;
+	height: 28px;
+	border-color: #ccc;
+}
+
+#listings-date-time-picker-go {
+	background-color: rgb(220, 0, 0);
+	color: white;
+	border-radius: 10px;
+	border: none;
+	width: 30%;
+	height: 28px;
+	padding: 0;
+}
+
+.listings-details-preferences-column {
+	margin-top: 6px;
+}
+
+.listings-search-submit {
+	position: absolute;
+	color: rgb(220, 0, 0);
+	right: 28px;
+	top: 9px;
+}
+
+.listings-date-time-search {
+	position: relative;
+}
+
+
+.listings-date-picker-time-total {
+	display: inline-block;
+	
+}
+
+#listings-date-picker-date-select {
+
+}
+
+#listings-date-picker-time-select {
+	
+}
+
+
+
+
+.truncate {
+  width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.select2-selection {
+	border-radius: 10px;
+} 
+
+
+
+
+
+/* Styling For TV Search Page
+/* ========================================================= */
+
+.btn-disabled {
+	opacity: 0.5;
+}
+
+.listings-timebar {
+	height: 25px;
+    line-height: 25px;
+    color: white;
+    font-size: 13px;
+    border-top: 1px solid #4b4b4b;
+    border-bottom: 1px solid #4b4b4b;
+    display: inline-block;
+    width: 100%;
+    ckground: linear-gradient(to bottom, #4f545a 0%,#3a3f45 100%);
+    padding-left: 15px;
+    background-color: #333;
+}
+
+.no-data-board {
+	@include board-common(230, 100px);
+	text-align: center;
+	color: rgb(255, 50, 50);
+	font-size: 20px;
+}
+
+#yield-area {
+	position: relative;
+
+}
+
+ul {
+	padding: 0;
+	margin: 0;
+
+	li {
+	    padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+}
+
+
+.listings-channel-row {
+    height: 67px;
+    border-left: 1px solid #e3e4e6;
+    border-right: 1px solid #e3e4e6;
+    border-top: none;
+    display: block;
+
+    a {
+	    color: #white;
+	    text-decoration: none;
+	    -moz-transition: color 0.25s ease;
+	    -o-transition: color 0.25s ease;
+	    -webkit-transition: color 0.25s ease;
+	    transition: color 0.25s ease;
+	}
+}
+
+.listings-channel {
+    height: inherit;
+    border-bottom: 1px solid #e3e4e6;
+    border-right: 1px solid #e3e4e6;
+    background: #f7f8fa;
+
+    display: inline-block;
+    line-height: 66px;
+    vertical-align: middle;
+    text-align: center
+}
+
+.listings-channel-number-name-inner {
+    display: block;
+    height: 30px;
+    line-height: 15px;
+}
+
+.listings-channel-number {
+    font-weight: 700;
+
+    @extend .listings-channel-number-name-common;
+}
+
+.listings-channel-name {
+    color: #6f7780;
+
+    @extend .listings-channel-number-name-common;
+}
+
+.listings-channel-number-name {
+    width: 52%;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    text-align: left;
+}
+
+.listings-channel-number-name-common {
+	display: inline-block;
+    font-size: 12px;
+    height: 15px;
+    width: 100%;
+    text-indent: 10px;
+    white-space: nowrap;
+}
+
+
+.listings-timebar-text {
+    padding-left: 10px;
+}
+
+.listings-program {
+	-moz-box-shadow: inset 0 3px 0 #f8ef93;
+    -webkit-box-shadow: inset 0 3px 0 #f8ef93;
+    box-shadow: inset 0 3px 0 #f8ef93;
+    background: #edfbe3; 
+    display: inline-block;
+    height: 67px;
+    line-height: 67px;
+    vertical-align: middle;
+    border-bottom: 1px solid #e3e4e6;
+}
+
+.listings-program-inner {
+    display: inline-block;
+    height: 34px;
+    line-height: 17px;
+    width: 100%;
+    margin: 0;
+    vertical-align: middle;
+    padding-left: 8px;
+}
+
+.listings-program-title {
+    font-weight: 600;
+    font-size: 15px;
+    display: block;
+}
+
+.listings-program.movies .listings-program-time {
+    color: #969584 !important;
+}
+
+.listings-details-preferences-column {
+	a {
+		color: rgb(220, 0, 0);
+	}	
+}
+
+
+
+/* Styling For Custom Stylish Search Box
+/* ========================================================= */
+
+#custom-search-input {
+    margin:0;
+    padding: 0;
+}
+
+#custom-search-input .search-query {
+    padding-right: 30px;
+    padding-right: 4px \9;
+    padding-left: 7px;
+    padding-left: 4px \9;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 15px;
+}
+
+#custom-search-input button {
+    border: 0;
+    background: none;
+    /** belows styles are working good */
+    padding: 2px 5px;
+    margin-top: 2px;
+    position: relative;
+    left: -28px;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color:#D9230F;
+}
+
+
+.input-group {
+    float: none;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+#listings-search-submit {
+	z-index: 100;	
+}
+
+
+/* Styling For Favorite Modal Dialog
+/* ========================================================= */
+.modal-title {
+	display: inline-block;
+}
+
+.listings-favorites-bulk-buttons button {
+	height: 25px;
+}

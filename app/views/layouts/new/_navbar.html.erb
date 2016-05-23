@@ -144,7 +144,13 @@
         </div>
         <div class="col-md-3 col-sm-4 col-xs-12">
           <!--Right Holder Start-->
-          <div class="cp-right-holder"> <a href="#" class="file-btn">Live TV Guide</a>
+          <div class="cp-right-holder">
+          <%= form_tag("/schedule", method: "post", class: "get-location") do %>
+            <input type="hidden" name="utc_offset" id="utc_offset" />
+            <input type="hidden" name="now" id="now"></input>
+
+            <%= link_to "Live TV Guide", 'schedule_path', class: 'file-btn' %>
+          <% end %>
             <ul class="cp-social-links">
 
               <li><a href="/profile#favorites"><i class="fa fa-heart-o"></i></a></li>
@@ -167,24 +173,40 @@
 </header>
 <!--Header End-->
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-  /* Side Bar Menu Js
-   ======================================================*/
   $(document).ready(function(){
-    if($('#cp_side-menu-btn, #cp-close-btn').length) {
+    $('#utc_offset').val(moment().utcOffset());
 
-      $(document).on('click', '#cp_side-menu-btn',  function(){
+    $('.get-location .file-btn').click(function(event){
+      event.preventDefault();
+      var now = moment().format('YYYY-MM-DD HH:mm:ss');
+      $('#now').val(now);
 
-        $('body, #cp_side-menu').animate({
-          left: '300px'
-        }, 300);
-      });
-      $(document).on('click', '#cp-close-btn', function(){
-        $('body, #cp_side-menu').animate({
-          left: '0px'
-        }, 300);
-      });
-    }
-  })
+      $('.get-location').submit();
+    });
+  });
+
 </script>
+
+<%= content_for :javascript do %>
+  <script type="text/javascript">
+    /* Side Bar Menu Js
+     ======================================================*/
+    $(document).ready(function(){
+      if($('#cp_side-menu-btn, #cp-close-btn').length) {
+
+        $(document).on('click', '#cp_side-menu-btn',  function(){
+
+          $('body, #cp_side-menu').animate({
+            left: '300px'
+          }, 300);
+        });
+        $(document).on('click', '#cp-close-btn', function(){
+          $('body, #cp_side-menu').animate({
+            left: '0px'
+          }, 300);
+        });
+      }
+    })
+  </script>
+<% end %>
