@@ -238,4 +238,6 @@ border-right: 1px dashed #DDD;}
 .cp-ft-nav li, .cp-ft-nav li a {
   color: #ccc;
 }
-
+.pd-tb60{
+  padding: 0px !important;
+}
