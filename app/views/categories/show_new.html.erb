@@ -1,35 +1,34 @@
 <% is_game = @category.title.match("Games") ||(@category.category && @category.category.title.match("Games")) ? true : false %>
 
 <div class="container">
-  <!--Featured Video Block 2-->
-  <% if @category.categories.count > 0 %>
-    <div class="cp-featured-block m60 cp-comedy-video">
-      <div class="row">
-        <div class="cp-heading-outer col-md-12">
-            <h2><%= @category.title %> Categories</h2>
-            <ul class="cp-listed">
-                <li class="view-all"><a href="#">View All</a>
-                </li>
-            </ul>
-        </div>
-      </div>
-      <div class="featured-blocks categories-list">
-        <div class="uk-slidenav-position" data-uk-slider="{infinite: false, slideItems: <%= slide_item_number %>}">
-          <div class="uk-slider-container" style="-webkit-overflow-scrolling: touch;">
-            <ul class="uk-slider uk-grid-width-small-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-4">
-              <% @category.categories.each do |m| %>
-                <li>
-                  <div class="single-category-block">
-                      <figure class="cp-thumb">
-                        <% m = m.becomes(Game) if is_game %>
-                        <% if m.thumbnail_url.present? %>
-                          <img alt="" src="<%= m.thumbnail_url %>">
-                        <% else %>
-                          <img src="<%= asset_path('movie-placeholder.jpg') %>">
-                        <% end %>
-                        <figcaption class="cp-caption">
-                          <a class="play-video" href="/categories/<%= m.number %>">View <%= @category.title %> Category</a>
-
+    <!--Featured Video Block 2-->
+    <% if @category.categories.count > 0 && !@category.title.to_s.match(/Games/i) %>
+      <div class="cp-featured-block m60 cp-comedy-video">
+          <div class="row">
+              <div class="cp-heading-outer col-md-12">
+                  <h2><%= @category.title %> Categories</h2>
+                  <ul class="cp-listed">
+                      <li class="view-all"><a href="#">View All</a>
+                      </li>
+                  </ul>
+              </div>
+            </div>
+              <div class="`-blocks categories-list">
+                <div class="uk-slidenav-position" data-uk-slider="{infinite: false, slideItems: <%= slide_item_number %>}">
+                  <div class="uk-slider-container" style="-webkit-overflow-scrolling: touch;">
+                    <ul class="uk-slider uk-grid-width-small-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-4">
+                      <% @category.categories.each do |m| %>
+                        <li>
+                          <div class="single-category-block">
+                              <figure class="cp-thumb">
+                                <% m = m.becomes(Game) if is_game %>
+                                <% if m.thumbnail_url.present? %>
+                                  <img alt="" src="<%= m.thumbnail_url %>">
+                                <% else %>
+                                  <img src="<%= asset_path('movie-placeholder.jpg') %>">
+                                <% end %>
+                                <figcaption class="cp-caption">
+                                  <a class="play-video" href="/categories/<%= m.number %>">View <%= @category.title %> Category</a>
                         </figcaption>
                       </figure>
                   </div>
