@@ -14,3 +14,18 @@
     margin: 0 auto;
   }
 }
+.uk-grid{
+  width: 100%;
+  .uk-width-1-4{
+    width: 25%;
+    float: left;
+  }
+  &:after {
+    display: table;
+    content: "";
+    clear: both;
+  }
+  .uk-thumbnail{
+    width: 100%;
+  }
+}

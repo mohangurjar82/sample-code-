@@ -31,13 +31,13 @@
             <li><a href="#">Live TV Guide</a> </li>
             <li><a href="http://imdb.n2me.tv">TV & Movie Reviews and More</a></li>
           </ul>
-          <form action="form.php" method="get" class="cp-search-form-outer">
+          <%= form_tag search_path, :method => :get, :class => 'cp-search-form-outer' do %>
             <div class="cp-search-form-outer">
-              <input type="text" placeholder="Search..." required>
+              <input type="text" name="query" placeholder="Search..." required>
               <button class="btn-submit" type="submit"><i class="fa fa-search"></i></button>
             </div>
             <label>... or refine by category.</label>
-          </form>
+          <% end %>
           <% if current_user %>
             <div class="cp-upload-outer"> <a href="/profile" class="file-btn">My Account</a>
               <ul class="cp-listed">
@@ -109,10 +109,10 @@
               <li><a href="/profile#recently-watched"><i class="fa fa-film"></i></a></li>
               <li><a href="/products"><i class="fa fa-credit-card"></i></a></li>
               <li class="cp-search-holder"><i class="fa fa-search"></i>
-                <form action="form.php" method="get" class="cp-search-form-outer">
-                  <input type="text" placeholder="Search..." required>
+                <%= form_tag search_path, :method => :get, :class => 'cp-search-form-outer' do %>
+                  <input type="text" placeholder="Search..." name="query" required>
                   <button class="btn-submit" type="submit"><i class="fa fa-search"></i></button>
-                </form>
+                <% end %>
               </li>
             </ul>
           </div>
@@ -124,39 +124,3 @@
   <!--Navigation End-->
 </header>
 <!--Header End-->
-
-
-<%= content_for :javascript do %>
-  <script type="text/javascript">
-    /* Side Bar Menu Js
-     ======================================================*/
-    $(document).ready(function(){
-      if($('#cp_side-menu-btn, #cp-close-btn').length) {
-
-        $(document).on('click', '#cp_side-menu-btn',  function(){
-
-          $('body, #cp_side-menu').animate({
-            left: '300px'
-          }, 300);
-        });
-        $(document).on('click', '#cp-close-btn', function(){
-          $('body, #cp_side-menu').animate({
-            left: '0px'
-          }, 300);
-        });
-      }
-    })
-
-  $(document).ready(function(){
-    $('#utc_offset').val(moment().utcOffset());
-
-    $('.get-location .file-btn').click(function(event){
-      event.preventDefault();
-      var now = moment().format('YYYY-MM-DD HH:mm:ss');
-      $('#now').val(now);
-      
-      $('.get-location').submit();
-    });
-  });
-  </script>
-<% end %>
