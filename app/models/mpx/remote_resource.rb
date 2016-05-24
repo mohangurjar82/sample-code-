@@ -39,7 +39,7 @@ class MPX::RemoteResource
   end
 
   def number
-    id.split('/')[-1]
+    id.split('/')[-1] rescue nil
   end
 
   def save
