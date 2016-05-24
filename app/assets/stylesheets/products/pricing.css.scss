@@ -50,6 +50,9 @@ body {
       border-bottom: 3px solid #FB8C29;
       padding-bottom: 15px;
       margin-bottom: 15px;
+      img{
+        width: 100%;
+      }
       .item-details{
         margin-top: 65px;
         padding-bottom: 20px;
@@ -107,7 +110,9 @@ body {
     }  
     .cart-item.medium {
       color: #252726;
-
+      img{
+        width: 100%;
+      }
       .col-md-12{
         padding: 0px;
       }
@@ -205,7 +210,6 @@ body {
     }
     .cart-item.medium{
       .item-details{
-        max-width: 200px;
         margin-bottom: 10px;
       }  
     }
