@@ -3751,10 +3751,14 @@ ul.cp-meta-post-list:last-child {
 
 #watchlistdropdown{
 	li{
-		height: 160px;
+		height: 220px;
 		overflow: hidden;
 		.cp-video-item{
 			height: 100%;
+			h4{
+				font-size: 15px;
+				margin-top: 5px;
+			}
 		}
 		.cp-thumb{
 			height: 100%;
