@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   namespace :api do
     scope :v1 do
       resource :session, only: [:create, :destroy]
+      resource :user, only: [:show]
     end
   end
 
