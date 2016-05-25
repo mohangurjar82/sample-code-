@@ -56,6 +56,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def generate_authentication_token
+    token = Devise.friendly_token
+    while User.find_by(authentication_token: token)
+      token = Devise.friendly_token
+    end
+    update_columns(authentication_token: token)
+  end
+
   class Promo
     def self.find_or_create_by_code(code)
       return false unless code.match(User::PROMO_CODE_REGEXP)
