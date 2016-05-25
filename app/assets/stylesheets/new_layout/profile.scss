@@ -36,6 +36,58 @@
     float: left;
     margin-right: 24px;
     position: relative;
+    img{
+      cursor: pointer;
+    }
+    .profile-image-change-text {
+      top: 0;
+      color: #fff;
+      height: 30px;
+      line-height: 30px;
+      width: 100%;
+      z-index: 3;
+      position: absolute;
+      left: 30px;
+      i.fa-pencil{
+        cursor:pointer;
+        padding: 5px;
+        background-color: #7cb342;
+        border-radius: 50%;
+        text-shadow: 1px 1px 2px black;
+      }
+      i.fa-paperclip{
+        margin-right: 5px;
+      }
+      img{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+    }
+    .dropdown-menu{
+      width: 300px;
+      li.header{
+        color: #8c8c8c;
+        padding-left: 20px;
+        button.close{
+          margin-right: 15px;
+        }
+      }
+      a.selected i::before {
+        margin-right: 5px;
+        content: '\f00c';
+      }
+      li.item {
+        i{
+          float: right;
+          margin-top: 15px;
+        }
+        span{
+          position: relative;
+          top: 10px;
+        }
+      }
+    }
   }
 
   .material-icons {

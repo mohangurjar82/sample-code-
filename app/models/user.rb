@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   
   attr_accessor :promo_code
 
-  def avatar
+  def gravatar
     gravatar_id = Digest::MD5::hexdigest(email).downcase
     "https://www.gravatar.com/avatar/#{gravatar_id}.jpg?d=identicon&s=150"
   end

@@ -5,6 +5,35 @@
         <div class="user_heading_avatar">
           <div class="img-circle img-thumbnail text-center">
             <img alt="user avatar" src="/img/avatars/user.png" />
+            <div class="dropdown profile-image-change-text">
+              <span class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-pencil"></i></span>
+              <ul class="dropdown-menu">
+                <li class="header text-center">
+                  Change Avatar
+                  <button type="button" class="close"><span>×</span></button>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li class="item updated-picture" style="display: none;"> <a></a><i class="fa"></i></li>
+                <li class="item use-gravatar"> 
+                  <a>
+                    <img alt="user avatar" src="<%= current_user.gravatar %>" /> 
+                    <span> Gravatar </span>
+                    <i class="fa"></i>
+                  </a> 
+                </li>
+                <li class="item default-avatar"> 
+                  <a class="selected">
+                    <img alt="user avatar" src="/img/avatars/user.png" />
+                    <span>Initials (no avatars)</span> 
+                    <i class="fa"></i>
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#"><i class="fa fa-paperclip" aria-hidden="true"></i>Upload a new picture</a></li>
+              </ul>
+            </div>
+
+
           </div>
         </div>
         <div class="user_heading_content">
