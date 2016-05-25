@@ -33,6 +33,7 @@ gem 'concurrent-ruby'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'devise'
+gem 'simple_token_authentication', '~> 1.0'
 gem 'immutable-struct'
 gem 'puma'
 gem 'rails_12factor', group: :production
@@ -57,6 +58,8 @@ gem 'stripe'
 gem 'language_list'
 
 gem 'mini_magick'
+gem 'active_model_serializers', '~> 0.10.0'
+
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-sweetalert'

@@ -13,6 +13,12 @@ Rails.application.routes.draw do
     root to: "media#index"
   end
 
+  namespace :api do
+    scope :v1 do
+      resource :session, only: [:create, :destroy]
+    end
+  end
+
   devise_for :users, controllers: { sessions: 'users/sessions',
                                     registrations: 'users/registrations' }
 
