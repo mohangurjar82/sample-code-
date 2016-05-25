@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     scope :v1 do
       resource :session, only: [:create, :destroy]
       resource :user, only: [:show]
+      resources :categories, only: [:index, :show]
     end
   end
 
