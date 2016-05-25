@@ -17,7 +17,12 @@ Rails.application.routes.draw do
     scope :v1 do
       resource :session, only: [:create, :destroy]
       resource :user, only: [:show]
-      resources :categories, only: [:index, :show]
+      resources :categories, only: [:index, :show] do
+        member do
+          resources :media, only: [:index, :show], controller: 'category_media'
+        end
+      end
+      resources :media, only: [:index, :show]
     end
   end
 
