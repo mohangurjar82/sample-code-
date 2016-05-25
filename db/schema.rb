@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160510214619) do
+ActiveRecord::Schema.define(version: 20160525023632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,17 @@ ActiveRecord::Schema.define(version: 20160510214619) do
     t.string   "record_reference"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.integer  "media_id"
+    t.string   "title",       limit: 55
+    t.text     "description"
+    t.datetime "start_date",              precision: 0
+    t.datetime "end_date",                precision: 0
+    t.string   "stream_url",  limit: 255
+    t.integer  "product_id"
+    t.integer  "price"
   end
 
   create_table "favorite_media", force: :cascade do |t|
@@ -195,6 +206,8 @@ ActiveRecord::Schema.define(version: 20160510214619) do
     t.json     "billing_address"
     t.string   "name"
     t.text     "recently_viewed_media_ids", default: [],              array: true
+    t.string   "avatar"
+    t.integer  "avatar_option",             default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

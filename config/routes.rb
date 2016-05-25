@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get 'profile' => 'users/registrations#profile'
+    
+    post 'users/update_avatar' => 'users/registrations#update_avatar'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

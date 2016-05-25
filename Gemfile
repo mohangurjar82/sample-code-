@@ -58,6 +58,8 @@ gem 'stripe'
 
 gem 'language_list'
 
+gem 'mini_magick'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-sweetalert'
 end

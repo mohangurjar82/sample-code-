@@ -12,11 +12,25 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validate :confirmation_matches_password
   
+  AVATAR = { :default => 0, :gravatar => 1, :uploaded => 2 }
+
+  mount_uploader :avatar, AvatarUploader
+
   attr_accessor :promo_code
 
   def gravatar
     gravatar_id = Digest::MD5::hexdigest(email).downcase
     "https://www.gravatar.com/avatar/#{gravatar_id}.jpg?d=identicon&s=150"
+  end
+
+  def avatar_url
+    if self.avatar_option == AVATAR[:default]
+      '/img/avatars/user.png'
+    elsif self.avatar_option == AVATAR[:gravatar]
+      gravatar
+    else
+      self.avatar.thumb.url
+    end
   end
 
   def display_name

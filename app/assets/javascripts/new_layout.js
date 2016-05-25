@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require jquery.idle
 //= require uikit.min
+//= require jquery.iframe-transport
 //= require_tree ./new_layout
 //= require idle_redirect
 //= require sweetalert

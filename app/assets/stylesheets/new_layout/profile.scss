@@ -65,7 +65,8 @@
       }
     }
     .dropdown-menu{
-      width: 300px;
+      width: 270px;
+      margin-left: 45px;
       li.header{
         color: #8c8c8c;
         padding-left: 20px;
@@ -85,6 +86,21 @@
         span{
           position: relative;
           top: 10px;
+        }
+      }
+      li.upload{
+        form{
+          margin-left: 20px;
+          a{
+            width: 220px;
+            input{
+              position: absolute;
+              margin-top: -20px;
+              opacity: 0;
+              z-index: 1;
+              cursor: pointer;
+            }
+          }
         }
       }
     }

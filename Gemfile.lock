@@ -170,6 +170,7 @@ GEM
     method_source (0.8.2)
     mime-types (2.99.1)
     mimemagic (0.3.1)
+    mini_magick (4.5.1)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     momentjs-rails (2.11.1)
@@ -344,6 +345,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   language_list
+  mini_magick
   oj
   pg (~> 0.15)
   pry
@@ -369,4 +371,4 @@ RUBY VERSION
    ruby 2.3.0p0
 
 BUNDLED WITH
-   1.12.3
+   1.12.4
