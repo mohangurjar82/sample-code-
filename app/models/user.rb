@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def generate_authentication_token
+  def generate_api_authentication_token
     token = Devise.friendly_token
     while User.find_by(authentication_token: token)
       token = Devise.friendly_token
