@@ -38,37 +38,6 @@
               <a href="" class="previous uk-slidenav uk-slidenav-contrast uk-slidenav-previous"></a>
               <a href="" class="next uk-slidenav uk-slidenav-contrast uk-slidenav-next"></a>
             </div>
-
-
-            <!-- <div class="uk-slidenav-position" data-uk-slider="{infinite: false, slideItems: <%= slide_item_number %>}">
-              <div class="uk-slider-container" style="-webkit-overflow-scrolling: touch;">
-                <ul class="uk-slider uk-grid-width-small-1-3 uk-grid-width-medium-1-4 uk-grid-width-large-1-5">
-                  <% cat.media.each do |m| %>
-                    <li>
-                      <div class="item"> 
-                        <div class="cp-video-item">
-                          <figure class="cp-thumb">
-                            <% if m.thumbnail_url.present? %>
-                              <img alt="" src="<%= m.thumbnail_url %>">
-                            <% else %>
-                              <img src="<%= asset_path('movie-placeholder.jpg') %>') %>">
-                            <% end %>
-                            <figcaption class="cp-caption">
-                              <a href="/media/<%= m.number %>" class="play-video">Play</a>
-                            </figcaption>
-                          </figure>
-
-                        </div>
-                      </div>
-                    </li>
-                  <% end %>
-                </ul>
-              </div>
-              <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slider-item="previous"></a>
-              <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slider-item="next"></a>
-
-            </div> -->
-
           </div>
         </div>
     <% end %>
@@ -99,6 +68,35 @@
       }
       return false;
     })
-})
+    var x,y,top,left,down, stuff;
+    $(".row__inner").mousedown(function(e){
+        e.preventDefault();
+        down=true;
+        x=e.pageX;
+        y=e.pageY;
+        left=$(this).offset().left;
+        stuff = $(this)
+    });
+
+    $("body").mousemove(function(e){
+        var newX=e.pageX;
+        var newY=e.pageY;
+        var _left;
+        if(down){
+          if(newX > x){
+            _left = left + newX -x + 100;
+            if( _left > 5) _left = 5;
+          }else{
+            _left = left - (x - newX) -100;
+            var maxWidth = stuff[0].scrollWidth;
+            if(Math.abs(_left) > (maxWidth- $(window).width())){
+              _left =  -(maxWidth - $(window).width());
+            }
+          }
+          stuff.css({left: _left});
+        }
+    });
+    $("body").mouseup(function(e){down=false;});
+  })
 
 </script>
