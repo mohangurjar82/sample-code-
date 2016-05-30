@@ -34,19 +34,32 @@ jQuery(document).ready(function($) {
 
     /* Side Bar Menu Js
     ======================================================*/
-    if ($('#cp_side-menu-btn, #cp-close-btn').length) {
-        $('#cp_side-menu-btn').on('click', function(){
-            $('body, #cp_side-menu').animate({
-              left: '300px'
-            }, 300);
-        });
-        $('#cp-close-btn').on('click', function(){
-            $('body, #cp_side-menu').animate({
-              left: '0px'
-            }, 300);
-        });
+    if($('#cp_side-menu-btn, #cp-close-btn').length) {
+
+      $(document).on('click', '#cp_side-menu-btn',  function(){
+
+        $('body, #cp_side-menu').animate({
+          left: '300px'
+        }, 300);
+      });
+      $(document).on('click', '#cp-close-btn', function(){
+        $('body, #cp_side-menu').animate({
+          left: '0px'
+        }, 300);
+      });
     }
-	
+
+
+    $('#utc_offset').val(moment().utcOffset());
+
+    $('.get-location .file-btn').click(function(event){
+      event.preventDefault();
+      var now = moment().format('YYYY-MM-DD HH:mm:ss');
+      $('#now').val(now);
+      
+      $('.get-location').submit();
+    });
+
 	
 	/* Owl Slider For Featured Video
     ======================================================*/
@@ -433,21 +446,27 @@ jQuery(document).ready(function($) {
 
 });
 
-/* Side Bar Menu Js
+/* Set slider items
  ======================================================*/
 $(document).ready(function(){
-    if($('#cp_side-menu-btn, #cp-close-btn').length) {
 
-        $(document).on('click', '#cp_side-menu-btn',  function(){
+    setSlideItems()
+    $(window).resize(function () {
+        setSlideItems()
+    })
 
-            $('body, #cp_side-menu').animate({
-                left: '300px'
-            }, 300);
-        });
-        $(document).on('click', '#cp-close-btn', function(){
-            $('body, #cp_side-menu').animate({
-                left: '0px'
-            }, 300);
-        });
-    }
 })
+var slideItems = 4;
+
+function setSlideItems(){
+    var width = $(window).width()
+    if(width >= 960){
+        slideItems = 4;
+    }else if(width >= 768){
+        slideItems = 3;
+    }else if(width >= 480){
+        slideItems = 2;
+    }else{
+        slideItems = 1;
+    }
+}

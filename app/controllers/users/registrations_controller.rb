@@ -1,6 +1,9 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   layout proc{ |controller| user_signed_in? ? 'new_layout' : 'devise' }
-  
+
+  skip_before_filter :verify_authenticity_token, :only => [:update_avatar]
+  respond_to :json
+
   def profile
     redirect_to new_user_session_path and return if current_user.blank?
     @subscriptions = current_user.subscriptions
@@ -17,6 +20,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     products_path
   end
 
+
+  def update_avatar
+    self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+    resource_updated = update_resource(resource, account_update_params)
+    render :layout => false
+  end
+
   private
 
   def sign_up_params
@@ -25,7 +35,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def account_update_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar_option, :avatar)
   end
 
   def update_resource(resource, params)

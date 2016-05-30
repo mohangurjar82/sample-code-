@@ -46,10 +46,10 @@ Cart.prototype.bindEvents = function () {
     $(window).unbind("scroll").scroll(function (e) {
       if($(document).width() >= 993){
         var top = $(window).scrollTop()
-        if ( top <= 250){
+        if ( top <= 125){
           top = 0;
         }else{
-          top = top - 250;
+          top = top - 30;
         }
         $('.cart-items').css({top: top+"px"})
       }else{

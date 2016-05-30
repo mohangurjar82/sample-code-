@@ -1,6 +1,5 @@
 - content_for :head do
   = stylesheet_link_tag('products/style.css')
-  = stylesheet_link_tag('application')
 
 .pricing
   .cp_inner-banner
@@ -24,13 +23,13 @@
             .row
               .col-md-8
                 - @products.each_with_index do |p, i|
-                  .cart-item.product
-                    .item-image-container.col-md-4
+                  .cart-item.product [data-uk-grid]
+                    .item-image-container.uk-width-small-1-3.uk-width-medium-1-3.uk-width-large-1-3
                       - if p.picture.present?
-                        = image_tag(p.picture_url, class: "img-responsive", alt: "")
+                        = image_tag(p.picture_url, alt: "")
                       - else
-                        = image_tag("product-placeholder.jpg", class: "img-responsive", alt: "")
-                    .item-details.col-md-8
+                        = image_tag("product-placeholder.jpg", alt: "")
+                    .item-details.uk-width-small-2-3.uk-width-medium-2-3.uk-width-large-2-3
                       h2= p.title
                       .description= p.description
                       .buttons
@@ -50,27 +49,24 @@
                         a href="#"
                           | Add more Channels
                     #collapseTwo.panel-collapse.collapse aria-labelledby="headingTwo" role="tabpanel" 
-                      .panel-body
-                        - @additional_products.in_groups_of(4).each do |group|
-                          .row.items
-                            - group.compact.each do |p|
-                              .cart-item.medium.col-md-3
-                                .item-image-container
-                                  - if p.picture.present?
-                                    = image_tag(p.thumbnail_url, class: "img-responsive", alt: "")
-                                  - else
-                                    = image_tag("product-placeholder.jpg", class: "img-responsive", alt: "")
-                                .item-details
-                                  h5= p.title
-                                  .description= p.description
-                                  .buttons
-                                    a.btn.btn-danger.btn-subcribe title="Subcribe"
-                                      i.fa.fa-caret-square-o-right aria-hidden="true" 
-                                    input.checkbox name="product_a#{p.id}" type="checkbox" value="1" data-product="a#{p.id}"
+                      .panel-body.uk-grid.uk-grid-width-small-1-3.uk-grid-width-medium-1-4.uk-grid-width-large-1-4 style="border:none;"
+                        - @additional_products.compact.each do |p|
+                          .cart-item.medium
+                            .item-image-container
+                              - if p.picture.present?
+                                = image_tag(p.thumbnail_url, class: "img-responsive", alt: "")
+                              - else
+                                = image_tag("product-placeholder.jpg", class: "img-responsive", alt: "")
+                            .item-details
+                              h5= p.title
+                              .description= p.description
+                              .buttons
+                                a.btn.btn-danger.btn-subcribe title="Subcribe"
+                                  i.fa.fa-caret-square-o-right aria-hidden="true" 
+                                input.checkbox name="product_a#{p.id}" type="checkbox" value="1" data-product="a#{p.id}"
 
-                                  .price
-                                    = "#{p.price} / #{p.pricing_plan.interval.titlecase}"
-                                .clear
+                              .price
+                                = "#{p.price} / #{p.pricing_plan.interval.titlecase}"
               .col-md-4.cart-items
                 .cart_totals
                   h5 Your Order
@@ -94,7 +90,7 @@
                     | Conditions
 
 - content_for :javascript do
-  = javascript_include_tag :application
+  = javascript_include_tag :new_layout
 
   javascript:
     cart = new Cart({
