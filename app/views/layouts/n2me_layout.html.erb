@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     <meta charset="UTF-8" />
+     <meta content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+     <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+     <meta content="no" name="msapplication-tap-highlight" />
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <%= csrf_meta_tags %>
+     <title>N2ME.tv - Live TV, Movies, Ebooks, Games & More!</title> 
+      <link href="<%= image_path('new_layout/n2me/assets/favicon.png') %>" rel="icon" type="image/png"> 
+        <!-- <link href="css/plugins.css" rel="stylesheet" type="text/css">   
+        <link href="css/theme.css" rel="stylesheet" type="text/css">   
+        <link href="css/ionicons.min.css" rel="stylesheet" type="text/css">
+        <link href="css/et-line-icons.css" rel="stylesheet" type="text/css">
+        <link href="css/themify-icons.css" rel="stylesheet" type="text/css">  -->
+        
+        <link href='https://fonts.googleapis.com/css?family=Raleway:100,200,300,400%7COpen+Sans:400,300' rel='stylesheet' type='text/css'>
+        <!-- <link href="css/custom.css" rel="stylesheet" type="text/css">  -->
+        
+        <!-- <link href="#{asset_path(stylesheets/new_layout/colors/blue.css.scss)}" id="color-scheme" rel="stylesheet" type="text/css"> -->
+     <%= stylesheet_link_tag 'new_layout', media: 'all' %>
+     <%= content_for(:head) if content_for? :head %>
+     <%= javascript_include_tag(:new_layout) unless @skip_javascript %>
+  </head>
+  <body>
+    <%= render 'layouts/n2me/navbar' %>
+    <div id="wrapper">
+      <%= render 'layouts/n2me/breadcrumbs' %>
+      <!--Main Content Start-->
+      <div id="cp-main-content">
+        <section class="cp-section pd-tb60">
+          <%= yield %>
+        </section>
+        <%= render 'layouts/n2me/footer' %>
+      </div>
+    </div>
+    <% if content_for? :javascript %>
+      <%= content_for :javascript %>
+    <% end %>
+  </body>
+</html>

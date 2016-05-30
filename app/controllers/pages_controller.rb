@@ -1,6 +1,9 @@
 class PagesController < ApplicationController
-  layout 'new_layout'
+  layout 'n2me_layout'
 
   def index
+  end
+
+  def tmp_index 
   end
 end
