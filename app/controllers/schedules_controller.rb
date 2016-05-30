@@ -94,18 +94,13 @@ class SchedulesController < ApplicationController
 		sql_for_channels = ''
 		if not @favorite_channels.blank?
 			sql_for_channels = ' AND ('
-			# sql_for_chan_numbers = ' AND ('
 			@favorite_channels.each_with_index do |ch, index|
 				if index == @favorite_channels.length - 1
 					sql_for_channels = sql_for_channels + "(s_id=" + ch.s_id.to_s + " AND s_number='" + ch.s_number.to_s + "'))"
-					# sql_for_chan_numbers = sql_for_chan_numbers + 'listings.channel_number=' + ch.channel_number.to_s + ')'
 					break	
 				end
 				sql_for_channels = sql_for_channels + "(s_id=" + ch.s_id.to_s + " AND s_number='" + ch.s_number.to_s + "') OR "
-				# sql_for_chan_numbers = sql_for_chan_numbers + 'listings.channel_number=' + ch.number.to_s + ' OR '
 			end
-			# sql_for_channels = sql_for_chan_numbers
-			# sql_for_channels = sql_for_channels + sql_for_chan_numbers
 		end
 
 		if not sql_for_channels.eql? ''
