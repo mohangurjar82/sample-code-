@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="no" name="msapplication-tap-highlight" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= csrf_meta_tags %>
+    <title>N2me</title>
+
+    <link href='//fonts.googleapis.com/css?family=Ubuntu:100,400,700' rel='stylesheet' type='text/css'>
+
+    <link media="all" type="text/css" rel="stylesheet" href="http://imdb.n2me.tv/themes/mercury/assets/css/styles.min.css?v11">
+     <%= content_for(:head) if content_for? :head %>
+  </head>
+  <body id="home" class="nav-trans animate-nav">
+    <%= render 'layouts/new/navbar_new' %>  
+    <%= yield %>
+    <% if content_for? :javascript %>
+      <%= content_for :javascript %>
+    <% end %>
+
+  </body>
+</html>

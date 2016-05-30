@@ -30,6 +30,15 @@
   }
 }
 .category-container{
+  ::-webkit-scrollbar {
+      width: 0px;  /* remove scrollbar space */
+      background: transparent;  /* optional: just make scrollbar invisible */
+  }
+  /* optional: show position indicator in red */
+  ::-webkit-scrollbar-thumb {
+      background: transparent;
+  }
+
   margin-left: 20px;
   margin-right: 20px;
   * {
@@ -165,4 +174,18 @@
     -webkit-transform: translate3d(100px, 0, 0);
             transform: translate3d(100px, 0, 0);
   }
+}
+
+.categories-list, .videos-list{
+  .single-category-block{
+    margin-bottom: 30px;
+  }
+}
+.uk-slider > *{
+  position: initial;
+  left: initial;
+  float: left;
+}
+.uk-slider-container{
+  overflow-x: auto;
 }

@@ -142,9 +142,6 @@
 #cp_side-menu {
 	top: 0;
 }
-.cp-navigation-row .navbar-nav .open .dropdown-menu > li > a {
-	line-height: 26px;
-}
 #cp_banner-slider .cp-banner-caption {
 	bottom: 30px;
 }
