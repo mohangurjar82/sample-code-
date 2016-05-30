@@ -5,6 +5,7 @@
  *= require_tree ./new_layout
  *= require font-awesome
  *= require new_layout/custom
+ *= require new_layout/colors/blue
  *= require sweetalert
 
 */
