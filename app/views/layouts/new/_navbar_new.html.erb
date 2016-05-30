@@ -8,18 +8,36 @@
         <span class="icon-bar"></span>
       </button>
 
-      <a class="navbar-brand" href="/">
+      <a class="navbar-brand" href="<%= current_user ? categories_path : root_path %>">
         <img class="brand-logo" src="/img/logo-white.png">
       </a>  
     </div>
 
     <div class="collapse navbar-collapse" id="navbar-ex1-collapse">
       <ul class="nav navbar-nav main-menu">
-        <li> <a href="<%= categories_path %>"> Movies</a> </li>
-        <li> <a href="#"> Series</a> </li>
-        <li> <a href="#">News</a> </li>
-        <li> <a href="#">People </a> </li>
-        <li><a href="#">Watch Now!</a></li>
+        <% if current_user %>
+          <li><a href="/categories/1422405890">Live TV</a></li>
+          <li><a href="/categories/1423429519">Movies</a></li>
+          <li><a href="/categories/1423429520">Events</a></li>
+          <li><a href="/categories/1422405926">Games</a></li>
+          <li><a href="/music">Music</a></li>
+          <li><a href="<%= ebooks_path %>">E-Books</a></li>
+          <li><a href="/categories/1422405886">International</a></li>
+        <% else %>
+          <li>
+            <a class="page-scroll" href="#content">Streaming Content</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#pricing">Pricing</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#portfolio">Live Preview</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#contact">Contact</a>
+          </li>
+
+        <% end %>
       </ul>
         
       <ul class="nav navbar-nav navbar-right logged-in-box">
