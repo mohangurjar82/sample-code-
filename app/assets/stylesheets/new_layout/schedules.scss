@@ -123,23 +123,6 @@ $channel-height: 100px;
 	}
 }
 
-.navbar-default {
-	background-color: rgb(125, 125, 125);
-	border: none;
-}
-
-.navbar {
-	border: none;
-	min-height: 0px;
-}
-
-.navbar .container-fluid {
-	background-color: rgb(125, 125, 125);
-	height: 70px;
-	padding-top: 22px;
-	padding-bottom: 22px;
-}
-
 li.last {
 	float: right;
 }
@@ -250,8 +233,11 @@ div.each-time {
 
 .program-board {
 	background-color: rgb(59, 59, 59);
-	border-bottom: solid 1px rgb(92, 92, 92);
 	padding: 0;
+
+	.pull-left {
+		border-bottom: solid 1px rgb(92, 92, 92);
+	}
 }
 
 p.channel_name {
@@ -522,6 +508,59 @@ ul {
 	}	
 }
 
+.channel-info {
+	padding: 15px;
+	border-bottom: solid 1px rgb(92, 92, 92);
+
+	.listings-channel-number-name-inner {
+	    display: block;
+	    height: 60px;
+	    line-height: 30px;
+	}
+
+	.listings-channel-number {
+	    font-weight: 700;
+
+	    @extend .listings-channel-number-name-common;
+	}
+
+	.listings-channel-name {
+	    color: #6f7780;
+
+	    @extend .listings-channel-number-name-common;
+	}
+
+	.listings-channel-number-name {
+	    width: 52%;
+	    height: 60px;
+	    line-height: 30px;
+	    display: inline-block;
+	    text-align: left;
+	    vertical-align: middle;
+	}
+
+	.listings-channel-number-name-common {
+		display: inline-block;
+	    font-size: 30px;
+	    height: 30px;
+	    width: 100%;
+	    text-indent: 10px;
+	    white-space: nowrap;
+	}
+}
+
+.pro-info {
+	padding: 25px 15px 15px 15px;
+
+	.tag {
+		font-size: 10px;
+	    background-color: #3377ff;
+	    color: white;
+	    border-radius: 3px;
+        padding: 3px;
+        margin-right: 5px;
+	}
+}
 
 
 /* Styling For Custom Stylish Search Box
@@ -582,3 +621,26 @@ ul {
 .listings-favorites-bulk-buttons button {
 	height: 25px;
 }
+
+.row-padding {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: solid 1px rgb(230, 230, 230);
+    border-bottom: solid 1px rgb(230, 230, 230);
+}
+
+#container-search {
+	margin-top: 15px;
+	margin-bottom: 30px;
+}
+
+.modal-footer {
+	border-top: none;
+}
+
+#searchable-container {
+	height: 500px;
+	overflow: scroll;
+}
+
+

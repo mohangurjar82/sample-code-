@@ -146,6 +146,7 @@
         </div>
         <div class="col-md-3 col-sm-4 col-xs-12">
           <!--Right Holder Start-->
+
           <div class="cp-right-holder">
           <%= form_tag("/schedule", method: "post", class: "get-location") do %>
             <input type="hidden" name="utc_offset" id="utc_offset" />
@@ -174,3 +175,36 @@
   <!--Navigation End-->
 </header>
 <!--Header End-->
+
+<%= content_for :javascript do %>
+  <script type="text/javascript">
+    /* Side Bar Menu Js
+     ======================================================*/
+    $(document).ready(function(){
+      $('#utc_offset').val(moment().utcOffset());
+
+      $('.get-location .file-btn').click(function(event){
+        event.preventDefault();
+        var now = moment().format('YYYY-MM-DD HH:mm:ss');
+        $('#now').val(now);
+        
+        $('.get-location').submit();
+      });
+
+      if($('#cp_side-menu-btn, #cp-close-btn').length) {
+
+        $(document).on('click', '#cp_side-menu-btn',  function(){
+
+          $('body, #cp_side-menu').animate({
+            left: '300px'
+          }, 300);
+        });
+        $(document).on('click', '#cp-close-btn', function(){
+          $('body, #cp_side-menu').animate({
+            left: '0px'
+          }, 300);
+        });
+      }
+    })
+  </script>
+<% end %>

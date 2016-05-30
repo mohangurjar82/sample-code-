@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525180503) do
+ActiveRecord::Schema.define(version: 20160529161742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,72 @@ ActiveRecord::Schema.define(version: 20160525180503) do
 
   add_index "favorite_media", ["media_number"], name: "index_favorite_media_on_media_number", using: :btree
   add_index "favorite_media", ["user_id"], name: "index_favorite_media_on_user_id", using: :btree
+
+  create_table "lineups", force: :cascade do |t|
+    t.string   "l_id"
+    t.string   "lineup_name"
+    t.string   "lineup_type"
+    t.string   "provider_id"
+    t.string   "provider_name"
+    t.string   "service_area"
+    t.string   "country"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "lineups_stations", id: false, force: :cascade do |t|
+    t.integer "lineup_id"
+    t.integer "station_id"
+  end
+
+  add_index "lineups_stations", ["lineup_id", "station_id"], name: "index_lineups_stations_on_lineup_id_and_station_id", using: :btree
+
+  create_table "listings", force: :cascade do |t|
+    t.string   "s_number"
+    t.integer  "channel_number"
+    t.integer  "sub_channel_number"
+    t.integer  "s_id"
+    t.string   "callsign"
+    t.string   "logo_file_name"
+    t.datetime "list_date_time"
+    t.integer  "duration"
+    t.integer  "show_id"
+    t.integer  "series_id"
+    t.string   "show_name"
+    t.string   "episode_title"
+    t.boolean  "repeat"
+    t.boolean  "new"
+    t.boolean  "live"
+    t.boolean  "hd"
+    t.boolean  "descriptive_video"
+    t.boolean  "in_progress"
+    t.string   "show_type"
+    t.integer  "star_rating"
+    t.text     "description"
+    t.string   "league"
+    t.string   "team1"
+    t.string   "team2"
+    t.string   "show_picture"
+    t.string   "web_link"
+    t.string   "name"
+    t.string   "station_type"
+    t.integer  "listing_id"
+    t.string   "episode_number"
+    t.integer  "parts"
+    t.integer  "part_num"
+    t.boolean  "series_premiere"
+    t.boolean  "season_premiere"
+    t.boolean  "series_finale"
+    t.boolean  "season_finale"
+    t.string   "rating"
+    t.string   "guest"
+    t.string   "director"
+    t.string   "location"
+    t.string   "l_id"
+    t.datetime "updated_date"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
 
   create_table "media", force: :cascade do |t|
     t.integer  "admin_user_id"
@@ -143,6 +209,7 @@ ActiveRecord::Schema.define(version: 20160525180503) do
   add_index "product_items", ["product_id"], name: "index_product_items_on_product_id", using: :btree
 
   create_table "products", force: :cascade do |t|
+    t.string   "mpxid",                          null: false
     t.string   "title"
     t.string   "description"
     t.string   "images",          default: [],                array: true
@@ -150,9 +217,29 @@ ActiveRecord::Schema.define(version: 20160525180503) do
     t.datetime "updated_at",                     null: false
     t.json     "pricing_plan"
     t.boolean  "available",       default: true, null: false
-    t.string   "mpxid"
     t.string   "image"
     t.integer  "pricing_plan_id"
+  end
+
+  add_index "products", ["mpxid"], name: "index_products_on_mpxid", using: :btree
+
+  create_table "stations", force: :cascade do |t|
+    t.string   "s_number"
+    t.integer  "channel_number"
+    t.integer  "sub_channel_number"
+    t.integer  "s_id"
+    t.string   "name"
+    t.string   "callsign"
+    t.string   "network"
+    t.string   "station_type"
+    t.integer  "ntsc_tsid"
+    t.integer  "dtv_tsid"
+    t.string   "twitter"
+    t.string   "weblink"
+    t.string   "logo_file_name"
+    t.boolean  "station_hd"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "subscription_items", force: :cascade do |t|
@@ -166,11 +253,12 @@ ActiveRecord::Schema.define(version: 20160525180503) do
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "billing_period"
-    t.string   "stripe_id"
     t.integer  "product_id"
+    t.string   "payment_detail_id"
+    t.string   "stripe_id"
     t.string   "stripe_plan_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "pricing_plan_id"
   end
 
@@ -200,5 +288,12 @@ ActiveRecord::Schema.define(version: 20160525180503) do
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "users_stations", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "station_id"
+  end
+
+  add_index "users_stations", ["user_id", "station_id"], name: "index_users_stations_on_user_id_and_station_id", using: :btree
 
 end

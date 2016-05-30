@@ -109,6 +109,7 @@
 
 		function initialize() {
 			tv_listing = <%= raw @tv_listing.to_json %>;
+			start_t = "<%= raw @start_t %>"
 			console.log(tv_listing);
 
 			init_date_picker();
@@ -129,17 +130,17 @@
 				$('#yield-area').addClass('no-data-board');
 			} else {
 				tmp_html = tmp_html + '<ul>';
-				var loop_date = moment(tv_listing[0].listDateTime).set({'hour': 0, 'minute': 0, 'second': 0});
+				var loop_date = moment(tv_listing[0].locale_time).set({'hour': 0, 'minute': 0, 'second': 0});
 				tmp_html = tmp_html + "<li class='listings-timebar'>" + loop_date.format('dddd, MMMM D, YYYY') + "</li>"
 
 				for (var i in tv_listing) {
-					if(loop_date.diff(moment(tv_listing[i].listDateTime).set({'hour': 0, 'minute': 0, 'second': 0})) != 0) {
-						loop_date = moment(tv_listing[i].listDateTime).set({'hour': 0, 'minute': 0, 'second': 0});
+					if(loop_date.diff(moment(tv_listing[i].locale_time).set({'hour': 0, 'minute': 0, 'second': 0})) != 0) {
+						loop_date = moment(tv_listing[i].locale_time).set({'hour': 0, 'minute': 0, 'second': 0});
 						tmp_html = tmp_html + "<li class='listings-timebar'>" + loop_date.format('dddd, MMMM D, YYYY') + "</li>"
 
 					} 
 
-					tmp_html =  tmp_html + '<li data-channel-number="' + tv_listing[i].channelNumber + '" data-channel-source="' + tv_listing[i].stationID + '" data-channel-name="' + tv_listing[i].callsign + '"><a href="#" class="listings-channel" style="width: 17.7%;"><span><img src="http://cdn.tvpassport.com/image/station/100x100/' + tv_listing[i].logoFilename + '" style="width: 30px; height: 20px"></span><span class="listings-channel-number-name"><span class="listings-channel-number-name-inner"><span class="listings-channel-number">' + tv_listing[i].channelNumber + '</span><span class="listings-channel-name">' + tv_listing[i].callsign + '</span></span></span></a><a href="#" class="listings-program" style="width: 82.3%;"><span class="listings-program-inner"><span class="listings-program-title">' + tv_listing[i].episodeTitle + '</span><span class="listings-program-time">' + moment(tv_listing[i].listDateTime).format('h:mm A') + ' (' + moment.duration(tv_listing[i].duration, "minutes").format("h [hr] m [min]") + ')</span></span></a></li>';
+					tmp_html =  tmp_html + '<li data-channel-number="' + tv_listing[i].channel_number + '" data-channel-source="' + tv_listing[i].s_id + '" data-channel-name="' + tv_listing[i].callsign + '"><a href="#" class="listings-channel" style="width: 17.7%;"><span><img src="http://cdn.tvpassport.com/image/station/100x100/' + tv_listing[i].logo_file_name + '" style="width: 30px; height: 20px"></span><span class="listings-channel-number-name"><span class="listings-channel-number-name-inner"><span class="listings-channel-number">' + tv_listing[i].s_id + '</span><span class="listings-channel-name">' + tv_listing[i].callsign + '</span></span></span></a><a href="#" class="listings-program" style="width: 82.3%;"><span class="listings-program-inner"><span class="listings-program-title">' + tv_listing[i].episode_title + '</span><span class="listings-program-time">' + moment(tv_listing[i].locale_time).format('h:mm A') + ' (' + moment.duration(tv_listing[i].duration, "minutes").format("h [hr] m [min]") + ')</span></span></a></li>';
 				}
 
 				tmp_html = tmp_html + '</ul>';

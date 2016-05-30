@@ -9,17 +9,14 @@
 
      <%= csrf_meta_tags %>
      <title>N2me</title>
+     <link href='//fonts.googleapis.com/css?family=Ubuntu:100,400,700' rel='stylesheet' type='text/css'>
      <%= stylesheet_link_tag 'new_layout', media: 'all' %>
      <%= content_for(:head) if content_for? :head %>
      <%= javascript_include_tag(:new_layout) unless @skip_javascript %>
   </head>
   <body>
+    <%= render 'layouts/new/navbar_new' %>
     <div id="wrapper">
-      <% if current_user %>
-        <%= render 'layouts/new/navbar' %>
-      <% else %>
-        <%= render 'layouts/new/navbar_no_login' %>
-      <% end %>
       <%= render 'layouts/new/breadcrumbs' %>
       <!--Main Content Start-->
       <div id="cp-main-content">

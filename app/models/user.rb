@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   acts_as_token_authenticatable
 
   has_many :subscriptions
+  has_and_belongs_to_many :stations, :join_table => "users_stations"
 
   validates :name, :email, presence: true
   validates_uniqueness_of :email
