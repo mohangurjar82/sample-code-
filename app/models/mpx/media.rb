@@ -27,8 +27,12 @@ class MPX::Media < MPX::RemoteResource
   end
 
   def thumbnails
-    attributes['media$thumbnails'].map do |file|
-      file['plfile$url']
+    if attributes['media$thumbnails']
+      attributes['media$thumbnails'].map do |file|
+        file['plfile$url']
+      end 
+    else
+      return []
     end
   end
 

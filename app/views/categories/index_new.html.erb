@@ -1,4 +1,4 @@
-<div class="container">
+<div class="category-container">
     <!--Outer Holder Start-->
     <% @categories.each do |cat| %>
       <% next unless cat.media.any? %>
@@ -12,39 +12,42 @@
               </ul>
             </div>
           </div>
-          <div class="videos-list">
-            <div class="uk-slidenav-position" data-uk-slider>
-              <div class="uk-slider-container">
-                <ul class="uk-slider uk-grid-width-medium-1-<%= slide_item_number %>">
-                  <% cat.media.limit(12).each do |m| %>
-                    <li>
-                      <div class="item"> 
-                        <!-- Video Item Start-->
-                        <div class="cp-video-item">
-                          <figure class="cp-thumb">
-                            <% if m.thumbnail_url.present? %>
-                              <img alt="" src="<%= m.thumbnail_url %>">
-                            <% else %>
-                              <img src="<%= asset_path('movie-placeholder.jpg') %>') %>">
-                            <% end %>
-                            <figcaption class="cp-caption">
-                              <a href="/media/<%= m.number %>" class="play-video">Play</a>
-                            </figcaption>
-                          </figure>
-
-                        </div>
-                        <!-- Video Item End--> 
+          <div class="videos-list uk-slidenav-position">
+          
+            <div class="row">
+              <div class="row__inner">
+                <% cat.media.each do |m| %>
+                  <div class="tile">
+                    <div class="tile__media">
+                      <% if m.thumbnail_url.present? %>
+                        <img alt="" src="<%= m.thumbnail_url %>" class="tile__img">
+                      <% else %>
+                        <img src="<%= asset_path('movie-placeholder.jpg') %>') %>" class="tile__img">
+                      <% end %>
+                    </div>
+                    <div class="tile__details">
+                      <div class="tile__title">
+                        <figcaption class="cp-caption">
+                          <a href="/media/<%= m.number %>" class="play-video">Play</a>
+                        </figcaption>
                       </div>
-                    </li>
-                  <% end %>
-                </ul>
+                    </div>
+                  </div>
+                <% end %>
               </div>
-              <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slider-item="previous"></a>
-              <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slider-item="next"></a>
-
+              <a href="" class="previous uk-slidenav uk-slidenav-contrast uk-slidenav-previous"></a>
+              <a href="" class="next uk-slidenav uk-slidenav-contrast uk-slidenav-next"></a>
             </div>
           </div>
         </div>
     <% end %>
     <!--Outer Holder End-->
 </div>
+
+<%= content_for :javascript do %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var slider = new Slider()
+    });
+  </script>
+<% end %>

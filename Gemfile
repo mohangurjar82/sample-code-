@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.0'
+# ruby '2.3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
@@ -23,8 +23,6 @@ gem 'jquery-rails'
 
 # gem 'program-tv'
 
-gem 'httparty'
-
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 #gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -35,6 +33,7 @@ gem 'concurrent-ruby'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'devise'
+gem 'simple_token_authentication', '~> 1.0'
 gem 'immutable-struct'
 gem 'puma'
 gem 'rails_12factor', group: :production
@@ -57,6 +56,10 @@ gem 'kaminari'
 gem 'stripe'
 
 gem 'language_list'
+
+gem 'mini_magick'
+gem 'active_model_serializers', '~> 0.10.0'
+
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-sweetalert'

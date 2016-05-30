@@ -15,7 +15,11 @@
   </head>
   <body>
     <div id="wrapper">
-      <%= render 'layouts/new/navbar' %>
+      <% if current_user %>
+        <%= render 'layouts/new/navbar' %>
+      <% else %>
+        <%= render 'layouts/new/navbar_no_login' %>
+      <% end %>
       <%= render 'layouts/new/breadcrumbs' %>
       <!--Main Content Start-->
       <div id="cp-main-content">

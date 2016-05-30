@@ -6,21 +6,21 @@
       .uk-grid
         - group.each do |m|
           - next unless m
-          .uk-width-1-4
+          .col-md-3
             a href=media_path(m.number)
               - if m.thumbnail_url.present?
                 img.uk-thumbnail src=m.thumbnail_url
               - else
                 img.uk-thumbnail src=asset_path('movie-placeholder.jpg')
-              h5= m.title
+              h5.media= m.title
       hr
     - if @media.size >= MPX::RemoteResource::PER_PAGE
       .uk-grid
         .uk-width-1-1
           - if params[:page].to_i >= 2
-            a.uk-button href="?page=#{params[:page].to_i - 1}" Prev page
+            = link_to "Prev page", url_for(params.merge(page: "#{params[:page].to_i - 1}")), class: 'uk-button'
           div style="float:right"
-            a.uk-button href="?page=#{(params[:page] || 1).to_i + 1}" Next page
+            = link_to "Next page", url_for(params.merge(page: "#{(params[:page] || 1).to_i + 1}")), class: 'uk-button'
 
 
 

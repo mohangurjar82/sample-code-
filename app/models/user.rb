@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable
+  acts_as_token_authenticatable
 
   has_many :subscriptions
 
@@ -12,11 +13,25 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validate :confirmation_matches_password
   
+  AVATAR = { :default => 0, :gravatar => 1, :uploaded => 2 }
+
+  mount_uploader :avatar, AvatarUploader
+
   attr_accessor :promo_code
 
-  def avatar
+  def gravatar
     gravatar_id = Digest::MD5::hexdigest(email).downcase
     "https://www.gravatar.com/avatar/#{gravatar_id}.jpg?d=identicon&s=150"
+  end
+
+  def avatar_url
+    if self.avatar_option == AVATAR[:default]
+      '/img/avatars/user.png'
+    elsif self.avatar_option == AVATAR[:gravatar]
+      gravatar
+    else
+      self.avatar.thumb.url
+    end
   end
 
   def display_name
@@ -39,6 +54,14 @@ class User < ActiveRecord::Base
     FavoriteMedium.where(user_id: id).map do |fm|
       MPX::Media.find_by_number(fm.media_number)
     end
+  end
+
+  def generate_api_authentication_token
+    token = Devise.friendly_token
+    while User.find_by(authentication_token: token)
+      token = Devise.friendly_token
+    end
+    update_columns(authentication_token: token)
   end
 
   class Promo

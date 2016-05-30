@@ -28,13 +28,13 @@
             
             <li><a href="#">Live TV Guide</a> </li>
           </ul>
-          <form action="form.php" method="get" class="cp-search-form-outer">
+          <%= form_tag search_path, :method => :get, :class => 'cp-search-form-outer' do %>
             <div class="cp-search-form-outer">
-              <input type="text" placeholder="Search..." required>
+              <input type="text" name="query" placeholder="Search..." required>
               <button class="btn-submit" type="submit"><i class="fa fa-search"></i></button>
             </div>
             <label>... or refine by category.</label>
-          </form>
+          <% end %>
           <div class="cp-upload-outer"> <a href="#" class="file-btn">My Account</a>
             <ul class="cp-listed">
               <li class="login-btn"><i class="fa fa-sign-in"></i> <a href="login.html">Log in</a></li>
@@ -177,10 +177,10 @@
               <li><a href="#"><i class="fa fa-film"></i></a></li>
               <li><a href="#"><i class="fa fa-credit-card"></i></a></li>
               <li class="cp-search-holder"><i class="fa fa-search"></i>
-                <form action="form.php" method="get" class="cp-search-form-outer">
-                  <input type="text" placeholder="Search..." required>
+                <%= form_tag search_path, :method => :get, :class => 'cp-search-form-outer' do %>
+                  <input type="text" placeholder="Search..." name="query" required>
                   <button class="btn-submit" type="submit"><i class="fa fa-search"></i></button>
-                </form>
+                <% end %>
               </li>
             </ul>
           </div>

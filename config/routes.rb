@@ -13,11 +13,26 @@ Rails.application.routes.draw do
     root to: "media#index"
   end
 
+  namespace :api do
+    scope :v1 do
+      resource :session, only: [:create, :destroy]
+      resource :user, only: [:show]
+      resources :categories, only: [:index, :show] do
+        member do
+          resources :media, only: [:index, :show], controller: 'category_media'
+        end
+      end
+      resources :media, only: [:index, :show]
+    end
+  end
+
   devise_for :users, controllers: { sessions: 'users/sessions',
                                     registrations: 'users/registrations' }
 
   devise_scope :user do
     get 'profile' => 'users/registrations#profile'
+    
+    post 'users/update_avatar' => 'users/registrations#update_avatar'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

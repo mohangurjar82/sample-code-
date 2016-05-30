@@ -10,7 +10,8 @@
 .txt-cnt {text-align:center;}
 h1{font-size:45px !important;margin-top:0px;}
 section {padding: 60px 0px;}
-a {outline:none !important;}
+a {outline:none !important; color: white;}
+a:hover, a:selected{color: white;}
 .txt-cap {text-transform:uppercase;}
 .text-primary{color:#439FE0;}
 hr{border-color:#439FE0;}
@@ -40,7 +41,6 @@ hr{border-color:#439FE0;}
 .login {margin-right:0px;margin-left:10px; display:inline !important;}
 .login a {display:inline-block !important;}	
 .f-r{float:right;margin-right:10%;}
-.caro {margin-top:50px;}
 .caro img{width:100%;height:auto !important;}
 .carousel-inner {height:auto;}
 .area-sec{display:block !important;}
@@ -236,4 +236,7 @@ border-right: 1px dashed #DDD;}
 /*-----------------------------------------------------------*/
 .cp-ft-nav li, .cp-ft-nav li a {
   color: #ccc;
+}
+.pd-tb60{
+  padding: 0px !important;
 }

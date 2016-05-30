@@ -2,6 +2,7 @@ class Category < ActiveRecord::Base
   validates :title, presence: true
   has_many :media_categories
   has_many :media, through: :media_categories
+  has_many :games, through: :media_categories, foreign_key: :medium_id
 
   belongs_to :category
   has_many :categories
