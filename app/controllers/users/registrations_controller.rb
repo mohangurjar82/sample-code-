@@ -8,7 +8,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     render 'users/registrations/profile'
   end
 
+
   def after_sign_up_path_for(resource)
+    all_stations = Station.all
+    all_stations.each do |st|
+      current_user.stations << st
+    end
     products_path
   end
 
@@ -16,6 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def sign_up_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+
   end
 
   def account_update_params

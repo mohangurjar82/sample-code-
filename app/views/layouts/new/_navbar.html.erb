@@ -145,11 +145,11 @@
         <div class="col-md-3 col-sm-4 col-xs-12">
           <!--Right Holder Start-->
           <div class="cp-right-holder"> 
-          <%= form_tag("/schedule", method: "post", class: "get-location") do %>
+          <%= form_tag("/schedule", method: "post", class: "get-location", name: "schedule") do %>
             <input type="hidden" name="utc_offset" id="utc_offset" />
             <input type="hidden" name="now" id="now"></input>
             
-            <%= link_to "Live TV Guide", 'schedule_path', class: 'file-btn' %>
+            <%= link_to "Live TV Guide", schedule_path, class: 'file-btn' %>
           <% end %>
             <ul class="cp-social-links">
 
@@ -172,30 +172,22 @@
   <!--Navigation End-->
 </header>
 <!--Header End-->
-<<<<<<< HEAD
 
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('#utc_offset').val(moment().utcOffset());
-
-    $('.get-location .file-btn').click(function(event){
-      event.preventDefault();
-      var now = moment().format('YYYY-MM-DD HH:mm:ss');
-      $('#now').val(now);
-      
-      $('.get-location').submit();
-    });
-  });
- 
-</script>
-
-
-=======
 <%= content_for :javascript do %>
   <script type="text/javascript">
     /* Side Bar Menu Js
      ======================================================*/
     $(document).ready(function(){
+      $('#utc_offset').val(moment().utcOffset());
+
+      $('.get-location .file-btn').click(function(event){
+        event.preventDefault();
+        var now = moment().format('YYYY-MM-DD HH:mm:ss');
+        $('#now').val(now);
+        
+        $('.get-location').submit();
+      });
+
       if($('#cp_side-menu-btn, #cp-close-btn').length) {
 
         $(document).on('click', '#cp_side-menu-btn',  function(){
@@ -213,4 +205,4 @@
     })
   </script>
 <% end %>
->>>>>>> 4b2e9255522c56ce830a3603e8f307539001c0c6
+

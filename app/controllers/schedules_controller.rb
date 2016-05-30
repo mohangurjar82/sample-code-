@@ -1,14 +1,13 @@
 require 'httparty'
 require 'json'
+require 'yaml'
 require 'pp'
 
 class SchedulesController < ApplicationController
 	before_filter :authenticate_user!
+
 	layout 'new_layout'
-
-	before_action :get_lineups
-	before_action :make_json_file
-
+	
 	def index
 		
 
@@ -37,7 +36,7 @@ class SchedulesController < ApplicationController
 		
 		@select_time_val = '00';
 		@start_t = @start
-		@start = format_time @start
+		@start = Listing.format_time @start
 
 		if not params[:listings_date_picker_date_select].blank? 
 			@search_date = Time.parse(params[:listings_date_picker_date_select])
@@ -61,37 +60,58 @@ class SchedulesController < ApplicationController
 		@end_t = @end
 
 		@search_date_t = @search_date
-		@search_date   = format_time @search_date
+		@search_date   = Listing.format_time @search_date
 
 		# ==== End: Get Params And Make Necessary Time Variables
-
+		get_all_channels
+		if params[:changed].eql? "true"
+			current_user.stations.destroy_all
+			@all_channels.each do |ch|
+				if params[:status][ch.callsign + '--' + ch.s_number].eql? "true"
+					current_user.stations << ch
+				end
+			end
+		end 
 		
 		# ==== Start: Read JSON data which contains tv listings
 		#
 		#   @tv_listing instance keeps tv listings data.
+		@tv_listing = []
+
 		@utc_start = Time.now.getlocal("+00:00").change(:hour => 0, :min => 0, :sec => 0)
 		@utc_one_day_ago = @utc_start - 1.day
 
+		
 		if (@utc_offset < 0 && @search_date_t.strftime('%Y-%m-%d') < @utc_start.strftime('%Y-%m-%d')) || (@utc_offset > 0 && @search_date_t.strftime('%Y-%m-%d') == @utc_start.strftime('%Y-%m-%d'))
-			path = File.join(Rails.root, "config", "sample-" + @utc_one_day_ago.strftime('%Y-%m-%d') + ".json")
+			updated_date = @utc_one_day_ago
 		else
-			path = File.join(Rails.root, "config", "sample-" + @utc_start.strftime('%Y-%m-%d') + ".json")
+			updated_date = @utc_start
 		end 
 
-		json = File.read(path)		
-		@tv_listing = []
-		tmp_listing = JSON.parse(json)
 
-		tmp_listing.each do |item|
-			locale_time = Time.parse(item['listDateTime']) + (@utc_offset * 60)
-			with_duration = locale_time + (item['duration'] * 60)
-			if with_duration > @search_date_t && locale_time < @end_t
-				item['listDateTime'] = locale_time.strftime('%Y-%m-%d %H:%M:%S')
-				@tv_listing.push(item)
-			else
-				next
+		user_favorite_channels
+
+		sql_for_channels = ''
+		if not @favorite_channels.blank?
+			sql_for_channels = ' AND ('
+			# sql_for_chan_numbers = ' AND ('
+			@favorite_channels.each_with_index do |ch, index|
+				if index == @favorite_channels.length - 1
+					sql_for_channels = sql_for_channels + "(s_id=" + ch.s_id.to_s + " AND s_number='" + ch.s_number.to_s + "'))"
+					# sql_for_chan_numbers = sql_for_chan_numbers + 'listings.channel_number=' + ch.channel_number.to_s + ')'
+					break	
+				end
+				sql_for_channels = sql_for_channels + "(s_id=" + ch.s_id.to_s + " AND s_number='" + ch.s_number.to_s + "') OR "
+				# sql_for_chan_numbers = sql_for_chan_numbers + 'listings.channel_number=' + ch.number.to_s + ' OR '
 			end
+			# sql_for_channels = sql_for_chan_numbers
+			# sql_for_channels = sql_for_channels + sql_for_chan_numbers
 		end
+
+		if not sql_for_channels.eql? ''
+			@tv_listing = Listing.select("*, list_date_time + interval '1 minute' * " + @utc_offset.to_s + " AS locale_time").where("updated_date = ? AND list_date_time + interval '1 minute' * listings.duration  > ? AND list_date_time < ?" + sql_for_channels, @utc_one_day_ago, @search_date_t.getlocal("+00:00"), @end_t.getlocal("+00:00")).order("s_id ASC, s_number ASC, list_date_time ASC")
+		end
+
 		# ==== End: Read JSON data which contains tv listings
 
 	end
@@ -101,105 +121,34 @@ class SchedulesController < ApplicationController
   		# Get A Keyword Param For Movie Search By A Name
   		if not params[:cur_now].blank? 
 			@now = params[:cur_now]
-			@start = Time.parse(@now).change(:hour => 0, :min => 0, :sec => 0)
+			@start_t = Time.parse(@now).getlocal("+00:00").change(:hour => 0, :min => 0, :sec => 0).strftime('%Y-%m-%d %H:%M:%S')
+		end
+
+		if not params[:utc_locale].blank?
+			@utc_offset = params[:utc_locale].to_i
 		end
 		
-		@start_t = @start
+		# @start_t = @start.strftime('%Y-%m-%d %H:%M:%S')
 
   		@search_word = params[:listings_search_term]
 
   		@utc_start = Time.now.getlocal("+00:00").change(:hour => 0, :min => 0, :sec => 0)
-		path = File.join(Rails.root, "config", "sample-" + @utc_start.strftime('%Y-%m-%d') + ".json")
-		
-		json = File.read(path)		
-		@tv_listing = []
-		tmp_listing = JSON.parse(json)
 
-		upcase_word = @search_word.upcase
-		
-		tmp_listing.each do |item|
-			if item['episodeTitle'].upcase.include? upcase_word
-				@tv_listing.push(item)
-			else
-				next
-			end
-		end
+  		utc_one_day_ago = @utc_start - (60 * 60 * 24)
+
+		@tv_listing = Listing.select("*, list_date_time + interval '1 minute' * " + @utc_offset.to_s + " AS locale_time").where("episode_title ILIKE ? AND updated_date = ?", '%' + @search_word + '%', utc_one_day_ago.strftime('%Y-%m-%d')).order("list_date_time ASC, s_id ASC")  		
+
 	end
 
 	private
+	def user_favorite_channels
+		@favorite_channels = current_user.stations.order("s_id ASC, id ASC")
+	end
 
-	# ==== return a lineup URI
-  	def get_lineups
-  		@lineups = 'http://api.tvmedia.ca/tv/v4/lineups/36211D/listings?'
-  	end
+	def get_all_channels
+		@all_channels = Station.all.order("s_id ASC, id ASC")
+	end
 
-  	# ==== replace a blank space with %20 for HTTP request URI
-  	def replace_space str
-  		str = str.gsub(/[ ]/, '%20')
-  	end
-
-  	# ==== replace a colon with %3A for HTTP request URI
-  	def replace_colon str
-  		str = str.gsub(/[:]/, '%3A')
-  	end
-
-  	# ==== replace a comma with %2C for HTTP request URI
-  	def replace_comma str
-  		str = str.gsub(/[,]/, '%2C')
-  	end
-
-  	# ==== return channels in a HTTP URI formation
-  	def get_channels
-  		'227%2C399%2C101%2C167%2C168%2C180%2C313%2C328%2C398%2C439%2C470%2C490%2C499%2C562%2C563%2C564%2C565%2C566%2C567'
-  	end
-
-  	# ==== format time for HTTP request URI
-  	def format_time time
-  		time = time.strftime('%Y-%m-%d %H:%M')
-  		time = replace_space time
-  		replace_colon time
-  	end
-
-
-  	# Make JSON files which contain tv listing of Today and Yesterday
-  	# And delete 2 days ago JSON data
-  	def make_json_file
-		# @search_date = @search_time_t.change(:hour => 0, :min => 0, :sec => 0)
-		utc_start = Time.now.getlocal("+00:00").change(:hour => 0, :min => 0, :sec => 0)
-		utc_one_day_ago = utc_start - 1.day
-		utc_two_days_ago = utc_start - 2.days
-
-		path = File.join(Rails.root, "config", "sample-" + utc_start.strftime('%Y-%m-%d') + ".json")
-		if not File.exists?(path)
-			channel = get_channels
-			utc_end = utc_start + (60 * 60 * 24 * 14)
-			utc_start = format_time utc_start
-			utc_end   = format_time utc_end
-			request_str = @lineups + 'api_key=' + ENV['TV_MEDIA_API_KEY'] + '&start=' + utc_start + '&end=' + utc_end + '&channel=' + channel + '&pretty=1'
-			response = HTTParty.get(request_str)
-			File.open(path, "w+") do |f|
-				f.write(response.body)
-			end	
-		end 
-
-		path = File.join(Rails.root, "config", "sample-" + utc_one_day_ago.strftime('%Y-%m-%d') + ".json")
-		if not File.exists?(path)
-			utc_end = utc_one_day_ago + (60 * 60 * 24 * 14)
-			utc_one_day_ago = format_time utc_one_day_ago
-			utc_end   = format_time utc_end
-			request_str = @lineups + 'api_key=' + ENV['TV_MEDIA_API_KEY'] + '&start=' + utc_one_day_ago + '&end=' + utc_end + '&channel=' + channel + '&pretty=1'
-			response = HTTParty.get(request_str)
-			File.open(path, "w+") do |f|
-				f.write(response.body)
-			end	
-		end
-
-		path = File.join(Rails.root, "config", "sample-" + utc_two_days_ago.strftime('%Y-%m-%d') + ".json")
-		if File.exists?(path)
-			File.delete(path)
-		end
-
-  	end
 end
 
 
