@@ -69,7 +69,7 @@
   .contain {
     width: 100%;
   }
-
+}
 .uk-slidenav-position{
   ::-webkit-scrollbar {
       width: 0px;  /* remove scrollbar space */
@@ -166,13 +166,9 @@
     bottom: 0;
     padding: 10px;
   }
-<<<<<<< HEAD
 
 }
-=======
-}
 
->>>>>>> parent of 8e0f09b... new homepage
 @media (min-width: 960px) {
   .row__inner:hover {
     -webkit-transform: translate3d(-15px, 0, 0);
