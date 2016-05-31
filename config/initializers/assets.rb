@@ -10,7 +10,7 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile += %w( new_layout.css new_layout.js devise.css products/style.css music/style.css music/scripts.js )
 
-Rails.application.config.assets.precompile += %w( frontpage.js )
+Rails.application.config.assets.precompile += %w( frontpage.css frontpage.js )
 
 # Rails.application.config.assets.precompile += %w( moment-timezone.js )
 # Rails.application.config.assets.precompile += %w( moment-timezone-utils.js )
