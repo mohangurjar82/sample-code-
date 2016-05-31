@@ -1155,7 +1155,7 @@ fieldset[disabled] .btn-primary.active, fieldset[disabled] .btn-primary.focus, f
 }
 .panel-heading i {
     margin-right: 5px;
-    font-size: 12px
+    font-size: 12px;
 }
 .panel-title.collapsed:before {
     font-family: 'IonIcons';
