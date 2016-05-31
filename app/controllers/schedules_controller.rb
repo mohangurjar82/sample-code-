@@ -67,7 +67,7 @@ class SchedulesController < ApplicationController
 		if params[:changed].eql? "true"
 			current_user.stations.destroy_all
 			@all_channels.each do |ch|
-				if params[:status][ch.callsign + '--' + ch.s_number].eql? "true"
+				if params[:status][ch.s_id.to_s + '_' + ch.s_number].eql? "true"
 					current_user.stations << ch
 				end
 			end
