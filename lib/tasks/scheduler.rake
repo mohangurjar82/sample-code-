@@ -47,21 +47,19 @@ task tv_listings: :environment do
 				end
 			end		
 
-			puts it + "---" + stations_uri
-
 			utc_end = utc_start_t + (60 * 60 * 24 * 14)
 			utc_start = Listing.format_time utc_start_t
 			utc_end   = Listing.format_time utc_end
 			request_str = Listing.get_lineup_tv_listings it
 			
 			request_str = request_str + 'start=' + utc_start + '&end=' + utc_end + '&station=' + stations_uri + '&pretty=1'
-			puts request_str
+			
 			begin
-				response = HTTParty.get(request_str, timeout: 600)
+				response = HTTParty.get(request_str, timeout: 3000)
 			rescue Net::ReadTimeout
 				nil
 			end
-
+			puts response
 			tmp = JSON.parse(response.body)
 			
 			tmp.each do |item| 
@@ -96,7 +94,7 @@ task tv_listings: :environment do
 			request_str = request_str + 'start=' + utc_one_day_ago + '&end=' + utc_end + '&station=' + stations_uri + '&pretty=1'
 
 			begin
-				response = HTTParty.get(request_str, timeout: 600)
+				response = HTTParty.get(request_str, timeout: 3000)
 			rescue Net::ReadTimeout
 				nil
 			end
