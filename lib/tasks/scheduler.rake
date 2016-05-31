@@ -30,7 +30,6 @@ task tv_listings: :environment do
 	utc_two_days_ago = utc_start - 2.days
 
 	if Listing.where("updated_date = ?", utc_start_t.strftime('%Y-%m-%d %H:%M:%S')).first.nil?
-		puts "---	Today's   ---"
 		FAVORITE_LINEUPS.each_with_index do |it, index|
 			relative_stations = Lineup.find_by(l_id: it).stations
 			stations_uri = ''
@@ -47,7 +46,7 @@ task tv_listings: :environment do
 				end
 			end		
 
-			utc_end = utc_start_t + (60 * 60)
+			utc_end = utc_start_t + (60 * 60 * 24 * 14)
 			utc_start = Listing.format_time utc_start_t
 			utc_end   = Listing.format_time utc_end
 			request_str = Listing.get_lineup_tv_listings it
@@ -59,7 +58,7 @@ task tv_listings: :environment do
 			rescue Net::ReadTimeout
 				nil
 			end
-			puts 'succeed to get reponse'
+
 			begin
 				tmp = JSON.parse(response.body)	
 			rescue Exception => e
@@ -67,17 +66,13 @@ task tv_listings: :environment do
 				return
 			end
 			
-			puts tmp
-			puts 'Ready to write DB'
 			tmp.each do |item| 
-				puts item
 				Listing.create(s_number: item['number'], channel_number: item['channelNumber'], sub_channel_number: item['subChannelNumber'], s_id: item['stationID'], callsign: item['callsign'], logo_file_name: item['logoFilename'], list_date_time: item['listDateTime'], duration: item['duration'], show_id: item['showID'], series_id: item['seriesID'], show_name: item['showName'], episode_title: item['episodeTitle'], repeat: item['repeat'], new: item['new'], live: item['live'], hd: item['hd'], descriptive_video: item['descriptiveVideo'], in_progress: item['inProgress'], show_type: item['showType'], star_rating: item['starRating'], description: item['description'], league: item['league'], team1: item['team1'], team2: item['team2'], show_picture: item['showPicture'], l_id: it, updated_date: utc_start_t, web_link: item['webLink'], name: item['name'], station_type: item['stationType'], listing_id: item['listingID'], episode_number: item['episodeNumber'], parts: item['parts'], part_num: item['partNum'], series_premiere: item['seriesPremiere'], season_premiere: item['seasonPremiere'], series_finale: item['seriesFinale'], season_finale: item['seasonFinale'], rating: item['rating'], guest: item['guest'], director: item['director'], location: item['location'])
 			end
 		end
 	end
 
 	if Listing.where("updated_date = ?", utc_one_day_ago_t.strftime('%Y-%m-%d %H:%M:%S')).first.nil?
-		puts "---	One day ago   ---"
 		FAVORITE_LINEUPS.each_with_index do |it, index|
 			relative_stations = Lineup.find_by(l_id: it).stations
 			stations_uri = ''
@@ -94,7 +89,7 @@ task tv_listings: :environment do
 				end
 			end		
 			
-			utc_end = utc_one_day_ago_t + (60 * 60)
+			utc_end = utc_one_day_ago_t + (60 * 60 * 24 * 14)
 			utc_one_day_ago = Listing.format_time utc_one_day_ago_t
 			utc_end   = Listing.format_time utc_end
 
