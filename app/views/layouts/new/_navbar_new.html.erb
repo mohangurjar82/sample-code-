@@ -62,6 +62,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><a href="/profile">Profile</a></li>
+              <li><%= link_to "Live TV Guide", 'schedule_path', class: "go-to" %></li>
               <li><a href="/products">Products</a></li>
               <li><a href="<%= destroy_user_session_path %>"> Logout</a></li>
             </ul>
@@ -71,3 +72,27 @@
     </div>
   </div>
 </nav>
+
+
+<%= form_tag("/schedule", method: "post", class: "get-location") do %>
+  <input type="hidden" name="utc_offset" id="utc_offset" />
+  <input type="hidden" name="now" id="now"></input>
+<% end %>
+
+<%= content_for :javascript do %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#utc_offset').val(moment().utcOffset());
+
+    $('.go-to').click(function(event){
+      event.preventDefault();
+      var now = moment().format('YYYY-MM-DD HH:mm:ss');
+      $('#now').val(now);
+      
+      $('.get-location').submit();
+    });
+  });
+</script>
+
+<% end %>
