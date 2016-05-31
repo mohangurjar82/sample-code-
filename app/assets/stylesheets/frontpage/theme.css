@@ -3150,7 +3150,7 @@ textarea {
 	height: 160px;      
 }
 ::-webkit-input-placeholder {    
-    color: #aaa
+    color: #aaa;
      -webkit-transition: -webkit-border-color: 0.35s;
     transition: border-color 0.35s;
 }
