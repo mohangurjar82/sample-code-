@@ -60,7 +60,7 @@ task tv_listings: :environment do
 				nil
 			end
 			tmp = JSON.parse(response.body)
-			
+			put 'Ready to write DB'
 			tmp.each do |item| 
 				puts item
 				Listing.create(s_number: item['number'], channel_number: item['channelNumber'], sub_channel_number: item['subChannelNumber'], s_id: item['stationID'], callsign: item['callsign'], logo_file_name: item['logoFilename'], list_date_time: item['listDateTime'], duration: item['duration'], show_id: item['showID'], series_id: item['seriesID'], show_name: item['showName'], episode_title: item['episodeTitle'], repeat: item['repeat'], new: item['new'], live: item['live'], hd: item['hd'], descriptive_video: item['descriptiveVideo'], in_progress: item['inProgress'], show_type: item['showType'], star_rating: item['starRating'], description: item['description'], league: item['league'], team1: item['team1'], team2: item['team2'], show_picture: item['showPicture'], l_id: it, updated_date: utc_start_t, web_link: item['webLink'], name: item['name'], station_type: item['stationType'], listing_id: item['listingID'], episode_number: item['episodeNumber'], parts: item['parts'], part_num: item['partNum'], series_premiere: item['seriesPremiere'], season_premiere: item['seasonPremiere'], series_finale: item['seriesFinale'], season_finale: item['seasonFinale'], rating: item['rating'], guest: item['guest'], director: item['director'], location: item['location'])
