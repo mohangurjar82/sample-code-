@@ -30,6 +30,18 @@
   }
 }
 .category-container{
+<<<<<<< HEAD
+=======
+  ::-webkit-scrollbar {
+      width: 0px;  /* remove scrollbar space */
+      background: transparent;  /* optional: just make scrollbar invisible */
+  }
+  /* optional: show position indicator in red */
+  ::-webkit-scrollbar-thumb {
+      background: transparent;
+  }
+
+>>>>>>> parent of 8e0f09b... new homepage
   margin-left: 20px;
   margin-right: 20px;
   * {
@@ -60,6 +72,7 @@
   .contain {
     width: 100%;
   }
+<<<<<<< HEAD
 }
 .uk-slidenav-position{
   ::-webkit-scrollbar {
@@ -70,6 +83,8 @@
   ::-webkit-scrollbar-thumb {
       background: transparent;
   }
+=======
+>>>>>>> parent of 8e0f09b... new homepage
   .row {
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
@@ -156,8 +171,13 @@
     bottom: 0;
     padding: 10px;
   }
+<<<<<<< HEAD
 
 }
+=======
+}
+
+>>>>>>> parent of 8e0f09b... new homepage
 @media (min-width: 960px) {
   .row__inner:hover {
     -webkit-transform: translate3d(-15px, 0, 0);

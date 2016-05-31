@@ -1,7 +1,45 @@
 <%= form_tag("/schedule", method: "post", id: "tvForm") do %>
 
 <div class="container desktop">
-	
+	<div class="row category-board">
+
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>						
+					</button>
+
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					
+					<ul class="categories-links">
+						<li><a class="active" href="#">POPULAR</a> <span class="sr-only">(current)</span></li>
+						<li><a href="#">FREE</a></li>
+						<li><a href="#">SATELLITE</a></li>
+						<li><a href="#">MOVIES</a></li>
+						<li><a href="#">SPORT</a></li>
+						<li><a href="#">KIDS</a></li>
+						<li><a href="#">DOCUMENTARIES</a></li>
+						<li><a href="#">MUSIC</a></li>
+						<li><a href="#">NEWS</a></li>
+
+						<li class="last">
+							<ul class="view-links">
+								<li><a href="#">LIST VIEW</a></li>		
+								<li><a class="active" href="#">GRID VIEW</a></li>	
+							</ul>
+						</li>
+					</ul>				
+
+					
+				</div><!--/.nav-collapse -->
+			</div><!--/.container-fluid -->
+		</nav>
+	</div>
 	
 	<div class="row search-board">
 		<div class="col-md-3 date-board"><span></span></div>

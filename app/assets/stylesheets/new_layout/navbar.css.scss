@@ -1,6 +1,10 @@
 .navbar-default {
   min-height: 82px;
+<<<<<<< HEAD
   background-color: rgba(0,0,0,.8);
+=======
+  background-color: rgba(0,0,0,.9);
+>>>>>>> parent of 8e0f09b... new homepage
   border: none;
   background-image: none;
   
@@ -53,10 +57,17 @@
       background: transparent !important;
     }
     ul.dropdown-menu{
+<<<<<<< HEAD
       background-color: rgba(0, 0, 0, 0.8);
       width: 100%;
       li a:hover{
         background-color: rgba(0, 0, 0, 0.4) !important;
+=======
+      background-color: rgba(0, 0, 0, 0.9);
+      width: 100%;
+      li a:hover{
+        background-color: rgba(0, 0, 0, 0.9) !important;
+>>>>>>> parent of 8e0f09b... new homepage
         background-image: none;
       }
     }
