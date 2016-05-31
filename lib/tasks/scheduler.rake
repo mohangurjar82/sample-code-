@@ -1,4 +1,4 @@
-
+require 'json'
 desc "Upgrade tv listings every day"
 task tv_listings: :environment do
 	if not Lineup.exists?
@@ -47,7 +47,7 @@ task tv_listings: :environment do
 				end
 			end		
 
-			utc_end = utc_start_t + (60 * 60 * 24 * 14)
+			utc_end = utc_start_t + (60 * 60)
 			utc_start = Listing.format_time utc_start_t
 			utc_end   = Listing.format_time utc_end
 			request_str = Listing.get_lineup_tv_listings it
@@ -60,7 +60,13 @@ task tv_listings: :environment do
 				nil
 			end
 			puts 'succeed to get reponse'
-			tmp = JSON.parse(response.body)
+			begin
+				tmp = JSON.parse(response.body)	
+			rescue Exception => e
+				puts e.message
+				return
+			end
+			
 			puts tmp
 			puts 'Ready to write DB'
 			tmp.each do |item| 
