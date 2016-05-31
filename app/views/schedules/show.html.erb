@@ -86,12 +86,59 @@
 		
 	</div>	
 </div>
+
+<input type="hidden" name="cur_now" id="cur_now"></input>
+<input type="hidden" name="utc_locale" id="utc_locale"></input>
+<input type="hidden" name="changed" id="changed" value="false"></input>
+
+<!-- Start: Favorite Modal Definition -->
+<div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridModalLabel">Favorite Channels</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+	        <div class="row">
+		        <div class="col-md-6 col-md-offset-3">
+		            <input type="search" id="container-search" value="" class="form-control" placeholder="SEARCH FOR A CHANNEL">
+	        	</div>
+	        </div>
+
+	        <div class="row" id="searchable-container">
+			    
+			</div>
+		   
+        </div>
+      </div>
+      <div class="modal-footer row">
+      	<div class="listings-favorites-bulk-buttons col-md-6">
+        	<button class="listings-favorites-bulk-button listings-favorites-bulk-add">
+        		<span class="fa fa-plus"></span> Add All
+        	</button> 
+        	<button class="listings-favorites-bulk-button listings-favorites-bulk-remove">
+        		<span class="fa fa-minus"></span> Remove All
+        	</button>	
+        </div>
+        <div class="col-md-6">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+	        <button type="button" class="btn btn-primary">SAVE FAVORITES</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <% end %>
 
 <script type="text/javascript">
 	$(document).ready(function(){
 		var tv_listing;
 		var start_t;
+		var channel_list;
+		var all_channels;
 
 		function init_date_picker() {
 			var tmp_html = '';	
@@ -107,10 +154,58 @@
 			$('#listings-date-picker-date-select option[value="' + moment(start_t).format('YYYY-MM-DD HH:mm:ss') + '"]').attr("selected", "selected");
 		}
 
+		function display_favorite_channels() {
+			var tmp_html = '';
+			
+			for (var i = 0; i < all_channels.length; i++) {
+				var glyphicon;
+				var val;
+				glyphicon = 'glyphicon-plus';
+				val = false;
+
+				for(var j = 0; j < channel_list.length; j++) {
+					if(channel_list[j].s_number == all_channels[i].s_number) {
+						glyphicon = 'glyphicon-ok';
+						val = true;
+						break;
+					}
+				}
+
+				tmp_html = tmp_html + '<div class="col-md-12 row-padding"><span style="margin-right: 10px"><img src="http://cdn.tvpassport.com/image/station/100x100/' + all_channels[i].logo_file_name + '" style="width: 30px; height: 20px"></span><span class="keys">' + all_channels[i].callsign + '</span><span class="keys"> ' + all_channels[i].s_number + '</span><span class="pull-right glyphicon ' + glyphicon + '"></span><input type="hidden" name="status[' + all_channels[i].s_id.toString() + '_' + all_channels[i].s_number + ']" value=' + val + '></div>';	
+			}
+
+			$('#searchable-container').html(tmp_html);
+
+			$('#searchable-container .glyphicon').on('click', function(){
+				if($(this).hasClass('glyphicon-ok')) {
+					$(this).removeClass('glyphicon-ok');
+					$(this).addClass('glyphicon-plus');
+					$(this).parent().find("input").attr('value', false);
+				} else {
+					$(this).removeClass('glyphicon-plus');
+					$(this).addClass('glyphicon-ok');	
+					$(this).parent().find("input").attr('value', true);
+				}	
+			});
+			$('#searchable-container', $("#gridSystemModal")).searchable({
+		        searchField: '#container-search',
+		        selector: '.col-md-12.row-padding',
+		        childSelector: 'span.keys',
+		        show: function( elem ) {
+		            elem.slideDown(100);
+		        },
+		        hide: function( elem ) {
+		            elem.slideUp( 100 );
+		        }
+		    });
+		}
+
 		function initialize() {
 			tv_listing = <%= raw @tv_listing.to_json %>;
 			start_t = "<%= raw @start_t %>"
 			console.log(tv_listing);
+			all_channels = <%= raw @all_channels.to_json %>;
+			channel_list = <%= raw @favorite_channels.to_json %>;
 
 			init_date_picker();
 			$('.listings-picker-select').attr('disabled', 'disabled');
@@ -119,6 +214,8 @@
 			$("#listings-date-picker-time-select").select2({width: '65%'});
 
 			$('.date-board p').html("<%= raw @search_word %>");
+
+			display_favorite_channels();
 		}
 
 		initialize();
