@@ -68,6 +68,7 @@ class SchedulesController < ApplicationController
 			current_user.stations.destroy_all
 			@all_channels.each do |ch|
 				if params[:status][ch.s_id.to_s + '_' + ch.s_number].eql? "true"
+					puts '------------' + ch.s_id.to_s + '_' + ch.s_number
 					current_user.stations << ch
 				end
 			end
@@ -104,6 +105,9 @@ class SchedulesController < ApplicationController
 		end
 
 		if not sql_for_channels.eql? ''
+			puts '----------------------'
+			puts @search_date_t.getlocal("+00:00")
+			puts @end_t.getlocal("+00:00")
 			@tv_listing = Listing.select("*, list_date_time + interval '1 minute' * " + @utc_offset.to_s + " AS locale_time").where("updated_date = ? AND list_date_time + interval '1 minute' * listings.duration  > ? AND list_date_time < ?" + sql_for_channels, @utc_one_day_ago, @search_date_t.getlocal("+00:00"), @end_t.getlocal("+00:00")).order("s_id ASC, s_number ASC, list_date_time ASC")
 		end
 
@@ -123,16 +127,49 @@ class SchedulesController < ApplicationController
 			@utc_offset = params[:utc_locale].to_i
 		end
 		
+		@tv_listing = []
 		# @start_t = @start.strftime('%Y-%m-%d %H:%M:%S')
+		get_all_channels
+		if params[:changed].eql? "true"
+			current_user.stations.destroy_all
+			@all_channels.each do |ch|
+				if params[:status][ch.s_id.to_s + '_' + ch.s_number].eql? "true"
 
-  		@search_word = params[:listings_search_term]
+					current_user.stations << ch
+				end
+			end
+		end 
+
+		if not params[:listings_search_term].blank?
+	  		@search_word = params[:listings_search_term]
+	  	end
+
+		if not params[:search_word].blank?
+	  		@search_word = params[:search_word]
+	  	end
 
   		@utc_start = Time.now.getlocal("+00:00").change(:hour => 0, :min => 0, :sec => 0)
 
   		utc_one_day_ago = @utc_start - (60 * 60 * 24)
 
-		@tv_listing = Listing.select("*, list_date_time + interval '1 minute' * " + @utc_offset.to_s + " AS locale_time").where("episode_title ILIKE ? AND updated_date = ?", '%' + @search_word + '%', utc_one_day_ago.strftime('%Y-%m-%d')).order("list_date_time ASC, s_id ASC")  		
+  		user_favorite_channels
 
+		sql_for_channels = ''
+
+		if not @favorite_channels.blank?
+			sql_for_channels = ' AND ('
+			@favorite_channels.each_with_index do |ch, index|
+				if index == @favorite_channels.length - 1
+					sql_for_channels = sql_for_channels + "(s_id=" + ch.s_id.to_s + " AND s_number='" + ch.s_number.to_s + "'))"
+					break	
+				end
+				sql_for_channels = sql_for_channels + "(s_id=" + ch.s_id.to_s + " AND s_number='" + ch.s_number.to_s + "') OR "
+			end
+		end
+
+		if not sql_for_channels.eql? ''
+			@tv_listing = Listing.select("*, list_date_time + interval '1 minute' * " + @utc_offset.to_s + " AS locale_time").where("episode_title ILIKE ? AND updated_date = ?" + sql_for_channels, '%' + @search_word + '%', utc_one_day_ago.strftime('%Y-%m-%d')).order("list_date_time ASC, s_id ASC")  		
+		end
 	end
 
 	private
