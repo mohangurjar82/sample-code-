@@ -1,31 +1,39 @@
 
 function Slider(options) {
+  if( typeof(options) === 'undefined' ){
+    options = {next: true, prev: true}
+  }
+  this.options = options
   this.bindEvents()
 }
 Slider.prototype.bindEvents = function () {
-  $('.previous').click(function(){
-    var container = $(this).parent().find('.row__inner')
-    var itemWidth = container.find('.tile').first().width()
-    var left = container.offset().left + (itemWidth+14) *4 ;
-    if(left > 5){
-      left = 5;
-    }
-    container.animate( { left: left }, 200)
-    return false;
-  })
-  $('.next').click(function(){
-    var container = $(this).parent().find('.row__inner')
-    var itemWidth = container.find('.tile').first().width()
-    var maxWidth = container[0].scrollWidth;
-    if(maxWidth > $(window).width()){
-      var left = $(this).parent().find('.row__inner').offset().left-(itemWidth+14)*4 ;
-      if(Math.abs(left) > (maxWidth- $(window).width())){
-        left =  -(maxWidth - $(window).width());
+  if(this.options.next){
+    $('.previous').click(function(){
+      var container = $(this).parent().find('.row__inner')
+      var itemWidth = container.find('.tile').first().width()
+      var left = container.offset().left + (itemWidth+14) *4 ;
+      if(left > 5){
+        left = 5;
       }
-      container.animate( {left: left}, 200)
-    }
-    return false;
-  })
+      container.animate( { left: left }, 200)
+      return false;
+    })
+  }
+  if(this.options.prev){
+    $('.next').click(function(){
+      var container = $(this).parent().find('.row__inner')
+      var itemWidth = container.find('.tile').first().width()
+      var maxWidth = container[0].scrollWidth;
+      if(maxWidth > $(window).width()){
+        var left = $(this).parent().find('.row__inner').offset().left-(itemWidth+14)*4 ;
+        if(Math.abs(left) > (maxWidth- $(window).width())){
+          left =  -(maxWidth - $(window).width());
+        }
+        container.animate( {left: left}, 200)
+      }
+      return false;
+    })
+  }
   var x,y,top,left,down, stuff;
 
   $(".row__inner").mousedown(function(e){

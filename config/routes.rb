@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'pages#tmp_index'
+  root 'pages#index'
   get 'purchases', to: 'dashboard#purchases', as: 'purchases'
   get 'index', to: 'pages#index', as: 'index' # landing page
   

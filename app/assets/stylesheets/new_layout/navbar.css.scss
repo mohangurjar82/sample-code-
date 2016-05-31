@@ -1,6 +1,7 @@
 .navbar-default {
   min-height: 82px;
-  background-color: rgba(0,0,0,.9);
+
+  background-color: rgba(0,0,0,.8);
   border: none;
   background-image: none;
   
@@ -53,10 +54,11 @@
       background: transparent !important;
     }
     ul.dropdown-menu{
-      background-color: rgba(0, 0, 0, 0.9);
+
+      background-color: rgba(0, 0, 0, 0.8);
       width: 100%;
       li a:hover{
-        background-color: rgba(0, 0, 0, 0.9) !important;
+        background-color: rgba(0, 0, 0, 0.4) !important;
         background-image: none;
       }
     }

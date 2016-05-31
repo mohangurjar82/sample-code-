@@ -1,9 +1,7 @@
 class PagesController < ApplicationController
-  layout 'n2me_layout'
+  layout 'new_layout'
 
   def index
-  end
-
-  def tmp_index 
+  	render :layout => false
   end
 end

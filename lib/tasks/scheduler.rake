@@ -1,8 +1,8 @@
-namespace :upgrade_tv_listing do
-  desc "Upgrade tv listings every day"
-  task tv_listings: :environment do
-  	if not Lineup.exists?
-  			
+require 'json'
+desc "Upgrade tv listings every day"
+task tv_listings: :environment do
+	if not Lineup.exists?
+			
 		FAVORITE_LINEUPS.each_with_index do |item, index|
 		
 			request_str = Listing.get_lineup_info_uri item
@@ -21,16 +21,15 @@ namespace :upgrade_tv_listing do
 			end
 
 		end	
-    end
+	end
 
-  	utc_start_t = Time.now.getlocal("+00:00").change(:hour => 0, :min => 0, :sec => 0)
+	utc_start_t = Time.now.getlocal("+00:00").change(:hour => 0, :min => 0, :sec => 0)
 	utc_start = utc_start_t
 	utc_one_day_ago = utc_start - 1.day
 	utc_one_day_ago_t = utc_one_day_ago
 	utc_two_days_ago = utc_start - 2.days
 
 	if Listing.where("updated_date = ?", utc_start_t.strftime('%Y-%m-%d %H:%M:%S')).first.nil?
-
 		FAVORITE_LINEUPS.each_with_index do |it, index|
 			relative_stations = Lineup.find_by(l_id: it).stations
 			stations_uri = ''
@@ -47,7 +46,6 @@ namespace :upgrade_tv_listing do
 				end
 			end		
 
-			
 			utc_end = utc_start_t + (60 * 60 * 24 * 14)
 			utc_start = Listing.format_time utc_start_t
 			utc_end   = Listing.format_time utc_end
@@ -56,13 +54,18 @@ namespace :upgrade_tv_listing do
 			request_str = request_str + 'start=' + utc_start + '&end=' + utc_end + '&station=' + stations_uri + '&pretty=1'
 			
 			begin
-				response = HTTParty.get(request_str, timeout: 600)
+				response = HTTParty.get(request_str, timeout: 3000)
 			rescue Net::ReadTimeout
 				nil
 			end
 
-			tmp = JSON.parse(response.body)
-			puts '---	Ready to write db   ---'
+			begin
+				tmp = JSON.parse(response.body)	
+			rescue Exception => e
+				puts e.message
+				return
+			end
+			
 			tmp.each do |item| 
 				Listing.create(s_number: item['number'], channel_number: item['channelNumber'], sub_channel_number: item['subChannelNumber'], s_id: item['stationID'], callsign: item['callsign'], logo_file_name: item['logoFilename'], list_date_time: item['listDateTime'], duration: item['duration'], show_id: item['showID'], series_id: item['seriesID'], show_name: item['showName'], episode_title: item['episodeTitle'], repeat: item['repeat'], new: item['new'], live: item['live'], hd: item['hd'], descriptive_video: item['descriptiveVideo'], in_progress: item['inProgress'], show_type: item['showType'], star_rating: item['starRating'], description: item['description'], league: item['league'], team1: item['team1'], team2: item['team2'], show_picture: item['showPicture'], l_id: it, updated_date: utc_start_t, web_link: item['webLink'], name: item['name'], station_type: item['stationType'], listing_id: item['listingID'], episode_number: item['episodeNumber'], parts: item['parts'], part_num: item['partNum'], series_premiere: item['seriesPremiere'], season_premiere: item['seasonPremiere'], series_finale: item['seriesFinale'], season_finale: item['seasonFinale'], rating: item['rating'], guest: item['guest'], director: item['director'], location: item['location'])
 			end
@@ -94,7 +97,7 @@ namespace :upgrade_tv_listing do
 			request_str = request_str + 'start=' + utc_one_day_ago + '&end=' + utc_end + '&station=' + stations_uri + '&pretty=1'
 
 			begin
-				response = HTTParty.get(request_str, timeout: 600)
+				response = HTTParty.get(request_str, timeout: 3000)
 			rescue Net::ReadTimeout
 				nil
 			end
@@ -106,7 +109,6 @@ namespace :upgrade_tv_listing do
 			end
 		end	
 	end
-	
+
 	Listing.where("updated_date <= ?", utc_two_days_ago.strftime('%Y-%m-%d %H:%M:%S')).destroy_all
-  end
 end
