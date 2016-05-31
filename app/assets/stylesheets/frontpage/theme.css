@@ -3151,13 +3151,13 @@ textarea {
 }
 ::-webkit-input-placeholder {    
     color: #aaa;
-     -webkit-transition: -webkit-border-color: 0.35s;
+     -webkit-border-color: 0.35s;
     transition: border-color 0.35s;
 }
 .contact input:focus, textarea:focus, select:focus {  
 	color: #191a1c; 
     border-color: #52555A;
-    -webkit-transition: -webkit-border-color: 0.35s;
+    -webkit-border-color: 0.35s;
     transition: border-color 0.35s;
 } 
 
