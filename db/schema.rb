@@ -47,6 +47,17 @@ ActiveRecord::Schema.define(version: 20160529161742) do
     t.datetime "updated_at",       null: false
   end
 
+  create_table "events", force: :cascade do |t|
+    t.integer  "media_id"
+    t.string   "title",       limit: 55
+    t.text     "description"
+    t.datetime "start_date",              precision: 0
+    t.datetime "end_date",                precision: 0
+    t.string   "stream_url",  limit: 255
+    t.integer  "product_id"
+    t.integer  "price"
+  end
+
   create_table "favorite_media", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "media_number"
