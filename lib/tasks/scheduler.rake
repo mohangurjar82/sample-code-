@@ -30,7 +30,7 @@ task tv_listings: :environment do
 	utc_two_days_ago = utc_start - 2.days
 
 	if Listing.where("updated_date = ?", utc_start_t.strftime('%Y-%m-%d %H:%M:%S')).first.nil?
-
+		puts "---	Today's   ---"
 		FAVORITE_LINEUPS.each_with_index do |it, index|
 			relative_stations = Lineup.find_by(l_id: it).stations
 			stations_uri = ''
@@ -47,7 +47,8 @@ task tv_listings: :environment do
 				end
 			end		
 
-			
+			puts it + "---" + stations_uri
+
 			utc_end = utc_start_t + (60 * 60 * 24 * 14)
 			utc_start = Listing.format_time utc_start_t
 			utc_end   = Listing.format_time utc_end
@@ -70,6 +71,7 @@ task tv_listings: :environment do
 	end
 
 	if Listing.where("updated_date = ?", utc_one_day_ago_t.strftime('%Y-%m-%d %H:%M:%S')).first.nil?
+		puts "---	One day ago   ---"
 		FAVORITE_LINEUPS.each_with_index do |it, index|
 			relative_stations = Lineup.find_by(l_id: it).stations
 			stations_uri = ''
