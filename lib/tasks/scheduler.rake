@@ -55,7 +55,7 @@ task tv_listings: :environment do
 			request_str = Listing.get_lineup_tv_listings it
 			
 			request_str = request_str + 'start=' + utc_start + '&end=' + utc_end + '&station=' + stations_uri + '&pretty=1'
-			
+			puts request_str
 			begin
 				response = HTTParty.get(request_str, timeout: 600)
 			rescue Net::ReadTimeout
