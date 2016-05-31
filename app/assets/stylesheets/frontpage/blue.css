@@ -23,7 +23,7 @@ a:hover,
 .home-filters-dark .cbp-filter-item:hover,
 .home-filters-dark .cbp-filter-item-active.cbp-filter-item
 {
-    color: #0cb4ce
+    color: #0cb4ce;
 }
  
 
@@ -46,7 +46,7 @@ h4.fitness-label,
 .bg-overlay:after,
 .label-items-in-cart
 {
-    background-color: #0cb4ce
+    background-color: #0cb4ce;
 }
 .btn-primary,  
 .btn-primary.active, .btn-primary:active, 
@@ -54,7 +54,7 @@ h4.fitness-label,
 .btn-primary.disabled, .btn-primary.disabled.active, .btn-primary.disabled.focus, .btn-primary.disabled:active, .btn-primary.disabled:focus, .btn-primary.disabled:hover, .btn-primary[disabled], .btn-primary[disabled].active, .btn-primary[disabled].focus, .btn-primary[disabled]:active, .btn-primary[disabled]:focus, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary, .btn-ghost-color:hover,
 .btn-primary.btn-appear:hover
 {
-    background-color: #0cb4ce
+    background-color: #0cb4ce;
 }
 .btn-primary, 
 .btn-ghost-color,
@@ -62,7 +62,7 @@ h4.fitness-label,
 .section-heading hr, hr.separator,
 .btn-primary.btn-appear:hover
 { 
-    border-color: #0cb4ce
+    border-color: #0cb4ce;
 }
 .accordian-style2 .panel-title,
 .food-tabs li.active a,
@@ -73,21 +73,21 @@ h4.fitness-label,
 .contact input:focus, textarea:focus, select:focus,
 .btn-primary.active, .btn-primary:active
 { 
-    border-color: #0cb4ce
+    border-color: #0cb4ce;
 }
 #video .play-btn:after,
 .music-bottom .play-btn:after,
 .play-bottom .play-btn:after
 { 
-    border-left-color: #0cb4ce
+    border-left-color: #0cb4ce;
 } 
 .box-style4 {
-    border-top: 2px solid #0cb4ce
+    border-top: 2px solid #0cb4ce;
 }
 #price-list .featured .price-table,
 .progress-bars-4 .progress-bar-tooltip:after
 {
-    border-top-color: #0cb4ce
+    border-top-color: #0cb4ce;
 }
  
 
@@ -107,30 +107,30 @@ a:hover .subheading,
 .read-more-link2.color span,
 #clock .digit
 {
-    color: #0cb4ce
+    color: #0cb4ce;
 }
 
 .contact input.submit,
 .blog-pagination>.active>a, 
 .blog-pagination>.active>a:hover
 {
-    background-color: #0cb4ce
+    background-color: #0cb4ce;
 }
 
 .price-table-featured .price-box
 {
-    border-color: #0cb4ce
+    border-color: #0cb4ce;
 }
 
 blockquote {
-    border-left-color: #0cb4ce
+    border-left-color: #0cb4ce;
 }
 
 .cbp-caption-zoom .cbp-caption-activeWrap {
-    background-color: rgba(12,180,206,0.9)
+    background-color: rgba(12,180,206,0.9);
 }
 
  
 .progress-svg circle {
-  	stroke: #0cb4ce
+  	stroke: #0cb4ce;
 }
