@@ -4562,7 +4562,7 @@ section {
     float: right;
 } 
 #clock.event-countdown .digit {
-    font-size:  
+    font-size:  12px;
 }
 .event-price .price-box h2 sup {
     margin-left: -26px;
