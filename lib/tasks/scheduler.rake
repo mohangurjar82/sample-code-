@@ -59,7 +59,9 @@ task tv_listings: :environment do
 			rescue Net::ReadTimeout
 				nil
 			end
+			put 'succeed to get reponse'
 			tmp = JSON.parse(response.body)
+			puts tmp
 			put 'Ready to write DB'
 			tmp.each do |item| 
 				puts item
