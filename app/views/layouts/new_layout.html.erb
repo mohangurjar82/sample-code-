@@ -10,8 +10,9 @@
      <%= csrf_meta_tags %>
      <title>N2me</title>
      <link href='//fonts.googleapis.com/css?family=Ubuntu:100,400,700' rel='stylesheet' type='text/css'>
-     <%= stylesheet_link_tag 'new_layout', media: 'all' %>
      <%= content_for(:head) if content_for? :head %>
+     <%= stylesheet_link_tag 'new_layout', media: 'all' %>
+     
      <%= javascript_include_tag(:new_layout) unless @skip_javascript %>
   </head>
   <body>

@@ -30,15 +30,6 @@
   }
 }
 .category-container{
-  ::-webkit-scrollbar {
-      width: 0px;  /* remove scrollbar space */
-      background: transparent;  /* optional: just make scrollbar invisible */
-  }
-  /* optional: show position indicator in red */
-  ::-webkit-scrollbar-thumb {
-      background: transparent;
-  }
-
   margin-left: 20px;
   margin-right: 20px;
   * {
@@ -68,6 +59,16 @@
   }
   .contain {
     width: 100%;
+  }
+}
+.uk-slidenav-position{
+  ::-webkit-scrollbar {
+      width: 0px;  /* remove scrollbar space */
+      background: transparent;  /* optional: just make scrollbar invisible */
+  }
+  /* optional: show position indicator in red */
+  ::-webkit-scrollbar-thumb {
+      background: transparent;
   }
   .row {
     overflow: scroll;
@@ -155,8 +156,8 @@
     bottom: 0;
     padding: 10px;
   }
-}
 
+}
 @media (min-width: 960px) {
   .row__inner:hover {
     -webkit-transform: translate3d(-15px, 0, 0);
