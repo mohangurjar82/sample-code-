@@ -13,8 +13,7 @@
     <%= render :partial => 'layouts/new/navbar_new' %>    
     <!-- Hero -->
     <section class="hero-fullscreen hero-video overlay">   
-      <iframe youtube-video-id="rrNL9RlPDk0" id="vossen-youtube" frameborder="0" allowfullscreen="1" title="YouTube video player" width="1424" height="801" src="https://www.youtube.com/embed/rrNL9RlPDk0?playlist=rrNL9RlPDk0&autoplay=1&controls=0&showinfo=0&loop=1&enablejsapi=1&origin=http%3A%2F%2Fwww.rpm-web.com&widgetid=1" style="left: 0px;"></iframe>
-      
+      <video youtube-video-id="rrNL9RlPDk0" id="vossen-youtube"></video>
       <div class="hero-container">
         <div class="hero-content text-center">   
           <div class="col-sm-12 mr-auto white text-center pt20">   
@@ -586,8 +585,10 @@
         <!-- End Back To Top --> 
         
         <!-- Scripts -->
-
-        <%= javascript_include_tag(:frontpage) unless @skip_javascript %>
-
-    
-</body></html>
+    <%= javascript_include_tag(:frontpage) unless @skip_javascript %>
+    <script type="text/javascript">
+      var youtubeplayer = iframe.getElementById('rrNL9RlPDk0');
+      youtubeplayer.setVolume(0);
+    </script>
+  </body>
+</html>
