@@ -1,45 +1,6 @@
 <%= form_tag("/schedule", method: "post", id: "tvForm") do %>
 
 <div class="container desktop">
-	<div class="row category-board">
-
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>						
-					</button>
-
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					
-					<ul class="categories-links">
-						<li><a class="active" href="#">POPULAR</a> <span class="sr-only">(current)</span></li>
-						<li><a href="#">FREE</a></li>
-						<li><a href="#">SATELLITE</a></li>
-						<li><a href="#">MOVIES</a></li>
-						<li><a href="#">SPORT</a></li>
-						<li><a href="#">KIDS</a></li>
-						<li><a href="#">DOCUMENTARIES</a></li>
-						<li><a href="#">MUSIC</a></li>
-						<li><a href="#">NEWS</a></li>
-
-						<li class="last">
-							<ul class="view-links">
-								<li><a href="#">LIST VIEW</a></li>		
-								<li><a class="active" href="#">GRID VIEW</a></li>	
-							</ul>
-						</li>
-					</ul>				
-
-					
-				</div><!--/.nav-collapse -->
-			</div><!--/.container-fluid -->
-		</nav>
-	</div>
 	
 	<div class="row search-board">
 		<div class="col-md-3 date-board"><span></span></div>
@@ -238,7 +199,7 @@
 					}
 				}
 
-				tmp_html = tmp_html + '<div class="col-md-12 row-padding"><span style="margin-right: 10px"><img src="http://cdn.tvpassport.com/image/station/100x100/' + all_channels[i].logo_file_name + '" style="width: 30px; height: 20px"></span><span class="keys">' + all_channels[i].callsign + '</span><span class="keys"> ' + all_channels[i].s_number + '</span><span class="pull-right glyphicon ' + glyphicon + '"></span><input type="hidden" name="status[' + all_channels[i].s_id.toString() + '_' + all_channels[i].s_number + ']" value=' + val + '></div>';	
+				tmp_html = tmp_html + '<div class="col-md-12 row-padding" data-callsign="' + all_channels[i].callsign + '" data-s-num="' + all_channels[i].s_number + '"><span style="margin-right: 10px"><img src="http://cdn.tvpassport.com/image/station/100x100/' + all_channels[i].logo_file_name + '" style="width: 30px; height: 20px"></span><span class="keys">' + all_channels[i].callsign + '</span><span class="keys"> ' + all_channels[i].s_number + '</span><span class="pull-right glyphicon ' + glyphicon + '"></span><input type="hidden" name="status[' + all_channels[i].s_id.toString() + '_' + all_channels[i].s_number + ']" value=' + val + '></div>';	
 			}
 
 			$('#searchable-container').html(tmp_html);
@@ -281,6 +242,7 @@
 			tv_listing = <%= raw @tv_listing.to_json %>;
 			channel_list = <%= raw @favorite_channels.to_json %>;
 
+			console.log(tv_listing);
 			console.log(search_date_t);
 			console.log(search_time);
 			console.log(start_t);
@@ -503,9 +465,25 @@
 		
 
 		$('.program-board .for-detail').on('click', click_for_detail);
-		$('#listings-favorites-button').on('click', function(){
-			// $('#gridSystemModal').modal("show");
+
+		$('#listings-favorites-button').on('click', function() {
+			$('#searchable-container .col-md-12.row-padding').each(function(){
+				var exist = false;
+				for(var i = 0; i < channel_list.length; i++) {
+					if(channel_list[i].callsign == $(this).attr('data-callsign') && channel_list[i].s_number == $(this).attr('data-s-num')) {
+						exist = true;
+						break;
+					}
+				}
+
+				if(exist) {
+					$(this).find('span:nth-child(4)').attr('class', 'pull-right glyphicon glyphicon-ok');
+				} else {
+					$(this).find('span:nth-child(4)').attr('class', 'pull-right glyphicon glyphicon-plus');
+				}
+			});	
 		});
+
 		$('#gridSystemModal .btn-primary').on('click', function(){
 			$('#changed').val(true);
 			$('#gridSystemModal').modal('hide');
