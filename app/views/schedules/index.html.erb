@@ -280,7 +280,6 @@
 			all_channels = <%= raw @all_channels.to_json %>;
 			tv_listing = <%= raw @tv_listing.to_json %>;
 			channel_list = <%= raw @favorite_channels.to_json %>;
-			console.log(tv_listing);
 
 			init_date_picker();
 			init_time_picker();
@@ -302,6 +301,8 @@
 
 			console.log(js_tv_list);
 			console.log(channel_list);
+			console.log(search_date_t);
+			console.log(search_time);
 
 			if(channel_list.length < channels_per_page) end_chan = channel_list.length - 1;
 
