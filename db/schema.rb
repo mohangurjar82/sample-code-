@@ -220,7 +220,7 @@ ActiveRecord::Schema.define(version: 20160529161742) do
   add_index "product_items", ["product_id"], name: "index_product_items_on_product_id", using: :btree
 
   create_table "products", force: :cascade do |t|
-    t.string   "mpxid",                          null: false
+    t.string   "mpxid"
     t.string   "title"
     t.string   "description"
     t.string   "images",          default: [],                array: true
