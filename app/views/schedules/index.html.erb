@@ -208,13 +208,13 @@
 			var loop_date = moment(start_t);
 
 			for (var i = 0; i < 14; i++) {
-				tmp_html = tmp_html + "<option value='" + loop_date.format('YYYY-MM-DD HH:mm:ss') + "'>" + loop_date.format("dddd, MMM D") + "</option>";
+				tmp_html = tmp_html + "<option value='" + loop_date.format('YYYY-MM-DD HH:mm:ss Z') + "'>" + loop_date.format("dddd, MMM D") + "</option>";
 				loop_date = moment(loop_date).add(1, 'day');
 			}
 
 			$('#listings-date-picker-date-select').html(tmp_html);
 
-			$('#listings-date-picker-date-select option[value="' + moment(search_date_t).format('YYYY-MM-DD HH:mm:ss') + '"]').attr("selected", "selected");
+			$('#listings-date-picker-date-select option[value="' + moment(search_date_t).format('YYYY-MM-DD HH:mm:ss Z') + '"]').attr("selected", "selected");
 		}
 
 		function init_time_picker() {
