@@ -1,6 +1,10 @@
 class Api::MediaController < Api::BaseController
   def index
-    render json: Medium.order('media.order DESC')
+    media = Medium.includes(:categories, :media)
+                  .order('media.order DESC')
+                  .page(page)
+                  .per(per_page)
+    render json: media, meta: pagination_dict(media)
   end
 
   def show
