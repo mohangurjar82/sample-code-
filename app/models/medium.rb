@@ -29,7 +29,7 @@ class Medium < ActiveRecord::Base
   
   def language_list
     return medium.language_list if medium_id.present?
-    list = [language] + media.pluck(:language)
+    list = [language] + media.map(&:language)
     list.join.blank? ? ['English'] : list.join(' | ')
   end
 

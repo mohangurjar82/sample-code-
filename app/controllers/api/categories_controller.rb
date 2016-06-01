@@ -1,7 +1,11 @@
 class Api::CategoriesController < Api::BaseController
 
   def index
-    render json: Category.order('categories.order DESC')
+    categories = Category.includes(:category, :categories)
+                         .order('categories.order DESC')
+                         .page(page)
+                         .per(per_page)
+    render json: categories, meta: pagination_dict(categories)
   end
 
   def show
