@@ -164,7 +164,6 @@ class SchedulesController < ApplicationController
 		end
 
 		if not sql_for_channels.eql? ''
-			# @tv_listing = Listing.select("*, list_date_time + interval '1 minute' * " + @utc_offset.to_s + " AS locale_time").where("episode_title ILIKE ? AND updated_date = ? AND list_date_time + interval '1 minute' * listings.duration > ?" + sql_for_channels, '%' + @search_word + '%', utc_one_day_ago.strftime('%Y-%m-%d'), @start_t).order("list_date_time ASC, s_id ASC")
 			@tv_listing = Listing.where("episode_title ILIKE ? AND updated_date = ? AND list_date_time + interval '1 minute' * listings.duration > ?" + sql_for_channels, '%' + @search_word + '%', utc_one_day_ago.strftime('%Y-%m-%d'), @search_time).order("list_date_time ASC, s_id ASC")  		
 		end
 	end

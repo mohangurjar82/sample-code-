@@ -47,17 +47,6 @@ ActiveRecord::Schema.define(version: 20160601153750) do
     t.datetime "updated_at",       null: false
   end
 
-  create_table "events", force: :cascade do |t|
-    t.integer  "media_id"
-    t.string   "title",       limit: 55
-    t.text     "description"
-    t.datetime "start_date",              precision: 0
-    t.datetime "end_date",                precision: 0
-    t.string   "stream_url",  limit: 255
-    t.integer  "product_id"
-    t.integer  "price"
-  end
-
   create_table "favorite_media", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "media_number"
@@ -220,7 +209,7 @@ ActiveRecord::Schema.define(version: 20160601153750) do
   add_index "product_items", ["product_id"], name: "index_product_items_on_product_id", using: :btree
 
   create_table "products", force: :cascade do |t|
-    t.string   "mpxid"
+    t.string   "mpxid",                          null: false
     t.string   "title"
     t.string   "description"
     t.string   "images",          default: [],                array: true
