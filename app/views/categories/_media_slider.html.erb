@@ -12,7 +12,7 @@
         <div class="featured-blocks <%= is_game ? 'categories-list' : 'videos-list' %> uk-slidenav-position">
             <div class="row">
               <div class="row__inner">
-                <% @media[0..12].each do |m| %>
+                <% @media.each do |m| %>
                   <div class="tile">
                     <div class="tile__media">
                       <% m = m.becomes(Game) if is_game %>

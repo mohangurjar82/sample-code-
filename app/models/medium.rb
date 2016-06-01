@@ -11,6 +11,10 @@ class Medium < ActiveRecord::Base
   validates :title, presence: true
   validate :has_or_belongs_to_language_group
 
+  def self.languages
+    self.select('distinct language').where("language is not null and language <> ''").map{|x| x.language}.sort{|x, y| x <=> y}
+  end
+
   def languages
     @_languages ||= if medium_id.present?
                       Media.where('medium_id = :id OR id = :id', id: medium_id)
@@ -28,6 +32,7 @@ class Medium < ActiveRecord::Base
     list = [language] + media.pluck(:language)
     list.join.blank? ? ['English'] : list.join(' | ')
   end
+
 
   # mpx compatibility
   def thumbnail_url
