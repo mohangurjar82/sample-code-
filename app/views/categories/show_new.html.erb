@@ -60,7 +60,7 @@
       <div class="<%= is_game ? 'categories-list' : 'videos-list' %> uk-slidenav-position">
         <div class="row">
           <div class="row__inner">
-            <% cat.media.each do |m| %>
+            <% cat.media.where(:language => current_language ).each do |m| %>
               <div class="tile">
                 <div class="tile__media">
                   <% m = m.becomes(Game) if is_game %>
