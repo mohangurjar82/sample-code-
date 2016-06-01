@@ -91,6 +91,21 @@
     </div>
   </div>
 </div>
+<!-- End: Favorite Modal Definition -->
+
+
+<!-- Start: Detailed Info Board Of Program-->
+
+<div class="modal fade bd-example-modal-lg" id = "pro_info" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="channel-info"></div>
+      <div class="pro-info"></div>
+    </div>
+  </div>
+</div>
+
+<!-- End: Detailed Info Board -->
 
 <% end %>
 
@@ -161,6 +176,27 @@
 		    });
 		}
 
+		function click_for_detail() {
+			var c_list_id = $(this).attr('data-list-id');
+			var ch_html;
+			var pro_html;
+
+			ch_html = '<span><img src="http://cdn.tvpassport.com/image/station/100x100/' + tv_listing[c_list_id].logo_file_name + '" style="width: 100px; height: 100px"></span><span class="listings-channel-number-name"><span class="listings-channel-number-name-inner"><span class="listings-channel-number">' + tv_listing[c_list_id].s_number + '</span><span class="listings-channel-name">' + tv_listing[c_list_id].callsign + '</span></span></span>';
+			$('#pro_info .channel-info').html(ch_html);
+	
+			pro_html = "<div><span style='font-size: 20px'>" + (tv_listing[c_list_id].episode_title == '' ? tv_listing[c_list_id].show_name : tv_listing[c_list_id].episode_title) + "</span><span class='pull-right " + (tv_listing[c_list_id].new == true ? 'tag' : '') + "'>" + (tv_listing[c_list_id].new == true ? 'NEW' : '') + "</span><span class='pull-right " + (tv_listing[c_list_id].live == true ? 'tag' : '') + "'>" + (tv_listing[c_list_id].live == true ? 'LIVE' : '') + "</span><span class='pull-right " + (tv_listing[c_list_id].rating == '' ? '' : 'tag') + "'>" + tv_listing[c_list_id].rating + "</span></div>"
+
+			pro_html = pro_html + "<div style='margin-top: 15px'>Air Time: " + moment(tv_listing[c_list_id].list_date_time).format('h:mm A') + " (" + moment.duration(tv_listing[c_list_id].duration, "minutes").format("h [hr] m [min]") + ")" + "</div>";
+			pro_html = pro_html + "<div style='margin-top: 15px'>" + tv_listing[c_list_id].description + "</div>";
+
+			if(moment().diff(moment(tv_listing[c_list_id].list_date_time).add(tv_listing[c_list_id].duration, 'm')) < 0) {
+				pro_html = pro_html + "<div style='margin-top: 15px'><button type='button' class='btn btn-primary' style='margin-right: 20px'>WATCHLIST</button><button type='button' class='btn btn-danger'>RECORD</button></div>";
+			}
+			$('#pro_info .pro-info').html(pro_html);
+
+			$('#pro_info').modal('show');
+		}
+
 		function initialize() {
 			$('#cur_now').val(moment().format('YYYY-MM-DD HH:mm:ss Z'));
 			$('#utc_locale').val(moment().utcOffset());
@@ -201,7 +237,7 @@
 
 					} 
 
-					tmp_html =  tmp_html + '<li data-channel-number="' + tv_listing[i].channel_number + '" data-channel-source="' + tv_listing[i].s_id + '" data-channel-name="' + tv_listing[i].callsign + '"><a href="' + tv_listing[i].web_link + '" class="listings-channel" style="width: 17.7%;"><span><img src="http://cdn.tvpassport.com/image/station/100x100/' + tv_listing[i].logo_file_name + '" style="width: 30px; height: 20px"></span><span class="listings-channel-number-name"><span class="listings-channel-number-name-inner"><span class="listings-channel-number">' + tv_listing[i].s_number + '</span><span class="listings-channel-name">' + tv_listing[i].callsign + '</span></span></span></a><a href="#" class="listings-program" style="width: 82.3%;"><span class="listings-program-inner"><span class="listings-program-title">' + tv_listing[i].episode_title + '</span><span class="listings-program-time">' + moment(tv_listing[i].list_date_time).format('h:mm A') + ' (' + moment.duration(tv_listing[i].duration, "minutes").format("h [hr] m [min]") + ')</span></span></a></li>';
+					tmp_html =  tmp_html + '<li data-channel-number="' + tv_listing[i].channel_number + '" data-channel-source="' + tv_listing[i].s_id + '" data-channel-name="' + tv_listing[i].callsign + '"><a href="' + tv_listing[i].web_link + '" class="listings-channel" style="width: 17.7%;"><span><img src="http://cdn.tvpassport.com/image/station/100x100/' + tv_listing[i].logo_file_name + '" style="width: 30px; height: 20px"></span><span class="listings-channel-number-name"><span class="listings-channel-number-name-inner"><span class="listings-channel-number">' + tv_listing[i].s_number + '</span><span class="listings-channel-name">' + tv_listing[i].callsign + '</span></span></span></a><a href="#" class="listings-program" style="width: 82.3%;" data-callsign="' + tv_listing[i].callsign + '" data-chan-num="' + tv_listing[i].s_number + '" data-list-id="' + i + '"><span class="listings-program-inner"><span class="listings-program-title">' + tv_listing[i].episode_title + '</span><span class="listings-program-time">' + moment(tv_listing[i].list_date_time).format('h:mm A') + ' (' + moment.duration(tv_listing[i].duration, "minutes").format("h [hr] m [min]") + ')</span></span></a></li>';
 				}
 
 				tmp_html = tmp_html + '</ul>';
@@ -244,6 +280,8 @@
 				}
 			});	
 		});
+
+		$('.listings-program').on('click', click_for_detail);
 	});
 </script>
 
