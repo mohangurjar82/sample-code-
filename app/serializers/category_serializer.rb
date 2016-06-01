@@ -11,4 +11,8 @@ class CategorySerializer < ActiveModel::Serializer
       }
     end
   end
+
+  def picture_url
+    object.picture_url if object.image.sub("#{object.id}-", '').present?
+  end
 end
