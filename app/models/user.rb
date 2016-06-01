@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
     name.present? ? name : email
   end
 
+  def short_name
+    name.present? ? name.split(' ')[0] : email.split('@')[0]
+  end
+
   def push_media_to_history(media_id)
     recently_viewed_media_ids.unshift(media_id)
     self.recently_viewed_media_ids = self.recently_viewed_media_ids.uniq[0..15]

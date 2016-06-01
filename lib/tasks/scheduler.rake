@@ -46,7 +46,7 @@ task tv_listings: :environment do
 				end
 			end		
 
-			utc_end = utc_start_t + (60 * 60 * 24 * 2)
+			utc_end = utc_start_t + (60 * 60 * 24 * 14)
 			utc_start = Listing.format_time utc_start_t
 			utc_end   = Listing.format_time utc_end
 			request_str = Listing.get_lineup_tv_listings it
@@ -89,7 +89,7 @@ task tv_listings: :environment do
 				end
 			end		
 			
-			utc_end = utc_one_day_ago_t + (60 * 60 * 24 * 2)
+			utc_end = utc_one_day_ago_t + (60 * 60 * 24 * 14)
 			utc_one_day_ago = Listing.format_time utc_one_day_ago_t
 			utc_end   = Listing.format_time utc_end
 

@@ -23,6 +23,7 @@
           <li><a href="/music">Music</a></li>
           <li><a href="<%= ebooks_path %>">E-Books</a></li>
           <li><a href="/categories/1422405886">International</a></li>
+            <li><a href="https://chat.n2me.tv">MeChat</a></li>
         <% else %>
           <li>
             <a class="page-scroll" href="#content">Streaming Content</a>
@@ -57,12 +58,12 @@
           <li class="dropdown logged-in-box">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
               <img class="avatar" alt="user avatar" src="<%= current_user.avatar_url %>" />
-              <%= current_user.name || current_user.email %>
+              <%= current_user.short_name %>
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
               <li><a href="/profile">Profile</a></li>
-              <li><%= link_to "Live TV Guide", 'schedule_path', class: "go-to" %></li>
+              <li><%= link_to "Live TV Guide", schedule_path, class: "go-to" %></li>
               <li><a href="/products">Products</a></li>
               <li><a href="<%= destroy_user_session_path %>"> Logout</a></li>
             </ul>
@@ -87,9 +88,9 @@
 
     $('.go-to').click(function(event){
       event.preventDefault();
-      var now = moment().format('YYYY-MM-DD HH:mm:ss');
+      var now = moment().format('YYYY-MM-DD HH:mm:ss Z');
       $('#now').val(now);
-      
+      console.log(now);
       $('.get-location').submit();
     });
   });
