@@ -202,7 +202,7 @@
 		}
 
 		function initialize() {
-			$('#cur_now').val(moment().format('YYYY-MM-DD HH:mm:ss'));
+			$('#cur_now').val(moment().format('YYYY-MM-DD HH:mm:ss Z'));
 			$('#utc_locale').val(moment().utcOffset());
 
 			tv_listing = <%= raw @tv_listing.to_json %>;

@@ -231,7 +231,7 @@
 				val = false;
 
 				for(var j = 0; j < channel_list.length; j++) {
-					if(channel_list[j].s_number == all_channels[i].s_number) {
+					if((channel_list[j].s_number == all_channels[i].s_number) && (channel_list[j].s_id == all_channels[i].s_id)) {
 						glyphicon = 'glyphicon-ok';
 						val = true;
 						break;
@@ -298,11 +298,6 @@
 
 				js_tv_list[tv_channel.callsign][tv_channel.s_number.toString()].push(tv_channel);
 			});
-
-			console.log(js_tv_list);
-			console.log(channel_list);
-			console.log(search_date_t);
-			console.log(search_time);
 
 			if(channel_list.length < channels_per_page) end_chan = channel_list.length - 1;
 

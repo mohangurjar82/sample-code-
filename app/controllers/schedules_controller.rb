@@ -68,7 +68,6 @@ class SchedulesController < ApplicationController
 			current_user.stations.destroy_all
 			@all_channels.each do |ch|
 				if params[:status][ch.s_id.to_s + '_' + ch.s_number].eql? "true"
-					puts '------------' + ch.s_id.to_s + '_' + ch.s_number
 					current_user.stations << ch
 				end
 			end
@@ -105,9 +104,6 @@ class SchedulesController < ApplicationController
 		end
 
 		if not sql_for_channels.eql? ''
-			puts '----------------------'
-			puts @search_date_t.getlocal("+00:00")
-			puts @end_t.getlocal("+00:00")
 			@tv_listing = Listing.select("*, list_date_time + interval '1 minute' * " + @utc_offset.to_s + " AS locale_time").where("updated_date = ? AND list_date_time + interval '1 minute' * listings.duration  > ? AND list_date_time < ?" + sql_for_channels, @utc_one_day_ago, @search_date_t.getlocal("+00:00"), @end_t.getlocal("+00:00")).order("s_id ASC, s_number ASC, list_date_time ASC")
 		end
 
