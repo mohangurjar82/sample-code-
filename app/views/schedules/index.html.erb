@@ -281,6 +281,10 @@
 			tv_listing = <%= raw @tv_listing.to_json %>;
 			channel_list = <%= raw @favorite_channels.to_json %>;
 
+			console.log(search_date_t);
+			console.log(search_time);
+			console.log(start_t);
+
 			init_date_picker();
 			init_time_picker();
 			$("#listings-date-picker-date-select").select2({width: '100%'});
