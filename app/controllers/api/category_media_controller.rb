@@ -3,7 +3,8 @@ class Api::CategoryMediaController < Api::BaseController
   def index
     category = Category.where('id = :id OR number = :id', id: params[:id]).first
     if category.present?
-      render json: category.media.order('media.order DESC')
+      render json: category.media.includes(:categories, :media)
+                                 .order('media.order DESC')
     else
       render json: { errors: 'Category not found' }, status: 404
     end
