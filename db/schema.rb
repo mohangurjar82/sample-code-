@@ -209,6 +209,7 @@ ActiveRecord::Schema.define(version: 20160601153750) do
   add_index "product_items", ["product_id"], name: "index_product_items_on_product_id", using: :btree
 
   create_table "products", force: :cascade do |t|
+    t.string   "mpxid",                          null: false
     t.string   "title"
     t.string   "description"
     t.string   "images",          default: [],                array: true
@@ -216,10 +217,11 @@ ActiveRecord::Schema.define(version: 20160601153750) do
     t.datetime "updated_at",                     null: false
     t.json     "pricing_plan"
     t.boolean  "available",       default: true, null: false
-    t.string   "mpxid"
     t.string   "image"
     t.integer  "pricing_plan_id"
   end
+
+  add_index "products", ["mpxid"], name: "index_products_on_mpxid", using: :btree
 
   create_table "stations", force: :cascade do |t|
     t.string   "s_number"
@@ -251,11 +253,12 @@ ActiveRecord::Schema.define(version: 20160601153750) do
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "billing_period"
-    t.string   "stripe_id"
     t.integer  "product_id"
+    t.string   "payment_detail_id"
+    t.string   "stripe_id"
     t.string   "stripe_plan_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "pricing_plan_id"
   end
 
