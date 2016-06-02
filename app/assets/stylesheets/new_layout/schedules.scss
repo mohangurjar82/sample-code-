@@ -644,3 +644,26 @@ ul {
 }
 
 
+/* Styling For Favorite Modal Dialog
+/* ========================================================= */
+
+.setting-title {
+	color: black;
+	font-size: 16px;
+}
+
+.question {
+	color: rgb(140, 140, 140);
+	font-size: 12px;
+}
+
+#grid_preferences {
+	label {
+		span {
+			vertical-align: sub;
+		}
+	}
+}
+
+
+

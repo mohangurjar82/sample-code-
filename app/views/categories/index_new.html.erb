@@ -1,7 +1,7 @@
 <div class="category-container">
     <!--Outer Holder Start-->
     <% @categories.each do |cat| %>
-      <% next unless cat.media.any? %>
+      <% next unless cat.media.where(:language => current_language ).any? %>
         <div class="cp-outer-holder cp-featured-video cp-comedy-video">
           <div class="row">
             <div class="col-md-12 cp-heading-outer">
@@ -16,7 +16,7 @@
           
             <div class="row">
               <div class="row__inner">
-                <% cat.media.each do |m| %>
+                <% cat.media.where(:language => current_language ).each do |m| %>
                   <div class="tile">
                     <div class="tile__media">
                       <% if m.thumbnail_url.present? %>

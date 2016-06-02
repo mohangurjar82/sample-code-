@@ -50,13 +50,15 @@ jQuery(document).ready(function($) {
     }
 
 
+    /* Get UTC Offset and Current Time
+    ======================================================*/
     $('#utc_offset').val(moment().utcOffset());
 
-    $('.get-location .file-btn').click(function(event){
+    $('.go-to').click(function(event){
       event.preventDefault();
-      var now = moment().format('YYYY-MM-DD HH:mm:ss');
+      var now = moment().format('YYYY-MM-DD HH:mm:ss Z');
       $('#now').val(now);
-      
+      console.log(now);
       $('.get-location').submit();
     });
 
