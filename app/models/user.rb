@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :subscriptions
   has_and_belongs_to_many :stations, :join_table => "users_stations"
+  has_one :preference
 
   validates :name, :email, presence: true
   validates_uniqueness_of :email

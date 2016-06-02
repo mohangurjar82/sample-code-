@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160601153750) do
+ActiveRecord::Schema.define(version: 20160602161256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -184,6 +184,15 @@ ActiveRecord::Schema.define(version: 20160601153750) do
     t.string   "stripe_customer_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+  end
+
+  create_table "preferences", force: :cascade do |t|
+    t.string   "initial_time"
+    t.string   "station_filter"
+    t.integer  "time_span"
+    t.integer  "grid_height"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "pricing_plans", force: :cascade do |t|

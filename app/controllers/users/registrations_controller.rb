@@ -17,6 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     all_stations.each do |st|
       current_user.stations << st
     end
+
     products_path
   end
 
