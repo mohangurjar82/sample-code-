@@ -1,4 +1,4 @@
-class CreateUser
+module CreateUser
   class CreatePluser
     Result = ImmutableStruct.new(:pluser_created?, :error_message, :id)
 

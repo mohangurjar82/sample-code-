@@ -191,6 +191,7 @@ ActiveRecord::Schema.define(version: 20160602161256) do
     t.string   "station_filter"
     t.integer  "time_span"
     t.integer  "grid_height"
+    t.integer  "user_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end

@@ -5,6 +5,7 @@ class CreatePreferences < ActiveRecord::Migration
       t.string :station_filter
       t.integer :time_span
       t.integer :grid_height
+      t.integer :user_id
 
       t.timestamps null: false
     end

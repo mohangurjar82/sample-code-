@@ -3,7 +3,7 @@
 <div class="category-container">
   <!--Featured Video Block 2-->
   <% if @category.categories.count > 0 && !@category.title.to_s.match(/Games/i) %>
-    <div class="cp-featured-block m60 cp-comedy-video">
+    <div class="cp-featured-block cp-comedy-video">
       <div class="row">
         <div class="cp-heading-outer col-md-12">
             <h2><%= @category.title %> Categories</h2>
@@ -94,12 +94,17 @@
   <% if @media.size > 0 %>
     <% if @category.categories.size > 0%>
       <%= render :partial => 'media_slider'%>
-    <% else %>
-      <%= render :partial => 'all_media'%>
     <% end %>
   <% end %>
 </div>
 
+<div class="container">
+  <% if @media.size > 0 %>
+    <% if @category.categories.size == 0%>
+      <%= render :partial => 'all_media'%>
+    <% end %>
+  <% end %>
+</div>
 <%= content_for :javascript do %>
   <script type="text/javascript">
     $(document).ready(function(){

@@ -1,6 +1,14 @@
 require 'json'
 desc "Upgrade tv listings every day"
 task tv_listings: :environment do
+	tv_users = User.all
+  	tv_users.each do |u|
+  		if u.preference.nil?
+  			preference_settings = Preference.new(initial_time: 'now', station_filter: 'broadcast,cable,community', time_span: 3, grid_height: 7)
+    		u.preference = preference_settings
+  		end
+  	end
+  	
 	if not Lineup.exists?
 			
 		FAVORITE_LINEUPS.each_with_index do |item, index|
