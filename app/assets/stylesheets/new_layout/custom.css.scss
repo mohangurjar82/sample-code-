@@ -254,9 +254,9 @@ a.cp-btn-style2:hover:before, a.cp-btn-style2:hover:after {
 	transform: scale(1.2);
 }
 .cp-thumb:hover img {
-	-webkit-transform: scale(2);
-	-moz-transform: scale(2);
-	transform: scale(2);
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	transform: scale(1);
 }
 .cp-thumb:before {
 	content: '';
@@ -1157,9 +1157,7 @@ ul.cp-categories-outer {
 	padding: 0 0 0 7px;
 	margin: 0px;
 }
-.cp-featured-video .view-all, .cp-comedy-video .view-all {
-	margin-right: 50px;
-}
+
 .cp-featured-video .cp-video-item, .cp-comedy-video .cp-video-item {
 	border: 1px solid #eaeaea;
 	box-shadow: none;
@@ -3487,7 +3485,7 @@ ul.cp-meta-post-list:last-child {
 .cp-featured-block {
 	width: 100%;
 	float: left;
-	padding: 40px 0 0;
+	padding: 0;
 }
 .featured-blocks .cp-thumb .cp-caption .cp-text {
 	float: left;
