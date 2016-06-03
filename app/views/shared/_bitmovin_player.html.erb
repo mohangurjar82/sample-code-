@@ -1,0 +1,17 @@
+<% content_for :head do %>
+    <%= javascript_include_tag '//bitmovin-a.akamaihd.net/bitdash/latest/bitdash.min.js' %>
+<% end %>
+<div id="video-player<%= media.number %>"></div>
+<script type="text/javascript">
+  var conf = {
+    key: "<%= ENV['BITDASH_KEY'] %>",
+    source:    {
+      hls: "<%= media.file_url %>",
+    },
+    playback: {
+      autoplay: true
+    }
+  };
+  var player = bitdash("video-player<%= media.number %>");
+  player.setup(conf);
+</script>
