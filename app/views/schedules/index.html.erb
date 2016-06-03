@@ -254,6 +254,7 @@
 		var base_start_t; 
 		var base_end_t;
 		var all_channels;
+		var media_numbers;
 		const channels_per_page = 7;
 		// ---- End: Declaration of variables and constants
 
@@ -334,6 +335,7 @@
 			all_channels = <%= raw @all_channels.to_json %>;
 			tv_listing = <%= raw @tv_listing.to_json %>;
 			channel_list = <%= raw @favorite_channels.to_json %>;
+			media_numbers = <%= raw MEDIA_NUMBERS.to_json %>
 
 			init_date_picker();
 			init_time_picker();
@@ -393,12 +395,13 @@
 				var channel = js_tv_list[channel_list[c].callsign][channel_list[c].s_number];
 				var cur_t;
 				var next_t;
-				var web_link;
+				var web_link = 'http://n2me-web.herokuapp.com/media/';
 
-				if(channel_list[c].weblink == "") 
-					web_link = "#"
-				else
-					web_link = channel_list[c].weblink;
+				// if(channel_list[c].weblink == "") 
+				// 	web_link = "#"
+				// else
+				// 	web_link = channel_list[c].weblink;
+				web_link = web_link + media_numbers[channel_list[c].s_number]
 
 				var tmp_html = "<div class='row' id='" + channel_list[c].s_id.toString() + "_" + channel_list[c].s_number + "'><div class='col-xs-3 channel-board'><div class='channel_info'><p class='channel_name'>" + channel_list[c].callsign + "</p><span>" + channel_list[c].s_number + "</span><p><a href='" + web_link + "'>watch now</a></p></div></div><div class='col-xs-9 program-board'></div></div>";
 				$(tmp_html).appendTo(".grid-view");
