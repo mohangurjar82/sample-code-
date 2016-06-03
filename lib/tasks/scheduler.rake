@@ -1,6 +1,14 @@
 require 'json'
 desc "Upgrade tv listings every day"
 task tv_listings: :environment do
+	tv_users = User.all
+  	tv_users.each do |u|
+  		if u.preference.nil?
+  			preference_settings = Preference.new(initial_time: 'now', station_filter: 'broadcast,cable,community', time_span: 3, grid_height: 7)
+    		u.preference = preference_settings
+  		end
+  	end
+  	
 	if not Lineup.exists?
 			
 		FAVORITE_LINEUPS.each_with_index do |item, index|
@@ -13,7 +21,7 @@ task tv_listings: :environment do
 			new_lineup = Lineup.create(l_id: lineup_data['lineupID'], lineup_name: lineup_data['lineupName'], lineup_type: lineup_data['lineupType'], provider_id: lineup_data['providerID'], provider_name: lineup_data['providerName'], service_area: lineup_data['serviceArea'], country: lineup_data['country'])
 			
 			lineup_data['stations'].each do |st|
-				if Station.find_by(s_id: st['stationID'], s_number: st['number']).blank?
+				if Station.find_by(s_id: st['stationID'], s_number: st['number']).blank? && (FAVORITE_CHANNELS[index].include? st['number'])
 					new_station = Station.create(s_number: st['number'], channel_number: st['channelNumber'], sub_channel_number: st['subChannelNumber'], s_id: st['stationID'], name: st['name'], callsign: st['callsign'], network: st['network'], station_type: st['stationType'], ntsc_tsid: st['NTSC_TSID'], dtv_tsid: st['DTV_TSID'], twitter: st['Twitter'], weblink: st['webLink'], logo_file_name: st['logoFilename'], station_hd: st['stationHD'])
 					new_lineup.stations << new_station	
 				end

@@ -34,6 +34,17 @@
         $('.white-until-load').css({color : "#191a1c"});
     });
     
+    /* Get UTC Offset and Current Time
+    ======================================================*/
+    $('#utc_offset').val(moment().utcOffset());
+    $('a.go-to').click(function(event){
+      event.preventDefault();
+      var now = moment().format('YYYY-MM-DD HH:mm:ss Z');
+      $('#now').val(now);
+      console.log(now);
+      $('.get-location').submit();
+    });
+
     // Header Dropdown
     
     $('.dropdown-toggle, .dropdown-submenu>a').click(function () {
@@ -660,5 +671,6 @@
         displayType: 'sequentially',
         displayTypeSpeed: 100
     });
+
     
 }(jQuery));

@@ -30,14 +30,26 @@
           <div class="col-md-7 col-sm-7 col-xs-12">
             <ul class="cp-ft-dropdown-listed">
               <li>
-                <div class="dropdown">
-                  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Language: English <span class="caret"></span> </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">English</a></li>
-                    <li><a href="#">Espanol</a></li>
-                    <li><a href="#">French</a></li>
-                  </ul>
-                </div>
+                <% if @media.is_a?(Medium) && @media.respond_to?(:languages) %>
+                  <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Language: <%= current_language %> <span class="caret"></span> </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                      <% @media.languages.each do |m| %>
+                        <li><a href="<%= media_path(m.number) %>"><%= m.language || 'English' %></a></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                  <% session[:language] = @media.language %>
+                <% else %>
+                  <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Language: <%= current_language %> <span class="caret"></span> </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                      <% Medium.languages.each do |language| %>
+                        <li><a href="<%= url_for(params.merge(:language => language))%>"><%= language %></a></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                <% end %>
               </li>
               <li>
                 <div class="dropdown">

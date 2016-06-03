@@ -17,6 +17,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     all_stations.each do |st|
       current_user.stations << st
     end
+
+    preference_settings = Preference.new(initial_time: 'now', station_filter: 'broadcast,cable,community', time_span: 3, grid_height: 7)
+    current_user.preference = preference_settings 
+
     products_path
   end
 

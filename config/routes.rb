@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   get 'index', to: 'pages#index', as: 'index' # landing page
   
   post 'schedule', to: 'schedules#index'
-  get 'schedule', to: 'schedules#index'
+  # get 'schedule', to: 'schedules#index'
   post 'schedule/:show', to: 'schedules#show'
 
 

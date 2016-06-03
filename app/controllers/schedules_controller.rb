@@ -104,7 +104,7 @@ class SchedulesController < ApplicationController
 		end
 
 		if not sql_for_channels.eql? ''
-			@tv_listing = Listing.select("*, list_date_time + interval '1 minute' * " + @utc_offset.to_s + " AS locale_time").where("updated_date = ? AND list_date_time + interval '1 minute' * listings.duration  > ? AND list_date_time < ?" + sql_for_channels, @utc_one_day_ago, @search_date_t.getlocal("+00:00"), @end_t.getlocal("+00:00")).order("s_id ASC, s_number ASC, list_date_time ASC")
+			@tv_listing = Listing.select("*, list_date_time + interval '1 minute' * " + @utc_offset.to_s + " AS locale_time").where("updated_date = ? AND list_date_time + interval '1 minute' * listings.duration > ? AND list_date_time < ?" + sql_for_channels, @utc_one_day_ago, @search_date_t.getlocal("+00:00"), @end_t.getlocal("+00:00")).order("s_id ASC, s_number ASC, list_date_time ASC")
 		end
 
 		# ==== End: Read JSON data which contains tv listings
@@ -116,7 +116,8 @@ class SchedulesController < ApplicationController
   		# Get A Keyword Param For Movie Search By A Name
   		if not params[:cur_now].blank? 
 			@now = params[:cur_now]
-			@start_t = Time.parse(@now).getlocal("+00:00").change(:hour => 0, :min => 0, :sec => 0).strftime('%Y-%m-%d %H:%M:%S')
+			@start_t = Time.parse(@now).change(:hour => 0, :min => 0, :sec => 0).strftime('%Y-%m-%d %H:%M:%S')
+			@search_time = Time.parse(@now).getlocal("+00:00")
 		end
 
 		if not params[:utc_locale].blank?
@@ -124,13 +125,12 @@ class SchedulesController < ApplicationController
 		end
 		
 		@tv_listing = []
-		# @start_t = @start.strftime('%Y-%m-%d %H:%M:%S')
+
 		get_all_channels
 		if params[:changed].eql? "true"
 			current_user.stations.destroy_all
 			@all_channels.each do |ch|
 				if params[:status][ch.s_id.to_s + '_' + ch.s_number].eql? "true"
-
 					current_user.stations << ch
 				end
 			end
@@ -164,7 +164,7 @@ class SchedulesController < ApplicationController
 		end
 
 		if not sql_for_channels.eql? ''
-			@tv_listing = Listing.select("*, list_date_time + interval '1 minute' * " + @utc_offset.to_s + " AS locale_time").where("episode_title ILIKE ? AND updated_date = ?" + sql_for_channels, '%' + @search_word + '%', utc_one_day_ago.strftime('%Y-%m-%d')).order("list_date_time ASC, s_id ASC")  		
+			@tv_listing = Listing.where("episode_title ILIKE ? AND updated_date = ? AND list_date_time + interval '1 minute' * listings.duration > ?" + sql_for_channels, '%' + @search_word + '%', utc_one_day_ago.strftime('%Y-%m-%d'), @search_time).order("list_date_time ASC, s_id ASC")  		
 		end
 	end
 

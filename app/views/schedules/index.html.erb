@@ -1,45 +1,6 @@
 <%= form_tag("/schedule", method: "post", id: "tvForm") do %>
 
 <div class="container desktop">
-	<div class="row category-board">
-
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>						
-					</button>
-
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					
-					<ul class="categories-links">
-						<li><a class="active" href="#">POPULAR</a> <span class="sr-only">(current)</span></li>
-						<li><a href="#">FREE</a></li>
-						<li><a href="#">SATELLITE</a></li>
-						<li><a href="#">MOVIES</a></li>
-						<li><a href="#">SPORT</a></li>
-						<li><a href="#">KIDS</a></li>
-						<li><a href="#">DOCUMENTARIES</a></li>
-						<li><a href="#">MUSIC</a></li>
-						<li><a href="#">NEWS</a></li>
-
-						<li class="last">
-							<ul class="view-links">
-								<li><a href="#">LIST VIEW</a></li>		
-								<li><a class="active" href="#">GRID VIEW</a></li>	
-							</ul>
-						</li>
-					</ul>				
-
-					
-				</div><!--/.nav-collapse -->
-			</div><!--/.container-fluid -->
-		</nav>
-	</div>
 	
 	<div class="row search-board">
 		<div class="col-md-3 date-board"><span></span></div>
@@ -72,8 +33,8 @@
 						</div>
 					</div>
 					<div class="col-md-3 listings-details-column listings-details-preferences-column">
-						<a href="#" onclick="return false" id="listings-favorites-button"  data-toggle="modal" data-target="#gridSystemModal"><i class="fa fa-heart fa-fw listings-button-icon"></i> Favorites</a>
-						<a href="#" onclick="return false" id="listings-preferences-button"><i class="fa fa-gear fa-fw listings-button-icon"></i> Preferences</a>
+						<a href="#" onclick="return false" id="listings-favorites-button" data-toggle="modal" data-target="#gridSystemModal"><i class="fa fa-heart fa-fw listings-button-icon"></i> Favorites</a>
+						<a href="#" onclick="return false" id="listings-preferences-button" data-toggle="modal" data-target="#grid_preferences"><i class="fa fa-gear fa-fw listings-button-icon"></i> Preferences</a>
 					</div>
 				</div>
 			</div>
@@ -183,6 +144,99 @@
 
 <!-- End: Detailed Info Board -->
 
+
+<!-- Start: Preferences Modal Definition -->
+<div id="grid_preferences" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridModalLabel">Grid Preferences</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+	        <div class="row">
+		        <div class="col-md-5">
+		        	<p class="setting-title">Initial Time</p>
+		        	<p class="question">
+		    			When you first open listings, what time should the grid be opened to?
+		    		</p>
+		    		<div class="radio">
+						<label><input type="radio" name="initial_time" value="now"><span>Current Time</span></label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="initial_time" value="5"><span>5 PM</span></label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="initial_time" value="7"><span>7 PM</span></label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="initial_time" value="9"><span>9 PM</span></label>
+					</div>
+		        </div>
+		        <div class="col-md-7">
+		        	<p class="setting-title">Station Filters</p>
+		        	<p class="question">
+		        		Customize your grid by showing or hiding different station types.
+		        	</p>
+
+		        	<div class="checkbox">
+						<label><input type="checkbox" name="station_filter" value="broadcast"><span>Broadcast</span></label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" name="station_filter" value="cable"><span>Cable</span></label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" name="station_filter" value="community"><span>Community</span></label>
+					</div>
+		        </div>		        
+	        </div>
+		    
+		    <div class="row">
+		    	<div class="col-md-5">
+		    		<p class="setting-title">Timespan</p>
+		    		<p class="question">
+		    			How many hours do you want to see at once?
+		    		</p>
+		    		<div class="radio">
+						<label><input type="radio" name="time_span" value="1"><span>1 hour</span></label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="time_span" value="2"><span>2 hour</span></label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="time_span" value="3"><span>3 hour</span></label>
+					</div>
+		    	</div>
+		        <div class="col-md-7">
+		        	<p class="setting-title">Grid Height</p>
+		        	<p class="question">
+		        		How many channels should the listings grid be contained to?
+		        	</p>
+		        	<div class="radio">
+						<label><input type="radio" name="grid_height" value="7"><span>7 Channels</span></label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="grid_height" value="14"><span>14 Channels</span></label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="grid_height" value="21"><span>21 Channels</span></label>
+					</div>
+		        </div>	
+		    </div>
+        </div>
+      </div>
+      <div class="modal-footer row">
+      	<div class="col-md-12">
+	      	<button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+		    <button type="button" class="btn btn-primary">SAVE PREFERENCES</button>
+      	</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End: Preferences Modal Definition -->
+
 <% end %>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -238,7 +292,7 @@
 					}
 				}
 
-				tmp_html = tmp_html + '<div class="col-md-12 row-padding"><span style="margin-right: 10px"><img src="http://cdn.tvpassport.com/image/station/100x100/' + all_channels[i].logo_file_name + '" style="width: 30px; height: 20px"></span><span class="keys">' + all_channels[i].callsign + '</span><span class="keys"> ' + all_channels[i].s_number + '</span><span class="pull-right glyphicon ' + glyphicon + '"></span><input type="hidden" name="status[' + all_channels[i].s_id.toString() + '_' + all_channels[i].s_number + ']" value=' + val + '></div>';	
+				tmp_html = tmp_html + '<div class="col-md-12 row-padding" data-callsign="' + all_channels[i].callsign + '" data-s-num="' + all_channels[i].s_number + '"><span style="margin-right: 10px"><img src="http://cdn.tvpassport.com/image/station/100x100/' + all_channels[i].logo_file_name + '" style="width: 30px; height: 20px"></span><span class="keys">' + all_channels[i].callsign + '</span><span class="keys"> ' + all_channels[i].s_number + '</span><span class="pull-right glyphicon ' + glyphicon + '"></span><input type="hidden" name="status[' + all_channels[i].s_id.toString() + '_' + all_channels[i].s_number + ']" value=' + val + '></div>';	
 			}
 
 			$('#searchable-container').html(tmp_html);
@@ -280,10 +334,6 @@
 			all_channels = <%= raw @all_channels.to_json %>;
 			tv_listing = <%= raw @tv_listing.to_json %>;
 			channel_list = <%= raw @favorite_channels.to_json %>;
-
-			console.log(search_date_t);
-			console.log(search_time);
-			console.log(start_t);
 
 			init_date_picker();
 			init_time_picker();
@@ -503,9 +553,25 @@
 		
 
 		$('.program-board .for-detail').on('click', click_for_detail);
-		$('#listings-favorites-button').on('click', function(){
-			// $('#gridSystemModal').modal("show");
+
+		$('#listings-favorites-button').on('click', function() {
+			$('#searchable-container .col-md-12.row-padding').each(function(){
+				var exist = false;
+				for(var i = 0; i < channel_list.length; i++) {
+					if(channel_list[i].callsign == $(this).attr('data-callsign') && channel_list[i].s_number == $(this).attr('data-s-num')) {
+						exist = true;
+						break;
+					}
+				}
+
+				if(exist) {
+					$(this).find('span:nth-child(4)').attr('class', 'pull-right glyphicon glyphicon-ok');
+				} else {
+					$(this).find('span:nth-child(4)').attr('class', 'pull-right glyphicon glyphicon-plus');
+				}
+			});	
 		});
+
 		$('#gridSystemModal .btn-primary').on('click', function(){
 			$('#changed').val(true);
 			$('#gridSystemModal').modal('hide');

@@ -1,5 +1,5 @@
 <% is_game = @category.title.match("Games") ||(@category.category && @category.category.title.match("Games")) ? true : false %>
-<div class="cp-featured-block m60 cp-comedy-video">
+<div class="cp-featured-block cp-comedy-video">
       <div class="row">
         <div class="col-md-12 cp-heading-outer">
           <h2>All <%= @category.title %></h2>
@@ -12,7 +12,7 @@
         <div class="featured-blocks <%= is_game ? 'categories-list' : 'videos-list' %> uk-slidenav-position">
             <div class="row">
               <div class="row__inner">
-                <% @media[0..12].each do |m| %>
+                <% @media.each do |m| %>
                   <div class="tile">
                     <div class="tile__media">
                       <% m = m.becomes(Game) if is_game %>
@@ -41,8 +41,8 @@
                   </div>
                 <% end %>
               </div>
-              <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slider-item="previous"></a>
-              <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slider-item="next"></a>
+              <a href="" class="previous uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slider-item="previous"></a>
+              <a href="" class="next uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slider-item="next"></a>
             </div>
         </div>
     </div>
