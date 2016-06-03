@@ -13,10 +13,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 
   def after_sign_up_path_for(resource)
-    all_stations = Station.all
-    all_stations.each do |st|
-      current_user.stations << st
-    end
+    all_stations = Station.all.order("s_id ASC, id ASC")
+    current_user.stations << all_stations
 
     preference_settings = Preference.new(initial_time: 'now', station_filter: 'broadcast,cable,community', time_span: 3, grid_height: 7)
     current_user.preference = preference_settings 

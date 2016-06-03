@@ -3,10 +3,15 @@ namespace :upgrade_tv_listing do
   task tv_listings: :environment do
   	
   	tv_users = User.all
+  	all_channels = Station.all.order("s_id ASC, id ASC")
   	tv_users.each do |u|
   		if u.preference.nil?
   			preference_settings = Preference.new(initial_time: 'now', station_filter: 'broadcast,cable,community', time_span: 3, grid_height: 7)
     		u.preference = preference_settings
+  		end
+
+  		if u.stations.first.nil?
+  			u.stations << all_channels
   		end
   	end
 
