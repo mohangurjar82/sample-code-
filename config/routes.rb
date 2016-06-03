@@ -63,6 +63,7 @@ Rails.application.routes.draw do
 
   get 'music', to: 'categories#music', as: 'music'
   get 'search', to: 'search#index', as: 'search'
+  get 'user_info', to: 'user_info#show'
   
   get '*unmatched', to: 'application#not_found'
   # Example of regular route:
