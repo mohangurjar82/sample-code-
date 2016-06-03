@@ -1,5 +1,5 @@
 <% is_game = @category.title.match("Games") ||(@category.category && @category.category.title.match("Games")) ? true : false %>
-<div class="cp-featured-block m60 cp-comedy-video">
+<div class="cp-featured-block cp-comedy-video">
       <div class="row">
         <div class="col-md-12 cp-heading-outer">
           <h2>All <%= @category.title %></h2>
@@ -41,8 +41,8 @@
                   </div>
                 <% end %>
               </div>
-              <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slider-item="previous"></a>
-              <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slider-item="next"></a>
+              <a href="" class="previous uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slider-item="previous"></a>
+              <a href="" class="next uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slider-item="next"></a>
             </div>
         </div>
     </div>

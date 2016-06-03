@@ -49,8 +49,12 @@ Cart.prototype.bindEvents = function () {
         if ( top <= 125){
           top = 0;
         }else{
-          top = top - 30;
+          top = top - 150;
         }
+        var maxTop = $(document).height() - $('footer').height() - $('.cart-items').height() -180
+        if((top) >= maxTop){
+          top = maxTop;
+        };
         $('.cart-items').css({top: top+"px"})
       }else{
         $('.cart-items').css({top: "0px"})
