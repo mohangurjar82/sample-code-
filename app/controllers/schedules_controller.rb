@@ -5,6 +5,7 @@ require 'pp'
 
 class SchedulesController < ApplicationController
 	before_filter :authenticate_user!
+	before_action :get_all_channels
 
 	layout 'new_layout'
 	
@@ -63,8 +64,12 @@ class SchedulesController < ApplicationController
 		@search_date   = Listing.format_time @search_date
 
 		# ==== End: Get Params And Make Necessary Time Variables
-		get_all_channels
-		if params[:changed].eql? "true"
+
+
+		# ==== Start: Add User Favorite Channels
+		#
+		#   If user changes favorite channels, it will be saved into DB
+		if params[:favorite_changed].eql? "true"
 			current_user.stations.destroy_all
 			@all_channels.each do |ch|
 				if params[:status][ch.s_id.to_s + '_' + ch.s_number].eql? "true"
@@ -72,8 +77,33 @@ class SchedulesController < ApplicationController
 				end
 			end
 		end 
+		# ==== End: Add User Favorite Channels
+
+
+		# ==== Start: Change User Preference
+		#
+		#   If user changes preferences, it will be saved into DB
+		if params[:preference_changed].eql? "true"
+			update_preference = current_user.preference
+			
+			update_preference.update(initial_time: params[:initial_time], time_span: params[:time_span].to_i, grid_height: params[:grid_height].to_i, station_filter: params[:st_filter_hidden])
+
+			# update_preference.initial_time 	 = params[:initial_time]
+			# update_preference.time_span 	 = params[:time_span].to_i
+			# update_preference.grid_height 	 = params[:grid_height].to_i
+			# update_preference.station_filter = params[:st_filter_hidden]
+
+			puts "---------"
+			puts params[:initial_time]
+			puts params[:time_span]
+			puts params[:grid_height]
+			puts params[:st_filter_hidden]
+			puts "---------"
+		end 
+		# ==== End: Change User Preference
+
 		
-		# ==== Start: Read JSON data which contains tv listings
+		# ==== Start: Read DB data which contains tv listings
 		#
 		#   @tv_listing instance keeps tv listings data.
 		@tv_listing = []
@@ -88,6 +118,7 @@ class SchedulesController < ApplicationController
 			updated_date = @utc_start
 		end 
 
+		user_preference
 
 		user_favorite_channels
 
@@ -107,7 +138,7 @@ class SchedulesController < ApplicationController
 			@tv_listing = Listing.select("*, list_date_time + interval '1 minute' * " + @utc_offset.to_s + " AS locale_time").where("updated_date = ? AND list_date_time + interval '1 minute' * listings.duration > ? AND list_date_time < ?" + sql_for_channels, @utc_one_day_ago, @search_date_t.getlocal("+00:00"), @end_t.getlocal("+00:00")).order("s_id ASC, s_number ASC, list_date_time ASC")
 		end
 
-		# ==== End: Read JSON data which contains tv listings
+		# ==== End: Read DB data which contains tv listings
 
 	end
 
@@ -126,7 +157,6 @@ class SchedulesController < ApplicationController
 		
 		@tv_listing = []
 
-		get_all_channels
 		if params[:changed].eql? "true"
 			current_user.stations.destroy_all
 			@all_channels.each do |ch|
@@ -177,6 +207,9 @@ class SchedulesController < ApplicationController
 		@all_channels = Station.all.order("s_id ASC, id ASC")
 	end
 
+	def user_preference
+		@preference = current_user.preference
+	end
 end
 
 

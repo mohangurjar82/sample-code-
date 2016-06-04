@@ -87,7 +87,9 @@
 </div>
 <input type="hidden" name="cur_now" id="cur_now"></input>
 <input type="hidden" name="utc_locale" id="utc_locale"></input>
-<input type="hidden" name="changed" id="changed" value="false"></input>
+<input type="hidden" name="favorite_changed" id="favorite_changed" value="false"></input>
+<input type="hidden" name="preference_changed" id="preference_changed" value="false"></input>
+<input type="hidden" name="st_filter_hidden" id="st_filter_hidden"></input>
 
 <!-- Start: Favorite Modal Definition -->
 <div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
@@ -255,6 +257,7 @@
 		var base_end_t;
 		var all_channels;
 		var media_numbers;
+		var preference;
 		const channels_per_page = 7;
 		// ---- End: Declaration of variables and constants
 
@@ -322,20 +325,36 @@
 		    });
 		}
 
+		function display_preference() {
+			$("#grid_preferences input[name='initial_time'][value='" + preference.initial_time + "']").prop('checked', true);
+			$("#grid_preferences input[name='time_span'][value='" + preference.time_span + "']").prop('checked', true);
+			$("#grid_preferences input[name='grid_height'][value='" + preference.grid_height + "']").prop('checked', true);
+
+			$("#grid_preferences input[name='station_filter']").each(function(){
+				$(this).prop('checked', false);	
+			});
+			var arr = preference.station_filter.split(',');
+			for(var i in arr) {
+				$("#grid_preferences input[name='station_filter'][value='" + arr[i] + "']").prop('checked', true);		
+			}
+
+		}
+
 		function initialize() {
-      		$('#cur_now').val(moment().format('YYYY-MM-DD HH:mm:ss Z'));
 			$('#utc_locale').val(moment().utcOffset());
 			
 			js_tv_list = {};
-			start_t = "<%= raw @start_t %>";
-			search_time = "<%= raw @search_time %>";
-			search_date_t = "<%= raw @search_date_t %>";
+			start_t 		= "<%= raw @start_t %>";
+			search_time 	= "<%= raw @search_time %>";
+			search_date_t 	= "<%= raw @search_date_t %>";
 			select_time_val = "<%= raw @select_time_val %>";
 
-			all_channels = <%= raw @all_channels.to_json %>;
-			tv_listing = <%= raw @tv_listing.to_json %>;
-			channel_list = <%= raw @favorite_channels.to_json %>;
+			all_channels  = <%= raw @all_channels.to_json %>;
+			tv_listing 	  = <%= raw @tv_listing.to_json %>;
+			channel_list  = <%= raw @favorite_channels.to_json %>;
 			media_numbers = <%= raw MEDIA_NUMBERS.to_json %>
+			preference 	  = <%= raw @preference.to_json %>
+			console.log(preference);
 
 			init_date_picker();
 			init_time_picker();
@@ -366,6 +385,7 @@
 			end_t = moment(search_time).add(3, 'h');
 
 			display_favorite_channels();
+			// display_preference();
 		}
 
 		initialize();
@@ -497,12 +517,14 @@
 
 		$('#listings-search-submit').on("click", function(){
 			if($("#listings-search-term").val() == '') return;
+			$('#cur_now').val(moment().format('YYYY-MM-DD HH:mm:ss Z'));
 			$('#tvForm').attr("action", "schedule/show");
 			$('#tvForm').submit();
 		});
 
 		// When clicking 'GO' button for search with date and time, it will submit form data to the back-end
 		$("#listings-date-time-picker-go").click(function(){
+			$('#cur_now').val(moment().format('YYYY-MM-DD HH:mm:ss Z'));
 			$('#tvForm').submit();
 		});
 
@@ -575,9 +597,37 @@
 			});	
 		});
 
+		// $('#listings-preferences-button').on('click', function(){
+		// 	$("#grid_preferences input[name$='initial_time'][value='" + preference.initial_time + "']").prop('checked', true);
+		// 	$("#grid_preferences input[name$='time_span'][value='" + preference.time_span + "']").prop('checked', true);
+		// 	$("#grid_preferences input[name$='grid_height'][value='" + preference.grid_height + "']").prop('checked', true);
+		// });
+
+		$('#listings-preferences-button').on('click', display_preference);
+
 		$('#gridSystemModal .btn-primary').on('click', function(){
-			$('#changed').val(true);
+			$('#favorite_changed').val(true);
 			$('#gridSystemModal').modal('hide');
+			$('#cur_now').val(moment().format('YYYY-MM-DD HH:mm:ss Z'));
+			$('#tvForm').submit();	
+		});
+
+		$('#grid_preferences .btn-primary').on('click', function(){
+			var st_filter_arr = [];
+			$("#grid_preferences input[name='station_filter']:checked").each(function(){
+				st_filter_arr.push($(this).val());
+			});
+			var st_filter_str = st_filter_arr.join(",");
+			if(st_filter_str == preference.station_filter && $("#grid_preferences input[name='initial_time']:checked").val() == preference.initial_time && $("#grid_preferences input[name='time_span']:checked").val() == preference.time_span && $("#grid_preferences input[name='grid_height']:checked").val() == preference.grid_height) {
+				$('#grid_preferences').modal('hide');
+				return;
+			}
+
+			$('#preference_changed').val(true);
+			$('#grid_preferences').modal('hide');
+			$('#cur_now').val(moment().format('YYYY-MM-DD HH:mm:ss Z'));
+			
+			$('#st_filter_hidden').val(st_filter_str);
 			$('#tvForm').submit();	
 		});
 	});
