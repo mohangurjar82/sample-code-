@@ -73,8 +73,9 @@ class User < ActiveRecord::Base
 
   def self.from_omniauth(auth)
     user_email = User.find_by_email auth.info.email
-    
     user_email = "#{auth.uid}@#{auth.provider}.com" if user_email.to_s.blank?
+
+    user_name = auth.info.try("name").to_s.blank? '--' : auth.info.try("name").to_s
 
     @usr = User.find_by_email user_email
 
@@ -84,7 +85,7 @@ class User < ActiveRecord::Base
         email: user_email,
         password: password,
         password_confirmation: password,
-        name: auth.info.try("name")
+        name: user_name
       )
     end
     authentication = @usr.authentications.where(provider: auth.provider).first
