@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  get 'auth/facebook/callback', to: 'social_sessions#create'
   get 'mechat/index'
 
   namespace :admin do
@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   root 'pages#index'
   get 'purchases', to: 'dashboard#purchases', as: 'purchases'
   get 'index', to: 'pages#index', as: 'index' # landing page
+  get 'events', to: 'pages#events', as: 'events'
   
   post 'schedule', to: 'schedules#index'
   # get 'schedule', to: 'schedules#index'

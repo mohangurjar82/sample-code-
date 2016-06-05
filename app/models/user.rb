@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable
   acts_as_token_authenticatable
 
+  has_many :authentications
   has_many :subscriptions
   has_and_belongs_to_many :stations, :join_table => "users_stations"
   has_one :preference
@@ -70,6 +71,42 @@ class User < ActiveRecord::Base
     update_columns(authentication_token: token)
   end
 
+  def self.from_omniauth(auth)
+    user_email = User.find_by_email auth.info.email
+    user_email = "#{auth.uid}@#{auth.provider}.com" if user_email.to_s.blank?
+
+    user_name = auth.info.try("name").to_s.blank? ? '--' : auth.info.try("name").to_s
+
+    @usr = User.find_by_email user_email
+
+    unless @usr
+      password = SecureRandom.hex
+      @usr = User.create!(
+        email: user_email,
+        password: password,
+        password_confirmation: password,
+        name: user_name
+      )
+      
+      @usr.remote_avatar_url = process_uri(auth.info.image)
+      @usr.avatar_option = 2
+      @usr.save!
+      
+    end
+    authentication = @usr.authentications.where(provider: auth.provider).first
+
+    unless authentication
+      authentication = Authentication.create!(
+        user_id: @usr.id,
+        provider: auth.provider,
+        uid: auth.uid,
+        oauth_token: auth.credentials.token,
+        oauth_expires_at: Time.at(auth.credentials.expires_at)
+      )
+    end
+    return @usr
+  end
+
   class Promo
     def self.find_or_create_by_code(code)
       return false unless code.match(User::PROMO_CODE_REGEXP)
@@ -85,5 +122,12 @@ class User < ActiveRecord::Base
     unless self.password == password_confirmation
       errors.add(:base, "Password confirmation doesn't match password")
     end
+  end
+  def self.process_uri(uri)
+      require 'open-uri'
+      require 'open_uri_redirections'
+      open(uri, :allow_redirections => :safe) do |r|
+          r.base_uri.to_s
+      end
   end
 end

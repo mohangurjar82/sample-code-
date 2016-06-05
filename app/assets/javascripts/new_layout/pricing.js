@@ -1,6 +1,7 @@
 function Cart(options) {
   this.products = options.products
   this.userAgent = options.userAgent
+  this.selectedProducts = options.selectedProducts
   this.items =  {}
   this.bindEvents()
 }
@@ -61,6 +62,12 @@ Cart.prototype.bindEvents = function () {
       }
     })
   }
+
+  $.each(this.selectedProducts, function(i, productId){
+    console.log(productId)
+    $(".btn[data-product='" +productId+ "']").click()
+  })
+
 }
 
 Cart.prototype.addItem = function (productId, productDetails) {

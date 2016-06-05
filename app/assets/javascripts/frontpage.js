@@ -8,4 +8,5 @@
 //= require ./bower_components/moment-duration-format/lib/moment-duration-format
 
 //= require_tree ./frontpage
+//= require bootstrap-sprockets
 

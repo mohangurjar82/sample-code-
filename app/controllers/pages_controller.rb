@@ -1,7 +1,12 @@
 class PagesController < ApplicationController
-  layout 'new_layout'
 
   def index
-  	render :layout => false
+
   end
+
+  def events
+  	category = Category.find_by_title('Events')
+  	@events = category.media
+  end
+
 end

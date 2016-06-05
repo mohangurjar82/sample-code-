@@ -33,7 +33,7 @@
                       h2= p.title
                       .description= p.description
                       .buttons
-                        a.btn.btn-danger.btn-subcribe
+                        a.btn.btn-danger.btn-subcribe data-product="#{p.id}"
                           i.fa.fa-caret-square-o-right aria-hidden="true" 
                           | Subcribe
                         input.checkbox name="product_#{p.id}" type="checkbox" value="1" data-product="#{p.id}"
@@ -61,7 +61,7 @@
                               h5= p.title
                               .description= p.description
                               .buttons
-                                a.btn.btn-danger.btn-subcribe title="Subcribe"
+                                a.btn.btn-danger.btn-subcribe title="Subcribe" data-product="a#{p.id}"
                                   i.fa.fa-caret-square-o-right aria-hidden="true" 
                                 input.checkbox name="product_a#{p.id}" type="checkbox" value="1" data-product="a#{p.id}"
 
@@ -95,5 +95,6 @@
   javascript:
     cart = new Cart({
       products: #{@json_products.to_json.html_safe},
-      userAgent: #{request.variant.first.to_json.html_safe}
+      userAgent: #{request.variant.first.to_json.html_safe},
+      selectedProducts: #{@product_ids.to_json.html_safe}
     })

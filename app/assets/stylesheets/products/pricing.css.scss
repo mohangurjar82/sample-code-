@@ -99,8 +99,8 @@ body {
         background-image: none;
       }
       #collapseTwo{
-        margin-left: 20px;
-        margin-right: -20px;
+        margin-left: -10px;
+        margin-right: -40px;
       }
       .panel-default > .panel-heading + .panel-collapse > .panel-body {
         border-top-color: none !important;
@@ -207,6 +207,7 @@ body {
       .item-details{
         margin-top:10px;
         max-width: 500px;
+        margin-bottom: 10px;
       }  
     }
     .cart-item.medium{

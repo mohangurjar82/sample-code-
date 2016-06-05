@@ -1,4 +1,6 @@
 = render '/layouts/messages'
+.fb-login.text-center= link_to image_tag("fb.png", class: 'social-login-btn'), "/auth/facebook", class: 'social-login-btn'
+OR
 h2 Log in
 
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|

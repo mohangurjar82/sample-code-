@@ -136,7 +136,7 @@ a.highlight:hover {
 }
 #vossen-youtube {
     position: absolute;
-    background-color: #0f1112;
+    /*background-color: #0f1112;*/
     top: 0;
     right: 0;
     bottom: 0;
@@ -345,7 +345,7 @@ a.highlight:hover {
     left: 0;
     right: 0;
     height: 100%;  
-    background-image: url(../img/assets/dot-pattern.png);
+    /*background-image: url(../img/assets/dot-pattern.png);*/
     background-repeat: repeat;
     background-color: rgba(0,0,0,0.5);
     z-index: 0;
@@ -618,7 +618,7 @@ p {
         font-weight: 100;
     }
     h1 {
-        font-size: 66px;
+        font-size: 66px !important;
         letter-spacing: -1px;
     }
     h1 small {
@@ -1158,21 +1158,21 @@ fieldset[disabled] .btn-primary.active, fieldset[disabled] .btn-primary.focus, f
     font-size: 12px;
 }
 .panel-title.collapsed:before {
-    font-family: 'IonIcons';
-    content: "\f489";
+    font-family: 'FontAwesome';
+    content: "\f067";
     float: right; 
     padding-top: 1px;
     color: #999; 
-    font-size: 13px;
+    font-size: 10px;
     vertical-align: middle;
 }
 .panel-title:not(.collapsed):before {
-    font-family: 'IonIcons';
-    content: "\f462"; 
+    font-family: 'FontAwesome';
+    content: "\f068"; 
     float: right; 
     padding-top: 1px;
     color: #fff; 
-    font-size: 13px;
+    font-size: 10px;
     vertical-align: middle;
 }
 .panel-title {  
@@ -2806,13 +2806,13 @@ ul {
 
 /* Portfolio Lightbox */
 .cbp-popup-lightbox .cbp-popup-close {
-    background: url("../img/assets/cbp-sprite.png") no-repeat scroll -92px 0 transparent; 
+    background: url("/frontpage/cbp-sprite.png") no-repeat scroll -92px 0 transparent; 
 }
 .cbp-popup-lightbox .cbp-popup-next {
-    background: url("../img/assets/cbp-sprite.png") no-repeat scroll -46px 0 transparent; 
+    background: url("/frontpage/cbp-sprite.png") no-repeat scroll -46px 0 transparent; 
 }
 .cbp-popup-lightbox .cbp-popup-prev {
-    background: url("../img/assets/cbp-sprite.png") no-repeat scroll 0 0 transparent; 
+    background: url("/frontpage/cbp-sprite.png") no-repeat scroll 0 0 transparent; 
 }
 .cbp-caption-zoom .cbp-caption-activeWrap {
     background-color: rgba(0,0,0,0.9); 
