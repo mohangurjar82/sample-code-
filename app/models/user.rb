@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable
   acts_as_token_authenticatable
 
+  has_many :authentications
   has_many :subscriptions
   has_and_belongs_to_many :stations, :join_table => "users_stations"
   has_one :preference
@@ -68,6 +69,32 @@ class User < ActiveRecord::Base
       token = Devise.friendly_token
     end
     update_columns(authentication_token: token)
+  end
+
+  def self.from_omniauth(auth)
+    @usr = User.find_by_email auth.info.email
+
+    unless @usr
+      password = SecureRandom.hex
+      @usr = User.create!(
+        email: auth.info.email,
+        password: password,
+        password_confirmation: password,
+        name: auth.info.try("name")
+      )
+    end
+    authentication = @usr.authentications.where(provider: auth.provider).first
+
+    unless authentication
+      authentication = Authentication.create!(
+        user_id: @usr.id,
+        provider: auth.provider,
+        uid: auth.uid,
+        oauth_token: auth.credentials.token,
+        oauth_expires_at: Time.at(auth.credentials.expires_at)
+      )
+    end
+    return @usr
   end
 
   class Promo

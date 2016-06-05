@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  get 'auth/facebook/callback', to: 'social_sessions#create'
   get 'mechat/index'
 
   namespace :admin do
