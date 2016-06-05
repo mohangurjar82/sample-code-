@@ -90,3 +90,4 @@ group :development do
   gem 'spring'
 end
 gem 'omniauth-facebook'
+gem 'open_uri_redirections'

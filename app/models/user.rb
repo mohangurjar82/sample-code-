@@ -87,6 +87,11 @@ class User < ActiveRecord::Base
         password_confirmation: password,
         name: user_name
       )
+      
+      @usr.remote_avatar_url = process_uri(auth.info.image)
+      @usr.avatar_option = 2
+      @usr.save!
+      
     end
     authentication = @usr.authentications.where(provider: auth.provider).first
 
@@ -117,5 +122,12 @@ class User < ActiveRecord::Base
     unless self.password == password_confirmation
       errors.add(:base, "Password confirmation doesn't match password")
     end
+  end
+  def self.process_uri(uri)
+      require 'open-uri'
+      require 'open_uri_redirections'
+      open(uri, :allow_redirections => :safe) do |r|
+          r.base_uri.to_s
+      end
   end
 end
