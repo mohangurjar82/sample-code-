@@ -11,6 +11,24 @@ class SchedulesController < ApplicationController
 	
 	def index
 		
+		# ==== Start: Change User Preference
+		#
+		#   If user changes preferences, it will be saved into DB
+		if params[:preference_changed].eql? "true"
+			update_preference = current_user.preference
+			
+			update_preference.update(initial_time: params[:initial_time], time_span: params[:time_span].to_i, grid_height: params[:grid_height].to_i, station_filter: params[:st_filter_hidden])
+
+			puts "---------"
+			puts params[:initial_time]
+			puts params[:time_span]
+			puts params[:grid_height]
+			puts params[:st_filter_hidden]
+			puts "---------"
+		end 
+		# ==== End: Change User Preference
+
+		user_preference
 
 		# ==== Start: Get Params And Make Necessary Time Variables
 		# 
@@ -35,7 +53,7 @@ class SchedulesController < ApplicationController
 		end
 		
 		
-		@select_time_val = '00';
+		@select_time_val = '00'
 		@start_t = @start
 		@start = Listing.format_time @start
 
@@ -53,7 +71,15 @@ class SchedulesController < ApplicationController
 			end
 			@select_time_val = params[:listings_date_picker_time_select]
 		else
-			@search_time = @search_date
+			# @search_time = @search_date
+			if @preference.initial_time.eql? "now"
+				@search_time = @search_date.change(:hour => Time.parse(@now).hour, :min => 0, :sec => 0)	
+				@select_time_val = 'now'
+			else
+				show_hour = 12 + @preference.initial_time.to_i
+				@search_time = @search_date.change(:hour => show_hour, :min => 0, :sec => 0)
+				@select_time_val = show_hour.to_s
+			end
 		end
 
 
@@ -79,29 +105,6 @@ class SchedulesController < ApplicationController
 		end 
 		# ==== End: Add User Favorite Channels
 
-
-		# ==== Start: Change User Preference
-		#
-		#   If user changes preferences, it will be saved into DB
-		if params[:preference_changed].eql? "true"
-			update_preference = current_user.preference
-			
-			update_preference.update(initial_time: params[:initial_time], time_span: params[:time_span].to_i, grid_height: params[:grid_height].to_i, station_filter: params[:st_filter_hidden])
-
-			# update_preference.initial_time 	 = params[:initial_time]
-			# update_preference.time_span 	 = params[:time_span].to_i
-			# update_preference.grid_height 	 = params[:grid_height].to_i
-			# update_preference.station_filter = params[:st_filter_hidden]
-
-			puts "---------"
-			puts params[:initial_time]
-			puts params[:time_span]
-			puts params[:grid_height]
-			puts params[:st_filter_hidden]
-			puts "---------"
-		end 
-		# ==== End: Change User Preference
-
 		
 		# ==== Start: Read DB data which contains tv listings
 		#
@@ -117,8 +120,6 @@ class SchedulesController < ApplicationController
 		else
 			updated_date = @utc_start
 		end 
-
-		user_preference
 
 		user_favorite_channels
 
