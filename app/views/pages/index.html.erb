@@ -39,8 +39,7 @@
   </section>
   <!-- End Callout -->     
   <!-- Box Style 7, 8 -->
-  <a name="portfolio"></a>
-  <section class="parallax overlay bg-shortcodes" data-section-index="3" data-top="531" style="background: none;">
+  <section class="parallax overlay bg-shortcodes" data-section-index="3" data-top="531">
     <div style="z-index: 0; width: 100%; top: 0px; position: fixed; overflow: hidden; min-height: 75%; height: 481px; transform: translate3d(0px, 871px, 0px);" class="parallax-bg" data-holder-index="3">
       <img style="max-width: none; width: 1920px; height: auto; position: fixed; top: 0px; left: 0px; backface-visibility: hidden; margin-left: -248px; opacity: 1; transform: translate3d(0px, -408.6px, 0px);" id="parallax-bg-img-3" src="/frontpage/bg-shortcodes.jpg" data-width="1920" data-height="1170">
     </div>
@@ -96,7 +95,7 @@
   <!-- End Image Column -->
    <!-- Features -->  
    <a name="content"></a>
-  <section class="parallax overlay bg-img-6" data-section-index="5" data-top="1539" style="background: none;">
+  <section class="parallax overlay bg-img-6" data-section-index="5" data-top="1539">
     <div style="z-index: 0; width: 100%; top: 0px; position: fixed; overflow: hidden; min-height: 75%; height: 431px; transform: translate3d(0px, 1944px, 0px);" class="parallax-bg" data-holder-index="5">
       <img style="max-width: none; width: 1920px; height: auto; position: fixed; top: 0px; left: 0px; backface-visibility: hidden; margin-left: -248px; opacity: 1; transform: translate3d(0px, -424.941px, 0px);" id="parallax-bg-img-5" src="/frontpage/bg-6.jpg" data-width="1920" data-height="1170">
     </div>
@@ -165,7 +164,7 @@
   <!-- End Image Column -->
 
   <!-- Skills -->
-  <section class="parallax overlay bg-img-3" data-section-index="7" data-top="2589" style="background: none;">
+  <section class="parallax overlay bg-img-3" data-section-index="7" data-top="2589">
     <div style="z-index: 0; width: 100%; top: 0px; position: fixed; overflow: hidden; min-height: 75%; height: 516px; transform: translate3d(0px, 2994px, 0px);" class="parallax-bg" data-holder-index="7">
       <img style="max-width: none; width: 1920px; height: auto; position: fixed; top: 0px; left: 0px; backface-visibility: hidden; margin-left: -248px; opacity: 1; transform: translate3d(0px, -172.941px, 0px);" id="parallax-bg-img-7" src="/frontpage/bg-3.jpg" data-width="1920" data-height="1170">
     </div>  
@@ -484,6 +483,7 @@
       </section>            
       <!-- End Pricing -->  
 <!-- Callout -->
+      <a name="portfolio"></a>
       <section class="pt40 pb20">
           <div class="container"> 
               <div class="row">             
@@ -505,22 +505,20 @@
       <section class="pt10 pb70">
           <div class="container"> 
               <div class="row">  
-
                 <div id="clients-slider-2" class="owl-carousel">
-                  <div><%= image_tag "/frontpage/1.png", class: "img-responsive", alt: "#" %></div>
-                  <div><%= image_tag "/frontpage/2.png", class: "img-responsive", alt: "#" %></div>
-                  <div><%= image_tag "/frontpage/3.png", class: "img-responsive", alt: "#" %></div>
-                  <div><%= image_tag "/frontpage/4.png", class: "img-responsive", alt: "#" %></div>
-                  <div><%= image_tag "/frontpage/5.png", class: "img-responsive", alt: "#" %></div>
-                  <div><%= image_tag "/frontpage/6.png", class: "img-responsive", alt: "#" %></div>
-                  <div><%= image_tag "/frontpage/7.png", class: "img-responsive", alt: "#" %></div>
-                  <div><%= image_tag "/frontpage/8.png", class: "img-responsive", alt: "#" %></div>
-                  <div><%= image_tag "/frontpage/9.png", class: "img-responsive", alt: "#" %></div>
-                  <div><%= image_tag "/frontpage/10.png", class: "img-responsive", alt: "#" %></div>
-                  <div><%= image_tag "/frontpage/11.png", class: "img-responsive", alt: "#" %></div>
-                  <div><%= image_tag "/frontpage/12.png", class: "img-responsive", alt: "#" %></div>
-                  <div><%= image_tag "/frontpage/13.png", class: "img-responsive", alt: "#" %></div>
-                  <div><%= image_tag "/frontpage/14.png", class: "img-responsive", alt: "#" %></div>
+                  <%
+                    ids = [252485534, 252997543, 52293608, 252485536, 252997525,250949735, 252485540,251973892, 252485547, 252997532, 252997556, 251973893,252485553]
+                    pictures = [1,2,3,4,5,7,8,9,10,11,12,13,14]
+                  %>
+                  <% ids.each_with_index do |id,i| %>
+                    <% m = Medium.find_by_number(id) %>
+                    <div>
+                      <a class="live-tv" data-title="<%= m.title %>" data-href="<%= media_path(ids[i], :modal => true) %>">
+                        <%= image_tag "/frontpage/#{pictures[i]}.png", class: "img-responsive", alt: "#" %>
+                      </a>
+                    </div>
+                  <% end %>
+
                 </div>
               </div>
           </div>
@@ -528,7 +526,7 @@
       <!-- End Previews -->  
       
       <!-- Callout -->
-      <section class="parallax overlay bg-shortcodes" data-section-index="14" data-top="5401" style="background: none;"><div style="z-index: 0; width: 100%; top: 0px; position: fixed; overflow: hidden; min-height: 75%; height: 377px; transform: translate3d(0px, 5869px, 0px);" class="parallax-bg" data-holder-index="14"><img style="max-width: none; width: 1920px; height: auto; position: fixed; top: 0px; left: 0px; backface-visibility: hidden; margin-left: -248px; opacity: 1; transform: translate3d(0px, -242.541px, 0px);" id="parallax-bg-img-14" src="/frontpage/bg-shortcodes.jpg" data-width="1920" data-height="1170"></div>
+      <section class="parallax overlay bg-shortcodes" data-section-index="14" data-top="5401"><div style="z-index: 0; width: 100%; top: 0px; position: fixed; overflow: hidden; min-height: 75%; height: 377px; transform: translate3d(0px, 5869px, 0px);" class="parallax-bg" data-holder-index="14"><img style="max-width: none; width: 1920px; height: auto; position: fixed; top: 0px; left: 0px; backface-visibility: hidden; margin-left: -248px; opacity: 1; transform: translate3d(0px, -242.541px, 0px);" id="parallax-bg-img-14" src="/frontpage/bg-shortcodes.jpg" data-width="1920" data-height="1170"></div>
           <div class="container pt80 pb80"> 
               <div class="row pt20">            
 
@@ -565,3 +563,40 @@
       <!-- End Back To Top --> 
       
       <!-- Scripts -->
+
+<!-- Modal -->
+<div id="live-tv" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Live TV</h4>
+      </div>
+      <div class="modal-body">
+        <iframe class="live-tv" src="" width="100%" height="325px;" style="border: 0px; background-color:#0f1112;"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<%= content_for :javascript do %>
+  <script type="text/javascript">
+    $(document).ready(function(e){
+      $('a.live-tv').click(function(){
+        $('#live-tv .modal-title').text($(this).data('title'))
+        $('iframe.live-tv').attr('src', $(this).data('href'))
+        $("#live-tv").modal('show')
+        return false
+      })
+    });
+    $("#live-tv").on('hide.bs.modal', function(){
+      $('iframe.live-tv').attr('src', '')
+      setTimeout(function(){
+        console.log($('a[name="portfolio"').offset().top);
+        $(document.body).scrollTop($('a[name="portfolio"').offset().top);
+      }, 800)
+    })
+  </script>
+<% end %>

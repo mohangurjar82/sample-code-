@@ -136,7 +136,7 @@ a.highlight:hover {
 }
 #vossen-youtube {
     position: absolute;
-    background-color: #0f1112;
+    /*background-color: #0f1112;*/
     top: 0;
     right: 0;
     bottom: 0;
@@ -345,7 +345,7 @@ a.highlight:hover {
     left: 0;
     right: 0;
     height: 100%;  
-    background-image: url(../img/assets/dot-pattern.png);
+    /*background-image: url(../img/assets/dot-pattern.png);*/
     background-repeat: repeat;
     background-color: rgba(0,0,0,0.5);
     z-index: 0;
