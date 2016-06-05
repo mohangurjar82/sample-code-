@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
   def self.from_omniauth(auth)
     user_email = User.find_by_email auth.info.email
     
-    user_email = "#{auth.uid}@{auth.provider}.com" if user_email.to_s.blank?
+    user_email = "#{auth.uid}@#{auth.provider}.com" if user_email.to_s.blank?
 
     @usr = User.find_by_email user_email
 
