@@ -4,8 +4,20 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :load_categories, except: :not_found
   before_action :detect_browser
-
+  before_action :enforce_ssl_if_needed
   before_action :set_language
+
+  def https
+    "https://"
+  end
+
+  def enforce_ssl_if_needed
+    if Rails.env == 'production' && request.protocol == "http://" && (controller_name == "registrations" || controller_name == "sessions")
+      redirect_to :protocol => https
+    end
+
+    return true
+  end
 
   def load_categories
     @search_categories = [] # MPX::Category.all
