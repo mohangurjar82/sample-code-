@@ -72,12 +72,16 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-    @usr = User.find_by_email auth.info.email
+    user_email = User.find_by_email auth.info.email
+    
+    user_email = "#{auth.uid}@{auth.provider}.com" if user_email.to_s.blank?
+
+    @usr = User.find_by_email user_email
 
     unless @usr
       password = SecureRandom.hex
       @usr = User.create!(
-        email: auth.info.email,
+        email: user_email,
         password: password,
         password_confirmation: password,
         name: auth.info.try("name")
