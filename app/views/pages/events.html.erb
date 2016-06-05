@@ -17,162 +17,32 @@
 <!-- End Page Hero for Portfolio -->
 
 
-<!-- Portfolio -->
-<div>
-  <div class="container">
-    <div class="row" style="margin-top:-25vh">   
-      <div class="app-gallery cbp cbp-caption-active cbp-caption-zoom cbp-ready cbp-mode-slider" id="js-grid-slider">
-        <div class="cbp-wrapper-outer">
-          <div class="cbp-wrapper"> 
-
-            <div class="cbp-item">
-              <div class="cbp-item-wrapper">
-                <a href="/events/1.jpg" class="cbp-lightbox cbp-caption">
-                    <div class="cbp-caption-defaultWrap">
-                        <img src="/events/1.jpg" alt="#">
-                    </div>
-                    <div class="cbp-caption-activeWrap">
-                        <div class="cbp-l-caption-alignCenter">
-                            <div class="cbp-l-caption-body">
-                                <div class="cbp-l-caption-title"><i class="icon-magnifying-glass size-1x"></i></div> 
-                            </div>
+        <!-- Portfolio -->
+        <div>
+            <div class="container">
+                <div class="row" style="margin-top:-25vh">   
+                    <div class="app-gallery cbp" id="js-grid-slider"> 
+                      <% @events.each do |event|%>
+                        <div class="cbp-item">
+                            <a href="/events/1.jpg" class="cbp-lightbox cbp-caption">
+                                <div class="cbp-caption-defaultWrap">
+                                    <img src="/events/1.jpg" alt="#">
+                                </div>
+                                <div class="cbp-caption-activeWrap">
+                                    <div class="cbp-l-caption-alignCenter">
+                                        <div class="cbp-l-caption-body">
+                                            <div class="cbp-l-caption-title"><i class="icon-magnifying-glass size-1x"></i></div> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                </a>
-              </div>
+                      <% end %>
+                    </div>   
+                </div>
             </div>
-            <div class="cbp-item"><div class="cbp-item-wrapper">
-                <a href="/events/2.jpg" class="cbp-lightbox cbp-caption">
-                    <div class="cbp-caption-defaultWrap">
-                        <img src="/events/2.jpg" alt="#">
-                    </div>
-                    <div class="cbp-caption-activeWrap">
-                        <div class="cbp-l-caption-alignCenter">
-                            <div class="cbp-l-caption-body">
-                                <div class="cbp-l-caption-title"><i class="icon-magnifying-glass size-1x"></i></div> 
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div></div>
-            <div class="cbp-item"><div class="cbp-item-wrapper">
-                <a href="/events/3(1).jpg" class="cbp-lightbox cbp-caption">
-                    <div class="cbp-caption-defaultWrap">
-                        <img src="/events/3(1).jpg" alt="#">
-                    </div>
-                    <div class="cbp-caption-activeWrap">
-                        <div class="cbp-l-caption-alignCenter">
-                            <div class="cbp-l-caption-body">
-                                <div class="cbp-l-caption-title"><i class="icon-magnifying-glass size-1x"></i></div> 
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div></div>
-            <div class="cbp-item"><div class="cbp-item-wrapper">
-                <a href="/events/4.jpg" class="cbp-lightbox cbp-caption">
-                    <div class="cbp-caption-defaultWrap">
-                        <img src="/events/4.jpg" alt="#">
-                    </div>
-                    <div class="cbp-caption-activeWrap">
-                        <div class="cbp-l-caption-alignCenter">
-                            <div class="cbp-l-caption-body">
-                                <div class="cbp-l-caption-title"><i class="icon-magnifying-glass size-1x"></i></div> 
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div></div>
-            <div class="cbp-item"><div class="cbp-item-wrapper">
-                <a href="/events/5(1).jpg" class="cbp-lightbox cbp-caption">
-                    <div class="cbp-caption-defaultWrap">
-                        <img src="/events/5(1).jpg" alt="#">
-                    </div>
-                    <div class="cbp-caption-activeWrap">
-                        <div class="cbp-l-caption-alignCenter">
-                            <div class="cbp-l-caption-body">
-                                <div class="cbp-l-caption-title"><i class="icon-magnifying-glass size-1x"></i></div> 
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div></div>
-            <div class="cbp-item"><div class="cbp-item-wrapper">
-                <a href="/events/6.jpg" class="cbp-lightbox cbp-caption">
-                    <div class="cbp-caption-defaultWrap">
-                        <img src="/events/6.jpg" alt="#">
-                    </div>
-                    <div class="cbp-caption-activeWrap">
-                        <div class="cbp-l-caption-alignCenter">
-                            <div class="cbp-l-caption-body">
-                                <div class="cbp-l-caption-title"><i class="icon-magnifying-glass size-1x"></i></div> 
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div></div>
-            <div class="cbp-item"><div class="cbp-item-wrapper">
-                <a href="/events/7.jpg" class="cbp-lightbox cbp-caption">
-                    <div class="cbp-caption-defaultWrap">
-                        <img src="/events/7.jpg" alt="#">
-                    </div>
-                    <div class="cbp-caption-activeWrap">
-                        <div class="cbp-l-caption-alignCenter">
-                            <div class="cbp-l-caption-body">
-                                <div class="cbp-l-caption-title"><i class="icon-magnifying-glass size-1x"></i></div> 
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div></div>
-            <div class="cbp-item"><div class="cbp-item-wrapper">
-                <a href="/events/8.jpg" class="cbp-lightbox cbp-caption">
-                    <div class="cbp-caption-defaultWrap">
-                        <img src="/events/8.jpg" alt="#">
-                    </div>
-                    <div class="cbp-caption-activeWrap">
-                        <div class="cbp-l-caption-alignCenter">
-                            <div class="cbp-l-caption-body">
-                                <div class="cbp-l-caption-title"><i class="icon-magnifying-glass size-1x"></i></div> 
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div></div>
-            <div class="cbp-item"><div class="cbp-item-wrapper">
-                <a href="/events/9.jpg" class="cbp-lightbox cbp-caption">
-                    <div class="cbp-caption-defaultWrap">
-                        <img src="/events/9.jpg" alt="#">
-                    </div>
-                    <div class="cbp-caption-activeWrap">
-                        <div class="cbp-l-caption-alignCenter">
-                            <div class="cbp-l-caption-body">
-                                <div class="cbp-l-caption-title"><i class="icon-magnifying-glass size-1x"></i></div> 
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div></div>
-            <div class="cbp-item"><div class="cbp-item-wrapper">
-                <a href="/events/10.jpg" class="cbp-lightbox cbp-caption">
-                    <div class="cbp-caption-defaultWrap">
-                        <img src="/events/10.jpg" alt="#">
-                    </div>
-                    <div class="cbp-caption-activeWrap">
-                        <div class="cbp-l-caption-alignCenter">
-                            <div class="cbp-l-caption-body">
-                                <div class="cbp-l-caption-title"><i class="icon-magnifying-glass size-1x"></i></div> 
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div></div>
-
-      </div></div><div class="cbp-nav"><div class="cbp-nav-pagination"><div class="cbp-nav-pagination-item cbp-nav-pagination-active" data-slider-action="jumpTo"></div><div class="cbp-nav-pagination-item" data-slider-action="jumpTo"></div><div class="cbp-nav-pagination-item" data-slider-action="jumpTo"></div></div></div></div>   
-    </div>
-  </div>
-</div>            
-<!-- End Portfolio --> 
+        </div>            
+        <!-- End Portfolio --> 
 <!-- Countdown -->
 <section class="pt20 pb20">
     <div class="container"> 
