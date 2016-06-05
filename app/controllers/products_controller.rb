@@ -4,7 +4,10 @@ class ProductsController < ApplicationController
   layout 'new_layout'
   
   def index
+    @product_ids = params[:product_ids].to_s.split(',')
+
     @products = Product.where(available: true)
+
     @additional_products = Medium.where.not(pricing_plan: nil)
 
     @json_products = @products.map { |p| [p.id, p.slice(:title, :price)] }.to_h

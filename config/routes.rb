@@ -35,12 +35,6 @@ Rails.application.routes.draw do
     post 'users/update_avatar' => 'users/registrations#update_avatar'
   end
 
-  resource :pages, :only => [:index] do
-    collection do
-      get :events
-    end
-  end
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -48,6 +42,7 @@ Rails.application.routes.draw do
   root 'pages#index'
   get 'purchases', to: 'dashboard#purchases', as: 'purchases'
   get 'index', to: 'pages#index', as: 'index' # landing page
+  get 'events', to: 'pages#events', as: 'events'
   
   post 'schedule', to: 'schedules#index'
   # get 'schedule', to: 'schedules#index'
