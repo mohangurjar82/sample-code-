@@ -10,7 +10,15 @@
     },
     playback: {
       autoplay: true
+      restoreUserSettings: true
+
     }
+    tweaks : {
+      autoqualityswitching: true,
+      max_buffer_level: 30,
+    }
+
+    skin : { screenLogoImage : "" }
   };
   var player = bitdash("video-player<%= media.number %>");
   player.setup(conf);
