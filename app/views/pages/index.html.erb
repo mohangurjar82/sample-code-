@@ -508,10 +508,10 @@
                 <div id="clients-slider-2" class="owl-carousel">
                   <%
                     ids = [252485534, 252997543, 52293608, 252485536, 252997525,250949735, 252485540,251973892, 252485547, 252997532, 252997556, 251973893,252485553]
-                    media = Medium.where(:number => ids)
                     pictures = [1,2,3,4,5,7,8,9,10,11,12,13,14]
                   %>
-                  <% media.each_with_index do |m,i| %>
+                  <% ids.each_with_index do |id,i| %>
+                    <% m = Medium.find_by_number(id) %>
                     <div>
                       <a class="live-tv" data-title="<%= m.title %>" data-href="<%= media_path(ids[i], :modal => true) %>">
                         <%= image_tag "/frontpage/#{pictures[i]}.png", class: "img-responsive", alt: "#" %>
