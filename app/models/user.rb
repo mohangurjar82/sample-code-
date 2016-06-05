@@ -20,6 +20,16 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  Roles = {
+    "ADMIN" => :admin
+  }
+  
+  # Dynamically generate methods for each role e.g is_admin?
+  # as there can be more roles in future
+  Roles.each do |constant, name|
+    define_method("is_#{name}?"){ self.role == constant.downcase }
+  end
+
   attr_accessor :promo_code
 
   def gravatar
