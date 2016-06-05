@@ -39,7 +39,11 @@ class MediaController < ApplicationController
       if @media.is_a_game
         render 'media/new/show_game'
       else 
-        render 'media/new/show'
+        if(params[:modal].present?)
+          render 'media/new/modal', :layout => 'modal'
+        else
+          render 'media/new/show'
+        end
       end
     end
   end
