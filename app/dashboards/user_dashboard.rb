@@ -28,7 +28,8 @@ class UserDashboard < Administrate::BaseDashboard
     name: Field::String,
     recently_viewed_media_ids: Field::Text,
     password: Field::String,
-    password_confirmation: Field::String
+    password_confirmation: Field::String,
+    role: Field::Select.with_options(collection: User::Roles.keys.map(&:downcase))
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -58,6 +59,7 @@ class UserDashboard < Administrate::BaseDashboard
     :billing_address,
     :name,
     :recently_viewed_media_ids,
+    :role
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -70,7 +72,8 @@ class UserDashboard < Administrate::BaseDashboard
     :billing_address,
     :name,
     :password,
-    :password_confirmation
+    :password_confirmation,
+    :role
   ].freeze
 
   # Overwrite this method to customize how users are displayed
