@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
     user_email = User.find_by_email auth.info.email
     user_email = "#{auth.uid}@#{auth.provider}.com" if user_email.to_s.blank?
 
-    user_name = auth.info.try("name").to_s.blank? '--' : auth.info.try("name").to_s
+    user_name = auth.info.try("name").to_s.blank? ? '--' : auth.info.try("name").to_s
 
     @usr = User.find_by_email user_email
 
