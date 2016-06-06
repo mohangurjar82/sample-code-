@@ -18,13 +18,6 @@ class SchedulesController < ApplicationController
 			update_preference = current_user.preference
 			
 			update_preference.update(initial_time: params[:initial_time], time_span: params[:time_span].to_i, grid_height: params[:grid_height].to_i, station_filter: params[:st_filter_hidden])
-
-			puts "---------"
-			puts params[:initial_time]
-			puts params[:time_span]
-			puts params[:grid_height]
-			puts params[:st_filter_hidden]
-			puts "---------"
 		end 
 		# ==== End: Change User Preference
 
@@ -121,11 +114,21 @@ class SchedulesController < ApplicationController
 			updated_date = @utc_start
 		end 
 
-		user_favorite_channels
+		sql_for_st_types = " AND ("
+		st_types_arr = @preference.station_filter.split(/[,]/)
+		st_types_arr.each_with_index do |st_type, i|
+			if i == st_types_arr.length - 1
+				sql_for_st_types = sql_for_st_types + "(station_type ILIKE " + "'%" + st_type.to_s + "%'))"
+			else
+				sql_for_st_types = sql_for_st_types + "(station_type ILIKE " + "'%" + st_type.to_s + "%') OR "
+			end
+		end
 
-		sql_for_channels = ''
+		user_favorite_channels st_types_arr
+
+		sql_for_channels = ""
 		if not @favorite_channels.blank?
-			sql_for_channels = ' AND ('
+			sql_for_channels = " AND ("
 			@favorite_channels.each_with_index do |ch, index|
 				if index == @favorite_channels.length - 1
 					sql_for_channels = sql_for_channels + "(s_id=" + ch.s_id.to_s + " AND s_number='" + ch.s_number.to_s + "'))"
@@ -136,7 +139,7 @@ class SchedulesController < ApplicationController
 		end
 
 		if not sql_for_channels.eql? ''
-			@tv_listing = Listing.select("*, list_date_time + interval '1 minute' * " + @utc_offset.to_s + " AS locale_time").where("updated_date = ? AND list_date_time + interval '1 minute' * listings.duration > ? AND list_date_time < ?" + sql_for_channels, @utc_one_day_ago, @search_date_t.getlocal("+00:00"), @end_t.getlocal("+00:00")).order("s_id ASC, s_number ASC, list_date_time ASC")
+			@tv_listing = Listing.select("*, list_date_time + interval '1 minute' * " + @utc_offset.to_s + " AS locale_time").where("updated_date = ? AND list_date_time + interval '1 minute' * listings.duration > ? AND list_date_time < ?" + sql_for_channels + sql_for_st_types, @utc_one_day_ago, @search_date_t.getlocal("+00:00"), @end_t.getlocal("+00:00")).order("s_id ASC, s_number ASC, list_date_time ASC")
 		end
 
 		# ==== End: Read DB data which contains tv listings
@@ -181,10 +184,10 @@ class SchedulesController < ApplicationController
 
   		user_favorite_channels
 
-		sql_for_channels = ''
+		sql_for_channels = ""
 
 		if not @favorite_channels.blank?
-			sql_for_channels = ' AND ('
+			sql_for_channels = " AND ("
 			@favorite_channels.each_with_index do |ch, index|
 				if index == @favorite_channels.length - 1
 					sql_for_channels = sql_for_channels + "(s_id=" + ch.s_id.to_s + " AND s_number='" + ch.s_number.to_s + "'))"
@@ -200,8 +203,17 @@ class SchedulesController < ApplicationController
 	end
 
 	private
-	def user_favorite_channels
-		@favorite_channels = current_user.stations.order("s_id ASC, id ASC")
+	def user_favorite_channels st_types_arr
+		sql_for_st_types = ""
+		st_types_arr.each_with_index do |st_type, i|
+			if i == st_types_arr.length - 1
+				sql_for_st_types = sql_for_st_types + "(station_type ILIKE " + "'%" + st_type.to_s + "%')"
+			else
+				sql_for_st_types = sql_for_st_types + "(station_type ILIKE " + "'%" + st_type.to_s + "%') OR "
+			end
+		end
+
+		@favorite_channels = current_user.stations.where(sql_for_st_types).order("s_id ASC, id ASC")
 	end
 
 	def get_all_channels

@@ -354,7 +354,6 @@
 			channel_list  = <%= raw @favorite_channels.to_json %>;
 			media_numbers = <%= raw MEDIA_NUMBERS.to_json %>
 			preference 	  = <%= raw @preference.to_json %>
-			console.log(preference);
 
 			init_date_picker();
 			init_time_picker();
@@ -567,7 +566,7 @@
 			pro_html = pro_html + "<div style='margin-top: 15px'>Air Time: " + moment(js_tv_list[id][c_n][c_list_id].locale_time, "YYYY-MM-DD HH:mm:ss").format('h:mm A') + " (" + moment.duration(js_tv_list[id][c_n][c_list_id].duration, "minutes").format("h [hr] m [min]") + ")" + "</div>";
 			pro_html = pro_html + "<div style='margin-top: 15px'>" + js_tv_list[id][c_n][c_list_id].description + "</div>";
 
-			if(moment().diff(moment(js_tv_list[id][c_n][c_list_id].locale_time).add(js_tv_list[id][c_n][c_list_id].duration, 'm')) < 0) {
+			if(moment().diff(moment(js_tv_list[id][c_n][c_list_id].list_date_time).add(js_tv_list[id][c_n][c_list_id].duration, 'm')) < 0) {
 				pro_html = pro_html + "<div style='margin-top: 15px'><button type='button' class='btn btn-primary' style='margin-right: 20px'>WATCHLIST</button><button type='button' class='btn btn-danger'>RECORD</button></div>";
 			}
 			$('#pro_info .pro-info').html(pro_html);
