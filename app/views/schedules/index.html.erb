@@ -243,7 +243,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		
-		// ---- Start: Declaration of variables and constants
+		// ---- Start: Declaration of variables
 		var js_tv_list;		
 		var start_t;
 		var search_time;
@@ -258,8 +258,9 @@
 		var all_channels;
 		var media_numbers;
 		var preference;
-		const channels_per_page = 7;
-		// ---- End: Declaration of variables and constants
+		var time_span;
+		var grid_height;
+		// ---- End: Declaration of variables
 
 		function init_date_picker() {
 			var tmp_html = '';	
@@ -354,6 +355,8 @@
 			channel_list  = <%= raw @favorite_channels.to_json %>;
 			media_numbers = <%= raw MEDIA_NUMBERS.to_json %>
 			preference 	  = <%= raw @preference.to_json %>
+			time_span 	  = parseInt(preference.time_span)
+			grid_height	  = parseInt(preference.grid_height)
 
 			init_date_picker();
 			init_time_picker();
@@ -373,7 +376,7 @@
 				js_tv_list[tv_channel.callsign][tv_channel.s_number.toString()].push(tv_channel);
 			});
 
-			if(channel_list.length < channels_per_page) end_chan = channel_list.length - 1;
+			if(channel_list.length < grid_height) end_chan = channel_list.length - 1;
 
 			start_t = moment(start_t);
 			search_date_t = moment(search_date_t);
@@ -381,7 +384,7 @@
 				search_time = moment(search_time).hour(21);
 			else
 				search_time   = moment(search_time);
-			end_t = moment(search_time).add(3, 'h');
+			end_t = moment(search_time).add(time_span, 'h');
 
 			display_favorite_channels();
 			// display_preference();
@@ -397,12 +400,20 @@
 
 		function display_time_board(){
 			var display_time = moment(search_time);
+			var tmp_html = '';
 
-			$('.time-board .each-time').each(function(){
-				$(this).find('.time').html(moment(display_time).format("h"));
-				$(this).find('.twelve').html(display_time.format("A"));
+			for(var i = 0; i < time_span; i++) {
+				tmp_html = tmp_html + '<div class="col-xs-' + (12 / time_span) + ' each-time"><span class="time">' + moment(display_time).format("h") + '</span><span class="twelve">' + display_time.format("A") + '</span></div>';
 				display_time = moment(display_time).add(1, 'h');
-			});
+			}
+
+			$('.time-board').html(tmp_html);
+
+			// $('.time-board .each-time').each(function(){
+			// 	$(this).find('.time').html(moment(display_time).format("h"));
+			// 	$(this).find('.twelve').html(display_time.format("A"));
+			// 	display_time = moment(display_time).add(1, 'h');
+			// });
 		}
 
 		display_time_board();
@@ -436,10 +447,10 @@
 				    	var div_width_percent;
 				    	var right_border = '';
 				    	if(next_t.diff(end_t) >= 0) {
-				    		div_width_percent = end_t.diff(cur_t, "m") / 180.0 * 100;
+				    		div_width_percent = end_t.diff(cur_t, "m") / (60.0 * time_span) * 100;
 				    	}
 				    	else {
-				    		div_width_percent = next_t.diff(cur_t, "m") / 180.0 * 100;   	
+				    		div_width_percent = next_t.diff(cur_t, "m") / (60.0 * time_span) * 100;   	
 				    		right_border = ' right-border';	
 				    	}
 				    	tmp_html = "<div class='pull-left" + right_border + "' style='width: " + div_width_percent + "%'><a href='#' class='for-detail' data-target='#pro_info' data-callsign='" + channel_list[c].callsign + "' data-chan-num='" + channel_list[c].s_number + "' data-list-id='" + i + "'><p class='show-type truncate'>" + channel[i].show_type + "</p><p class='episode-title truncate'>" + channel[i].episode_title + "</p><p class='duration truncate'>" + moment(channel[i].locale_time, "YYYY-MM-DD HH:mm:ss").format('h:mmA') + "-" + moment(next_t).format('h:mmA') + "</p></a></div>";
@@ -489,8 +500,8 @@
 		$('.glyphicon-triangle-top').click(function(){
 			if(start_chan == 0) return;
 
-			start_chan = start_chan - 7;
-			end_chan = end_chan - (end_chan % channels_per_page) - 1;
+			start_chan = start_chan - grid_height;
+			end_chan = end_chan - (end_chan % grid_height) - 1;
 			
 			clear_program_board(start_chan, end_chan);
 			display_time_board();
@@ -502,11 +513,11 @@
 		$('.glyphicon-triangle-bottom').click(function(){
 			if(end_chan == channel_list.length - 1) return;
 
-			start_chan = start_chan + channels_per_page;
-			if(end_chan +  channels_per_page > channel_list.length) 
+			start_chan = start_chan + grid_height;
+			if(end_chan +  grid_height > channel_list.length) 
 				end_chan = channel_list.length - 1;
 			else
-				end_chan = end_chan + 7;
+				end_chan = end_chan + grid_height;
 
 			clear_program_board(start_chan, end_chan);
 			display_time_board();
