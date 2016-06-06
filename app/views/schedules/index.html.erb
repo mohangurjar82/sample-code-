@@ -44,7 +44,7 @@
 	
 	<div class="row" id="yield-area">
 		<div class="col-xs-1 arrow-common side-arrow-board">
-			<a href="#"><span class="glyphicon glyphicon-triangle-left center" aria-hidden="true"></span></a>
+			<a><span class="glyphicon glyphicon-triangle-left center" aria-hidden="true"></span></a>
 		</div>
 		
 		<div class="col-xs-10">
@@ -80,7 +80,7 @@
 		</div>
 
 		<div class="col-xs-1 arrow-common side-arrow-board">
-			<a href="#"><span class="glyphicon glyphicon-triangle-right center" aria-hidden="true"></span></a>
+			<a><span class="glyphicon glyphicon-triangle-right center" aria-hidden="true"></span></a>
 		</div>
 	</div>
 	
@@ -251,8 +251,8 @@
 		var tv_listing;		
 		var channel_list;
 		var select_time_val;
-		var start_chan = 0;
-		var end_chan = 6;
+		var start_chan;
+		var end_chan;
 		var base_start_t; 
 		var base_end_t;
 		var all_channels;
@@ -358,10 +358,18 @@
 			time_span 	  = parseInt(preference.time_span)
 			grid_height	  = parseInt(preference.grid_height)
 
+			start_chan = 0;
+			end_chan   = grid_height - 1;
+
 			init_date_picker();
 			init_time_picker();
 			$("#listings-date-picker-date-select").select2({width: '100%'});
 			$("#listings-date-picker-time-select").select2({width: '65%'});
+
+			$('.grid-view').css('height', 100 * grid_height);
+			$(".side-arrow-board").each(function() {
+				$(this).css('height', 170 + 100 * grid_height);
+			});
 
 			channel_list.forEach(function(channel){
 				if (Object.keys(js_tv_list).indexOf(channel.callsign) === -1) {
