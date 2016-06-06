@@ -50,7 +50,7 @@
       text-transform: initial !important;
       padding-top: 10px;
     }
-    a:focus{
+    a:not(.btn-danger):focus, .open > a{
       background: transparent !important;
     }
     ul.dropdown-menu{
@@ -70,6 +70,16 @@
   .navbar-right li>a{
     padding-left: 0px;
     padding-right: 15px;
+  }
+  .navbar-right li>a.btn-danger{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 6px;
+    padding-bottom:6px;
+    margin-top: 8px;
+  }
+  .navbar-right li>a.btn-danger:hover, .navbar-right li>a.btn-danger:focus{
+    background-color: #d9534f;
   }
   .dropdown-menu li>a{
     padding-left: 20px;
@@ -135,4 +145,12 @@
     display:block !important;
 
   } 
+  .navbar-right li>a.btn-danger{
+    margin-left: 20px; margin-right: 20px;
+  }
+}
+@media (min-width: 1200px){
+  nav .container {
+    width: 1230px;
+  }
 }
