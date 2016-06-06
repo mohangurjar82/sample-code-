@@ -422,6 +422,15 @@
 
 			$('#tvForm').submit();	
 		});
+
+		$('#listings-search-term').on('keypress', function(event) {
+			if($("#listings-search-term").val() == '' || event.keyCode != 13) return;
+			$('#cur_now').val(moment().format('YYYY-MM-DD HH:mm:ss Z'));
+			$('#search_word').val("<%= raw @search_word %>");
+
+			$('#tvForm').attr("action", "show");
+			$('#tvForm').submit();
+		});
 	});
 </script>
 
