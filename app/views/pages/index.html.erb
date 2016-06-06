@@ -513,9 +513,9 @@
                   <% ids.each_with_index do |id,i| %>
                     <% m = Medium.find_by_number(id) %>
                     <div> 
-                      
-
-                      
+                      <a class="live-tv" data-title="<%= m.title %>" data-href="<%= media_path(ids[i], :modal => true) %>">
+                        <%= image_tag "/frontpage/#{pictures[i]}.png", class: "img-responsive", alt: "#" %>
+                      </a>
                     </div>
                   <% end %>
 
