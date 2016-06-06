@@ -19,7 +19,8 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   Roles = {
-    "ADMIN" => :admin
+    "ADMIN" => :admin,
+    "USER" => :user
   }
   
   # Dynamically generate methods for each role e.g is_admin?
