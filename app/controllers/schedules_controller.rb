@@ -114,8 +114,8 @@ class SchedulesController < ApplicationController
 			updated_date = @utc_start
 		end 
 
-		sql_for_st_types = " AND ("
 		st_types_arr = @preference.station_filter.split(/[,]/)
+		sql_for_st_types = " AND ("
 		st_types_arr.each_with_index do |st_type, i|
 			if i == st_types_arr.length - 1
 				sql_for_st_types = sql_for_st_types + "(station_type ILIKE " + "'%" + st_type.to_s + "%'))"
@@ -147,8 +147,18 @@ class SchedulesController < ApplicationController
 	end
 
 	def show
+
+		# ==== Start: Change User Preference
+		#
+		#   If user changes preferences, it will be saved into DB
+		if params[:preference_changed].eql? "true"
+			update_preference = current_user.preference
+			
+			update_preference.update(initial_time: params[:initial_time], time_span: params[:time_span].to_i, grid_height: params[:grid_height].to_i, station_filter: params[:st_filter_hidden])
+		end 
+		# ==== End: Change User Preference
 		
-  		# Get A Keyword Param For Movie Search By A Name
+  		
   		if not params[:cur_now].blank? 
 			@now = params[:cur_now]
 			@start_t = Time.parse(@now).change(:hour => 0, :min => 0, :sec => 0).strftime('%Y-%m-%d %H:%M:%S')
@@ -159,9 +169,11 @@ class SchedulesController < ApplicationController
 			@utc_offset = params[:utc_locale].to_i
 		end
 		
+		user_preference
+
 		@tv_listing = []
 
-		if params[:changed].eql? "true"
+		if params[:favorite_changed].eql? "true"
 			current_user.stations.destroy_all
 			@all_channels.each do |ch|
 				if params[:status][ch.s_id.to_s + '_' + ch.s_number].eql? "true"
@@ -170,19 +182,30 @@ class SchedulesController < ApplicationController
 			end
 		end 
 
-		if not params[:listings_search_term].blank?
-	  		@search_word = params[:listings_search_term]
-	  	end
-
+		# Get A Keyword Param For Movie Search By A Name
 		if not params[:search_word].blank?
 	  		@search_word = params[:search_word]
+	  	end
+
+		if not params[:listings_search_term].blank?
+	  		@search_word = params[:listings_search_term]
 	  	end
 
   		@utc_start = Time.now.getlocal("+00:00").change(:hour => 0, :min => 0, :sec => 0)
 
   		utc_one_day_ago = @utc_start - (60 * 60 * 24)
 
-  		user_favorite_channels
+  		st_types_arr = @preference.station_filter.split(/[,]/)
+		sql_for_st_types = " AND ("
+		st_types_arr.each_with_index do |st_type, i|
+			if i == st_types_arr.length - 1
+				sql_for_st_types = sql_for_st_types + "(station_type ILIKE " + "'%" + st_type.to_s + "%'))"
+			else
+				sql_for_st_types = sql_for_st_types + "(station_type ILIKE " + "'%" + st_type.to_s + "%') OR "
+			end
+		end
+
+		user_favorite_channels st_types_arr
 
 		sql_for_channels = ""
 
@@ -198,7 +221,7 @@ class SchedulesController < ApplicationController
 		end
 
 		if not sql_for_channels.eql? ''
-			@tv_listing = Listing.where("episode_title ILIKE ? AND updated_date = ? AND list_date_time + interval '1 minute' * listings.duration > ?" + sql_for_channels, '%' + @search_word + '%', utc_one_day_ago.strftime('%Y-%m-%d'), @search_time).order("list_date_time ASC, s_id ASC")  		
+			@tv_listing = Listing.where("episode_title ILIKE ? AND updated_date = ? AND list_date_time + interval '1 minute' * listings.duration > ?" + sql_for_channels + sql_for_st_types, '%' + @search_word + '%', utc_one_day_ago.strftime('%Y-%m-%d'), @search_time).order("list_date_time ASC, s_id ASC")  		
 		end
 	end
 

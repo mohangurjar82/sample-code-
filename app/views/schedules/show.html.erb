@@ -34,7 +34,7 @@
 					</div>
 					<div class="col-md-3 listings-details-column listings-details-preferences-column">
 						<a href="#" onclick="return false" id="listings-favorites-button"  data-toggle="modal" data-target="#gridSystemModal"><i class="fa fa-heart fa-fw listings-button-icon"></i> Favorites</a>
-						<a href="#" onclick="return false" id="listings-preferences-button"><i class="fa fa-gear fa-fw listings-button-icon"></i> Preferences</a>
+						<a href="#" onclick="return false" id="listings-preferences-button" data-toggle="modal" data-target="#grid_preferences"><i class="fa fa-gear fa-fw listings-button-icon"></i> Preferences</a>
 					</div>
 				</div>
 			</div>
@@ -49,8 +49,10 @@
 
 <input type="hidden" name="cur_now" id="cur_now"></input>
 <input type="hidden" name="utc_locale" id="utc_locale"></input>
-<input type="hidden" name="changed" id="changed" value="false"></input>
+<input type="hidden" name="favorite_changed" id="favorite_changed" value="false"></input>
 <input type="hidden" name="search_word" id="search_word">
+<input type="hidden" name="preference_changed" id="preference_changed" value="false"></input>
+<input type="hidden" name="st_filter_hidden" id="st_filter_hidden"></input>
 
 <!-- Start: Favorite Modal Definition -->
 <div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
@@ -107,6 +109,99 @@
 
 <!-- End: Detailed Info Board -->
 
+
+<!-- Start: Preferences Modal Definition -->
+<div id="grid_preferences" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridModalLabel">Grid Preferences</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+	        <div class="row">
+		        <div class="col-md-5">
+		        	<p class="setting-title">Initial Time</p>
+		        	<p class="question">
+		    			When you first open listings, what time should the grid be opened to?
+		    		</p>
+		    		<div class="radio">
+						<label><input type="radio" name="initial_time" value="now"><span>Current Time</span></label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="initial_time" value="5"><span>5 PM</span></label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="initial_time" value="7"><span>7 PM</span></label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="initial_time" value="9"><span>9 PM</span></label>
+					</div>
+		        </div>
+		        <div class="col-md-7">
+		        	<p class="setting-title">Station Filters</p>
+		        	<p class="question">
+		        		Customize your grid by showing or hiding different station types.
+		        	</p>
+
+		        	<div class="checkbox">
+						<label><input type="checkbox" name="station_filter" value="broadcast"><span>Broadcast</span></label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" name="station_filter" value="cable"><span>Cable</span></label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" name="station_filter" value="community"><span>Community</span></label>
+					</div>
+		        </div>		        
+	        </div>
+		    
+		    <div class="row">
+		    	<div class="col-md-5">
+		    		<p class="setting-title">Timespan</p>
+		    		<p class="question">
+		    			How many hours do you want to see at once?
+		    		</p>
+		    		<div class="radio">
+						<label><input type="radio" name="time_span" value="1"><span>1 hour</span></label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="time_span" value="2"><span>2 hour</span></label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="time_span" value="3"><span>3 hour</span></label>
+					</div>
+		    	</div>
+		        <div class="col-md-7">
+		        	<p class="setting-title">Grid Height</p>
+		        	<p class="question">
+		        		How many channels should the listings grid be contained to?
+		        	</p>
+		        	<div class="radio">
+						<label><input type="radio" name="grid_height" value="7"><span>7 Channels</span></label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="grid_height" value="14"><span>14 Channels</span></label>
+					</div>
+					<div class="radio">
+						<label><input type="radio" name="grid_height" value="21"><span>21 Channels</span></label>
+					</div>
+		        </div>	
+		    </div>
+        </div>
+      </div>
+      <div class="modal-footer row">
+      	<div class="col-md-12">
+	      	<button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+		    <button type="button" class="btn btn-primary">SAVE PREFERENCES</button>
+      	</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End: Preferences Modal Definition -->
+
 <% end %>
 
 <script type="text/javascript">
@@ -115,6 +210,7 @@
 		var start_t;
 		var channel_list;
 		var all_channels;
+		var preference;
 
 		function init_date_picker() {
 			var tmp_html = '';	
@@ -197,6 +293,21 @@
 			$('#pro_info').modal('show');
 		}
 
+		function display_preference() {
+			$("#grid_preferences input[name='initial_time'][value='" + preference.initial_time + "']").prop('checked', true);
+			$("#grid_preferences input[name='time_span'][value='" + preference.time_span + "']").prop('checked', true);
+			$("#grid_preferences input[name='grid_height'][value='" + preference.grid_height + "']").prop('checked', true);
+
+			$("#grid_preferences input[name='station_filter']").each(function(){
+				$(this).prop('checked', false);	
+			});
+			var arr = preference.station_filter.split(',');
+			for(var i in arr) {
+				$("#grid_preferences input[name='station_filter'][value='" + arr[i] + "']").prop('checked', true);		
+			}
+
+		}
+
 		function initialize() {
 			$('#cur_now').val(moment().format('YYYY-MM-DD HH:mm:ss Z'));
 			$('#utc_locale').val(moment().utcOffset());
@@ -206,6 +317,7 @@
 			console.log(tv_listing);
 			all_channels = <%= raw @all_channels.to_json %>;
 			channel_list = <%= raw @favorite_channels.to_json %>;
+			preference 	  = <%= raw @preference.to_json %>
 
 			init_date_picker();
 			$('.listings-picker-select').attr('disabled', 'disabled');
@@ -251,14 +363,18 @@
 		
 		$('#listings-search-submit').on("click", function(){
 			if($("#listings-search-term").val() == '') return;
+			$('#cur_now').val(moment().format('YYYY-MM-DD HH:mm:ss Z'));
+			$('#search_word').val("<%= raw @search_word %>");
+
 			$('#tvForm').attr("action", "show");
 			$('#tvForm').submit();
 		});
 
 		$('#gridSystemModal .btn-primary').on('click', function(){
-			$('#changed').val(true);
+			$('#favorite_changed').val(true);
 			$('#search_word').val("<%= raw @search_word %>");
 			$('#gridSystemModal').modal('hide');
+			$('#cur_now').val(moment().format('YYYY-MM-DD HH:mm:ss Z'));
 			$('#tvForm').attr("action", "show");
 			$('#tvForm').submit();	
 		});
@@ -282,6 +398,30 @@
 		});
 
 		$('.listings-program').on('click', click_for_detail);
+
+		$('#listings-preferences-button').on('click', display_preference);
+
+		$('#grid_preferences .btn-primary').on('click', function(){
+			var st_filter_arr = [];
+			$("#grid_preferences input[name='station_filter']:checked").each(function(){
+				st_filter_arr.push($(this).val());
+			});
+			var st_filter_str = st_filter_arr.join(",");
+			if(st_filter_str == preference.station_filter && $("#grid_preferences input[name='initial_time']:checked").val() == preference.initial_time && $("#grid_preferences input[name='time_span']:checked").val() == preference.time_span && $("#grid_preferences input[name='grid_height']:checked").val() == preference.grid_height) {
+				$('#grid_preferences').modal('hide');
+				return;
+			}
+
+			$('#preference_changed').val(true);
+			$('#grid_preferences').modal('hide');
+			$('#cur_now').val(moment().format('YYYY-MM-DD HH:mm:ss Z'));
+			$('#search_word').val("<%= raw @search_word %>");			
+
+			$('#st_filter_hidden').val(st_filter_str);
+			$('#tvForm').attr("action", "show");
+
+			$('#tvForm').submit();	
+		});
 	});
 </script>
 
