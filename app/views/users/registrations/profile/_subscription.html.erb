@@ -11,9 +11,6 @@
         <%= render :partial => "users/registrations/profile/media", :locals => {:m => m, :subs => subs} %>
       <% end %>
     <% end %>
-    <% Medium.basic_plan_media.each do |m|%>
-      <%= render :partial => "users/registrations/profile/media", :locals => {:m => m, :subs => nil} %>
-    <% end %>
   </div>
   <div class="row header col-sm-12">
     <h1> Subscribe to a Package:</h1>

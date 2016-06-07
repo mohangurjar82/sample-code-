@@ -7,7 +7,7 @@
       <% else %>
         <img src="<%= asset_path('movie-placeholder.jpg') %>') %>">
       <% end %>
-      <% if subs %>
+      <% if subs || !m.pricing_plan %>
         <figcaption class="cp-caption">
           <a href="/media/<%= m.number %>" class="play-video">Play</a>
         </figcaption>
