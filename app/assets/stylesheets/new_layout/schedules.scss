@@ -74,7 +74,8 @@ $pix30: 30px;
 }
 
 .search-board {
-	@include board-common(92, 70px);
+	@include board-common(92, auto);
+
 }
 
 
@@ -274,17 +275,32 @@ p.channel_name {
 }
 
 .date-board {
+
 	height: 70px;
 	color: white;
 	font-size: 25px;
 	text-align: center;
-	padding-top: 23px;
 
 	p {
 		font-family: 'Roboto', sans-serif;
 	    line-height: 30px;
 	    font-size: 25px;
 	    color: #ccc;
+
+	    position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    transform: translate(-50%, -50%);
+	    width: 95%;
+	}
+
+	span {
+		vertical-align: middle;
+	    position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    transform: translate(-50%, -50%);
+	    width: 100%;
 	}
 }
 
@@ -307,10 +323,14 @@ p.channel_name {
 	width: 30%;
 	height: 28px;
 	padding: 0;
+	float: right;
 }
 
 .listings-details-preferences-column {
-	margin-top: 6px;
+	
+	padding: 11px;
+	margin: 0 auto;
+	text-align: center;
 }
 
 .listings-search-submit {
@@ -322,6 +342,8 @@ p.channel_name {
 
 .listings-date-time-search {
 	position: relative;
+	padding: 5px;
+	margin: 0 auto;
 }
 
 
@@ -430,7 +452,8 @@ ul {
     display: inline-block;
     line-height: 66px;
     vertical-align: middle;
-    text-align: center
+    text-align: center;
+    width: 17.7%;
 }
 
 .listings-channel-number-name-inner {
@@ -483,6 +506,7 @@ ul {
     line-height: 67px;
     vertical-align: middle;
     border-bottom: 1px solid #e3e4e6;
+    width: 82.3%;
 }
 
 .listings-program-inner {
@@ -574,7 +598,7 @@ ul {
 
 #custom-search-input {
     margin:0;
-    padding: 0;
+    padding: 5px;
 }
 
 #custom-search-input .search-query {
@@ -611,10 +635,20 @@ ul {
     float: none;
     padding-right: 0;
     padding-left: 0;
+    width: 100%;
 }
 
 #listings-search-submit {
 	z-index: 100;	
+	position: absolute;
+    top: 7px;
+    right: 7px;
+    color: red;
+    cursor: pointer;
+}
+
+#listings-favorites-button {
+	margin-bottom: 5px;
 }
 
 
@@ -822,9 +856,48 @@ Edit on
 	}
 
 	.custom {
-		width: 110px;
-		height: 30px;
-		font-size: 10px;
+		width: 90px;
+		height: 25px;
+		font-size: 9px;
+	}
+
+	.listings-channel {
+	    width: 26%;
+	    // font-size: 
+	}	
+
+	.listings-program { 
+		width: 74%;
+	}
+
+	.listings-channel-name { 
+		font-size: 8px;
+	}
+
+	.listings-program-title {
+	    // font-weight: 600;
+	    font-size: 12px;
+	    // display: block;
+	}
+}
+
+@media screen and (max-width: 991px) {
+	.search-bar {
+		height: 140px;
+	}
+}
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+	.listings-details-preferences-column {
+		text-align: left;
+		margin-top: -10px;
+
+		a {
+			display: block;
+		}
+	}
+
+	.center {
+		margin-top: 4px;
 	}
 }
 
