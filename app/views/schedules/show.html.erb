@@ -243,7 +243,7 @@
 					}
 				}
 
-				tmp_html = tmp_html + '<div class="col-md-12 row-padding" data-callsign="' + all_channels[i].callsign + '" data-s-num="' + all_channels[i].s_number + '"><span style="margin-right: 10px"><img src="http://cdn.tvpassport.com/image/station/100x100/' + all_channels[i].logo_file_name + '" style="width: 30px; height: 20px"></span><span class="keys">' + all_channels[i].callsign + '</span><span class="keys"> ' + all_channels[i].s_number + '</span><span class="pull-right glyphicon ' + glyphicon + '"></span><input type="hidden" name="status[' + all_channels[i].s_id.toString() + '_' + all_channels[i].s_number + ']" value=' + val + '></div>';	
+				tmp_html = tmp_html + '<div class="col-md-12 row-padding" data-callsign="' + all_channels[i].callsign + '" data-s-num="' + all_channels[i].s_number + '"><span style="margin-right: 10px"><img src="https://cdn.tvpassport.com/image/station/100x100/' + all_channels[i].logo_file_name + '" style="width: 30px; height: 20px"></span><span class="keys">' + all_channels[i].callsign + '</span><span class="keys"> ' + all_channels[i].s_number + '</span><span class="pull-right glyphicon ' + glyphicon + '"></span><input type="hidden" name="status[' + all_channels[i].s_id.toString() + '_' + all_channels[i].s_number + ']" value=' + val + '></div>';	
 			}
 
 			$('#searchable-container').html(tmp_html);
@@ -277,7 +277,7 @@
 			var ch_html;
 			var pro_html;
 
-			ch_html = '<span><img src="http://cdn.tvpassport.com/image/station/100x100/' + tv_listing[c_list_id].logo_file_name + '" style="width: 100px; height: 100px"></span><span class="listings-channel-number-name"><span class="listings-channel-number-name-inner"><span class="listings-channel-number">' + tv_listing[c_list_id].s_number + '</span><span class="listings-channel-name">' + tv_listing[c_list_id].callsign + '</span></span></span>';
+			ch_html = '<span><img src="https://cdn.tvpassport.com/image/station/100x100/' + tv_listing[c_list_id].logo_file_name + '" style="width: 100px; height: 100px"></span><span class="listings-channel-number-name"><span class="listings-channel-number-name-inner"><span class="listings-channel-number">' + tv_listing[c_list_id].s_number + '</span><span class="listings-channel-name">' + tv_listing[c_list_id].callsign + '</span></span></span>';
 			$('#pro_info .channel-info').html(ch_html);
 	
 			pro_html = "<div><span style='font-size: 20px'>" + (tv_listing[c_list_id].episode_title == '' ? tv_listing[c_list_id].show_name : tv_listing[c_list_id].episode_title) + "</span><span class='pull-right " + (tv_listing[c_list_id].new == true ? 'tag' : '') + "'>" + (tv_listing[c_list_id].new == true ? 'NEW' : '') + "</span><span class='pull-right " + (tv_listing[c_list_id].live == true ? 'tag' : '') + "'>" + (tv_listing[c_list_id].live == true ? 'LIVE' : '') + "</span><span class='pull-right " + (tv_listing[c_list_id].rating == '' ? '' : 'tag') + "'>" + tv_listing[c_list_id].rating + "</span></div>"
@@ -285,9 +285,9 @@
 			pro_html = pro_html + "<div style='margin-top: 15px'>Air Time: " + moment(tv_listing[c_list_id].list_date_time).format('h:mm A') + " (" + moment.duration(tv_listing[c_list_id].duration, "minutes").format("h [hr] m [min]") + ")" + "</div>";
 			pro_html = pro_html + "<div style='margin-top: 15px'>" + tv_listing[c_list_id].description + "</div>";
 
-			if(moment().diff(moment(tv_listing[c_list_id].list_date_time).add(tv_listing[c_list_id].duration, 'm')) < 0) {
-				pro_html = pro_html + "<div style='margin-top: 15px'><button type='button' class='btn btn-primary' style='margin-right: 20px'>WATCHLIST</button><button type='button' class='btn btn-danger'>RECORD</button></div>";
-			}
+			// if(moment().diff(moment(tv_listing[c_list_id].list_date_time).add(tv_listing[c_list_id].duration, 'm')) < 0) {
+			// 	pro_html = pro_html + "<div style='margin-top: 15px'><button type='button' class='btn btn-primary' style='margin-right: 20px'>WATCHLIST</button><button type='button' class='btn btn-danger'>RECORD</button></div>";
+			// }
 			$('#pro_info .pro-info').html(pro_html);
 
 			$('#pro_info').modal('show');
@@ -349,7 +349,7 @@
 
 					} 
 
-					tmp_html =  tmp_html + '<li data-channel-number="' + tv_listing[i].channel_number + '" data-channel-source="' + tv_listing[i].s_id + '" data-channel-name="' + tv_listing[i].callsign + '"><a href="' + tv_listing[i].web_link + '" class="listings-channel" style="width: 17.7%;"><span><img src="http://cdn.tvpassport.com/image/station/100x100/' + tv_listing[i].logo_file_name + '" style="width: 30px; height: 20px"></span><span class="listings-channel-number-name"><span class="listings-channel-number-name-inner"><span class="listings-channel-number">' + tv_listing[i].s_number + '</span><span class="listings-channel-name">' + tv_listing[i].callsign + '</span></span></span></a><a href="#" class="listings-program" style="width: 82.3%;" data-callsign="' + tv_listing[i].callsign + '" data-chan-num="' + tv_listing[i].s_number + '" data-list-id="' + i + '"><span class="listings-program-inner"><span class="listings-program-title">' + tv_listing[i].episode_title + '</span><span class="listings-program-time">' + moment(tv_listing[i].list_date_time).format('h:mm A') + ' (' + moment.duration(tv_listing[i].duration, "minutes").format("h [hr] m [min]") + ')</span></span></a></li>';
+					tmp_html =  tmp_html + '<li data-channel-number="' + tv_listing[i].channel_number + '" data-channel-source="' + tv_listing[i].s_id + '" data-channel-name="' + tv_listing[i].callsign + '"><a href="' + tv_listing[i].web_link + '" class="listings-channel" style="width: 17.7%;"><span><img src="https://cdn.tvpassport.com/image/station/100x100/' + tv_listing[i].logo_file_name + '" style="width: 30px; height: 20px"></span><span class="listings-channel-number-name"><span class="listings-channel-number-name-inner"><span class="listings-channel-number">' + tv_listing[i].s_number + '</span><span class="listings-channel-name">' + tv_listing[i].callsign + '</span></span></span></a><a href="#" class="listings-program" style="width: 82.3%;" data-callsign="' + tv_listing[i].callsign + '" data-chan-num="' + tv_listing[i].s_number + '" data-list-id="' + i + '"><span class="listings-program-inner"><span class="listings-program-title">' + tv_listing[i].episode_title + '</span><span class="listings-program-time">' + moment(tv_listing[i].list_date_time).format('h:mm A') + ' (' + moment.duration(tv_listing[i].duration, "minutes").format("h [hr] m [min]") + ')</span></span></a></li>';
 				}
 
 				tmp_html = tmp_html + '</ul>';
