@@ -279,6 +279,13 @@
       overflow: hidden;
     }
   }
+  .item.basic{
+    h4{
+      color: #F57C29;
+      font-size: 30px;
+      margin-bottom: 5px;
+    }
+  }
 
 }
 
@@ -306,5 +313,11 @@
         clear: both;
       }
     }
+  }
+}
+
+@media (max-width: 768px){
+  .list.subcriptions .cp-video-item .cp-text {
+    display: block;
   }
 }

@@ -13,6 +13,10 @@
       <span class="uk-text-small uk-text-muted">
         <% if subs %>
           $<%= subs.pricing_plan.price / 100.0 %>/<%= subs.pricing_plan.interval %>
+          <a class="btn btn-success btn-subcribe">
+            Subcribe
+            <i class="fa fa-check-square-o" aria-hidden="true" ></i>
+          </a>
         <% else %>
           $<%= product.price %>/<%= product.pricing_plan.interval %><br/>
           <a class="btn btn-danger btn-subcribe" href="<%= products_path(:product_ids => product.id) %>">
