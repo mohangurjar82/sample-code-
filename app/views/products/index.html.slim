@@ -22,6 +22,7 @@
           .container
             .row
               .col-md-8
+                - subscribed_product_ids = current_user.subscribed_products.map{|x| x.id}
                 - @products.each_with_index do |p, i|
                   .cart-item.product [data-uk-grid]
                     .item-image-container.uk-width-small-1-3.uk-width-medium-1-3.uk-width-large-1-3
@@ -33,40 +34,49 @@
                       h2= p.title
                       .description= p.description
                       .buttons
-                        a.btn.btn-danger.btn-subcribe data-product="#{p.id}"
-                          i.fa.fa-caret-square-o-right aria-hidden="true" 
-                          | Subcribe
-                        input.checkbox name="product_#{p.id}" type="checkbox" value="1" data-product="#{p.id}"
+                        - if subscribed_product_ids.include?(p.id)
+                          a.btn.btn-success
+                            | Subcribed
+                            i.fa.fa-check-square-o.right aria-hidden="true"
+                        - else
+                          a.btn.btn-danger.btn-subcribe data-product="#{p.id}"
+                            i.fa.fa-caret-square-o-right aria-hidden="true" 
+                            | Subcribe
+                          input.checkbox name="product_#{p.id}" type="checkbox" value="1" data-product="#{p.id}"
                       .price
                         = "#{p.price} / #{p.pricing_plan.interval.titlecase}"
                       a.item-action href="#"  See full Channel Lineup
                     .clear
-                #accordion.panel-group aria-multiselectable="true" role="tablist" 
-                  .panel.panel-default
-                    #headingTwo.panel-heading role="tab" 
-                      h4.panel-title.text-center.collapsed aria-controls="collapseTwo" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#collapseTwo" role="button" 
-                        | Want more? Check out our A la carte channels:
-                        a href="#"
-                          | Add individual Channels
-                    #collapseTwo.panel-collapse.collapse aria-labelledby="headingTwo" role="tabpanel" 
-                      .panel-body.uk-grid.uk-grid-width-small-1-3.uk-grid-width-medium-1-4.uk-grid-width-large-1-4 style="border:none;"
-                        - @additional_products.compact.each do |p|
-                          .cart-item.medium
-                            .item-image-container
-                              - if p.picture.present?
-                                = image_tag(p.thumbnail_url, class: "img-responsive", alt: "")
+                .panel.panel-default
+                  #headingTwo.panel-heading role="tab" 
+                    h4.panel-title.text-center.collapsed aria-controls="collapseTwo" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#collapseTwo" role="button" 
+                      | Want more? Check out our A la carte channels:
+                      a href="#"
+                        | Add individual Channels
+                  #collapseTwo.panel-collapse.collapse aria-labelledby="headingTwo" role="tabpanel" 
+                    .panel-body.uk-grid.uk-grid-width-small-1-3.uk-grid-width-medium-1-4.uk-grid-width-large-1-4 style="border:none;"
+                      - subscribed_media_ids = current_user.subscribed_media.map{|x| x.id}
+                      - @additional_products.compact.each do |p|
+                        .cart-item.medium
+                          .item-image-container
+                            - if p.picture.present?
+                              = image_tag(p.thumbnail_url, class: "img-responsive", alt: "")
+                            - else
+                              = image_tag("product-placeholder.jpg", class: "img-responsive", alt: "")
+                          .item-details
+                            h5= p.title
+                            .description= p.description
+                            .buttons
+                              - if subscribed_media_ids.include?(p.id)
+                                a.btn.btn-success
+                                  i.fa.fa-check-square-o.right aria-hidden="true"
                               - else
-                                = image_tag("product-placeholder.jpg", class: "img-responsive", alt: "")
-                            .item-details
-                              h5= p.title
-                              .description= p.description
-                              .buttons
                                 a.btn.btn-danger.btn-subcribe title="Subcribe" data-product="a#{p.id}"
                                   i.fa.fa-caret-square-o-right aria-hidden="true" 
                                 input.checkbox name="product_a#{p.id}" type="checkbox" value="1" data-product="a#{p.id}"
 
-                              .price
-                                = "#{p.price} / #{p.pricing_plan.interval.titlecase}"
+                            .price
+                              = "#{p.price} / #{p.pricing_plan.interval.titlecase}"
               .col-md-4.cart-items
                 .cart_totals
                   h5 Your Order

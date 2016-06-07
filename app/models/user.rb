@@ -82,11 +82,18 @@ class User < ActiveRecord::Base
     update_columns(authentication_token: token)
   end
 
+  def subscribed_products
+    products = []
+    self.subscriptions.each do |sub|
+      products = products.concat([sub.product]) if sub.product
+    end
+    return products.uniq
+  end  
+
   def subscribed_media
     media = []
     self.subscriptions.each do |sub|
-      obj = sub.product.present? ? sub.product : sub
-      media = media.concat(plan_media(obj))
+      media = media.concat(sub.media)
     end
     return media.uniq
   end
@@ -148,18 +155,6 @@ class User < ActiveRecord::Base
   end
 
   private
-
-  def plan_media(obj)
-    media = []
-    media = media.concat(obj.media) if obj.media.present?
-    if obj.categories.present?
-      category_ids = obj.categories.map{|x| x.id}
-      if categories.present?
-        media = media.concat(Medium.includes(:media_categories).where("media_categories.category_id" => category_ids))
-      end
-    end
-    return media.uniq
-  end
 
   def confirmation_matches_password
     unless self.password == password_confirmation
