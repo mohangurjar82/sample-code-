@@ -19,7 +19,7 @@
         <% if subs %>
           $<%= subs.pricing_plan.price / 100.0 %>/<%= subs.pricing_plan.interval %>
         <% elsif m.pricing_plan %>
-          $<%= m.pricing_plan.price / 100.0 %>/<%= m.pricing_plan.interval %>
+          $<%= m.pricing_plan.price / 100.0 %>/<%= m.pricing_plan.interval %><br>
           <a class="btn btn-danger btn-subcribe" href="<%= products_path(:product_ids => "a#{m.id}") %>">
             <i class="fa fa-caret-square-o-right" aria-hidden="true" ></i>
             Subcribe

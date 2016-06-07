@@ -92,7 +92,7 @@ class User < ActiveRecord::Base
   end
 
   def subscribe_to_products
-    subscribed_product_ids = self.subscriptions.where.not(:product_id => nil)
+    subscribed_product_ids = self.subscriptions.map{|x| x.product_id}.compact
     Product.where.not(:id => subscribed_product_ids)
   end
 
