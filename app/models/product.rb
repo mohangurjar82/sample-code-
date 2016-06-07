@@ -16,6 +16,10 @@ class Product < ActiveRecord::Base
     pricing_plan.price / 100.00
   end
 
+  def self.basic_plan
+    self.where(:pricing_plan_id => nil)
+  end
+
   private
 
   def any_item_included

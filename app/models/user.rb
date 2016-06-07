@@ -82,6 +82,26 @@ class User < ActiveRecord::Base
     update_columns(authentication_token: token)
   end
 
+  def subscribed_media
+    media = []
+    self.subscriptions.each do |sub|
+      obj = sub.product.present? ? sub.product : sub
+      media = media.concat(plan_media(obj))
+    end
+    return media.uniq
+  end
+
+  def subscribe_to_products
+    subscribed_product_ids = self.subscriptions.where.not(:product_id => nil)
+    Product.where.not(:id => subscribed_product_ids)
+  end
+
+  def subscribe_to_channels
+    subscribed_media_ids = []
+    self.subscriptions.map{|x| subscribed_media_ids = subscribed_media_ids.concat(x.media.map{|x| x.id})}
+    @additional_products = Medium.where.not(pricing_plan: nil, :id => subscribed_media_ids)
+  end
+
   def self.from_omniauth(auth)
     user_email = User.find_by_email auth.info.email
     user_email = "#{auth.uid}@#{auth.provider}.com" if user_email.to_s.blank?
@@ -128,6 +148,18 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def plan_media(obj)
+    media = []
+    media = media.concat(obj.media) if obj.media.present?
+    if obj.categories.present?
+      category_ids = obj.categories.map{|x| x.id}
+      if categories.present?
+        media = media.concat(Medium.includes(:media_categories).where("media_categories.category_id" => category_ids))
+      end
+    end
+    return media.uniq
+  end
 
   def confirmation_matches_password
     unless self.password == password_confirmation

@@ -58,6 +58,14 @@ class Medium < ActiveRecord::Base
   def overlay_link
   end
 
+  def self.basic_plan_media
+    category_ids = ProductItem.where(:item_type => 'Category').map{|x| x.item_id}
+    media_ids = ProductItem.where(:item_type => 'Medium').map{|x| x.item_id}
+    self.includes(:media_categories).where(:pricing_plan_id => nil).
+      where.not("media.id" => media_ids, "media_categories.category_id" => category_ids).
+      where('media.is_a_game' => false)
+  end
+
   private
 
   def has_or_belongs_to_language_group
