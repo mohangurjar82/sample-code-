@@ -2,7 +2,7 @@
   <script type="application/javascript" src="https://content.jwplatform.com/libraries/B2tmYadP.js"></script>
 <% end %>
 
-<% if current_user.blank? %>
+<% if !current_user || !current_user.can_view_media?(@media) %>
   <span class="is-guest-user"></span>
 <% end %>
 
@@ -113,6 +113,4 @@
         </section>
 </div><!--Main Content End-->
 <%= render 'media/purchase_modal' %>
-
-
       

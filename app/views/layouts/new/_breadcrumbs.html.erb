@@ -30,4 +30,17 @@
       </div>
     </div>
   </div>
+<% elsif @found_media %>
+  <div class="cp_inner-banner">
+    <div class="container">
+      <div class="cp-inner-banner-holder">
+        <h2>Search: <strong><%= params[:q] %></strong></h2>
+          <ul class="breadcrumb">
+            <li>
+            <a href="/">Home</a> / <a href="#">Search</a> / <a href="#"><%= params[:q] %></a>
+            </li>
+          </ul>
+      </div>
+    </div>
+  </div>
 <% end %>

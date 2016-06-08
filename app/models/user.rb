@@ -98,6 +98,31 @@ class User < ActiveRecord::Base
     return media.uniq
   end
 
+  def trial_expired?
+    if self.start_trial_date.present?
+      days = ( Time.now.to_date  - self.start_trial_date.to_date).to_i
+      return days > 7 ? true : false
+    end
+    return true
+  end
+
+  def can_view_media?(media)
+    return true unless trial_expired?
+    basic_plan_media = Media.basic_plan_media.where(:id => media.id).first
+    puts "Basic plan", basic_plan_media.inspect
+    return true if basic_plan_media.present?
+    category_ids = media.categories.map{|x| x.id}
+    self.subscriptions.each do |sub|
+      target = sub.product.present? ? sub.product : sub
+      if target.media.where(:id => media.id).size > 0
+        return true
+      elsif target.categories.where(:id => category_ids).size > 0
+        return true
+      end
+    end
+    return false
+  end
+
   def subscribe_to_products
     subscribed_product_ids = self.subscriptions.map{|x| x.product_id}.compact
     Product.where.not(:id => subscribed_product_ids)

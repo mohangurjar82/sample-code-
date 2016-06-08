@@ -60,7 +60,6 @@ gem 'language_list'
 gem 'mini_magick'
 gem 'active_model_serializers', '~> 0.10.0'
 
-
 source 'https://rails-assets.org' do
   gem 'rails-assets-sweetalert'
 end

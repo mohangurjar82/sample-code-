@@ -8,8 +8,8 @@ module MediaHelper
   end
 
   def video_player(media)
-    partial = 'shared/bitmovin_player'
-    partial = 'shared/jw_player' if media.file_url =~ /mobibase\.com/
+    # partial = 'shared/bitmovin_player'
+    partial = 'shared/jw_player' #if media.file_url =~ /mobibase\.com/
     render partial: partial, locals: { media: media }
   end
 end

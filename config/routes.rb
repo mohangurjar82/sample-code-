@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     get 'profile' => 'users/registrations#profile'
     
     post 'users/update_avatar' => 'users/registrations#update_avatar'
+
+    post 'users/start_free_trial' => 'users/registrations#start_free_trial'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
