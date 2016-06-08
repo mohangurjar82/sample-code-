@@ -44,13 +44,13 @@
       <ul class="nav navbar-nav navbar-right logged-in-box">
         <% if current_user %>
           <li>
-            <%= form_tag search_path, :method => :get, :class => 'navbar-form', :id=>"searchbar" do %>
+            <form class="navbar-form" id="searchbar" action="<%= search_path %>" method="GET">
               <div class="form-group">
                 <div class="input-group" id="navbar-search">
-                  <input class="form-control" placeholder="Search..." autocomplete="off" name="q" type="search">
+                  <input class="form-control" placeholder="Search..." autocomplete="off" name="q" type="search" value="<%= params[:q] %>">
                 </div>
               </div>
-            <% end %>
+            </form>
           </li>
         <% end%>
         <% unless current_user %>
