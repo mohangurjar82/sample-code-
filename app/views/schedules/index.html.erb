@@ -343,7 +343,6 @@
 		}
 
 		function mark_played_channel(data_src) {
-			console.log($('#' + data_src + ' .channel-board'));
 			$('.play-icon').remove();
 			$('.backcolor-played').addClass('backcolor-origin');
 			$('.backcolor-played').removeClass('backcolor-played');
@@ -678,6 +677,7 @@
 
 		$('.channel-board .channel_info a').on('click', function(event, data, status, xhr) {
 			var media_number = $(this).attr('data-media-num');
+			selected_channel = $(this).attr('data-src');
 			event.preventDefault();
 			return $.ajax({
 			    url: "schedule/video_feed?number=" + media_number,
@@ -685,7 +685,6 @@
 			    type: "GET",
 			    success: function(data, event, status, xhr) {
 			    	$('.video-area').html(data);
-		       		selected_channel = $(this).attr('data-src');
 					mark_played_channel(selected_channel);	 	
 		      	},
 		      	error: function(event, data, status, xhr) {
