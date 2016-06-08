@@ -225,6 +225,14 @@ class SchedulesController < ApplicationController
 		end
 	end
 
+	def video_feed
+		@mobile = params[:html5] || request.user_agent =~ /mobile/i
+	    @media = MPX::Media.find_by_number(params[:number])
+	    puts '---------------'
+	    puts @media
+	    render 'media/new/modal', :layout => 'modal'
+	end
+
 	private
 	def user_favorite_channels st_types_arr
 		sql_for_st_types = ""

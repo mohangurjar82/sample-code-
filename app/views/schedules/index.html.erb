@@ -1,7 +1,12 @@
+<% content_for :head do %>
+  <script type="application/javascript" src="https://content.jwplatform.com/libraries/B2tmYadP.js"></script>
+<% end %>
+
 <%= form_tag("/schedule", method: "post", id: "tvForm") do %>
 
 <div class="container desktop">
-	
+	<div class="video-area"></div>
+
 	<div class="row search-board">
 		<div class="col-md-3 date-board"><span></span></div>
 		<div class="col-md-9">
@@ -436,7 +441,9 @@
 				// 	web_link = channel_list[c].weblink;
 				web_link = web_link + media_numbers[channel_list[c].s_number]
 
-				var tmp_html = "<div class='row' id='" + channel_list[c].s_id.toString() + "_" + channel_list[c].s_number + "'><div class='col-xs-3 channel-board'><div class='channel_info'><p class='channel_name'>" + channel_list[c].callsign + "</p><span>" + channel_list[c].s_number + "</span><p><a href='" + web_link + "'>watch now</a></p></div></div><div class='col-xs-9 program-board'></div></div>";
+				// var tmp_html = "<div class='row' id='" + channel_list[c].s_id.toString() + "_" + channel_list[c].s_number + "'><div class='col-xs-3 channel-board'><div class='channel_info'><p class='channel_name'>" + channel_list[c].callsign + "</p><span>" + channel_list[c].s_number + "</span><p><a href='" + web_link + "'>watch now</a></p></div></div><div class='col-xs-9 program-board'></div></div>";
+				var tmp_html = "<div class='row' id='" + channel_list[c].s_id.toString() + "_" + channel_list[c].s_number + "'><div class='col-xs-3 channel-board'><div class='channel_info'><p class='channel_name'>" + channel_list[c].callsign + "</p><span>" + channel_list[c].s_number + "</span><p><a data-media-num=" + media_numbers[channel_list[c].s_number] + ">watch now</a></p></div></div><div class='col-xs-9 program-board'></div></div>";
+
 				$(tmp_html).appendTo(".grid-view");
 
 				for(var i in channel)
@@ -653,6 +660,25 @@
 			$('#cur_now').val(moment().format('YYYY-MM-DD HH:mm:ss Z'));
 			$('#tvForm').attr("action", "schedule/show");
 			$('#tvForm').submit();	
+		});
+
+		$('.channel-board .channel_info a').on('click', function(event, data, status, xhr) {
+			console.log('OK');
+			var media_number = $(this).attr('data-media-num');
+			event.preventDefault();
+			return $.ajax({
+			    url: "schedule/video_feed?number=" + media_number,
+			    // data: {number: media_number},
+			    dataType : "html",
+			    type: "GET",
+			    success: function(data, event, status, xhr) {
+		        	console.log(data);
+		        	$(data).appendTo('.video-area');
+		      	},
+		      	error: function(event, data, status, xhr) {
+		      
+		      	}
+			});
 		});
 	});
 </script>

@@ -47,7 +47,7 @@ Rails.application.routes.draw do
   post 'schedule', to: 'schedules#index'
   # get 'schedule', to: 'schedules#index'
   post 'schedule/:show', to: 'schedules#show'
-
+  get 'schedule/video_feed', to: 'schedules#video_feed'
 
   resources :products
   resources :categories, only: [:index, :show] do
