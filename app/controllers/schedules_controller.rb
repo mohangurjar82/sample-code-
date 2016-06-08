@@ -230,7 +230,7 @@ class SchedulesController < ApplicationController
 	    @media = MPX::Media.find_by_number(params[:number])
 	    puts '---------------'
 	    puts @media
-	    render 'media/new/modal', :layout => 'modal'
+	    render 'media/new/modal', :layout => false
 	end
 
 	private
