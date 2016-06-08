@@ -343,7 +343,7 @@
 		}
 
 		function mark_played_channel(data_src) {
-			console.log('OK');
+			console.log($('#' + data_src + ' .channel-board'));
 			$('.play-icon').remove();
 			$('.backcolor-played').addClass('backcolor-origin');
 			$('.backcolor-played').removeClass('backcolor-played');
