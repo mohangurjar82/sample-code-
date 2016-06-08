@@ -98,6 +98,24 @@ class User < ActiveRecord::Base
     return media.uniq
   end
 
+  def is_subcribed_media?(media)
+    basic_plan_media = Media.basic_plan_media.where(:id => media.id).first
+    if basic_plan_media
+      return true
+    else
+      #TODO: continue
+      category_ids = media.categories.map{|x| x.id}
+      product_ids = PrudctItem.where(:item_type => 'Category', :item_id => category_ids).
+                    or(PrudctItem.where.where(:item_type => 'Medium', :item_id => media.id)).map{|x| x.product_id}.uniq
+      subs = self.subscriptions.where(:product_id => product_ids)
+      if subs.size > 0
+        return true
+      else
+        SubscriptionItem.where
+      end
+    end
+  end
+
   def subscribe_to_products
     subscribed_product_ids = self.subscriptions.map{|x| x.product_id}.compact
     Product.where.not(:id => subscribed_product_ids)
