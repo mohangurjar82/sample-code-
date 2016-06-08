@@ -19,6 +19,7 @@
     <%= render 'layouts/new/navbar_new' %>
     <div id="wrapper">
       <%= render 'layouts/new/breadcrumbs' %>
+      <%= render 'layouts/new/flash' %>
       <!--Main Content Start-->
       <div id="cp-main-content">
         <section class="cp-section pd-tb60">
@@ -27,7 +28,6 @@
         <%= render 'layouts/new/footer' %>
       </div>
     </div>
-    <%= render 'shared/purchase_modal' %>
 
     <% if content_for? :javascript %>
       <%= content_for :javascript %>

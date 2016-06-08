@@ -3,10 +3,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Preview for guests is limited for 30 seconds</h4>
+        <h4 class="modal-title">Subscribe Now</h4>
       </div>
       <div class="modal-body">
-        <a href="<%= products_path %>" class="file-btn subscribe-btn">Subscribe to get more</a>
+        <% p_path = @media.product_ids.present? ? products_path(:product_ids => @media.product_ids.join(',')) : products_path %>
+        <a href="<%= p_path %>" class="file-btn subscribe-btn">Subscribe to get more</a>
       </div>
     </div>
   </div>

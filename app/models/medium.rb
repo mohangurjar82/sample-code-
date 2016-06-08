@@ -23,6 +23,16 @@ class Medium < ActiveRecord::Base
                     end
   end
   
+  def product_ids
+    prduct_ids = ProductItem.where(:item_type => 'Medium', :item_id => self.id).map{|x| x.product_id}.compact.uniq
+    return prduct_ids if prduct_ids.present?
+    category_ids = self.categories.map{|x| x.id}
+    prduct_ids = ProductItem.where(:item_type => 'Category', :item_id => category_ids).map{|x| x.product_id}.compact.uniq
+    return prduct_ids if prduct_ids.present?
+    return ["a#{self.id}"] if self.pricing_plan.present?
+    return []
+  end
+
   def price
     pricing_plan.price / 100.00
   end
@@ -62,8 +72,7 @@ class Medium < ActiveRecord::Base
     category_ids = ProductItem.where(:item_type => 'Category').map{|x| x.item_id}
     media_ids = ProductItem.where(:item_type => 'Medium').map{|x| x.item_id}
     self.includes(:media_categories).where(:pricing_plan_id => nil).
-      where.not("media.id" => media_ids, "media_categories.category_id" => category_ids).
-      where('media.is_a_game' => false)
+      where.not("media.id" => media_ids, "media_categories.category_id" => category_ids)
   end
 
   private

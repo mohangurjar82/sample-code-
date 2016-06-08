@@ -60,9 +60,6 @@ gem 'language_list'
 gem 'mini_magick'
 gem 'active_model_serializers', '~> 0.10.0'
 
-gem 'where-or'
-
-
 source 'https://rails-assets.org' do
   gem 'rails-assets-sweetalert'
 end

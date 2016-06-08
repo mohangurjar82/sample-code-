@@ -43,6 +43,17 @@
     <% end %>
     <!--Outer Holder End-->
 </div>
+<% if session[:show_trial] %>
+  <%= render :partial => "categories/free_trial_modal"%>
+  <%= content_for :javascript do %>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#free-trial').modal('show')
+      });
+    </script>
+  <% end %>
+  <% session[:show_trial] = nil %>
+<% end %>
 
 <%= content_for :javascript do %>
   <script type="text/javascript">

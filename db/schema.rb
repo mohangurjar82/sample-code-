@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605202506) do
+ActiveRecord::Schema.define(version: 20160608064452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,17 @@ ActiveRecord::Schema.define(version: 20160605202506) do
     t.string   "record_reference"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.integer  "media_id"
+    t.string   "title",       limit: 55
+    t.text     "description"
+    t.datetime "start_date",              precision: 0
+    t.datetime "end_date",                precision: 0
+    t.string   "stream_url",  limit: 255
+    t.integer  "product_id"
+    t.integer  "price"
   end
 
   create_table "favorite_media", force: :cascade do |t|
@@ -229,7 +240,7 @@ ActiveRecord::Schema.define(version: 20160605202506) do
   add_index "product_items", ["product_id"], name: "index_product_items_on_product_id", using: :btree
 
   create_table "products", force: :cascade do |t|
-    t.string   "mpxid",                          null: false
+    t.string   "mpxid"
     t.string   "title"
     t.string   "description"
     t.string   "images",          default: [],                array: true
@@ -305,6 +316,7 @@ ActiveRecord::Schema.define(version: 20160605202506) do
     t.string   "authentication_token",      limit: 30
     t.string   "default_language",                     default: "English"
     t.string   "role",                                 default: "user"
+    t.datetime "start_trial_date"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

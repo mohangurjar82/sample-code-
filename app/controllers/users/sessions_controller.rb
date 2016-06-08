@@ -15,6 +15,20 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def after_sign_in_path_for(resource)
+    set_flash
     categories_path
+  end
+
+  def set_flash
+    flash[:notice] = nil
+    if resource.start_trial_date.nil?
+      session[:show_trial] = true 
+    else
+      if current_user.trial_expired?
+        flash[:alert] = "Your 7 Days Free Trial has been expired. Please subcribe to continue."
+      else
+        flash[:notice] = 'You are currently on "7 Days Free Trial". You have full access to all media for 7 Days.'
+      end
+    end
   end
 end

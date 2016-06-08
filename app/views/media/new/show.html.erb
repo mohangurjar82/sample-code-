@@ -2,8 +2,8 @@
   <script type="application/javascript" src="https://content.jwplatform.com/libraries/B2tmYadP.js"></script>
 <% end %>
 
-<% if current_user.subscribed_media?(@media) %>
-  <span class="subcribed-this-product"></span>
+<% if !current_user || !current_user.can_view_media?(@media) %>
+  <span class="is-guest-user"></span>
 <% end %>
 
       <div id="cp-main-content">
@@ -112,6 +112,5 @@
           </div>
         </section>
 </div><!--Main Content End-->
-
-
+<%= render 'media/purchase_modal' %>
       

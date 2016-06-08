@@ -1,4 +1,5 @@
 class MediaController < ApplicationController
+  before_filter :authenticate_user!
   
   layout 'new_layout'
 

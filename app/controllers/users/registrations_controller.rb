@@ -29,6 +29,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     render :layout => false
   end
 
+  def start_free_trial
+    #TODO: store stripeToken 
+    current_user.update_attributes(:start_trial_date => Time.now)
+    redirect_to categories_path, :notice => 'You are currently on "7 Days Free Trial"'
+  end
+
   private
 
   def sign_up_params

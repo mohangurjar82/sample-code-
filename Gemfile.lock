@@ -354,7 +354,6 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
-    where-or (0.1.1)
 
 PLATFORMS
   ruby
@@ -404,7 +403,6 @@ DEPENDENCIES
   vcr
   web-console (~> 2.0)
   webmock
-  where-or
 
 BUNDLED WITH
    1.12.5
