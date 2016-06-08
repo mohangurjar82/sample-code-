@@ -42,15 +42,17 @@
       </ul>
         
       <ul class="nav navbar-nav navbar-right logged-in-box">
-        <li>
-          <%= form_tag search_path, :method => :get, :class => 'navbar-form', :id=>"searchbar" do %>
-            <div class="form-group">
-              <div class="input-group" id="navbar-search">
-                <input class="form-control" placeholder="Search..." autocomplete="off" name="q" type="search">
+        <% if current_user %>
+          <li>
+            <%= form_tag search_path, :method => :get, :class => 'navbar-form', :id=>"searchbar" do %>
+              <div class="form-group">
+                <div class="input-group" id="navbar-search">
+                  <input class="form-control" placeholder="Search..." autocomplete="off" name="q" type="search">
+                </div>
               </div>
-            </div>
-          <% end %>
-        </li>
+            <% end %>
+          </li>
+        <% end%>
         <% unless current_user %>
           <li><a href="<%= new_user_registration_path %>">Register</a></li>
           <li><a href="<%= new_user_session_path %>">Login</a></li>
