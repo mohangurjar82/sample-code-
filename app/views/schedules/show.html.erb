@@ -9,31 +9,25 @@
 					<div class="col-md-3">					
 						<div id="custom-search-input">
                             <div class="input-group">
-                                <input type="text" class="search-query form-control" placeholder="Search Listings"  id="listings-search-term" name="listings_search_term"/>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-danger" type="button" id="listings-search-submit">
-                                        <span class="glyphicon glyphicon-search"></span>
-                                    </button>
-                                </span>
-                            </div>
+                                <input type="text" class="search-query form-control" placeholder="Search Listings"  id="listings-search-term" name="listings_search_term"><i class="fa fa-search fa-fw listings-button-icon" id="listings-search-submit"></i>
+							</div>
                         </div>
-						
 					</div>
 
 					<div class="col-md-6 listings-details-column listings-date-time-search row">
-						<div class="col-md-6">
+						<div class="col-md-6 col-xs-6" >
 							<select id="listings-date-picker-date-select" name="listings_date_picker_date_select" class="listings-picker-select"></select>
 						</div>
 
-						<div class="listings-date-picker-time-total col-md-6">
+						<div class="listings-date-picker-time-total col-md-6 col-xs-6" >
 							
 							<select id="listings-date-picker-time-select" class="listings-picker-select" name="listings_date_picker_time_select"><optgroup label="Quick Jump"><option value="17">Primetime</option><option value="now">Now</option></optgroup><optgroup label="Times"><option value="00">12:00 AM</option><option value="01">1:00 AM</option><option value="02">2:00 AM</option><option value="03">3:00 AM</option><option value="04">4:00 AM</option><option value="05">5:00 AM</option><option value="06">6:00 AM</option><option value="07">7:00 AM</option><option value="08">8:00 AM</option><option value="09">9:00 AM</option><option value="10">10:00 AM</option><option value="11">11:00 AM</option><option value="12">12:00 PM</option><option value="13">1:00 PM</option><option value="14">2:00 PM</option><option value="15">3:00 PM</option><option value="16">4:00 PM</option><option value="17">5:00 PM</option><option value="18">6:00 PM</option><option value="19">7:00 PM</option><option value="20">8:00 PM</option><option value="21">9:00 PM</option><option value="22">10:00 PM</option><option value="23">11:00 PM</option></optgroup></select>
 						
-							<button id="listings-date-time-picker-go" class="btn-disabled">GO</button>
+							<button id="listings-date-time-picker-go" class="">GO</button>
 						</div>
 					</div>
 					<div class="col-md-3 listings-details-column listings-details-preferences-column">
-						<a href="#" onclick="return false" id="listings-favorites-button"  data-toggle="modal" data-target="#gridSystemModal"><i class="fa fa-heart fa-fw listings-button-icon"></i> Favorites</a>
+						<a href="#" onclick="return false" id="listings-favorites-button" data-toggle="modal" data-target="#gridSystemModal"><i class="fa fa-heart fa-fw listings-button-icon"></i> Favorites</a>
 						<a href="#" onclick="return false" id="listings-preferences-button" data-toggle="modal" data-target="#grid_preferences"><i class="fa fa-gear fa-fw listings-button-icon"></i> Preferences</a>
 					</div>
 				</div>
@@ -211,6 +205,7 @@
 		var channel_list;
 		var all_channels;
 		var preference;
+		var media_numbers;
 
 		function init_date_picker() {
 			var tmp_html = '';	
@@ -276,8 +271,11 @@
 			var c_list_id = $(this).attr('data-list-id');
 			var ch_html;
 			var pro_html;
+			var web_link = 'http://n2me-web.herokuapp.com/media/';
+			web_link = web_link + media_numbers[tv_listing[c_list_id].s_number]
 
-			ch_html = '<span><img src="https://cdn.tvpassport.com/image/station/100x100/' + tv_listing[c_list_id].logo_file_name + '" style="width: 100px; height: 100px"></span><span class="listings-channel-number-name"><span class="listings-channel-number-name-inner"><span class="listings-channel-number">' + tv_listing[c_list_id].s_number + '</span><span class="listings-channel-name">' + tv_listing[c_list_id].callsign + '</span></span></span>';
+			ch_html = '<span><img src="https://cdn.tvpassport.com/image/station/100x100/' + tv_listing[c_list_id].logo_file_name + '" style="width: 100px; height: 100px"></span><span class="listings-channel-number-name"><span class="listings-channel-number-name-inner"><span class="listings-channel-number">' + tv_listing[c_list_id].s_number + '</span><span class="listings-channel-name">' + tv_listing[c_list_id].callsign + '</span></span></span><a href="' + web_link + '" class="custom btn btn-primary btn-lg gradient pull-right"><i class="fa fa-desktop fa-fw listings-button-icon"></i> WATCH LIVE</a>';
+
 			$('#pro_info .channel-info').html(ch_html);
 	
 			pro_html = "<div><span style='font-size: 20px'>" + (tv_listing[c_list_id].episode_title == '' ? tv_listing[c_list_id].show_name : tv_listing[c_list_id].episode_title) + "</span><span class='pull-right " + (tv_listing[c_list_id].new == true ? 'tag' : '') + "'>" + (tv_listing[c_list_id].new == true ? 'NEW' : '') + "</span><span class='pull-right " + (tv_listing[c_list_id].live == true ? 'tag' : '') + "'>" + (tv_listing[c_list_id].live == true ? 'LIVE' : '') + "</span><span class='pull-right " + (tv_listing[c_list_id].rating == '' ? '' : 'tag') + "'>" + tv_listing[c_list_id].rating + "</span></div>"
@@ -318,6 +316,7 @@
 			all_channels = <%= raw @all_channels.to_json %>;
 			channel_list = <%= raw @favorite_channels.to_json %>;
 			preference 	  = <%= raw @preference.to_json %>
+			media_numbers = <%= raw MEDIA_NUMBERS.to_json %>
 
 			init_date_picker();
 			$('.listings-picker-select').attr('disabled', 'disabled');
@@ -349,7 +348,7 @@
 
 					} 
 
-					tmp_html =  tmp_html + '<li data-channel-number="' + tv_listing[i].channel_number + '" data-channel-source="' + tv_listing[i].s_id + '" data-channel-name="' + tv_listing[i].callsign + '"><a href="' + tv_listing[i].web_link + '" class="listings-channel" style="width: 17.7%;"><span><img src="https://cdn.tvpassport.com/image/station/100x100/' + tv_listing[i].logo_file_name + '" style="width: 30px; height: 20px"></span><span class="listings-channel-number-name"><span class="listings-channel-number-name-inner"><span class="listings-channel-number">' + tv_listing[i].s_number + '</span><span class="listings-channel-name">' + tv_listing[i].callsign + '</span></span></span></a><a href="#" class="listings-program" style="width: 82.3%;" data-callsign="' + tv_listing[i].callsign + '" data-chan-num="' + tv_listing[i].s_number + '" data-list-id="' + i + '"><span class="listings-program-inner"><span class="listings-program-title">' + tv_listing[i].episode_title + '</span><span class="listings-program-time">' + moment(tv_listing[i].list_date_time).format('h:mm A') + ' (' + moment.duration(tv_listing[i].duration, "minutes").format("h [hr] m [min]") + ')</span></span></a></li>';
+					tmp_html =  tmp_html + '<li data-channel-number="' + tv_listing[i].channel_number + '" data-channel-source="' + tv_listing[i].s_id + '" data-channel-name="' + tv_listing[i].callsign + '"><a href="' + tv_listing[i].web_link + '" class="listings-channel"><span><img src="https://cdn.tvpassport.com/image/station/100x100/' + tv_listing[i].logo_file_name + '" style="width: 30px; height: 20px"></span><span class="listings-channel-number-name"><span class="listings-channel-number-name-inner"><span class="listings-channel-number">' + tv_listing[i].s_number + '</span><span class="listings-channel-name">' + tv_listing[i].callsign + '</span></span></span></a><a href="#" class="listings-program" data-callsign="' + tv_listing[i].callsign + '" data-chan-num="' + tv_listing[i].s_number + '" data-list-id="' + i + '"><span class="listings-program-inner"><span class="listings-program-title truncate">' + tv_listing[i].episode_title + '</span><span class="listings-program-time">' + moment(tv_listing[i].list_date_time).format('h:mm A') + ' (' + moment.duration(tv_listing[i].duration, "minutes").format("h [hr] m [min]") + ')</span></span></a></li>';
 				}
 
 				tmp_html = tmp_html + '</ul>';
