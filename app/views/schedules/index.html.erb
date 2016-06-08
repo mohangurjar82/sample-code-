@@ -529,6 +529,7 @@
 			display_tv_listing(start_chan, end_chan);
 			mark_played_channel(selected_channel);
 			$('.program-board .for-detail').on('click', click_for_detail);
+			$('.channel-board .channel_info a').on('click', play_video_feed);
 		});	
 
 		// When clicking bottom arrow link, it will move to the next page
@@ -546,6 +547,7 @@
 			display_tv_listing(start_chan, end_chan);
 			mark_played_channel(selected_channel);
 			$('.program-board .for-detail').on('click', click_for_detail);
+			$('.channel-board .channel_info a').on('click', play_video_feed);
 		});		
 
 
@@ -675,10 +677,10 @@
 			$('#tvForm').submit();	
 		});
 
-		$('.channel-board .channel_info a').on('click', function(event, data, status, xhr) {
+		function play_video_feed() {
 			var media_number = $(this).attr('data-media-num');
 			selected_channel = $(this).attr('data-src');
-			event.preventDefault();
+			// event.preventDefault();
 			return $.ajax({
 			    url: "schedule/video_feed?number=" + media_number,
 			    dataType : "html",
@@ -691,7 +693,9 @@
 		      
 		      	}
 			});		
-		});
+		}
+
+		$('.channel-board .channel_info a').on('click', play_video_feed);
 	});
 </script>
 
