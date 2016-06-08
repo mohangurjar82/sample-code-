@@ -228,8 +228,6 @@ class SchedulesController < ApplicationController
 	def video_feed
 		@mobile = params[:html5] || request.user_agent =~ /mobile/i
 	    @media = MPX::Media.find_by_number(params[:number])
-	    puts '---------------'
-	    puts @media
 	    render 'media/new/modal', :layout => false
 	end
 

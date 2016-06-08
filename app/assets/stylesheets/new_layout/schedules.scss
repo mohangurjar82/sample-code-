@@ -208,7 +208,6 @@ div.each-time {
 }
 
 .channel-board {
-	background-color: rgb(79, 79, 79);
 	border-bottom: solid 1px rgb(92, 92, 92);
 	border-right: solid 1px rgb(157, 157, 157);
 	padding: 30px 0 20px 20px;
@@ -708,6 +707,19 @@ ul {
 
 .video-area {
 	width: 100%;
+}
+
+.play-icon {
+	color: rgb(246, 133, 15);
+	margin-right: 20px;
+}
+
+.backcolor-played {
+	background-color: rgb(100, 0, 100); 
+}
+
+.backcolor-origin {
+	background-color: rgb(79, 79, 79);
 }
 
 
