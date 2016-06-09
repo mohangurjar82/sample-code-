@@ -66,10 +66,11 @@
             <ul class="dropdown-menu">
               <li><a href="/profile">Profile</a></li>
               <li><a href="/products">Products</a></li>
+              <li><%= link_to "Live TV Guide", schedule_path, class: "go-to" %></li>
               <li><a href="<%= destroy_user_session_path %>"> Logout</a></li>
             </ul>
           </li>
-          <li><%= link_to "Live TV Guide", schedule_path, class: "go-to btn btn-danger" %></li>
+          <li class='live-tv'><%= link_to "Live TV Guide", schedule_path, class: "go-to btn btn-danger" %></li>
         <% end %>
       </ul>
     </div>

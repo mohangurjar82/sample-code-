@@ -147,8 +147,8 @@
     display:block !important;
 
   } 
-  .navbar-right li>a.btn-danger{
-    margin-left: 20px; margin-right: 20px;
+  .navbar-right li.live-tv{
+    display: none;
   }
 }
 @media (min-width: 1200px){
