@@ -23,7 +23,7 @@ class Users::SessionsController < Devise::SessionsController
     flash[:notice] = nil
     if resource.start_trial_date.nil?
       session[:show_trial] = true 
-    else
+    elsif current_user.subscriptions.size == 0
       if current_user.trial_expired?
         flash[:alert] = "Your 7 Days Free Trial has been expired. Please subscribe to continue."
       else

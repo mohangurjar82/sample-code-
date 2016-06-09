@@ -11,8 +11,10 @@
     <%= yield :head %>
   </head>
   <body style="opacity: 1;">
-    <%= render :partial => 'layouts/new/navbar_new' %>    
-    <%= render 'layouts/new/flash' %>
+    <%= render :partial => 'layouts/new/navbar_new' %>
+    <div class="hidden">
+      <%= render 'layouts/new/flash' %>
+    </div>
     <%= yield %>
     <%= javascript_include_tag(:frontpage) unless @skip_javascript %>
     <%= yield :javascript %>
