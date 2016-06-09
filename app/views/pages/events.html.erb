@@ -27,7 +27,7 @@
               <% @events.each do |event| %>
                 <% image_url = (event.thumbnail_url.present? ? event.thumbnail_url : asset_path('movie-placeholder.jpg') ) %>
                 <div class="cbp-item">
-                    <a href="<%= image_url %>" class="cbp-lightbox cbp-caption">
+                    <a href="<%= media_path(event.number) %>" class=" cbp-caption">
                         <div class="cbp-caption-defaultWrap">
                           <img alt="" src="<%= image_url %>">
                         </div>

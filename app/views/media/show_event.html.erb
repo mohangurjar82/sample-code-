@@ -1,6 +1,9 @@
-<% require 'date' %>
-<% content_for :head do %>
+
+<% content_for :javascript do %>
   <script type="application/javascript" src="https://content.jwplatform.com/libraries/B2tmYadP.js"></script>
+<% end %>
+<% if !current_user || !current_user.can_view_media?(@media) %>
+  <span class="is-guest-user"></span>
 <% end %>
 <div class="uk-panel media">
   <h1>
@@ -110,3 +113,4 @@
   </div>
   <% end %>
 </div>
+<%= render 'media/purchase_modal' %>

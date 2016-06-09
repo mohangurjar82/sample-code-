@@ -672,5 +672,8 @@
         displayTypeSpeed: 100
     });
 
-    
+    $('.cbp-item img').unbind().click(function(){
+        var url = $(this).data('href')
+        window.location.href = url;
+    })
 }(jQuery));

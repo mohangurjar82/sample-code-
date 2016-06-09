@@ -24,11 +24,15 @@
       $(document).ready(function(e){
         setTimeout(function(){
           var html = '<div class="container text-center" style="padding-top: 150px">'
-          html +=    '<a href="#" class="signup btn btn-primary"> Sign Up Now </a>'
+          <% if current_user %>
+            html +=    '<a href="#" class="signup btn btn-danger"> Subscribe Now </a>'
+          <% else %>
+            html +=    '<a href="#" class="signup btn btn-danger"> Sign Up Now </a>'
+          <% end %>
           html +=    '</div>'
           $(document.body).html(html)
           $('a.signup').click(function(){
-            window.parent.location.href= "/users/sign_up";
+            window.parent.location.href= "<%= current_user ? '/products' : '/users/sign_up' %>";
           })
         }, 30000)
       })
