@@ -144,6 +144,15 @@ class SchedulesController < ApplicationController
 
 		# ==== End: Read DB data which contains tv listings
 
+		gon.start_t 	      = @start_t
+		gon.search_time       = @search_time
+		gon.search_date_t     = @search_date_t
+		gon.select_time_val   = @select_time_val
+		gon.all_channels      = @all_channels
+		gon.tv_listing		  = @tv_listing
+		gon.favorite_channels = @favorite_channels
+		gon.media_numbers	  = MEDIA_NUMBERS
+		gon.preference 		  = @preference
 	end
 
 	def show
@@ -223,6 +232,14 @@ class SchedulesController < ApplicationController
 		if not sql_for_channels.eql? ''
 			@tv_listing = Listing.where("episode_title ILIKE ? AND updated_date = ? AND list_date_time + interval '1 minute' * listings.duration > ?" + sql_for_channels + sql_for_st_types, '%' + @search_word + '%', utc_one_day_ago.strftime('%Y-%m-%d'), @search_time).order("list_date_time ASC, s_id ASC")  		
 		end
+
+		gon.start_t			  = @start_t
+		gon.all_channels      = @all_channels
+		gon.tv_listing 		  = @tv_listing
+		gon.favorite_channels = @favorite_channels
+		gon.media_numbers     = MEDIA_NUMBERS
+		gon.preference 		  = @preference
+		gon.search_word		  = @search_word
 	end
 
 	def video_feed

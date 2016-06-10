@@ -55,6 +55,8 @@ gem 'kaminari'
 
 gem 'stripe'
 
+gem 'gon'
+
 gem 'language_list'
 
 gem 'mini_magick'
