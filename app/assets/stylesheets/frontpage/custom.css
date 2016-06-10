@@ -93,6 +93,50 @@
     background-image: url(/frontpage/bg-blue.jpg);  
 } 
 
+.uk-slidenav-previous:before {
+  content: "\f104";
+  font-family: FontAwesome;
+  font-size: 60px;
+}
+.uk-slidenav-next:before {
+  content: "\f105";
+  font-family: FontAwesome;
+  font-size: 60px;
+}
+
+.uk-slidenav-position {
+  position: relative;
+}
+
+.uk-slidenav-position .uk-slidenav {
+  display: none;
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  margin-top: -20px;
+}
+.uk-slidenav-position:hover .uk-slidenav {
+  display: block;
+}
+.uk-slidenav-position .uk-slidenav-previous {
+  left: 20px;
+}
+.uk-slidenav-position .uk-slidenav-next {
+  right: 20px;
+}
+
+.uk-slidenav-contrast {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.uk-slidenav-contrast:hover,
+.uk-slidenav-contrast:focus {
+  color: rgba(255, 255, 255, 0.7);
+}
+/* Active */
+.uk-slidenav-contrast:active {
+  color: rgba(255, 255, 255, 0.9);
+}
 
 .uk-slidenav-position .row .previous, .uk-slidenav-position .row .next{
     color: grey;
