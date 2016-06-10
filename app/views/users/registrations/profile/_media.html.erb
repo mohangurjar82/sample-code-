@@ -18,13 +18,13 @@
       <span class="uk-text-small uk-text-muted">
         <% if subs %>
           $<%= subs.pricing_plan.price / 100.0 %>/<%= subs.pricing_plan.interval %><br/>
-          <a class="btn btn-success btn-subcribe">
+          <a class="btn btn-success btn-subscribe">
             Subcribe
             <i class="fa fa-check-square-o" aria-hidden="true" ></i>
           </a>
         <% elsif m.pricing_plan %>
           $<%= m.pricing_plan.price / 100.0 %>/<%= m.pricing_plan.interval %><br>
-          <a class="btn btn-danger btn-subcribe" href="<%= products_path(:product_ids => "a#{m.id}") %>">
+          <a class="btn btn-danger btn-subscribe" href="<%= products_path(:product_ids => "a#{m.id}") %>">
             <i class="fa fa-caret-square-o-right" aria-hidden="true" ></i>
             Subcribe
           </a>

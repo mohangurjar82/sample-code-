@@ -1,5 +1,5 @@
 .navbar-default {
-  min-height: 82px;
+  min-height: 65px;
 
   background-color: rgba(0,0,0,.8);
   border: none;
@@ -24,11 +24,11 @@
     }
   }
   .navbar-collapse{
-    margin-top: 15px;
+    margin-top: 7px;
     max-height: 560px !important;
   }
   .navbar-toggle {
-    margin-top: 25px;
+    margin-top: 15px;
   }
   .brand-logo, .navbar-brand {
     padding-top: 0px;
@@ -107,7 +107,7 @@
   }
 }
 #wrapper{
-  margin-top: 80px;
+  margin-top: 65px;
 }
 @media (max-width: 992px) {
   #searchbar {
@@ -157,5 +157,11 @@
 @media (min-width: 1200px){
   nav .container {
     width: 1240px;
+  }
+}
+
+@media (min-width: 768px){
+  .navbar-right {
+    margin-right: 15px !important;
   }
 }

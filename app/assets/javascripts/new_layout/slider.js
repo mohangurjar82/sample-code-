@@ -24,10 +24,10 @@ Slider.prototype.bindEvents = function () {
       var container = $(this).parent().find('.row__inner')
       var itemWidth = container.find('.tile').first().width()
       var maxWidth = container[0].scrollWidth;
-      if(maxWidth > $(window).width()){
+      if(maxWidth > container.parents('.uk-slidenav-position').width()){
         var left = $(this).parent().find('.row__inner').offset().left-(itemWidth+14)*4 ;
-        if(Math.abs(left) > (maxWidth- $(window).width())){
-          left =  -(maxWidth - $(window).width());
+        if(Math.abs(left) > (maxWidth- container.parents('.uk-slidenav-position').width())){
+          left =  -(maxWidth - container.parents('.uk-slidenav-position').width());
         }
         container.animate( {left: left}, 200)
       }

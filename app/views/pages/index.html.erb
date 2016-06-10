@@ -506,23 +506,29 @@
 <!-- Previews Section -->
       <section class="pt10 pb70">
           <div class="container"> 
-              <div class="row">  
-                <div id="clients-slider-2" class="owl-carousel">
-                  <%
-                    ids = [252485534, 252997543, 52293608, 252485536, 252997525,250949735, 252485540,251973892, 252485547, 252997532, 252997556, 251973893,252485553]
-                    pictures = [1,2,3,4,5,7,8,9,10,11,12,13,14]
-                  %>
-                  <% ids.each_with_index do |id,i| %>
-                    <% m = Medium.find_by_number(id) %>
-                    <% next unless m %>
-                    <div> 
-                      <a class="live-tv" data-title="<%= m.title %>" data-href="<%= media_path(ids[i], :modal => true) %>">
-                        <%= image_tag "/frontpage/#{pictures[i]}.png", class: "img-responsive", alt: "#" %>
-                      </a>
-                    </div>
-                  <% end %>
+              <div class="uk-slidenav-position">
+                  <div class="row">
+                    <div class="row__inner">
+                      <%
+                        ids = [252485534, 252997543, 52293608, 252485536, 252997525,250949735, 252485540,251973892, 252485547, 252997532, 252997556, 251973893,252485553]
+                        pictures = [1,2,3,4,5,7,8,9,10,11,12,13,14]
+                      %>
+                      <% ids.each_with_index do |id,i| %>
+                        <% m = Medium.find_by_number(id) %>
+                        <% next unless m %>
 
-                </div>
+                        <div class="tile">
+                          <div class="tile__media">
+                            <a class="live-tv" data-title="<%= m.title %>" data-href="<%= media_path(ids[i], :modal => true) %>">
+                              <%= image_tag "/frontpage/#{pictures[i]}.png", class: "img-responsive", alt: "#" %>
+                            </a>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                    <a href="" class="previous uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slider-item="previous"></a>
+                    <a href="" class="next uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slider-item="next"></a>
+                  </div>
               </div>
           </div>
       </section>
@@ -593,13 +599,14 @@
         $("#live-tv").modal('show')
         return false
       })
+
+      $("#live-tv").on('hide.bs.modal', function(){
+        $('iframe.live-tv').attr('src', '')
+        setTimeout(function(){
+          $(document.body).scrollTop($('a[name="portfolio"').offset().top);
+        }, 800)
+      })
+      var slider = new Slider()
     });
-    $("#live-tv").on('hide.bs.modal', function(){
-      $('iframe.live-tv').attr('src', '')
-      setTimeout(function(){
-        console.log($('a[name="portfolio"').offset().top);
-        $(document.body).scrollTop($('a[name="portfolio"').offset().top);
-      }, 800)
-    })
   </script>
 <% end %>

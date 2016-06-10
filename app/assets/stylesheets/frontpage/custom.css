@@ -92,3 +92,8 @@
 .bg-blue {
     background-image: url(/frontpage/bg-blue.jpg);  
 } 
+
+
+.uk-slidenav-position .row .previous, .uk-slidenav-position .row .next{
+    color: grey;
+}
